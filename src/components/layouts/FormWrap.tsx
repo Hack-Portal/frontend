@@ -1,9 +1,11 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import { Box, Button, TextField } from '@mui/material'
 
-export const FormWrap = (children) => {
-  return
-  ;<Box sx={{ background: 'blue', width: '800px', height: ' 600px' }}>
-    {children}
-  </Box>
+interface Props {
+  children: ReactNode
+}
+
+export const FormWrap = ({ children }: Props) => {
+  //色とか付ける
+  return <Box>{children}</Box>
 }

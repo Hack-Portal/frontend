@@ -1,13 +1,12 @@
 'use client'
 import { Header } from '@/components/Header'
-import { LoginForm } from '@/components/LoginForm'
-import { RegisterForm } from '@/components/RegisterForm'
+import { RegisterForm } from '@/components/AuthForm/RegisterForm'
 export default function Home() {
   return (
-    <main style={{ background: 'white' }}>
-      {/* <Header /> */}
-      {/* <LoginForm /> */}
-      <RegisterForm />
-    </main>
+    <body style={{ background: 'white' }}>
+      <main>
+        <RegisterForm />
+      </main>
+    </body>
   )
 }
