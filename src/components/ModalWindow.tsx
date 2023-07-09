@@ -3,18 +3,58 @@ import { Button, Modal, Grid, Box, Typography } from '@mui/material'
 import {
   JavaScriptFrameworkTag,
   PythonFrameworkTag,
+  GoFramework,
+  CFramework,
+  CsharpFramework,
+  CPlusPlusFramework,
+  JavaFramework,
+  kotlinFramework,
+  PHPFramework,
+  RustFramework,
+  RubyFramework,
+  RFramework,
+  DataBase,
+  Cloud,
+  DevOps,
 } from './StackTags/Framework'
+
+//スタックタグ関連
 
 const Stack = [
   { id: 1, name: 'Python' },
   { id: 2, name: 'JavaScript' },
+  { id: 3, name: 'Go' },
+  { id: 4, name: 'C' },
+  { id: 5, name: 'C#' },
+  { id: 6, name: 'C++' },
+  { id: 7, name: 'Java' },
+  { id: 8, name: 'Kotlin' },
+  { id: 9, name: 'PHP' },
+  { id: 10, name: 'Rust' },
+  { id: 11, name: 'Ruby' },
+  { id: 12, name: 'R' },
+  { id: 13, name: 'DataBase' },
+  { id: 14, name: 'Cloud' },
+  { id: 15, name: 'DevOps' },
   // ...
 ]
 
 const FrameworkComponents = {
   1: PythonFrameworkTag,
   2: JavaScriptFrameworkTag,
-  // ...
+  3: GoFramework,
+  4: CFramework,
+  5: CsharpFramework,
+  6: CPlusPlusFramework,
+  7: JavaFramework,
+  8: kotlinFramework,
+  9: PHPFramework,
+  10: RustFramework,
+  11: RubyFramework,
+  12: RFramework,
+  13: DataBase,
+  14: Cloud,
+  15: DevOps,
 }
 
 export const ModalWindow = () => {

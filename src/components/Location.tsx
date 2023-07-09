@@ -1,5 +1,8 @@
 import React from 'react'
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+
+//所在地の登録
+
 export const Location = () => {
   const Locate = [
     { id: 1, name: '北海道' },
