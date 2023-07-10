@@ -6,7 +6,7 @@ import { Grid, ListItem, ListItemButton } from '@mui/joy'
 
 export const PythonFrameworkTag = () => {
   return (
-    <Box>
+    <Box sx={{ display: 'flex' }}>
       <FormGroup>
         <ListItem>
           <ListItemButton>
@@ -41,13 +41,13 @@ export const JavaScriptFrameworkTag = () => {
           <ListItemButton>
             <FormControlLabel
               control={<Checkbox sx={{ display: 'none' }} />}
-              label="React.js"
+              label="React"
             />
           </ListItemButton>
           <ListItemButton>
             <FormControlLabel
               control={<Checkbox sx={{ display: 'none' }} />}
-              label="Vue.js"
+              label="Vue"
             />
           </ListItemButton>
           <ListItemButton>
@@ -217,7 +217,7 @@ export const CsharpFramework = () => {
     </Box>
   )
 }
-export const CPlusPlusFramework = () => {
+export const CppFramework = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <FormGroup>
@@ -376,66 +376,68 @@ export const RFramework = () => {
 }
 
 export const DataBase = () => {
-  ;<Box sx={{ display: 'flex' }}>
-    <FormGroup>
-      <ListItem>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label="MySQL"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label="PostgreSQL"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label="MongoDB"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label="Oracle"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label="Couchbase"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label=" SQLServer"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label="Redis"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label="AlibabaCloud"
-          />
-        </ListItemButton>
-        <ListItemButton>
-          <FormControlLabel
-            control={<Checkbox sx={{ display: 'none' }} />}
-            label=" OracleCloud"
-          />
-        </ListItemButton>
-      </ListItem>
-    </FormGroup>
-  </Box>
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <FormGroup>
+        <ListItem>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label="MySQL"
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label="PostgreSQL"
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label="MongoDB"
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label="Oracle"
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label="Couchbase"
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label=" SQLServer"
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label="Redis"
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label="AlibabaCloud"
+            />
+          </ListItemButton>
+          <ListItemButton>
+            <FormControlLabel
+              control={<Checkbox sx={{ display: 'none' }} />}
+              label=" OracleCloud"
+            />
+          </ListItemButton>
+        </ListItem>
+      </FormGroup>
+    </Box>
+  )
 }
 
 export const Cloud = () => {
