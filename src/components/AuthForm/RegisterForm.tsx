@@ -12,15 +12,11 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { ModalWindow } from '../ModalWindow'
 import { Location } from '../Location'
 
-interface Props {
-  children: ReactNode
-}
-
 interface FormValues {
   username: string
 }
 
-export const RegisterForm = ({ children }: Props) => {
+export const RegisterForm = () => {
   const { register, handleSubmit } = useForm<FormValues>()
 
   const onSubmit = (data: FormValues) => {
