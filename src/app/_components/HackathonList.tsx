@@ -1,4 +1,5 @@
-import { Box, Card, IconButton, Sheet } from '@mui/joy'
+import { Box, Card, IconButton, Sheet, Button } from '@mui/joy'
+import { Paper } from '@mui/material'
 import { Hackathon } from '../types/hackathon'
 import { CardActions, CardContent, CardMedia, Grid } from '@mui/material'
 import Typography from '@mui/material/Typography'
@@ -15,8 +16,11 @@ export const HackathonList = (props: Props) => {
     <Grid container alignItems={'center'} direction="column" gap={2}>
       {hackathons.map((hackathon) => (
         <Link key={hackathon.id} href={`/hackathon/${hackathon.id}`}>
-          <Card
+          <Paper
+            elevation={3}
             sx={{
+              minHeight: 250,
+              maxHeight: 250,
               maxWidth: 800,
               minWidth: 800,
               display: 'flex',
@@ -25,36 +29,50 @@ export const HackathonList = (props: Props) => {
           >
             <CardMedia
               component="img"
-              sx={{ width: 200, height: 200, objectFit: 'cover' }}
+              sx={{
+                width: 230,
+                height: 230,
+                pt: 2,
+                pl: 2,
+                objectFit: 'cover',
+              }}
               image={hackathon.icon}
               alt={hackathon.name}
             />
-            <Box sx={{ maxWidth: 550 }}>
+            <Box sx={{ maxWidth: 550, ml: 2 }}>
               <CardContent>
-                <Typography gutterBottom variant="h5">
+                <Typography sx={{ fontSize: '30px' }} variant="h5">
                   {hackathon.name}
                 </Typography>
-                {/* <Typography variant="body2" color="text.secondary">
-                  This impressive paella is a perfect party dish and a fun meal
-                  to cook together with your guests. Add 1 cup of frozen peas
-                  along with the mussels, if you like.
-                </Typography> */}
-                <Typography>募集締め切り：{hackathon.expired}</Typography>
-                <Typography>キックオフ：{hackathon.start_date}</Typography>
-                <Typography>期間：{hackathon.term}日間</Typography>
+
+                <Typography sx={{ mt: 1, mb: 1.5, fontSize: '16px' }}>
+                  募集締め切り：{hackathon.expired}
+                </Typography>
+                <Typography sx={{ mb: 1.5, fontSize: '16px' }}>
+                  キックオフ：{hackathon.start_date}
+                </Typography>
+
+                <Typography sx={{ mb: 1.5, fontSize: '16px' }}>
+                  期間：{hackathon.term}日間
+                </Typography>
                 <Grid container>
-                    {hackathon.hackthon_tag.map((tag,id) => (
-                        <Typography key={id}>{tag}</Typography>
-                    ))}
+                  {hackathon.hackthon_tag.map((tag, id) => (
+                    <Button sx={{ pt: 1, fontSize: '15px' }} key={id}>
+                      {tag}
+                    </Button>
+                  ))}
                 </Grid>
+
+                <CardActions sx={{ mt: 4, ml: 55 }} disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <BookmarkBorderOutlinedIcon
+                      sx={{ height: '35px', width: '35px' }}
+                    />
+                  </IconButton>
+                </CardActions>
               </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <BookmarkBorderOutlinedIcon />
-                </IconButton>
-              </CardActions>
             </Box>
-          </Card>
+          </Paper>
         </Link>
       ))}
     </Grid>
