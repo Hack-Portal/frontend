@@ -28,7 +28,6 @@ export const Header = () => {
           left: 0,
           width: '100%',
           height: '12vh ',
-          alignItems: 'center',
           py: 2,
           px: 1,
         }}
@@ -123,15 +122,13 @@ export const Header = () => {
 
             <Box sx={{ display: 'flex', marginRight: 5, marginLeft: 5 }}>
               <ListItem>
-                <ListItemButton>
+                <ListItemButton sx={{ borderRadius: '15%' }}>
                   <Link href="/notification">
                     <Badge badgeContent={2} variant="solid" color="danger">
                       <NotificationsNoneOutlinedIcon
                         sx={{
                           width: 30,
                           height: 30,
-                          marginRight: 1,
-                          marginLeft: 1,
                         }}
                         color="info"
                       />
@@ -140,26 +137,37 @@ export const Header = () => {
                 </ListItemButton>
               </ListItem>
 
-              <Link href="/dm">
-                <Badge badgeContent={2} variant="solid" color="danger">
-                  <MailOutlineIcon
-                    sx={{
-                      width: 30,
-                      height: 30,
-                      marginRight: 1,
-                      marginLeft: 1,
-                    }}
-                    color="info"
-                  />
-                </Badge>
-              </Link>
+              <ListItem>
+                <ListItemButton sx={{ borderRadius: '15%' }}>
+                  <Link href="/dm">
+                    <Badge badgeContent={2} variant="solid" color="danger">
+                      <MailOutlineIcon
+                        sx={{
+                          width: 30,
+                          height: 30,
+                        }}
+                        color="info"
+                      />
+                    </Badge>
+                  </Link>
+                </ListItemButton>
+              </ListItem>
 
-              <Link href="/user">
-                <PermIdentityIcon
-                  sx={{ width: 30, height: 30, marginRight: 1, marginLeft: 1 }}
-                  color="info"
-                />
-              </Link>
+              <ListItem>
+                <ListItemButton sx={{ borderRadius: '15%' }}>
+                  <Link href="/user">
+                    <PermIdentityIcon
+                      sx={{
+                        width: 30,
+                        height: 30,
+                        marginRight: 1,
+                        marginLeft: 1,
+                      }}
+                      color="info"
+                    />
+                  </Link>
+                </ListItemButton>
+              </ListItem>
             </Box>
           </Box>
         </Box>
