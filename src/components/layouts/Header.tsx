@@ -32,6 +32,7 @@ export const Header = () => {
         alignItems: 'center',
         py: 2,
         px: 1,
+        zIndex: 100,
       }}
     >
       <Link href="/">
