@@ -4,7 +4,7 @@ import { SignUpForm } from './_conmponents/SignUpForm'
 import { SelectTech } from './types/tech'
 
 const SignUp = () => {
-  const techs:SelectTech[] = [
+  const techs: SelectTech[] = [
     {
       id: 1,
       name: 'Python',
@@ -105,7 +105,7 @@ const SignUp = () => {
           image={'https://source.unsplash.com/random'}
           alt={'left image'}
         />
-        <SignUpForm techs={techs}/>
+        <SignUpForm techs={techs} />
       </Card>
     </Grid>
   )
