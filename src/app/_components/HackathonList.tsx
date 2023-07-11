@@ -40,7 +40,12 @@ export const HackathonList = (props: Props) => {
               <div
                 style={{ position: 'relative', width: '100%', height: '100%' }}
               >
-                <Image src={hackathon.icon} layout="fill" objectFit="cover" />
+                <Image
+                  src={hackathon.icon}
+                  alt={hackathon.name}
+                  layout="fill"
+                  objectFit="cover"
+                />
               </div>
             </CardMedia>
 
