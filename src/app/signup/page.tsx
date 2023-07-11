@@ -1,16 +1,14 @@
 'use client'
-
-import { ReactNode } from 'react'
 import { Card, CardMedia, Grid } from '@mui/material'
 import { SignUpForm } from './_conmponents/SignUpForm'
-import { Tech } from '@/types/tech'
+import { SelectTech } from './types/tech'
 
 const SignUp = () => {
-  const techs: Tech[] = [
+  const techs: SelectTech[] = [
     {
       id: 1,
       name: 'Python',
-      framework: [
+      frameworks: [
         {
           id: 1,
           name: 'Django',
@@ -28,7 +26,7 @@ const SignUp = () => {
     {
       id: 2,
       name: 'JavaScript',
-      framework: [
+      frameworks: [
         {
           id: 1,
           name: 'React',
@@ -50,7 +48,7 @@ const SignUp = () => {
     {
       id: 1,
       name: 'Python',
-      framework: [
+      frameworks: [
         {
           id: 1,
           name: 'Django',
@@ -68,7 +66,7 @@ const SignUp = () => {
     {
       id: 2,
       name: 'JavaScript',
-      framework: [
+      frameworks: [
         {
           id: 1,
           name: 'React',
