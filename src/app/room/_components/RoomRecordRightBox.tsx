@@ -69,6 +69,7 @@ export const RoomRecordRightBox = (props: Props) => {
             ) : (
               <Card
                 sx={{ width: 30, height: 30, mr: 1, background: '#ddd' }}
+                key={index}
               ></Card>
             ),
           )}
