@@ -79,7 +79,7 @@ export const Header = () => {
             </ListItem>
           </Link>
 
-          <Link href="/member">
+          <Link href="/room">
             <ListItem sx={{ width: 142, textAlign: 'center' }}>
               <ListItemButton sx={{ borderRadius: '5%' }}>
                 <ListItemText
