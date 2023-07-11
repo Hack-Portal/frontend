@@ -1,21 +1,14 @@
 import * as React from 'react'
-import { ColorPaletteProp } from '@mui/joy/styles'
 import Badge from '@mui/joy/Badge'
 import Box from '@mui/joy/Box'
 import Input from '@mui/joy/Input'
-
-import Typography from '@mui/joy/Typography'
 import ListItem from '@mui/joy/ListItem'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
-import { Avatar } from '@mui/joy'
-import Image from 'next/image'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import Link from 'next/link'
-import { Button, IconButton } from '@mui/material'
 import Sheet from '@mui/joy/Sheet'
 import GroupsIcon from '@mui/icons-material/Groups'
 import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined'
 
@@ -52,7 +45,6 @@ export const Header = () => {
             <GroupsIcon sx={{ height: 50, width: 50 }} />
           </ListItemButton>
         </Link>
-
         <Box
           sx={{
             position: 'sticky',
@@ -65,7 +57,7 @@ export const Header = () => {
             px: 1,
           }}
         >
-          <Link href="/hackathon">
+          <Link href="/">
             <ListItem sx={{ width: 142 }}>
               <ListItemButton sx={{ borderRadius: '5%' }}>
                 <ListItemText
