@@ -1,10 +1,13 @@
 import { Box, Card, IconButton, Sheet, Button } from '@mui/joy'
 import { Paper } from '@mui/material'
+
 import { Hackathon } from '../types/hackathon'
 import { CardActions, CardContent, CardMedia, Grid } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import Link from 'next/link'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
+import { CenterArea } from '@/components/layouts/CenterArea'
+import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 
 type Props = {
   hackathons: Hackathon[]
@@ -13,20 +16,12 @@ type Props = {
 export const HackathonList = (props: Props) => {
   const { hackathons } = props
   return (
-    <Grid container alignItems={'center'} direction="column" gap={2}>
+    <CenterArea>
       {hackathons.map((hackathon) => (
-        <Link key={hackathon.id} href={`/hackathon/${hackathon.id}`}>
-          <Paper
-            elevation={3}
-            sx={{
-              minHeight: 250,
-              maxHeight: 250,
-              maxWidth: 800,
-              minWidth: 800,
-              display: 'flex',
-              flexDirection: 'row',
-            }}
-          >
+<CenterRecordCard
+href={`/hackathon/${hackathon.id}`}
+key={hackathon.id}
+>
             <CardMedia
               component="img"
               sx={{
@@ -72,9 +67,8 @@ export const HackathonList = (props: Props) => {
                 </CardActions>
               </CardContent>
             </Box>
-          </Paper>
-        </Link>
+        </CenterRecordCard>
       ))}
-    </Grid>
+    </CenterArea>
   )
 }
