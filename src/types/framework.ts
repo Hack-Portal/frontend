@@ -1,5 +1,5 @@
 
-export interface FrameWork {
+export interface Framework {
     id:number
     name:string
 }

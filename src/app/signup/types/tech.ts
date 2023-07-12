@@ -1,7 +1,7 @@
-import { FrameWork } from "@/types/framework"
+import { Framework } from "@/types/framework"
 
 export type SelectTech = {
     id: number,
     name: string
-    frameworks: FrameWork[]
+    frameworks: Framework[]
 }
