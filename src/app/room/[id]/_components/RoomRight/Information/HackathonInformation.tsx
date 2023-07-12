@@ -11,7 +11,7 @@ export const HackathonInformation = (props: Props) => {
   return (
     <Grid container direction={'column'} gap={1}>
       <Grid item>
-        <CustomAccordion title={'タイトル'}>
+        <CustomAccordion sx={{}} title={'タイトル'}>
           {hackathonInfo.name}
         </CustomAccordion>
       </Grid>
@@ -37,10 +37,10 @@ export const HackathonInformation = (props: Props) => {
       </Grid>
       <Grid item>
         <CustomAccordion title={'タグ'}>
-          {hackathonInfo.hackthon_tag.map((tag,index) => (
+          {hackathonInfo.hackthon_tag.map((tag, index) => (
             <Typography key={index}>{tag}</Typography>
-          ))}  
-          </CustomAccordion>
+          ))}
+        </CustomAccordion>
       </Grid>
     </Grid>
   )

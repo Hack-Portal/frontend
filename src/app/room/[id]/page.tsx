@@ -12,35 +12,49 @@ import { useTab } from '@/hooks/useTab'
 type Props = {}
 const RoomDetail = (props: Props) => {
   console.log(props)
-  const room:RoomInfo = {
+  const room: RoomInfo = {
     id: 1,
     hackathon: {
-        id: 1,
-    description: "hack_description",
-    name: "hackathon_name",
-    icon: "https://source.unsplash.com/random",
-    expired: "2021-10-10",
-    start_date: "2021-10-10",
-    term: 5,
-    hackthon_tag:[
-        "tag1",
-        "tag2",
-    ]
+      id: 1,
+      description: 'hack_description',
+      name: 'hackathon_name',
+      icon: 'https://source.unsplash.com/random',
+      expired: '2021-10-10',
+      start_date: '2021-10-10',
+      term: 5,
+      hackthon_tag: ['tag1', 'tag2'],
     },
-    title: "room1",
-    description: "setumei",
+    title: 'room1',
+    description: 'setumei',
     member_limit: 5,
     tech_tags: [
-        {id:1,name:"tech1"},
-        {id:2,name:"tech1"},
-        ],
+      { id: 1, name: 'TypeScript' },
+      { id: 2, name: 'JavaScript' },
+    ],
     frameworks: [
-        {id:1,name:"framework1"},
-        {id:2,name:"framework2"},
-        ],
+      { id: 1, name: 'Node.js' },
+      { id: 2, name: 'NEXT.js' },
+    ],
     users: [
       {
-        id: "1",
+        id: '1',
+        name: 'test1',
+        icon: 'https://source.unsplash.com/random',
+        isOwner: true,
+        techs: [
+          { id: 1, name: 'React' },
+          { id: 2, name: 'TypeScript' },
+        ],
+        frameworks: [
+          { id: 1, name: 'Next.js' },
+          { id: 2, name: 'Node.js' },
+          { id: 3, name: 'Node.js' },
+          { id: 4, name: 'Ruby on Rails' },
+          { id: 5, name: 'Node.js' },
+        ],
+      },
+      {
+        id: '2',
         name: 'test1',
         icon: 'https://source.unsplash.com/random',
         isOwner: true,
@@ -50,24 +64,13 @@ const RoomDetail = (props: Props) => {
         ],
         frameworks: [{ id: 1, name: 'Next.js' }],
       },
-      {
-        id: "2",
-        name: 'test1',
-        icon: 'https://source.unsplash.com/random',
-        isOwner: true,
-        techs: [
-          { id: 1, name: 'React' },
-          { id: 2, name: 'TypeScript' },
-        ],
-        frameworks: [{ id: 1, name: 'Next.js' }],
-      }
     ],
   }
 
-  const {users,...roomInfo} = room
-  const {tab,handleSetTab}=useTab()
-  console.log(tab);
-  
+  const { users, ...roomInfo } = room
+  const { tab, handleSetTab } = useTab()
+  console.log(tab)
+
   return (
     <>
       <Header />
@@ -75,17 +78,28 @@ const RoomDetail = (props: Props) => {
         container
         direction={'row'}
         justifyContent={'center'}
-        sx={{ height: '90vh', position: 'absolute', top: '10.1vh' ,maxHeight: '90vh',overflowY:'scroll'}}
+        sx={{
+          height: '90vh',
+          position: 'absolute',
+          top: '10.1vh',
+          maxHeight: '90vh',
+          overflowY: 'scroll',
+        }}
       >
-        {/* member */}
         <Grid item xs>
-          <RoomLeft users={users} />
+          <RoomRight
+            roomInfo={roomInfo}
+            tab={tab}
+            handleSetTab={handleSetTab}
+          />
         </Grid>
+        {/* member */}
+
         {/* chat */}
         <RoomCenter />
         {/* chat info */}
         <Grid item xs>
-          <RoomRight roomInfo={roomInfo} tab={tab} handleSetTab={handleSetTab}/>
+          <RoomLeft users={users} />
         </Grid>
       </Grid>
     </>
