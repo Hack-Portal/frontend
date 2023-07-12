@@ -1,6 +1,6 @@
 'use client'
 import { Header } from '@/components/layouts/Header'
-import {  HackathonThumb } from './types/hackathon'
+import { HackathonThumb } from './types/hackathon'
 import { HackathonList } from './_components/HackathonList'
 const Home = () => {
   const hackathons: HackathonThumb[] = [

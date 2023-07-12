@@ -1,4 +1,4 @@
-import { Box, Card, IconButton, Sheet, Button } from '@mui/joy'
+import { Box, Card, IconButton, Sheet, Button, Badge } from '@mui/joy'
 
 import {
   Paper,
@@ -44,43 +44,75 @@ export const HackathonList = (props: Props) => {
               />
             </div>
           </CardMedia>
-
-          <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
-            <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography sx={{ fontSize: '30px' }} variant="h5">
+          <CardContent
+            sx={{ width: '300px', display: 'flex', flexDirection: 'column' }}
+          >
+            <CardContent
+              sx={{
+                width: '450px',
+                maxHeight: '58px',
+              }}
+            >
+              <Typography
+                sx={{
+                  //省略文字の設定
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  fontSize: '23px',
+                }}
+                variant="h3"
+              >
                 {hackathon.name}
               </Typography>
-
-              <Typography sx={{ mt: 1, mb: 1.5, fontSize: '16px' }}>
-                募集締め切り：{hackathon.expired}
-              </Typography>
-              <Typography sx={{ mb: 1.5, fontSize: '16px' }}>
-                キックオフ：{hackathon.start_date}
-              </Typography>
-
-              <Typography sx={{ mb: 1.5, fontSize: '16px' }}>
-                期間：{hackathon.term}日間
-              </Typography>
             </CardContent>
-          </Box>
 
-          <Box>
-            <CardActions sx={{ mt: 1, ml: 24 }} disableSpacing>
+            <Grid
+              container
+              direction={'column'}
+              sx={{ display: 'flex', Width: 250, ml: 2 }}
+            >
+              <Typography sx={{ fontSize: '14px' }} color={'#999'}>
+                募集締め切り
+              </Typography>
+              <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
+                {hackathon.expired}
+              </Typography>
+              <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
+                キックオフ
+              </Typography>
+              <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
+                {hackathon.start_date}
+              </Typography>
+              <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
+                期間
+              </Typography>
+              <Typography sx={{ fontSize: '16px' }}>
+                {hackathon.term}日間
+              </Typography>
+            </Grid>
+          </CardContent>
+
+          <CardContent sx={{ width: '230px' }}>
+            <CardActions sx={{ mt: 1, ml: 22 }} disableSpacing>
               <IconButton aria-label="add to favorites">
                 <BookmarkBorderOutlinedIcon
                   sx={{ height: '30px', width: '30px' }}
                 />
               </IconButton>
             </CardActions>
-
-            <Grid sx={{ mt: 12, mr: 8 }} spacing={2} container>
+            <Grid sx={{ mt: 7 }} container>
               {hackathon.hackthon_tag.map((tag, id) => (
-                <Grid item key={id} xs={4}>
-                  <Chip label={tag} sx={{ fontSize: '15px' }} key={id} />
+                <Grid item key={id} xs={6}>
+                  <Chip
+                    label={tag}
+                    sx={{ mt: 0.3, mr: 0.5, fontSize: '15px' }}
+                    key={id}
+                  />
                 </Grid>
               ))}
             </Grid>
-          </Box>
+          </CardContent>
         </CenterRecordCard>
       ))}
     </CenterArea>
