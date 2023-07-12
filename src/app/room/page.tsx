@@ -96,7 +96,7 @@ const Room = () => {
       <Header />
       <CenterArea>
         {rooms.map((room) => (
-          <CenterRecordCard key={room.id} href={`/rooms/${room.id}`}>
+          <CenterRecordCard key={room.id} href={`/room/${room.id}`}>
             <CardMedia
               component="img"
               sx={{
