@@ -14,6 +14,8 @@ export const ChatList = (props: Props) => {
         maxHeight: '80vh',
         overflowY: 'scroll', // 縦方向にスクロールできるようにする
         pb: 3,
+        mt: 1.5,
+        backgroundColor: '#fff',
       }}
       wrap="nowrap"
     >

@@ -16,8 +16,8 @@ export const RoomRight = (props: Props) => {
       direction={'column'}
       bgcolor={'#fff'}
       alignItems={'center'}
-      sx={{ maxHeight: '90vh',overflowY:'scroll' }}
-      wrap='nowrap'
+      sx={{ maxHeight: '100vh', overflowY: 'scroll' }}
+      wrap="nowrap"
     >
       <Header
         icon={roomInfo.hackathon.icon}
@@ -25,6 +25,7 @@ export const RoomRight = (props: Props) => {
         handleSetTab={handleSetTab}
         tab={tab}
       />
+
       <Information roomInfo={roomInfo} tab={tab} />
     </Grid>
   )

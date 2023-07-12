@@ -37,10 +37,10 @@ export const HackathonInformation = (props: Props) => {
       </Grid>
       <Grid item>
         <CustomAccordion title={'タグ'}>
-          {hackathonInfo.hackthon_tag.map((tag,index) => (
+          {hackathonInfo.hackthon_tag.map((tag, index) => (
             <Typography key={index}>{tag}</Typography>
-          ))}  
-          </CustomAccordion>
+          ))}
+        </CustomAccordion>
       </Grid>
     </Grid>
   )

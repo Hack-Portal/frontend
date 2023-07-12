@@ -1,6 +1,6 @@
 import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
-import { Grid, Typography } from '@mui/material'
+import { Chip, Grid, Typography } from '@mui/material'
 import React from 'react'
 
 type Props = {
@@ -10,16 +10,10 @@ type Props = {
 export const MemberTechArea = (props: Props) => {
   const { techs, frameworks } = props
   return (
-    <Grid container direction={'row'}>
-      {techs?.map((tech) => (
-        <Typography color={'#333'} key={tech.id}>
-          {tech.name}
-        </Typography>
-      ))}
+    <Grid container sx={{ ml: 4, mt: 3 }} xs={6} direction={'row'}>
+      {techs?.map((tech) => <Chip label={tech.name} key={tech.id} />)}
       {frameworks?.map((framework) => (
-        <Typography color={'#333'} key={framework.id}>
-          {framework.name}
-        </Typography>
+        <Chip label={framework.name} key={framework.id} />
       ))}
     </Grid>
   )

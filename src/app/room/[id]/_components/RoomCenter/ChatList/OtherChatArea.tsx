@@ -6,6 +6,7 @@ export const OtherChatArea = () => {
   return (
     <Grid
       container
+      sx={{ mt: 1.5 }}
       width={'100%'}
       direction={'row'}
       gap={1}
