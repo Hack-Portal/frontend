@@ -85,10 +85,14 @@ const Room = () => {
         },
       ],
       techs: [
-        { id: 1, name: 'React' },
+        { id: 1, name: 'JavaScript' },
         { id: 2, name: 'TypeScript' },
+        { id: 3, name: 'OracleCloud' },
       ],
-      frameworks: [{ id: 1, name: 'Next.js' }],
+      frameworks: [
+        { id: 1, name: 'Next.js' },
+        { id: 2, name: 'Node.js' },
+      ],
     },
   ]
   return (
@@ -96,7 +100,7 @@ const Room = () => {
       <Header />
       <CenterArea>
         {rooms.map((room) => (
-          <CenterRecordCard key={room.id} href={`/rooms/${room.id}`}>
+          <CenterRecordCard key={room.id} href={`/room/${room.id}`}>
             <CardMedia
               component="img"
               sx={{
