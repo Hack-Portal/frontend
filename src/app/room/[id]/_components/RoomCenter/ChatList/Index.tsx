@@ -11,10 +11,10 @@ export const ChatList = (props: Props) => {
       direction={'column'}
       gap={3}
       sx={{
-        maxHeight: '80vh',
+        width: '100%',
         overflowY: 'scroll', // 縦方向にスクロールできるようにする
-        pb: 3,
-        mt: 1.5,
+        mt: 4,
+
         backgroundColor: '#fff',
       }}
       wrap="nowrap"

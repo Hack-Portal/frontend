@@ -10,20 +10,21 @@ export const MyChatArea = () => {
       direction={'row'}
       gap={1}
       justifyContent={'flex-end'}
+      sx={{ mt: 1.5, pr: 2 }}
     >
       <Box
         sx={{
           bgcolor: 'primary.light',
           borderRadius: '10px 0 10px 10px',
           p: 1,
-          minWidth: 500,
-          maxWidth: 500,
+          textAlign: 'right',
+          maxWidth: '70%',
           wordBreak: 'break-word',
         }}
       >
         <Typography color={'#fff'}>
           {
-            'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+            '初参加です！！！よろしくお願いします！！！！fbrrrrrrrrrrrrrrrraqddvccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
           }
         </Typography>
       </Box>

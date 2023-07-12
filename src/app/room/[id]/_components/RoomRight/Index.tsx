@@ -16,7 +16,7 @@ export const RoomRight = (props: Props) => {
       direction={'column'}
       bgcolor={'#fff'}
       alignItems={'center'}
-      sx={{ maxHeight: '100vh', overflowY: 'scroll' }}
+      sx={{ maxHeight: '120vh', overflowY: 'scroll' }}
       wrap="nowrap"
     >
       <Header
