@@ -19,10 +19,7 @@ export const RoomInformation = (props: Props) => {
         </CustomAccordion>
       </Grid>
       <Grid item>
-        <CustomAccordion
-          sx={{ border: 1, borderColor: 'divider' }}
-          title={'使用言語'}
-        >
+        <CustomAccordion title={'使用言語'}>
           {roomInfo.tech_tags.map((tag) => (
             <Typography key={tag.id}>{tag.name}</Typography>
           ))}
