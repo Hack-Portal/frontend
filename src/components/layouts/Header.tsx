@@ -99,19 +99,6 @@ export const Header = () => {
           }}
         >
           <Box sx={{ display: 'flex', gap: 2 }}>
-            <Input
-              placeholder="Search for anything..."
-              variant="soft"
-              size="sm"
-              sx={{
-                solid: '6px #e0e0e0',
-                '--Input-radius': '40px',
-                '--Input-paddingInline': '12px',
-                width: 300,
-                display: { xs: 'none', lg: 'flex' },
-              }}
-            />
-
             <Box sx={{ display: 'flex', marginRight: 5, marginLeft: 5 }}>
               <ListItem>
                 <ListItemButton sx={{ borderRadius: '15%' }}>
@@ -131,7 +118,7 @@ export const Header = () => {
 
               <ListItem>
                 <ListItemButton sx={{ borderRadius: '15%' }}>
-                  <Link href="/dm">
+                  <Link href="/joinedRoom">
                     <Badge badgeContent={2} variant="solid" color="danger">
                       <MailOutlineIcon
                         sx={{
