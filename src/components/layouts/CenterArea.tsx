@@ -3,11 +3,12 @@ import { ReactNode } from 'react'
 
 type Props = {
   children: ReactNode
+  gap?: number
 }
 export const CenterArea = (props: Props) => {
-  const { children } = props
+  const { children,gap=2 } = props
   return (
-    <Grid container alignItems={'center'} direction="column" gap={2}>
+    <Grid container alignItems={'center'} direction="column" gap={gap}>
       {children}
     </Grid>
   )
