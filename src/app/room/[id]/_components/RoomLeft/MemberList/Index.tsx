@@ -14,7 +14,7 @@ export const MemberList = (props: Props) => {
     <Grid container sx={{ height: '100vh' }} direction={'column'}>
       {users.map((user) => (
         <Grid
-          sx={{ mt: 4 }}
+          sx={{ mt: 7.5 }}
           container
           key={user.id}
           direction={'row'}

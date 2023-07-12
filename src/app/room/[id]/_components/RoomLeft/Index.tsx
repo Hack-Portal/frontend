@@ -9,16 +9,22 @@ type Props = {
 }
 export const RoomLeft = (props: Props) => {
   return (
-    <Grid container direction={'column'} bgcolor={'#fff'}>
-      <Grid item bgcolor={'#fff'}>
+    <Grid
+      container
+      direction={'column'}
+      bgcolor={'#fff'}
+      alignItems={'center'}
+      sx={{ Height: '120vh', overflowX: 'scroll' }}
+      wrap="nowrap"
+    >
+      <Grid item sx={{ mt: 3, textAlign: 'center' }} bgcolor={'#fff'}>
         <Typography
-          sx={{ mt: 4, fontSize: 20, textAlign: 'center' }}
+          sx={{ mt: 4, mb: 2, fontSize: 20 }}
           variant={'h6'}
           color={'#333'}
         >
           メンバー
         </Typography>
-        <Box sx={{ height: '15px' }} />
       </Grid>
       <Grid item sx={{ ml: 2 }} bgcolor={'#fff'}>
         <MemberList {...props} />

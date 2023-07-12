@@ -14,17 +14,16 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 
 export const Header = () => {
   return (
-    <>
-      <Box
-        sx={{
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '12vh ',
-          py: 2,
-          px: 1,
-        }}
-      />
+    <Box
+      sx={{
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '75px ',
+        py: 2,
+        px: 1,
+      }}
+    >
       <Sheet
         color="primary"
         sx={{
@@ -151,6 +150,6 @@ export const Header = () => {
           </Box>
         </Box>
       </Sheet>
-    </>
+    </Box>
   )
 }

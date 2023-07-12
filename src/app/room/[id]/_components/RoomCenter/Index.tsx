@@ -14,7 +14,7 @@ export const RoomCenter = () => {
           maxWidth: 800,
           minWidth: 800,
           Height: '100vh',
-
+          overflowY: 'scroll',
           borderRight: '2px solid #83c1ff',
           borderLeft: '2px solid #83c1ff',
           bgcolor: '#fff',

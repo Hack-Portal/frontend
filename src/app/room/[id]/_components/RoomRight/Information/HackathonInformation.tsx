@@ -9,7 +9,12 @@ type Props = {
 export const HackathonInformation = (props: Props) => {
   const { hackathonInfo } = props
   return (
-    <Grid container direction={'column'} gap={1}>
+    <Grid
+      container
+      sx={{ backgroundColor: '#fff' }}
+      direction={'column'}
+      gap={1}
+    >
       <Grid item>
         <CustomAccordion title={'タイトル'}>
           {hackathonInfo.name}

@@ -4,7 +4,7 @@ import { Header } from '@/components/layouts/Header'
 import React from 'react'
 import { RoomLeft } from './_components/RoomLeft/Index'
 import { RoomRight } from './_components/RoomRight/Index'
-import { Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { RoomCenter } from './_components/RoomCenter/Index'
 import { RoomInfo } from './types/room'
 import { useTab } from '@/hooks/useTab'
@@ -34,6 +34,9 @@ const RoomDetail = (props: Props) => {
     frameworks: [
       { id: 1, name: 'Node.js' },
       { id: 2, name: 'NEXT.js' },
+      { id: 3, name: 'Node.js' },
+      { id: 4, name: 'Ruby on Rails' },
+      { id: 5, name: 'Node.js' },
     ],
     users: [
       {
@@ -47,22 +50,69 @@ const RoomDetail = (props: Props) => {
         ],
         frameworks: [
           { id: 1, name: 'Next.js' },
-          { id: 2, name: 'Node.js' },
+          { id: 2, name: 'Ruby on Rails' },
           { id: 3, name: 'Node.js' },
-          { id: 4, name: 'Ruby on Rails' },
-          { id: 5, name: 'Node.js' },
         ],
       },
       {
         id: '2',
-        name: 'test1',
+        name: 'test2',
+        icon: 'https://source.unsplash.com/random',
+        isOwner: false,
+        techs: [
+          { id: 1, name: 'React' },
+          { id: 2, name: 'TypeScript' },
+        ],
+        frameworks: [
+          { id: 1, name: 'Next.js' },
+          { id: 2, name: 'Ruby on Rails' },
+          { id: 3, name: 'Node.js' },
+        ],
+      },
+      {
+        id: '3',
+        name: 'test3',
         icon: 'https://source.unsplash.com/random',
         isOwner: true,
         techs: [
           { id: 1, name: 'React' },
           { id: 2, name: 'TypeScript' },
         ],
-        frameworks: [{ id: 1, name: 'Next.js' }],
+        frameworks: [
+          { id: 1, name: 'Next.js' },
+          { id: 2, name: 'Ruby on Rails' },
+          { id: 3, name: 'Node.js' },
+        ],
+      },
+      {
+        id: '4',
+        name: 'test4',
+        icon: 'https://source.unsplash.com/random',
+        isOwner: false,
+        techs: [
+          { id: 1, name: 'React' },
+          { id: 2, name: 'TypeScript' },
+        ],
+        frameworks: [
+          { id: 1, name: 'Next.js' },
+          { id: 2, name: 'Ruby on Rails' },
+          { id: 3, name: 'Node.js' },
+        ],
+      },
+      {
+        id: '5',
+        name: 'test5',
+        icon: 'https://source.unsplash.com/random',
+        isOwner: true,
+        techs: [
+          { id: 1, name: 'React' },
+          { id: 2, name: 'TypeScript' },
+        ],
+        frameworks: [
+          { id: 1, name: 'Next.js' },
+          { id: 2, name: 'Ruby on Rails' },
+          { id: 3, name: 'Node.js' },
+        ],
       },
     ],
   }
@@ -72,17 +122,19 @@ const RoomDetail = (props: Props) => {
   console.log(tab)
 
   return (
-    <>
+    <Box
+      sx={{
+        bgcolor: '#fff',
+      }}
+    >
       <Header />
+
       <Grid
         container
-        direction={'row'}
         justifyContent={'center'}
         sx={{
-          height: '90vh',
+          height: '120vh',
           position: 'absolute',
-          top: '10.1vh',
-          maxHeight: '90vh',
           overflowY: 'scroll',
         }}
       >
@@ -102,7 +154,7 @@ const RoomDetail = (props: Props) => {
           <RoomLeft users={users} />
         </Grid>
       </Grid>
-    </>
+    </Box>
   )
 }
 
