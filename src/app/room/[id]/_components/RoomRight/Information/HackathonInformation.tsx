@@ -11,7 +11,7 @@ export const HackathonInformation = (props: Props) => {
   return (
     <Grid container direction={'column'} gap={1}>
       <Grid item>
-        <CustomAccordion sx={{}} title={'タイトル'}>
+        <CustomAccordion title={'タイトル'}>
           {hackathonInfo.name}
         </CustomAccordion>
       </Grid>
