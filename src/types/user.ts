@@ -1,4 +1,4 @@
-import { FrameWork } from "./framework"
+import { Framework } from "./framework"
 import { Locate } from "./locate"
 import { Tech } from "./tech"
 
@@ -12,5 +12,5 @@ export interface User {
   show_rate: boolean
   rate: number
   techs: null|Tech[]
-  frameworks: null|FrameWork[]
+  frameworks: null|Framework[]
 }

@@ -1,6 +1,6 @@
 import { Avatar, Card, CardContent, Grid, Typography } from '@mui/material'
 import { RoomUserThumb } from '../types/user'
-import { FrameWork } from '@/types/framework'
+import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
 import { Badge } from '@mui/joy'
 import StarRateIcon from '@mui/icons-material/StarRate'
@@ -11,7 +11,7 @@ type Props = {
   member_limit: number
   now_member: RoomUserThumb[]
   techs: Tech[]
-  frameworks: FrameWork[]
+  frameworks: Framework[]
 }
 
 export const RoomRecordRightBox = (props: Props) => {

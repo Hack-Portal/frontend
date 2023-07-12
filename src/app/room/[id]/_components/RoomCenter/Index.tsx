@@ -8,16 +8,18 @@ import { ChatList } from './ChatList/Index'
 
 export const RoomCenter = () => {
   return (
-    <Paper
-      elevation={3}
+    <Grid
       sx={{
         maxWidth: 800,
         minWidth: 800,
         p: 3,
+        borderRight: '1px solid #eee',
+        borderLeft: '1px solid #eee',
+        bgcolor: '#fff',
       }}
     >
       <ChatList />
       <SendInputArea />
-    </Paper>
+    </Grid>
   )
 }
