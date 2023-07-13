@@ -14,10 +14,10 @@ export const RoomLeft = (props: Props) => {
       direction={'column'}
       bgcolor={'#fff'}
       alignItems={'center'}
-      sx={{ Height: '120vh', overflowX: 'scroll' }}
+      sx={{ overflowX: 'scroll' }}
       wrap="nowrap"
     >
-      <Grid item sx={{ mt: 3, textAlign: 'center' }} bgcolor={'#fff'}>
+      <Grid item sx={{ mt: 6.5, textAlign: 'center' }} bgcolor={'#fff'}>
         <Typography
           sx={{ mt: 4, mb: 2, fontSize: 20 }}
           variant={'h6'}
@@ -26,7 +26,7 @@ export const RoomLeft = (props: Props) => {
           メンバー
         </Typography>
       </Grid>
-      <Grid item sx={{ ml: 2 }} bgcolor={'#fff'}>
+      <Grid item sx={{ ml: 1.5 }} bgcolor={'#fff'}>
         <MemberList {...props} />
       </Grid>
     </Grid>
