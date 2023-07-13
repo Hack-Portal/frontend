@@ -29,26 +29,31 @@ export const RoomRecordRightBox = (props: Props) => {
     props
   return (
     <>
-      <CardContent>
-        <Grid
-          container
-          direction={'column'}
-          sx={{ display: 'flex', Width: 250, ml: 2 }}
-        >
-          <Typography sx={{ fontSize: '25px' }} variant="h5">
+      <CardContent sx={{ width: 250 }}>
+        <Grid container direction={'column'} sx={{ Width: 450, ml: 2 }}>
+          <Typography
+            sx={{
+              overflow: 'hidden',
+              mt: 2,
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              fontSize: '23px',
+              width: '220px',
+            }}
+            variant="h5"
+          >
             {title}
           </Typography>
+
           <Typography sx={{ mt: 1, mb: 1.5, fontSize: '16px' }} color={'#999'}>
             {hackathonName}
           </Typography>
-          <Typography sx={{ mt: 2.5, fontSize: '14px' }} color={'#999'}>
+          <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
             募集開始日
           </Typography>
-          <Typography sx={{ mt: 1, fontSize: '16px' }} color={'#999'}>
-            1月22日(金)
-          </Typography>
+          <Typography sx={{ mt: 1, fontSize: '16px' }}>1月22日(金)</Typography>
 
-          <Grid container direction={'row'} sx={{ mt: 3.5, mb: 1.5 }}>
+          <Grid container direction={'row'} sx={{ mt: 2.5, mb: 1.5 }}>
             {Array.from(Array(member_limit)).map((_, index) =>
               now_member[index] ? (
                 now_member[index].isOwner ? (
@@ -86,12 +91,12 @@ export const RoomRecordRightBox = (props: Props) => {
         </Grid>
       </CardContent>
 
-      <CardContent>
-        <Box sx={{ height: 30, width: '300px', flexDirection: 'row' }} />
+      <CardContent sx={{ width: 350 }}>
+        <Box sx={{ height: 30, flexDirection: 'row' }} />
         <Typography sx={{ fontSize: '14px' }} color={'#999'}>
           Techs
         </Typography>
-        <Grid container sx={{ width: '300px', mt: 1 }}>
+        <Grid container sx={{ width: '250px', mt: 1 }}>
           {techs.map((tech, id) => (
             <Grid item key={id}>
               <Chip
