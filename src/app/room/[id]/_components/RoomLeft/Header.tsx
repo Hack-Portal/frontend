@@ -12,7 +12,9 @@ export const Header = (props: Props) => {
   return (
     <Grid
       container
-      sx={{ mt: 6 }}
+      sx={{
+        mt: 3,
+      }}
       alignItems={'center'}
       direction={'column'}
       justifyContent={'center'}

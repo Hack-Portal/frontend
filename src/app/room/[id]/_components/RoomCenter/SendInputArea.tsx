@@ -8,10 +8,12 @@ export const SendInputArea = () => {
     <Box
       sx={{
         position: 'absolute',
-        bottom: '5px',
-        width: 800,
+        bottom: "0px",
+        padding: "10px 0 10px 0",
+        width: 796,
         display: 'flex',
-        direction: 'row',
+        background: '#fff',
+        justifyContent: 'center',
       }}
     >
       <Textarea

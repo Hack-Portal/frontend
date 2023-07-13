@@ -12,13 +12,24 @@ export const ChatList = (props: Props) => {
       gap={3}
       sx={{
         width: '100%',
-        overflowY: 'scroll', // 縦方向にスクロールできるようにする
-        mt: 4,
-
+        mt: 2,
+        mb: 12,
         backgroundColor: '#fff',
+        '& ::-webkit-scrollbar': {
+          display: 'none',
+        },
+        '& :hover': {
+          '::-webkit-scrollbar': {
+            display: 'inline',
+          },
+        },
       }}
       wrap="nowrap"
     >
+      <MyChatArea />
+      <MyChatArea />
+      <MyChatArea />
+      <MyChatArea />
       <MyChatArea />
       <OtherChatArea />
     </Grid>

@@ -2,12 +2,12 @@
 
 import { Header } from '@/components/layouts/Header'
 import React from 'react'
-import { RoomLeft } from './_components/RoomLeft/Index'
-import { RoomRight } from './_components/RoomRight/Index'
 import { Box, Grid } from '@mui/material'
 import { RoomCenter } from './_components/RoomCenter/Index'
 import { RoomInfo } from './types/room'
 import { useTab } from '@/hooks/useTab'
+import { RoomLeft } from './_components/RoomLeft/Index'
+import { RoomRight } from './_components/RoomRight/Index'
 
 type Props = {}
 const RoomDetail = (props: Props) => {
@@ -125,6 +125,8 @@ const RoomDetail = (props: Props) => {
     <Box
       sx={{
         bgcolor: '#fff',
+        maxHeight: '100vh',
+        overflowY: 'hidden',
       }}
     >
       <Header />
@@ -133,25 +135,19 @@ const RoomDetail = (props: Props) => {
         container
         justifyContent={'center'}
         sx={{
-          height: '120vh',
-          position: 'absolute',
-          overflowY: 'scroll',
+          maxHeight: '90vh',
         }}
       >
-        <Grid item xs>
-          <RoomRight
-            roomInfo={roomInfo}
-            tab={tab}
-            handleSetTab={handleSetTab}
-          />
-        </Grid>
         {/* member */}
+        <Grid item xs>
+          <RoomLeft roomInfo={roomInfo} tab={tab} handleSetTab={handleSetTab} />
+        </Grid>
 
         {/* chat */}
         <RoomCenter />
         {/* chat info */}
         <Grid item xs>
-          <RoomLeft users={users} />
+          <RoomRight users={users} />
         </Grid>
       </Grid>
     </Box>
