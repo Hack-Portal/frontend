@@ -11,9 +11,11 @@ export const MemberTechArea = (props: Props) => {
   const { techs, frameworks } = props
   return (
     <Grid container sx={{ ml: 4, mt: 3 }} xs={6} direction={'row'}>
-      {techs?.map((tech) => <Chip label={tech.name} key={tech.id} />)}
+      {techs?.map((tech) => (
+        <Chip sx={{ mt: 0.5 }} label={tech.name} key={tech.id} />
+      ))}
       {frameworks?.map((framework) => (
-        <Chip label={framework.name} key={framework.id} />
+        <Chip sx={{ mt: 0.5 }} label={framework.name} key={framework.id} />
       ))}
     </Grid>
   )
