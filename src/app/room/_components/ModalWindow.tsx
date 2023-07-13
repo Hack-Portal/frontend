@@ -12,12 +12,14 @@ import {
   Select,
   MenuItem,
 } from '@mui/material'
+import { SelectChangeEvent } from '@mui/material'
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded'
 
 export default function ModalWindow() {
   const [open, setOpen] = useState<boolean>(false)
   const [text, setText] = useState<string>('')
   const [teamName, setTeamName] = useState<string>('')
+
   const [select1, setSelect1] = useState<string[]>([])
   const [select2, setSelect2] = useState<string[]>([])
 
@@ -32,15 +34,18 @@ export default function ModalWindow() {
   }
 
   const handleChange =
-    (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setter(event.target.value)
-    }
-  const handleSelectChange =
     (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
-    (event: ChangeEvent<{ value: unknown }>) => {
+    (event: React.ChangeEvent<{ value: unknown }>) => {
       setter(event.target.value as string[])
     }
+
+  const handleSelectChange =
+    (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
+    (event: SelectChangeEvent<string[]>) => {
+      setter(event.target.value as string[])
+    }
+
+  //https://stackoverflow.com/questions/58675993/typescript-react-select-onchange-handler-type-error
 
   useEffect(() => {
     if (text.length > 140) {
@@ -74,12 +79,11 @@ export default function ModalWindow() {
             height: 400,
           }}
         >
-          <Typography id="ModalTitle">チーム投稿</Typography>
           <TextField
             label="チーム名"
             variant="outlined"
             value={teamName}
-            onChange={handleChange(setTeamName)}
+            onChange={(event) => setTeamName(event.target.value)}
             fullWidth
             inputProps={{ maxLength: 40, ml: 1, height: '50px' }}
             sx={{ mb: 2 }}
@@ -125,7 +129,6 @@ export default function ModalWindow() {
               </FormControl>
             ))}
           </Box>
-
           <TextField
             multiline
             rows={4}
