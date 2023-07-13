@@ -15,7 +15,7 @@ export const MemberList = (props: Props) => {
       {users.map((user) => (
         <Grid
           sx={{ py: 3 ,borderBottom:"1px solid #ddd",minWidth:"100%",pl:2}}
-          container
+         container
           key={user.id}
           direction={'row'}
           wrap="nowrap"

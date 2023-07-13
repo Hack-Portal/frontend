@@ -12,7 +12,7 @@ export const Information = (props: Props) => {
   const { tab } = props
   const { hackathon, ...roomInfo } = props.roomInfo
   return (
-    <Grid container direction={'column'}>
+    <Grid container sx={{ height: '100vh' }} direction={'column'}>
       {tab === 0 ? (
         <RoomInformation roomInfo={roomInfo} />
       ) : (

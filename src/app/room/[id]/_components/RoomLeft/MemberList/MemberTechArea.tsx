@@ -10,26 +10,12 @@ type Props = {
 export const MemberTechArea = (props: Props) => {
   const { techs, frameworks } = props
   return (
-    <Grid
-      container
-      sx={{ pl: 1, pt: 1, minWidth: '100%' }}
-      xs={6}
-      direction={'row'}
-      gap={1}
-    >
+    <Grid container sx={{ ml: 4, mt: 3 }} xs={6} direction={'row'}>
       {techs?.map((tech) => (
-        <Chip
-          label={tech.name}
-          key={tech.id}
-          sx={{ fontSize: '0.6rem', fontWeight: 'bold' }}
-        />
+        <Chip sx={{ mt: 0.5 }} label={tech.name} key={tech.id} />
       ))}
       {frameworks?.map((framework) => (
-        <Chip
-          label={framework.name}
-          key={framework.id}
-          sx={{ fontSize: '0.6rem', fontWeight: 'bold', p: 0.1 }}
-        />
+        <Chip sx={{ mt: 0.5 }} label={framework.name} key={framework.id} />
       ))}
     </Grid>
   )

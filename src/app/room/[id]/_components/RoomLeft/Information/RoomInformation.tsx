@@ -23,14 +23,18 @@ export const RoomInformation = (props: Props) => {
       <Grid item>
         <CustomAccordion title={'使用言語'}>
           {roomInfo.tech_tags.map((tag) => (
-            <Typography key={tag.id}>{tag.name}</Typography>
+            <Grid sx={{ mt: 1.5 }} key={tag.id}>
+              {tag.name}
+            </Grid>
           ))}
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'使用フレームワーク'}>
           {roomInfo.frameworks.map((tag) => (
-            <Typography key={tag.id}>{tag.name}</Typography>
+            <Typography sx={{ mt: 1.5 }} key={tag.id}>
+              {tag.name}
+            </Typography>
           ))}
         </CustomAccordion>
       </Grid>

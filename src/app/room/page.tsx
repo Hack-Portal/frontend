@@ -4,8 +4,9 @@ import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 import { Header } from '@/components/layouts/Header'
 import { RoomThumb } from './types/room'
-import { Avatar, CardMedia } from '@mui/material'
+import { Avatar, Box, CardMedia } from '@mui/material'
 import { RoomRecordRightBox } from './_components/RoomRecordRightBox'
+import ModalWindow from './_components/ModalWindow'
 
 const Room = () => {
   const rooms: RoomThumb[] = [
@@ -38,7 +39,8 @@ const Room = () => {
     },
     {
       id: 2,
-      title: 'ルーム1',
+      title:
+        'saefwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
       member_limit: 5,
       hackathon: {
         id: 1,
@@ -124,6 +126,16 @@ const Room = () => {
           </CenterRecordCard>
         ))}
       </CenterArea>
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: 30,
+          right: 40,
+          zIndex: 999,
+        }}
+      >
+        <ModalWindow />
+      </Box>
     </>
   )
 }

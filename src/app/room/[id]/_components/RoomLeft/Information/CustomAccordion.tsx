@@ -26,8 +26,8 @@ export const CustomAccordion = (props: Props) => {
       >
         <Typography sx={{ fontSize: '1.1rem' }}>{title}</Typography>
       </AccordionSummary>
-      <AccordionDetails sx={{ boxShadow: 'none', pt: 0 }}>
-        <Typography color={'#777'}>{children}</Typography>
+      <AccordionDetails sx={{ boxShadow: 'none', pt: 0, color: '#777' }}>
+        {children}
       </AccordionDetails>
     </Accordion>
   )

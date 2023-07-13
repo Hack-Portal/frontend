@@ -23,7 +23,7 @@ export const RoomLeft = (props: Props) => {
           width: '0.4em',
           background: 'transparent',
         },
-        pl:0.7
+        pl: 0.7,
       }}
       wrap="nowrap"
     >
