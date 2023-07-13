@@ -11,17 +11,18 @@ type Props = {
 export const MemberList = (props: Props) => {
   const { users } = props
   return (
-    <Grid container sx={{ height: '100vh' }} direction={'column'}>
+    <Grid container sx={{maxHeight:"90vh",p:0}} direction={'column'} wrap='nowrap' >
       {users.map((user) => (
         <Grid
-          sx={{ mt: 7.5 }}
+          sx={{ py: 3 ,borderBottom:"1px solid #ddd",minWidth:"100%",pl:2}}
           container
           key={user.id}
           direction={'row'}
           wrap="nowrap"
+          justifyContent={'center'}
         >
           <Avatar src={user.icon} />
-          <Grid container direction={'column'}>
+          <Grid container direction={'column'} >
             <MemberNameArea name={user.name} isOwner={user.isOwner} />
             <MemberTechArea techs={user.techs} frameworks={user.frameworks} />
           </Grid>

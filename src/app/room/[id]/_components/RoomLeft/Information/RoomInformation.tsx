@@ -11,7 +11,9 @@ export const RoomInformation = (props: Props) => {
   return (
     <Grid container direction={'column'} gap={1}>
       <Grid item>
-        <CustomAccordion title={'説明'}>{roomInfo.description}</CustomAccordion>
+        <CustomAccordion title={'説明'}>
+          {roomInfo.description}
+        </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'募集上限'}>

@@ -1,32 +1,48 @@
-import { Grid } from '@mui/material'
-import { Header } from './Header'
-import { RoomInfo } from '../../types/room'
-import { Information } from './Information/Index'
+import { Box } from '@mui/joy'
+import { Grid, Typography } from '@mui/material'
+import React from 'react'
+import { MemberList } from './MemberList/Index'
+import { RoomUser } from '../../types/user'
 
 type Props = {
-  roomInfo: Omit<RoomInfo, 'users'>
-  tab: number
-  handleSetTab: (tab: number) => void
+  users: RoomUser[]
 }
 export const RoomRight = (props: Props) => {
-  const { roomInfo, tab, handleSetTab } = props
   return (
     <Grid
       container
       direction={'column'}
       bgcolor={'#fff'}
       alignItems={'center'}
-      sx={{ maxHeight: '120vh', overflowY: 'scroll' }}
+      sx={{
+        minHeight: '90vh',
+        maxHeight: '90vh',
+        overflowY: 'scroll',
+        '&::-webkit-scrollbar': {
+          width: '0.4em',
+          background: 'transparent',
+        },
+      }}
       wrap="nowrap"
     >
-      <Header
-        icon={roomInfo.hackathon.icon}
-        title={roomInfo.title}
-        handleSetTab={handleSetTab}
-        tab={tab}
-      />
-
-      <Information roomInfo={roomInfo} tab={tab} />
+      <Grid
+        item
+        bgcolor={'#fff'}
+        sx={{
+          borderBottom: '1px solid #ddd',
+          pb: 3,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography sx={{ mt: 2, fontSize: 20 }} variant={'h6'} color={'#333'}>
+          メンバー
+        </Typography>
+      </Grid>
+      <Grid item  bgcolor={'#fff'}>
+        <MemberList {...props} />
+      </Grid>
     </Grid>
   )
 }

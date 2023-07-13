@@ -1,34 +1,40 @@
-import { Box } from '@mui/joy'
-import { Grid, Typography } from '@mui/material'
-import React from 'react'
-import { MemberList } from './MemberList/Index'
-import { RoomUser } from '../../types/user'
+import { Grid } from '@mui/material'
+import { Header } from './Header'
+import { RoomInfo } from '../../types/room'
+import { Information } from './Information/Index'
 
 type Props = {
-  users: RoomUser[]
+  roomInfo: Omit<RoomInfo, 'users'>
+  tab: number
+  handleSetTab: (tab: number) => void
 }
 export const RoomLeft = (props: Props) => {
+  const { roomInfo, tab, handleSetTab } = props
   return (
     <Grid
       container
       direction={'column'}
       bgcolor={'#fff'}
       alignItems={'center'}
-      sx={{ Height: '120vh', overflowX: 'scroll' }}
+      sx={{
+        maxHeight: '90vh',
+        overflowY: 'scroll',
+        '&::-webkit-scrollbar': {
+          width: '0.4em',
+          background: 'transparent',
+        },
+        pl:0.7
+      }}
       wrap="nowrap"
     >
-      <Grid item sx={{ mt: 3, textAlign: 'center' }} bgcolor={'#fff'}>
-        <Typography
-          sx={{ mt: 4, mb: 2, fontSize: 20 }}
-          variant={'h6'}
-          color={'#333'}
-        >
-          メンバー
-        </Typography>
-      </Grid>
-      <Grid item sx={{ ml: 2 }} bgcolor={'#fff'}>
-        <MemberList {...props} />
-      </Grid>
+      <Header
+        icon={roomInfo.hackathon.icon}
+        title={roomInfo.title}
+        handleSetTab={handleSetTab}
+        tab={tab}
+      />
+
+      <Information roomInfo={roomInfo} tab={tab} />
     </Grid>
   )
 }

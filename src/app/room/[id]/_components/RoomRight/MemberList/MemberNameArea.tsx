@@ -8,12 +8,12 @@ type Props = {
 export const MemberNameArea = (props: Props) => {
   const { name, isOwner } = props
   return (
-    <Grid sx={{ ml: 4.5 }} container direction={'row'}>
+    <Grid  container direction={'row'} sx={{width:"80%"}} ml={1}>
       <Typography color={'#333'}>{name}</Typography>
       {isOwner && (
         <Typography
-          sx={{ borderBottom: 4, borderColor: 'divider', ml: 4 }}
-          color={'#333'}
+          sx={{ ml: 1 }}
+          color={'#aaa'}
         >
           オーナー
         </Typography>
