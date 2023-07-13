@@ -2,6 +2,8 @@
 import { Header } from '@/components/layouts/Header'
 import { HackathonThumb } from './types/hackathon'
 import { HackathonList } from './_components/HackathonList'
+import UserRating from './_components/UserRating'
+import { Grid } from '@mui/material'
 const Home = () => {
   const hackathons: HackathonThumb[] = [
     {
@@ -44,7 +46,14 @@ const Home = () => {
   return (
     <>
       <Header />
-      <HackathonList hackathons={hackathons} />
+      <Grid container direction="row">
+        <Grid item sx={{ ml: 4 }}>
+          <UserRating users={[]} />
+        </Grid>
+        <Grid item>
+          <HackathonList hackathons={hackathons} />
+        </Grid>
+      </Grid>
     </>
   )
 }
