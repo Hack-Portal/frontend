@@ -34,9 +34,9 @@ export default function ModalWindow() {
   }
 
   const handleChange =
-    (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
-    (event: React.ChangeEvent<{ value: unknown }>) => {
-      setter(event.target.value as string[])
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value)
     }
 
   const handleSelectChange =
@@ -44,8 +44,6 @@ export default function ModalWindow() {
     (event: SelectChangeEvent<string[]>) => {
       setter(event.target.value as string[])
     }
-
-  //https://stackoverflow.com/questions/58675993/typescript-react-select-onchange-handler-type-error
 
   useEffect(() => {
     if (text.length > 140) {
@@ -83,10 +81,9 @@ export default function ModalWindow() {
             label="チーム名"
             variant="outlined"
             value={teamName}
-            onChange={(event) => setTeamName(event.target.value)}
+            onChange={handleChange(setTeamName)} // ここではhandleChangeを使います
             fullWidth
-            inputProps={{ maxLength: 40, ml: 1, height: '50px' }}
-            sx={{ mb: 2 }}
+            inputProps={{ maxLength: 40, minLength: 1, height: '50px' }}
           />
           <Box sx={{ display: 'flex', gap: 3 }}>
             {[select1, select2].map((select, i) => (
@@ -98,9 +95,6 @@ export default function ModalWindow() {
                   SelectStack
                 </Typography>
                 <Select
-                  sx={{
-                    overflow: 'auto',
-                  }}
                   labelId={`ChipLabel-${i}`}
                   id={`Chip${i}`}
                   multiple
