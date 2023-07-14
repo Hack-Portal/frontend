@@ -7,8 +7,7 @@ import { RoomThumb } from './types/room'
 import { Avatar, Box, CardMedia, Grid } from '@mui/material'
 import { RoomRecordRightBox } from './_components/RoomRecordRightBox'
 import ModalWindow from './_components/ModalWindow'
-import UserRating from '../_components/UserRating'
-import Stackimages from '../_components/Stackimages'
+import UserRating from '../../components/layouts/UserRating'
 
 const Room = () => {
   const rooms: RoomThumb[] = [
@@ -135,9 +134,7 @@ const Room = () => {
             ))}
           </CenterArea>
         </Grid>
-        <Grid item>
-          <Stackimages />
-        </Grid>
+        <Grid item></Grid>
       </Grid>
 
       <Box
