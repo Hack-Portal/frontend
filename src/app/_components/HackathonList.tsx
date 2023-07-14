@@ -30,47 +30,38 @@ export const HackathonList = (props: Props) => {
           key={hackathon.id}
         >
           <CardMedia
-            sx={{ width: 230, height: 230, pt: 2, pl: 2, objectFit: 'cover' }}
+            component={'img'}
+            sx={{ width: 218, height: 218, objectFit: 'cover' }}
             title="Your title"
-          >
-            <div
-              style={{ position: 'relative', width: '100%', height: '100%' }}
-            >
-              <Image
-                src={hackathon.icon}
-                alt={hackathon.name}
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </CardMedia>
+            image={hackathon.icon}
+          />
+
           <CardContent
-            sx={{ width: '300px', display: 'flex', flexDirection: 'column' }}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              pl: 4,
+              minHeight: '218px',
+            }}
           >
-            <CardContent
+            <Typography
               sx={{
-                width: '450px',
-                maxHeight: '58px',
+                //省略文字の設定
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                fontSize: '23px',
+                pb: 2,
               }}
+              variant="h3"
             >
-              <Typography
-                sx={{
-                  //省略文字の設定
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  fontSize: '23px',
-                }}
-                variant="h3"
-              >
-                {hackathon.name}
-              </Typography>
-            </CardContent>
+              {hackathon.name}
+            </Typography>
 
             <Grid
               container
               direction={'column'}
-              sx={{ display: 'flex', Width: 250, ml: 2 }}
+              sx={{ display: 'flex', Width: 250 }}
             >
               <Typography sx={{ fontSize: '14px' }} color={'#999'}>
                 募集締め切り
@@ -93,20 +84,20 @@ export const HackathonList = (props: Props) => {
             </Grid>
           </CardContent>
 
-          <CardContent sx={{ width: '230px' }}>
-            <CardActions sx={{ mt: 1, ml: 22 }} disableSpacing>
+          <CardContent sx={{ width: '500px' }}>
+            <CardActions sx={{ position:"absolute",right:20,top:20}} disableSpacing>
               <IconButton aria-label="add to favorites">
                 <BookmarkBorderOutlinedIcon
                   sx={{ height: '30px', width: '30px' }}
                 />
               </IconButton>
             </CardActions>
-            <Grid sx={{ mt: 7 }} container>
+            <Grid container>
               {hackathon.hackthon_tag.map((tag, id) => (
-                <Grid item key={id} xs={6}>
+                <Grid item key={id} >
                   <Chip
                     label={tag}
-                    sx={{ mt: 0.3, mr: 0.5, fontSize: '15px' }}
+                    sx={{ mt: 0.5, mr: 0.5, fontSize: '15px' }}
                     key={id}
                   />
                 </Grid>

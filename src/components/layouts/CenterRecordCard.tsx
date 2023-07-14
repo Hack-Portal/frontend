@@ -20,7 +20,10 @@ export const CenterRecordCard = (props: Props) => {
           minWidth: 800,
           display: 'flex',
           flexDirection: 'row',
-        }}
+          alignItems: 'center',
+          p:2,
+          position: 'relative',
+          }}
       >
         {children}
       </Paper>
