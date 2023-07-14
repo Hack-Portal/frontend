@@ -4,6 +4,8 @@ import { HackathonThumb } from './types/hackathon'
 import { HackathonList } from './_components/HackathonList'
 import UserRating from './_components/UserRating'
 import { Grid } from '@mui/material'
+import Stackimages from './_components/Stackimages'
+
 const Home = () => {
   const hackathons: HackathonThumb[] = [
     {
@@ -52,6 +54,9 @@ const Home = () => {
         </Grid>
         <Grid item>
           <HackathonList hackathons={hackathons} />
+        </Grid>
+        <Grid item>
+          <Stackimages />
         </Grid>
       </Grid>
     </>
