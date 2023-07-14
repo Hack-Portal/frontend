@@ -18,8 +18,8 @@ const RatingBarLayout: React.FC<Props> = ({ users }) => {
   return (
     <>
       <Box sx={{ mt: 5 }}></Box>
-      <Typography sx={{ textAlign: 'center', mb: 3 }}>
-        Userレーティングランキング
+      <Typography sx={{ fontSize: '20px', textAlign: 'center', mb: 3 }}>
+        レーティングランキング
       </Typography>
 
       <Grid
