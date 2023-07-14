@@ -5,46 +5,13 @@ import { HackathonList } from './_components/HackathonList'
 import UserRating from './_components/UserRating'
 import { Grid } from '@mui/material'
 import Stackimages from './_components/Stackimages'
+import useSWR from 'swr'
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const Home = () => {
-  const hackathons: HackathonThumb[] = [
-    {
-      id: 1,
-      name: 'ハッカソン1',
-      icon: '/image/2.jpg',
-      start_date: '2021-10-10',
-      expired: '2021-10-10',
-      term: 3,
-      hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-    },
-    {
-      id: 2,
-      name: 'ハッカソン1',
-      icon: '/image/2.jpg',
-      expired: '2021-10-10',
-      start_date: '2021-10-10',
-      term: 3,
-      hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-    },
-    {
-      id: 3,
-      name: 'ハッカソン1',
-      icon: '/image/2.jpg',
-      expired: '2021-10-10',
-      start_date: '2021-10-10',
-      term: 3,
-      hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-    },
-    {
-      id: 4,
-      name: 'ハッカソン1',
-      icon: '/image/2.jpg',
-      expired: '2021-10-10',
-      start_date: '2021-10-10',
-      term: 3,
-      hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-    },
-  ]
+  const { data, error } = useSWR<HackathonThumb[]>('/api/hackathons', fetcher)
+
   return (
     <>
       <Header />
@@ -53,7 +20,7 @@ const Home = () => {
           <UserRating users={[]} />
         </Grid>
         <Grid item>
-          <HackathonList hackathons={hackathons} />
+          {data !== undefined && <HackathonList hackathons={data} />}
         </Grid>
         <Grid item>
           <Stackimages />

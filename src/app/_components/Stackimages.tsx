@@ -45,7 +45,7 @@ const Stackimages = () => {
       id: '5',
       label: 'BackendFramework',
       name: 'Jin',
-      icon: 'image/jin.png',
+      icon: 'image/go-gin.png',
     },
     {
       id: '6',
