@@ -62,8 +62,8 @@ const Stackimages = () => {
     {
       id: '8',
       label: 'Cloud',
-      name: 'AWS',
-      icon: 'image/aws.png',
+      name: 'vercel',
+      icon: 'image/vercel.png',
     },
   ]
 
