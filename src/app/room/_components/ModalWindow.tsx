@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material'
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded'
+import useSWR from 'swr'
 
 interface HackathonType {
   id: number
@@ -21,29 +22,11 @@ interface HackathonType {
   limit: number
 }
 
-const hackathons: HackathonType[] = [
-  {
-    id: 1,
-    name: 'ハッカソン1',
-    limit: 5,
-  },
-  {
-    id: 2,
-    name: 'ハッカソン2',
-    limit: 3,
-  },
-  {
-    id: 3,
-    name: 'ハッカソン3',
-    limit: 4,
-  },
-  {
-    id: 4,
-    name: 'ハッカソン4',
-    limit: 5,
-  },
-]
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
 export default function ModalWindow() {
+  const { data, error } = useSWR<HackathonType[]>('/api/hackathons', fetcher)
+
   const [selectedHackathon, setSelectedHackathon] =
     useState<HackathonType | null>(null)
   const [selectedCount, setSelectedCount] = useState<number | null>(null)
@@ -63,6 +46,11 @@ export default function ModalWindow() {
     setSelect1(null)
   }
 
+  useEffect(() => {
+    if (text.length > 140) {
+    }
+  }, [text])
+
   const handleChange =
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -74,8 +62,11 @@ export default function ModalWindow() {
     (event: SelectChangeEvent<string[]>) => {
       setter(event.target.value as string[])
     }
+
+  if (data === undefined) return <div>loading...</div>
+
   const handleSelectHackathonChange = (event: SelectChangeEvent<string>) => {
-    const hackathon = hackathons.find(
+    const hackathon = data.find(
       (hack) => hack.id === Number(event.target.value),
     )
     setSelectedHackathon(hackathon || null)
@@ -85,11 +76,6 @@ export default function ModalWindow() {
   const handleSelectCountChange = (event: SelectChangeEvent<string>) => {
     setSelectedCount(Number(event.target.value) || null)
   }
-
-  useEffect(() => {
-    if (text.length > 140) {
-    }
-  }, [text])
 
   return (
     <Box>
@@ -136,7 +122,7 @@ export default function ModalWindow() {
               onChange={handleSelectHackathonChange}
               label="ハッカソン選択"
             >
-              {hackathons.map((hackathon) => (
+              {data.map((hackathon) => (
                 <MenuItem key={hackathon.id} value={hackathon.id}>
                   {hackathon.name}
                 </MenuItem>

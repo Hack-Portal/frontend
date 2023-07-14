@@ -11,6 +11,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const Home = () => {
   const { data, error } = useSWR<HackathonThumb[]>('/api/hackathons', fetcher)
+  if (data === undefined) return <div>loading...</div>
 
   return (
     <>
