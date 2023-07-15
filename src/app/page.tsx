@@ -1,11 +1,11 @@
 'use client'
 import { Header } from '@/components/layouts/Header'
-import { Hackathon } from './types/hackathon'
 import { HackathonList } from './_components/HackathonList'
 import UserRating from './_components/UserRating'
 import { Grid } from '@mui/material'
 import Stackimages from './_components/Stackimages'
 import useSWR from 'swr'
+import { Hackathon } from '@/types/hackathon'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
