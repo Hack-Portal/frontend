@@ -10,18 +10,15 @@ import { UserRatingInfo } from '@/components/types/userRating'
 import Image from 'next/image'
 import Link from 'next/link'
 import { HackathonThumb } from './types/hackathon'
+import { Suspense } from 'react'
 
 const Home = () => {
-
-  
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+  const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
   const { data, error } = useSWR<HackathonThumb[]>(
     'https://seaffood.com/api/v1/hackathons?page_size=10&page_id=1',
     fetcher,
   )
-  if (data === undefined) return <div>loading...</div>
-  console.log(data)
 
   // const hackathons: HackathonThumb[] = [
   //   {
@@ -168,7 +165,9 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
               style={{ marginBottom: 16 }}
             />
           </Link>
-          <HackathonList hackathons={data} />
+          <Suspense fallback={<div>loading...</div>}>
+            {data && <HackathonList hackathons={data} />}
+          </Suspense>
         </Grid>
         <Grid item xs>
           <StackList techStacks={techStacks} />
