@@ -3,21 +3,38 @@ import { CenterArea } from '@/components/layouts/CenterArea'
 import { Header } from '@/components/layouts/Header'
 import React from 'react'
 import { RoomList } from './_components/RoomList'
-import { RoomListThumb } from '../room/room'
-import useSWR from 'swr'
-import { HackathonThumb } from '../types/hackathon'
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+import { RoomListThumb } from '../room/types/roomList'
 
 const JoinedRoom = () => {
-  const { data, error } = useSWR<RoomListThumb[]>('/api/rooms', fetcher)
-
-  // if(data === undefined) return <div>loading...</div>
+  const rooms: RoomListThumb[] = [
+    {
+      id: 1,
+      title: 'test',
+      hackathon: {
+        hackathon_id: 1,
+        roomicon: {
+          String: 'https://picsum.photos/200/300',
+          Valid: true,
+        },
+      },
+    },
+    {
+      id: 1,
+      title: 'test',
+      hackathon: {
+        hackathon_id: 1,
+        roomicon: {
+          String: 'https://picsum.photos/200/300',
+          Valid: true,
+        },
+      },
+    },
+  ]
   return (
     <>
       <Header />
       <CenterArea gap={0}>
-        {data !== undefined && <RoomList rooms={data} />}
+        <RoomList rooms={rooms} />
       </CenterArea>
     </>
   )

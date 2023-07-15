@@ -9,21 +9,18 @@ import { useTab } from '@/hooks/useTab'
 import { RoomLeft } from './_components/RoomLeft/Index'
 import { RoomRight } from './_components/RoomRight/Index'
 import useSWR from 'swr'
+import { fetcher } from '@/util/fetcher'
 
 type Props = {}
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
 const RoomDetail = (props: Props) => {
   const { data, error } = useSWR<RoomInfo>('/api/Room', fetcher)
   const { tab, handleSetTab } = useTab()
 
-  if (data === undefined) return <div>loading...</div>
 
-  const users = data.users === undefined ? [] : data.users
+  const users = data?.users === undefined ? [] : data.users
   const roomInfo = data
-  // const { users, ...roomInfo } = data
-  console.log(tab)
-
+ 
   return (
     <Box
       sx={{
@@ -39,11 +36,12 @@ const RoomDetail = (props: Props) => {
         justifyContent={'center'}
         sx={{
           maxHeight: '90vh',
+          marginTop: '-16px',
         }}
       >
         {/* member */}
         <Grid item xs>
-          {data !== undefined && (
+          {data && roomInfo&& (
             <RoomLeft
               roomInfo={roomInfo}
               tab={tab}

@@ -1,4 +1,4 @@
-import { RoomListThumb } from '@/app/room/room'
+import { RoomListThumb } from '@/app/room/types/roomList'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 import { Avatar, Input, Typography } from '@mui/joy'
 import { Grid, Box } from '@mui/material'
