@@ -3,11 +3,11 @@ export type Hackathon = {
   name: string;
   icon: {
     String: string;
-    Valid: boolean;
+
   };
-  roomicon: {
+  icon: {
     String: string;
-    Valid: boolean;
+
   };
   description: string;
   link: string;

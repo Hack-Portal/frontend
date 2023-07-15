@@ -12,65 +12,53 @@ import Link from 'next/link'
 import { HackathonThumb } from './types/hackathon'
 
 const Home = () => {
+  // const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-  
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+  // const { data, error } = useSWR<HackathonThumb[]>(
+  //   'https://seaffood.com/api/v1/hackathons?page_size=3&page_id=1',
+  //   fetcher,
+  // )
+  // if (data === undefined) return <div>loading...</div>
+  // console.log(data)
 
-  const { data, error } = useSWR<HackathonThumb[]>(
-    'https://seaffood.com/api/v1/hackathons?page_size=3&page_id=1',
-    fetcher,
-  )
-  if (data === undefined) return <div>loading...</div>
-  console.log(data)
-
-  // const hackathons: HackathonThumb[] = [
-  //   {
-  //     id: 1,
-  //     name: 'ハッカソン1',
-  //     icon: '/image/2.jpg',
-  //     start_date: '2021-10-10',
-  //     expired: '2021-10-10',
-  //     term: 3,
-  //     hackthon_tag: [
-  //       'タグ1',
-  //       'タグ2',
-  //       'タグ3',
-  //       'タグ1',
-  //       'タグ2',
-  //       'タグ3',
-  //       'タグ1',
-  //       'タグ2',
-  //       'タグ3',
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'ハッカソン1',
-  //     icon: '/image/2.jpg',
-  //     expired: '2021-10-10',
-  //     start_date: '2021-10-10',
-  //     term: 3,
-  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'ハッカソン1',
-  //     icon: '/image/2.jpg',
-  //     expired: '2021-10-10',
-  //     start_date: '2021-10-10',
-  //     term: 3,
-  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'ハッカソン1',
-  //     icon: '/image/2.jpg',
-  //     expired: '2021-10-10',
-  //     start_date: '2021-10-10',
-  //     term: 3,
-  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-  //   },
-  // ]
+  const hackathons: HackathonThumb[] = [
+    {
+      id: 1,
+      name: '【技育CAMP】マンスリーハッカソン vol.6',
+      icon: '/image/2.jpg',
+      start_date: '2023-07-06', //キックオフ
+      expired: '2021-06-30', //募集締め切り
+      term: 5,
+      hackthon_tag: ['初心者歓迎', 'オフライン'],
+    },
+    {
+      id: 2,
+      name: '【技育CAMP】マンスリーハッカソン vol.8',
+      icon: '/image/2.jpg',
+      expired: '2023-07-24',
+      start_date: '2023-08-03',
+      term: 5,
+      hackthon_tag: ['初心者歓迎', 'オフライン'],
+    },
+    {
+      id: 3,
+      name: '【技育CAMP】マンスリーハッカソン vol.7',
+      icon: '/image/2.jpg',
+      expired: '2021-07-10',
+      start_date: '2021-07-21',
+      term: 5,
+      hackathon_tag: ['初心者歓迎', 'オフライン'],
+    },
+    {
+      id: 4,
+      name: '【金沢開催】技育CAMPハッカソン【全国を巡る "キャラバン" ハッカソン】',
+      icon: '/image/2.jpg',
+      expired: '2021-07-12',
+      start_date: '2021-07-21',
+      term: 3,
+      hackathon_tag: ['オフライン'],
+    },
+  ]
   const techStacks: TechStack[] = [
     {
       id: '1',
@@ -128,27 +116,52 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
   const userRatingInfo: UserRatingInfo[] = [
     {
       id: '1',
-      name: 'test',
-      icon: 'https://source.unsplash.com/random',
-      rating: 3,
+      name: 'HackMan',
+      icon: 'image/user1.png',
+      rating: 20,
     },
     {
-      id: '1',
-      name: 'test',
-      icon: 'image/vercel.png',
-      rating: 3,
+      id: '2',
+      name: 'HackMania',
+      icon: 'image/user2.png',
+      rating: 18,
     },
     {
-      id: '1',
-      name: 'test',
-      icon: 'https://source.unsplash.com/random',
-      rating: 3,
+      id: '3',
+      name: 'HackNinja',
+      icon: 'image/user3.png',
+      rating: 17,
     },
     {
-      id: '1',
-      name: 'test',
-      icon: 'https://source.unsplash.com/random',
-      rating: 3,
+      id: '4',
+      name: 'Woker',
+      icon: 'image/user4.png',
+      rating: 16,
+    },
+    {
+      id: '5',
+      name: 'HapyHacker',
+      icon: 'image/user5.png',
+      rating: 14,
+    },
+    {
+      id: '6',
+      name: 'BlueCoder',
+      icon: 'image/user6.png',
+      rating: 13,
+    },
+
+    {
+      id: '7',
+      name: 'purpleCoder',
+      icon: 'image/user7.png',
+      rating: 12,
+    },
+    {
+      id: '8',
+      name: 'Gopher',
+      icon: 'image/user8.png',
+      rating: 11,
     },
   ]
   return (
@@ -168,7 +181,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json())
               style={{ marginBottom: 16 }}
             />
           </Link>
-          <HackathonList hackathons={data} />
+          <HackathonList hackathons={hackathons} />
         </Grid>
         <Grid item xs>
           <StackList techStacks={techStacks} />
