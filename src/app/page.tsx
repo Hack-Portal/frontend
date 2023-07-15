@@ -1,6 +1,6 @@
 'use client'
 import { Header } from '@/components/layouts/Header'
-import { HackathonThumb } from './types/hackathon'
+import { Hackathon } from './types/hackathon'
 import { HackathonList } from './_components/HackathonList'
 import UserRating from './_components/UserRating'
 import { Grid } from '@mui/material'
@@ -10,8 +10,12 @@ import useSWR from 'swr'
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const Home = () => {
-  const { data, error } = useSWR<HackathonThumb[]>('/api/hackathons', fetcher)
+  const { data, error } = useSWR<Hackathon[]>(
+    'https://seaffood.com/api/v1/hackathons?page_size=3&page_id=1',
+    fetcher,
+  )
   if (data === undefined) return <div>loading...</div>
+  console.log(data)
 
   return (
     <>
@@ -20,9 +24,7 @@ const Home = () => {
         <Grid item sx={{ ml: 4 }}>
           <UserRating users={[]} />
         </Grid>
-        <Grid item>
-          <HackathonList hackathons={data} />
-        </Grid>
+        <Grid item>{data && <HackathonList hackathons={data} />} </Grid>
         <Grid item>
           <Stackimages />
         </Grid>

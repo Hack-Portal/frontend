@@ -26,8 +26,8 @@ export const HackathonList = (props: Props) => {
     <CenterArea>
       {hackathons.map((hackathon) => (
         <CenterRecordCard
-          href={`/hackathon/${hackathon.id}`}
-          key={hackathon.id}
+          href={`/hackathons?page_size=3&page_id=1${hackathon.hackathon_id}`}
+          key={hackathon.hackathon_id}
         >
           <CardMedia
             sx={{ width: 230, height: 230, pt: 2, pl: 2, objectFit: 'cover' }}
@@ -37,7 +37,7 @@ export const HackathonList = (props: Props) => {
               style={{ position: 'relative', width: '100%', height: '100%' }}
             >
               <Image
-                src={hackathon.icon}
+                src={hackathon.icon.String}
                 alt={hackathon.name}
                 layout="fill"
                 objectFit="cover"
@@ -76,13 +76,13 @@ export const HackathonList = (props: Props) => {
                 募集締め切り
               </Typography>
               <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                {hackathon.expired}
+                {new Date(hackathon.expired).toLocaleDateString()}
               </Typography>
               <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
                 キックオフ
               </Typography>
               <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                {hackathon.start_date}
+                {new Date(hackathon.start_date).toLocaleDateString()}
               </Typography>
               <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
                 期間
@@ -102,10 +102,10 @@ export const HackathonList = (props: Props) => {
               </IconButton>
             </CardActions>
             <Grid sx={{ mt: 7 }} container>
-              {hackathon.hackthon_tag.map((tag, id) => (
+              {hackathon.HackathonStatusTag.map((tag, id) => (
                 <Grid item key={id} xs={6}>
                   <Chip
-                    label={tag}
+                    label={tag.status}
                     sx={{ mt: 0.3, mr: 0.5, fontSize: '15px' }}
                     key={id}
                   />

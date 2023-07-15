@@ -1,10 +1,19 @@
 export type Hackathon = {
-  id: number
-  description: string
-  name: string
-  icon: string
-  expired: string
-  start_date: string
-  term: number
-  hackthon_tag: string[]
-}
+  hackathon_id: number;
+  name: string;
+  icon: {
+    String: string;
+    Valid: boolean;
+  };
+  description: string;
+  link: string;
+  expired: string;
+  start_date: string;
+  term: number;
+  HackathonStatusTag: HackathonStatusTag[];
+};
+
+type HackathonStatusTag = {
+  status_id: number;
+  status: string;
+};
