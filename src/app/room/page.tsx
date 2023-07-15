@@ -38,7 +38,7 @@ const Room = () => {
                     pl: 2,
                     objectFit: 'cover',
                   }}
-                  image={room.hackathon.icon}
+                  // image={room.hackathon.icon //
                   alt={room.hackathon.name}
                 />
                 <RoomRecordRightBox
