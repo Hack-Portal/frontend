@@ -11,96 +11,14 @@ import UserRating from '../../components/layouts/UserRating'
 import { UserRatingInfo } from '@/components/types/userRating'
 import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
+import useSWR from 'swr'
+import { fetcher } from '@/util/fetcher'
+import { Suspense } from 'react'
+
 
 const Room = () => {
-  const rooms: RoomThumb[] = [
-    {
-      id: 1,
-      title: 'ルーム1',
-      member_limit: 5,
-      hackathon: {
-        id: 1,
-        name: 'ハッカソン1',
-        icon: 'https://source.unsplash.com/random',
-      },
-      now_member: [
-        {
-          id: '1',
-          icon: 'https://source.unsplash.com/random',
-          isOwner: true,
-        },
-        {
-          id: '2',
-          icon: 'https://source.unsplash.com/random',
-          isOwner: false,
-        },
-      ],
-      techs: [
-        { id: 1, name: 'React' },
-        { id: 2, name: 'TypeScript' },
-      ],
-      frameworks: [{ id: 1, name: 'Next.js' }],
-    },
-    {
-      id: 2,
-      title:
-        'saefwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
-      member_limit: 5,
-      hackathon: {
-        id: 1,
-        name: 'ハッカソン1',
-        icon: 'https://source.unsplash.com/random',
-      },
-      now_member: [
-        {
-          id: '1',
-          icon: 'https://source.unsplash.com/random',
-          isOwner: true,
-        },
-        {
-          id: '2',
-          icon: 'https://source.unsplash.com/random',
-          isOwner: false,
-        },
-      ],
-      techs: [
-        { id: 1, name: 'React' },
-        { id: 2, name: 'TypeScript' },
-      ],
-      frameworks: [{ id: 1, name: 'Next.js' }],
-    },
-    {
-      id: 3,
-      title: 'ルーム1',
-      member_limit: 5,
-      hackathon: {
-        id: 1,
-        name: 'ハッカソン1',
-        icon: 'https://source.unsplash.com/random',
-      },
-      now_member: [
-        {
-          id: '1',
-          icon: 'https://source.unsplash.com/random',
-          isOwner: true,
-        },
-        {
-          id: '2',
-          icon: 'https://source.unsplash.com/random',
-          isOwner: false,
-        },
-      ],
-      techs: [
-        { id: 1, name: 'JavaScript' },
-        { id: 2, name: 'TypeScript' },
-        { id: 3, name: 'OracleCloud' },
-      ],
-      frameworks: [
-        { id: 1, name: 'Next.js' },
-        { id: 2, name: 'Node.js' },
-      ],
-    },
-  ]
+  const { data, error } = useSWR<RoomThumb[]>('/api/room', fetcher)
+  
   const userRatingInfo: UserRatingInfo[] = [
     {
       id: '1',
@@ -191,7 +109,8 @@ const Room = () => {
         </Grid>
         <Grid item>
           <CenterArea>
-            {rooms.map((room) => (
+            <Suspense fallback={<div>loading...</div>}>
+            {data?.map((room) => (
               <CenterRecordCard key={room.id} href={`/room/${room.id}`}>
                 <CardMedia
                   component="img"
@@ -200,7 +119,7 @@ const Room = () => {
                     height: 218,
                     objectFit: 'cover',
                   }}
-                  image={room.hackathon.icon}
+                  // image={room.hackathon.icon //
                   alt={room.hackathon.name}
                 />
                 <RoomRecordRightBox
@@ -213,6 +132,7 @@ const Room = () => {
                 />
               </CenterRecordCard>
             ))}
+            </Suspense>
           </CenterArea>
         </Grid>
         <Grid item xs>

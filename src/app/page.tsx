@@ -1,65 +1,76 @@
 'use client'
 import { Header } from '@/components/layouts/Header'
-import { HackathonThumb } from './types/hackathon'
 import { HackathonList } from './_components/HackathonList'
 import UserRating from '../components/layouts/UserRating'
 import { Grid } from '@mui/material'
+import useSWR from 'swr'
 import StackList from '../components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import { UserRatingInfo } from '@/components/types/userRating'
 import Image from 'next/image'
-import { SpaceBar } from '@mui/icons-material'
 import Link from 'next/link'
+import { HackathonThumb } from './types/hackathon'
 
 const Home = () => {
-  const hackathons: HackathonThumb[] = [
-    {
-      id: 1,
-      name: 'ハッカソン1',
-      icon: '/image/2.jpg',
-      start_date: '2021-10-10',
-      expired: '2021-10-10',
-      term: 3,
-      hackthon_tag: [
-        'タグ1',
-        'タグ2',
-        'タグ3',
-        'タグ1',
-        'タグ2',
-        'タグ3',
-        'タグ1',
-        'タグ2',
-        'タグ3',
-      ],
-    },
-    {
-      id: 2,
-      name: 'ハッカソン1',
-      icon: '/image/2.jpg',
-      expired: '2021-10-10',
-      start_date: '2021-10-10',
-      term: 3,
-      hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-    },
-    {
-      id: 3,
-      name: 'ハッカソン1',
-      icon: '/image/2.jpg',
-      expired: '2021-10-10',
-      start_date: '2021-10-10',
-      term: 3,
-      hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-    },
-    {
-      id: 4,
-      name: 'ハッカソン1',
-      icon: '/image/2.jpg',
-      expired: '2021-10-10',
-      start_date: '2021-10-10',
-      term: 3,
-      hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-    },
-  ]
+
+  
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
+  const { data, error } = useSWR<HackathonThumb[]>(
+    'https://seaffood.com/api/v1/hackathons?page_size=3&page_id=1',
+    fetcher,
+  )
+  if (data === undefined) return <div>loading...</div>
+  console.log(data)
+
+  // const hackathons: HackathonThumb[] = [
+  //   {
+  //     id: 1,
+  //     name: 'ハッカソン1',
+  //     icon: '/image/2.jpg',
+  //     start_date: '2021-10-10',
+  //     expired: '2021-10-10',
+  //     term: 3,
+  //     hackthon_tag: [
+  //       'タグ1',
+  //       'タグ2',
+  //       'タグ3',
+  //       'タグ1',
+  //       'タグ2',
+  //       'タグ3',
+  //       'タグ1',
+  //       'タグ2',
+  //       'タグ3',
+  //     ],
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'ハッカソン1',
+  //     icon: '/image/2.jpg',
+  //     expired: '2021-10-10',
+  //     start_date: '2021-10-10',
+  //     term: 3,
+  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'ハッカソン1',
+  //     icon: '/image/2.jpg',
+  //     expired: '2021-10-10',
+  //     start_date: '2021-10-10',
+  //     term: 3,
+  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'ハッカソン1',
+  //     icon: '/image/2.jpg',
+  //     expired: '2021-10-10',
+  //     start_date: '2021-10-10',
+  //     term: 3,
+  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
+  //   },
+  // ]
   const techStacks: TechStack[] = [
     {
       id: '1',
@@ -157,7 +168,7 @@ const Home = () => {
               style={{ marginBottom: 16 }}
             />
           </Link>
-          <HackathonList hackathons={hackathons} />
+          <HackathonList hackathons={data} />
         </Grid>
         <Grid item xs>
           <StackList techStacks={techStacks} />

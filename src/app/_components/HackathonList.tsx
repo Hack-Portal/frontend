@@ -26,14 +26,14 @@ export const HackathonList = (props: Props) => {
     <CenterArea>
       {hackathons.map((hackathon) => (
         <CenterRecordCard
-          href={`/hackathon/${hackathon.id}`}
-          key={hackathon.id}
+          href={`/hackathons?page_size=3&page_id=1${hackathon.hackathon_id}`}
+          key={hackathon.hackathon_id}
         >
           <CardMedia
             component={'img'}
             sx={{ width: 218, height: 218, objectFit: 'cover' }}
             title="Your title"
-            image={hackathon.icon}
+            image={hackathon.icon.String}
           />
 
           <CardContent
@@ -67,13 +67,13 @@ export const HackathonList = (props: Props) => {
                 募集締め切り
               </Typography>
               <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                {hackathon.expired}
+                {new Date(hackathon.expired).toLocaleDateString()}
               </Typography>
               <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
                 キックオフ
               </Typography>
               <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                {hackathon.start_date}
+                {new Date(hackathon.start_date).toLocaleDateString()}
               </Typography>
               <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
                 期間
@@ -93,10 +93,10 @@ export const HackathonList = (props: Props) => {
               </IconButton>
             </CardActions>
             <Grid container>
-              {hackathon.hackthon_tag.map((tag, id) => (
+              {hackathon.HackathonStatusTag.map((tag, id) => (
                 <Grid item key={id} >
                   <Chip
-                    label={tag}
+                    label={tag.status}
                     sx={{ mt: 0.5, mr: 0.5, fontSize: '15px' }}
                     key={id}
                   />

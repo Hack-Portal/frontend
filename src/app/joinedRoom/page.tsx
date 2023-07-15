@@ -11,16 +11,22 @@ const JoinedRoom = () => {
       id: 1,
       title: 'test',
       hackathon: {
-        id: 1,
-        icon: 'https://picsum.photos/200/300',
+        hackathon_id: 1,
+        roomicon: {
+          String: 'https://picsum.photos/200/300',
+          Valid: true,
+        },
       },
     },
     {
-      id: 2,
+      id: 1,
       title: 'test',
       hackathon: {
-        id: 1,
-        icon: 'https://picsum.photos/200/300',
+        hackathon_id: 1,
+        roomicon: {
+          String: 'https://picsum.photos/200/300',
+          Valid: true,
+        },
       },
     },
   ]

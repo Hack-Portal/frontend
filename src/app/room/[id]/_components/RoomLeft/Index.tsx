@@ -28,7 +28,7 @@ export const RoomLeft = (props: Props) => {
       wrap="nowrap"
     >
       <Header
-        icon={roomInfo.hackathon.icon}
+        icon={roomInfo.hackathon.roomicon.String}
         title={roomInfo.title}
         handleSetTab={handleSetTab}
         tab={tab}
