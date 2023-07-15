@@ -21,7 +21,7 @@ const Home = () => {
           <UserRating users={[]} />
         </Grid>
         <Grid item>
-          {data !== undefined && <HackathonList hackathons={data} />}
+          <HackathonList hackathons={data} />
         </Grid>
         <Grid item>
           <Stackimages />

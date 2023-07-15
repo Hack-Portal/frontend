@@ -10,7 +10,7 @@ import { HackathonThumb } from '../types/hackathon'
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const JoinedRoom = () => {
-  const { data, error } = useSWR<RoomListThumb[]>('/api/hackathons', fetcher)
+  const { data, error } = useSWR<RoomListThumb[]>('/api/rooms', fetcher)
 
   // if(data === undefined) return <div>loading...</div>
   return (
