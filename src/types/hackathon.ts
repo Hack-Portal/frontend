@@ -1,14 +1,7 @@
 export type Hackathon = {
   hackathon_id: number;
   name: string;
-  icon: {
-    String: string;
-
-  };
-  icon: {
-    String: string;
-
-  };
+  icon:string;
   description: string;
   link: string;
   expired: string;

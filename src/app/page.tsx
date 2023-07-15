@@ -23,7 +23,7 @@ const Home = () => {
 
   const hackathons: HackathonThumb[] = [
     {
-      id: 1,
+      hackathon_id: 1,
       name: '【技育CAMP】マンスリーハッカソン vol.6',
       icon: '/image/2.jpg',
       start_date: '2023-07-06', //キックオフ
@@ -32,7 +32,7 @@ const Home = () => {
       hackthon_tag: ['初心者歓迎', 'オフライン'],
     },
     {
-      id: 2,
+      hackathon_id: 2,
       name: '【技育CAMP】マンスリーハッカソン vol.8',
       icon: '/image/2.jpg',
       expired: '2023-07-24',
@@ -41,7 +41,7 @@ const Home = () => {
       hackthon_tag: ['初心者歓迎', 'オフライン'],
     },
     {
-      id: 3,
+      hackathon_id: 3,
       name: '【技育CAMP】マンスリーハッカソン vol.7',
       icon: '/image/2.jpg',
       expired: '2021-07-10',
@@ -50,7 +50,7 @@ const Home = () => {
       hackathon_tag: ['初心者歓迎', 'オフライン'],
     },
     {
-      id: 4,
+      hackathon_id: 4,
       name: '【金沢開催】技育CAMPハッカソン【全国を巡る "キャラバン" ハッカソン】',
       icon: '/image/2.jpg',
       expired: '2021-07-12',
@@ -162,6 +162,18 @@ const Home = () => {
       name: 'Gopher',
       icon: 'image/user8.png',
       rating: 11,
+    },
+    {
+      id: '9',
+      name: 'NineHacker',
+      icon: 'image/user9.png',
+      rating: 10,
+    },
+    {
+      id: '10',
+      name: 'TenHacker',
+      icon: 'image/user10.png',
+      rating: 9,
     },
   ]
   return (
