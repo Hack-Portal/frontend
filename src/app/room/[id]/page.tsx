@@ -119,8 +119,6 @@ const RoomDetail = (props: Props) => {
 
   const { users, ...roomInfo } = room
   const { tab, handleSetTab } = useTab()
-  console.log(tab)
-
   return (
     <Box
       sx={{
@@ -136,6 +134,7 @@ const RoomDetail = (props: Props) => {
         justifyContent={'center'}
         sx={{
           maxHeight: '90vh',
+          marginTop: '-16px',
         }}
       >
         {/* member */}

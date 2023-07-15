@@ -50,7 +50,7 @@ export const Header = () => {
           top: 0,
           left: 0,
           width: '100%',
-          height: '10%',
+          maxHeight:'10%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
