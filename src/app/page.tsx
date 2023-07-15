@@ -17,7 +17,7 @@ const Home = () => {
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
   const { data, error } = useSWR<HackathonThumb[]>(
-    'https://seaffood.com/api/v1/hackathons?page_size=3&page_id=1',
+    'https://seaffood.com/api/v1/hackathons?page_size=10&page_id=1',
     fetcher,
   )
   if (data === undefined) return <div>loading...</div>
