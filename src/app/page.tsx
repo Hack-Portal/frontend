@@ -7,6 +7,9 @@ import { Grid } from '@mui/material'
 import StackList from '../components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import { UserRatingInfo } from '@/components/types/userRating'
+import Image from 'next/image'
+import { SpaceBar } from '@mui/icons-material'
+import Link from 'next/link'
 
 const Home = () => {
   const hackathons: HackathonThumb[] = [
@@ -17,7 +20,17 @@ const Home = () => {
       start_date: '2021-10-10',
       expired: '2021-10-10',
       term: 3,
-      hackthon_tag: ['タグ1', 'タグ2', 'タグ3','タグ1', 'タグ2', 'タグ3','タグ1', 'タグ2', 'タグ3'],
+      hackthon_tag: [
+        'タグ1',
+        'タグ2',
+        'タグ3',
+        'タグ1',
+        'タグ2',
+        'タグ3',
+        'タグ1',
+        'タグ2',
+        'タグ3',
+      ],
     },
     {
       id: 2,
@@ -101,7 +114,7 @@ const Home = () => {
       icon: 'image/vercel.png',
     },
   ]
-  const userRatingInfo:UserRatingInfo[] = [
+  const userRatingInfo: UserRatingInfo[] = [
     {
       id: '1',
       name: 'test',
@@ -135,6 +148,15 @@ const Home = () => {
           <UserRating users={userRatingInfo} />
         </Grid>
         <Grid item>
+          <Link href="">
+            <Image
+              src="/image/mainbanner.svg"
+              alt="me"
+              width={800}
+              height={150}
+              style={{ marginBottom: 16 }}
+            />
+          </Link>
           <HackathonList hackathons={hackathons} />
         </Grid>
         <Grid item xs>

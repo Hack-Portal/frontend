@@ -1,4 +1,5 @@
-import { CardMedia, Paper } from '@mui/material'
+import { Box } from '@mui/joy'
+import { Card, CardMedia, Paper } from '@mui/material'
 import Link from 'next/link'
 
 type Props = {
@@ -11,8 +12,7 @@ export const CenterRecordCard = (props: Props) => {
   const { href, children} = props
   return (
     <Link href={href}>
-      <Paper
-        elevation={3}
+      <Card
         sx={{
           minHeight: 250,
           maxHeight: 250,
@@ -26,7 +26,7 @@ export const CenterRecordCard = (props: Props) => {
           }}
       >
         {children}
-      </Paper>
+      </Card>
     </Link>
   )
 }

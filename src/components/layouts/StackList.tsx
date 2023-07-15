@@ -24,16 +24,16 @@ const StackList = (props: Props) => {
             mb:2
           }}
         >
-          <Typography sx={{  mb: 1 }} color={'#999'}>
+          <Typography sx={{  mb: 2 }} color={'#999'}>
             {techStack.label}
           </Typography>
-          <Box sx={{ width: '90px' }}>
+          <Box >
             <CardMedia
               component="img"
               sx={{
                 mb: 1,
-                width: '100%',
-                height: '100%',
+                width: '40px',
+                height: '40px',
                 borderRadius: '10%',
               }}
               alt={techStack.name}
