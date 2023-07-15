@@ -3,7 +3,7 @@ import { CenterArea } from '@/components/layouts/CenterArea'
 import { Header } from '@/components/layouts/Header'
 import React from 'react'
 import { RoomList } from './_components/RoomList'
-import { RoomListThumb } from '../room/room'
+import { RoomListThumb } from '../room/types/roomList'
 
 const JoinedRoom = () => {
   const rooms: RoomListThumb[] = [
@@ -28,7 +28,7 @@ const JoinedRoom = () => {
     <>
       <Header />
       <CenterArea gap={0}>
-        <RoomList rooms={rooms}/>
+        <RoomList rooms={rooms} />
       </CenterArea>
     </>
   )

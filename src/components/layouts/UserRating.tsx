@@ -9,7 +9,7 @@ type Props = {
 const UserRating = (props: Props) => {
   const { users } = props
   return (
-    <Grid container direction={'column'} alignItems={'center'}>
+    <Grid container direction={'column'} alignItems={'center'} >
       <Typography>レーティング</Typography>
 
       {users.map((user, index) => (
