@@ -15,6 +15,7 @@ import {
 import { SelectChangeEvent } from '@mui/material'
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded'
 import useSWR from 'swr'
+import { RoomThumb } from '../types/room'
 
 interface HackathonType {
   id: number
@@ -22,10 +23,10 @@ interface HackathonType {
   limit: number
 }
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+// const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 export default function ModalWindow() {
-  const { data, error } = useSWR<HackathonType[]>('/api/hackathons', fetcher)
+  // const { roomList, error } = useSWR<HackathonType[]>('/api/hackathons', fetcher)
 
   const [selectedHackathon, setSelectedHackathon] =
     useState<HackathonType | null>(null)
@@ -63,19 +64,169 @@ export default function ModalWindow() {
       setter(event.target.value as string[])
     }
 
-  if (data === undefined) return <div>loading...</div>
+  // if (roomList === undefined) return <div>loading...</div>
 
   const handleSelectHackathonChange = (event: SelectChangeEvent<string>) => {
-    const hackathon = data.find(
-      (hack) => hack.id === Number(event.target.value),
+    const room = roomList.find(
+      (room) => room.hackathon.id === event.target.value,
     )
-    setSelectedHackathon(hackathon || null)
+    setSelectedHackathon(room ? room.hackathon : null)
     setSelectedCount(null)
   }
 
-  const handleSelectCountChange = (event: SelectChangeEvent<string>) => {
-    setSelectedCount(Number(event.target.value) || null)
+  const handleSelectCountChange = (event: SelectChangeEvent<number>) => {
+    setSelectedCount(parseInt(event.target.value as string, 10)) // ensure the event value is a number
   }
+
+  const roomList: any = [
+    {
+      id: 'room1',
+      title: 'Awesome Hack Room 1',
+      member_limit: 5,
+      hackathon: {
+        id: '1',
+        name: '【技育CAMP】マンスリーハッカソン vol.8',
+        icon: 'image/hackathon1.png',
+      },
+      now_member: [
+        {
+          id: 'user1',
+          name: 'User 1',
+          icon: 'image/user1.png',
+        },
+        {
+          id: 'user2',
+          name: 'User 2',
+          icon: 'image/user2.png',
+        },
+      ],
+      techs: [
+        {
+          id: 1,
+          name: 'Python',
+        },
+        {
+          id: 2,
+          name: 'JavaScript',
+        },
+      ],
+      frameworks: [
+        {
+          id: 1,
+          name: 'Django',
+        },
+        {
+          id: 2,
+          name: 'React',
+        },
+      ],
+    },
+    {
+      id: 'room2',
+      title: 'Diverse Coders United',
+      member_limit: 4,
+      hackathon: {
+        id: '2',
+        name: '【技育CAMP】マンスリーハッカソン vol.6',
+        icon: 'image/hackathon2.png',
+      },
+      now_member: [
+        {
+          id: 'user3',
+          name: 'User 3',
+          icon: 'image/user3.png',
+        },
+        {
+          id: 'user4',
+          name: 'User 4',
+          icon: 'image/user4.png',
+        },
+      ],
+      techs: [
+        {
+          id: 3,
+          name: 'Java',
+        },
+        {
+          id: 4,
+          name: 'C#',
+        },
+      ],
+      frameworks: [
+        {
+          id: 3,
+          name: 'Spring',
+        },
+        {
+          id: 4,
+          name: '.NET',
+        },
+      ],
+    },
+    {
+      id: 'room3',
+      title: 'NextGen UI/UX Designers',
+      member_limit: 3,
+      hackathon: {
+        id: '3',
+        name: '【技育CAMP】マンスリーハッカソン vol.7',
+        icon: 'image/hackathon3.png',
+      },
+      now_member: [
+        {
+          id: 'user5',
+          name: 'User 5',
+          icon: 'image/user5.png',
+        },
+      ],
+      techs: [
+        {
+          id: 5,
+          name: 'CSS',
+        },
+      ],
+      frameworks: [
+        {
+          id: 5,
+          name: 'Bootstrap',
+        },
+      ],
+    },
+    {
+      id: 'room4',
+      title: 'Blockchain Innovators',
+      member_limit: 4,
+      hackathon: {
+        id: '4',
+        name: '【金沢開催】技育CAMPハッカソン【全国を巡る "キャラバン" ハッカソン】',
+        icon: 'image/hackathon4.png',
+      },
+      now_member: [
+        {
+          id: 'user6',
+          name: 'User 6',
+          icon: 'image/user6.png',
+        },
+        {
+          id: 'user7',
+          name: 'User 7',
+          icon: 'image/user7.png',
+        },
+      ],
+      techs: [
+        {
+          id: 6,
+          name: 'Solidity',
+        },
+      ],
+      frameworks: [
+        {
+          id: 6,
+          name: 'Truffle',
+        },
+      ],
+    },
+  ]
 
   return (
     <Box>
@@ -103,7 +254,7 @@ export default function ModalWindow() {
             width: 750,
           }}
         >
-          <Typography variant='h6'>メンバーを募集する</Typography>
+          <Typography variant="h6">メンバーを募集する</Typography>
           <TextField
             label="チーム名"
             variant="outlined"
@@ -122,35 +273,32 @@ export default function ModalWindow() {
               onChange={handleSelectHackathonChange}
               label="ハッカソン選択"
             >
-              {data.map((hackathon) => (
-                <MenuItem key={hackathon.id} value={hackathon.id}>
-                  {hackathon.name}
+              {roomList.map((room) => (
+                <MenuItem key={room.hackathon.id} value={room.hackathon.id}>
+                  {room.hackathon.name}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
-
-          {selectedHackathon && (
-            <FormControl variant="outlined" sx={{ mt: 3 }} fullWidth>
-              <InputLabel id="count-label">募集人数</InputLabel>
-              <Select
-                labelId="count-label"
-                id="count-select"
-                value={selectedCount?.toString() || ''}
-                onChange={handleSelectCountChange}
-                label="募集人数"
-              >
-                {Array.from(
-                  { length: selectedHackathon.limit - 1 },
-                  (_, i) => i + 1,
-                ).map((count) => (
-                  <MenuItem key={count} value={count}>
-                    {count}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          )}
+          <FormControl variant="outlined" sx={{ mt: 3 }} fullWidth>
+            <InputLabel id="count-label">募集人数</InputLabel>
+            <Select
+              labelId="count-label"
+              id="count-select"
+              value={selectedCount || ''} // if selectedCount is null, it will display an empty string
+              onChange={handleSelectCountChange}
+              label="募集人数"
+            >
+              {Array.from(
+                { length: 4 }, // Set this to 4 for 1 to 4
+                (_, i) => i + 1,
+              ).map((count) => (
+                <MenuItem key={count} value={count}>
+                  {count}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             multiline
             rows={4}
