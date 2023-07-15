@@ -66,10 +66,10 @@ export const RoomList = (props: Props) => {
             gap={2}
             justifyContent={'flex-start'}
           >
-            {/* <Avatar
-              // src={roomicon}
-              sx={{ width: 50, height: 50, objectFit: 'cover' }} */}
-            {/* /> */}
+            <Avatar
+              src={room.hackathon.roomicon.String}
+              sx={{ width: 50, height: 50, objectFit: 'cover' }}
+            />
             <Typography fontSize={'1.5rem'}>{room.title}</Typography>
           </Grid>
         </Link>

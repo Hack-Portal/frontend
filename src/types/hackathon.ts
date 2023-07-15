@@ -5,6 +5,10 @@ export type Hackathon = {
     String: string;
     Valid: boolean;
   };
+  roomicon: {
+    String: string;
+    Valid: boolean;
+  };
   description: string;
   link: string;
   expired: string;
