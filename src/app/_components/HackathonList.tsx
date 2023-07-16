@@ -33,7 +33,7 @@ export const HackathonList = (props: Props) => {
             component={'img'}
             sx={{ width: 218, height: 218, objectFit: 'cover' }}
             title="Your title"
-            image={hackathon.icon.String}
+            image={ hackathon.icon}
           />
 
           <CardContent
@@ -42,6 +42,7 @@ export const HackathonList = (props: Props) => {
               flexDirection: 'column',
               pl: 4,
               minHeight: '218px',
+              width:"500px",
             }}
           >
             <Typography
@@ -93,7 +94,7 @@ export const HackathonList = (props: Props) => {
               </IconButton>
             </CardActions>
             <Grid container>
-              {hackathon.HackathonStatusTag.map((tag, id) => (
+              {hackathon?.HackathonStatusTag?.map((tag, id) => (
                 <Grid item key={id} >
                   <Chip
                     label={tag.status}

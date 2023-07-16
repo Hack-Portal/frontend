@@ -1,14 +1,7 @@
 export type Hackathon = {
   hackathon_id: number;
   name: string;
-  icon: {
-    String: string;
-    Valid: boolean;
-  };
-  roomicon: {
-    String: string;
-    Valid: boolean;
-  };
+  icon:string;
   description: string;
   link: string;
   expired: string;

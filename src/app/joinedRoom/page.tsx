@@ -12,10 +12,7 @@ const JoinedRoom = () => {
       title: 'test',
       hackathon: {
         hackathon_id: 1,
-        roomicon: {
-          String: 'https://picsum.photos/200/300',
-          Valid: true,
-        },
+        icon: 'https://picsum.photos/200/300',
       },
     },
     {
@@ -23,10 +20,7 @@ const JoinedRoom = () => {
       title: 'test',
       hackathon: {
         hackathon_id: 1,
-        roomicon: {
-          String: 'https://picsum.photos/200/300',
-          Valid: true,
-        },
+        icon: 'https://picsum.photos/200/300',
       },
     },
   ]
