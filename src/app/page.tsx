@@ -29,7 +29,16 @@ const Home = () => {
       start_date: '2023-07-06', //キックオフ
       expired: '2021-06-30', //募集締め切り
       term: 5,
-      hackthon_tag: ['初心者歓迎', 'オフライン'],
+      HackathonStatusTag: [
+        {
+          status_id: 1,
+          status: '初心者',
+        },
+        {
+          status_id: 2,
+          status: 'オンライン',
+        },
+      ],
     },
     {
       hackathon_id: 2,
@@ -38,7 +47,16 @@ const Home = () => {
       expired: '2023-07-24',
       start_date: '2023-08-03',
       term: 5,
-      hackthon_tag: ['初心者歓迎', 'オフライン'],
+      HackathonStatusTag: [
+        {
+          status_id: 1,
+          status: '初心者',
+        },
+        {
+          status_id: 2,
+          status: 'オンライン',
+        },
+      ],
     },
     {
       hackathon_id: 3,
@@ -47,7 +65,16 @@ const Home = () => {
       expired: '2021-07-10',
       start_date: '2021-07-21',
       term: 5,
-      hackathon_tag: ['初心者歓迎', 'オフライン'],
+      HackathonStatusTag: [
+        {
+          status_id: 1,
+          status: '初心者',
+        },
+        {
+          status_id: 2,
+          status: 'オンライン',
+        },
+      ],
     },
     {
       hackathon_id: 4,
@@ -56,7 +83,16 @@ const Home = () => {
       expired: '2021-07-12',
       start_date: '2021-07-21',
       term: 3,
-      hackathon_tag: ['オフライン'],
+      HackathonStatusTag: [
+        {
+          status_id: 1,
+          status: '初心者',
+        },
+        {
+          status_id: 2,
+          status: 'オンライン',
+        },
+      ],
     },
   ]
   const techStacks: TechStack[] = [

@@ -26,12 +26,11 @@ export const ChatList = (props: Props) => {
       }}
       wrap="nowrap"
     >
-      <MyChatArea />
-      <MyChatArea />
-      <MyChatArea />
-      <MyChatArea />
-      <MyChatArea />
+      <MyChatArea text={''} />
       <OtherChatArea />
+      <MyChatArea text={''} />
+      <OtherChatArea />
+      <MyChatArea text={''} />
     </Grid>
   )
 }

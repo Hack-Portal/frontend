@@ -1,4 +1,4 @@
 export interface Tech {
-    id:number
-    name:string
+    tech_tag_id:number
+    language:string
 }

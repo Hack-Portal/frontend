@@ -1,6 +1,4 @@
 import { Room } from "@/types/room"
 import { RoomUser } from "./user"
 
-export type RoomInfo={
-    users:RoomUser[]
-}&Omit<Room,"now_member">
+export type RoomInfo=&Omit<Room,"now_member">

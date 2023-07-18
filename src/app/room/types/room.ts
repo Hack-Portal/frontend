@@ -9,4 +9,4 @@ export type RoomThumb={
   now_member:RoomUserThumb[]
   techs:Tech[]
   frameworks:Framework[]
-}&Pick<Room,'id'|'title'|'member_limit'>
+}&Pick<Room,'room_id'|'title'|'member_limit'>

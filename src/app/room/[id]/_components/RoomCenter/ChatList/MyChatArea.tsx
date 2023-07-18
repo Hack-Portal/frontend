@@ -1,8 +1,13 @@
 import { Sheet } from '@mui/joy'
 import { Avatar, Box, Grid, Paper, Typography } from '@mui/material'
 import React from 'react'
+import Image from 'next/image'
 
-export const MyChatArea = () => {
+interface MyChatAreaProps {
+  text: string
+}
+
+export const MyChatArea: React.FC<MyChatAreaProps> = ({ text }) => {
   return (
     <Grid
       container
@@ -22,13 +27,9 @@ export const MyChatArea = () => {
           wordBreak: 'break-word',
         }}
       >
-        <Typography color={'#fff'}>
-          {
-            '初参加です！！！よろしくお願いします！！！！fbrrrrrrrrrrrrrrrraqddvccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
-          }
-        </Typography>
+        <Typography color={'#fff'}>{text}</Typography>
       </Box>
-      <Avatar src={'https://source.unsplash.com/random'} variant="rounded" />
+      <Avatar src={'/image/user1.png'} variant="rounded" />
     </Grid>
   )
 }

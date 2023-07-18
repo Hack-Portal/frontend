@@ -111,7 +111,7 @@ export const RoomRecordRightBox = (props: Props) => {
           {techs.map((tech, id) => (
             <Grid item key={id}>
               <Chip
-                label={tech.name}
+                label={tech.language}
                 sx={{ mt: 0.5, mr: 0.5, fontSize: '14px' }}
                 key={id}
               />
@@ -125,7 +125,7 @@ export const RoomRecordRightBox = (props: Props) => {
           {frameworks.map((framework, id) => (
             <Grid sx={{ display: 'flex' }} item key={id}>
               <Chip
-                label={framework.name}
+                label={framework.framework}
                 sx={{ mt: 0.3, mr: 0.5, fontSize: '14px' }}
                 key={id}
               />

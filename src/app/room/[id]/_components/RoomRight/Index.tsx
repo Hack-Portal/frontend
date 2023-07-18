@@ -40,8 +40,8 @@ export const RoomRight = (props: Props) => {
           メンバー
         </Typography>
       </Grid>
-      <Grid item  bgcolor={'#fff'}>
-        <MemberList {...props} />
+      <Grid item bgcolor={'#fff'}>
+        <MemberList />
       </Grid>
     </Grid>
   )

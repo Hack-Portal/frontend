@@ -6,15 +6,16 @@ import { Header } from '@/components/layouts/Header'
 import { RoomThumb } from './types/room'
 import { Avatar, Box, CardMedia, Grid } from '@mui/material'
 import { RoomRecordRightBox } from './_components/RoomRecordRightBox'
-import ModalWindow from './_components/ModalWindow'
+import { ModalWindow } from './_components/ModalWindow'
 import UserRating from '../../components/layouts/UserRating'
 import { UserRatingInfo } from '@/components/types/userRating'
 import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import useSWR from 'swr'
 import { fetcher } from '@/util/fetcher'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { SelectTech } from '../signup/types/tech'
+import image from 'next/image'
 
 const Room = () => {
   // const { data, error } = useSWR<RoomThumb[]>('/api/room', fetcher)
@@ -24,56 +25,19 @@ const Room = () => {
       name: 'Python',
       frameworks: [
         {
-          id: 1,
-          name: 'Django',
+          framework_id: 1,
+          framework: 'Django',
+          tech_tag_id: 1,
         },
         {
-          id: 2,
-          name: 'Flask',
+          framework_id: 2,
+          framework: 'Flask',
+          tech_tag_id: 1,
         },
         {
-          id: 3,
-          name: 'FastAPI',
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: 'JavaScript',
-      frameworks: [
-        {
-          id: 1,
-          name: 'React',
-        },
-        {
-          id: 2,
-          name: 'Vue',
-        },
-        {
-          id: 3,
-          name: 'Next',
-        },
-        {
-          id: 4,
-          name: 'Nuxt',
-        },
-      ],
-    },
-    {
-      id: 1,
-      name: 'Python',
-      frameworks: [
-        {
-          id: 1,
-          name: 'Django',
-        },
-        {
-          id: 2,
-          name: 'Flask',
-        },
-        {
-          id: 3,
-          name: 'FastAPI',
+          framework_id: 3,
+          framework: 'FastAPI',
+          tech_tag_id: 1,
         },
       ],
     },
@@ -82,170 +46,205 @@ const Room = () => {
       name: 'JavaScript',
       frameworks: [
         {
-          id: 1,
-          name: 'React',
+          framework_id: 1,
+          framework: 'React',
+          tech_tag_id: 2,
         },
         {
-          id: 2,
-          name: 'Vue',
+          framework_id: 2,
+          framework: 'Vue',
+          tech_tag_id: 2,
         },
         {
-          id: 3,
-          name: 'Angular',
+          framework_id: 3,
+          framework: 'Next',
+          tech_tag_id: 2,
+        },
+        {
+          framework_id: 4,
+          framework: 'Nuxt',
+          tech_tag_id: 2,
         },
       ],
     },
   ]
-  const roomList: RoomThumb[] = [
+
+  const ROOM_LIST: RoomThumb[] = [
     {
-      id: 'room1',
-      title: 'Awesome Hack Room 1',
+      room_id: 'room1',
+      title: 'スクリプト言語集団',
       member_limit: 5,
       hackathon: {
-        id: '1',
+        hackathon_id: 1,
         name: '【技育CAMP】マンスリーハッカソン vol.8',
-        icon: 'image/hackathon1.png',
+        icon: 'image/1.jpg',
       },
       now_member: [
         {
           id: 'user1',
-          name: 'User 1',
+          isOwner: true,
           icon: 'image/user1.png',
         },
         {
           id: 'user2',
-          name: 'User 2',
+          isOwner: false,
           icon: 'image/user2.png',
         },
       ],
       techs: [
         {
-          id: 1,
-          name: 'Python',
+          tech_tag_id: 1,
+          language: 'Python',
         },
         {
-          id: 2,
-          name: 'JavaScript',
+          tech_tag_id: 2,
+          language: 'JavaScript',
         },
       ],
       frameworks: [
         {
-          id: 1,
-          name: 'Django',
+          framework_id: 1,
+          framework: 'Django',
+          tech_tag_id: 1,
         },
         {
-          id: 2,
-          name: 'React',
+          framework_id: 2,
+          framework: 'Flask',
+          tech_tag_id: 1,
         },
       ],
     },
+
     {
-      id: 'room2',
-      title: 'Diverse Coders United',
-      member_limit: 4,
+      room_id: 'room2',
+      title: 'ハッカーズ',
+      member_limit: 5,
       hackathon: {
-        id: '2',
-        name: '【技育CAMP】マンスリーハッカソン vol.6',
-        icon: 'image/hackathon2.png',
+        hackathon_id: 1,
+        name: '【技育CAMP】マンスリーハッカソン vol.8',
+        icon: 'image/3.jpg',
       },
       now_member: [
         {
-          id: 'user3',
-          name: 'User 3',
-          icon: 'image/user3.png',
+          id: 'user1',
+          isOwner: true,
+          icon: 'image/user1.png',
         },
         {
-          id: 'user4',
-          name: 'User 4',
-          icon: 'image/user4.png',
+          id: 'user2',
+          isOwner: false,
+          icon: 'image/user2.png',
         },
       ],
       techs: [
         {
-          id: 3,
-          name: 'Java',
+          tech_tag_id: 1,
+          language: 'Java',
         },
         {
-          id: 4,
-          name: 'C#',
+          tech_tag_id: 2,
+          language: 'C#',
         },
       ],
       frameworks: [
         {
-          id: 3,
-          name: 'Spring',
+          framework_id: 1,
+          framework: 'Spring',
+          tech_tag_id: 1,
         },
         {
-          id: 4,
-          name: '.NET',
+          framework_id: 2,
+          framework: '.NET',
+          tech_tag_id: 1,
         },
       ],
     },
+
     {
-      id: 'room3',
-      title: 'NextGen UI/UX Designers',
-      member_limit: 3,
+      room_id: 'room3',
+      title: 'デザイナーズ',
+      member_limit: 5,
       hackathon: {
-        id: '3',
-        name: '【技育CAMP】マンスリーハッカソン vol.7',
-        icon: 'image/hackathon3.png',
-      },
-      now_member: [
-        {
-          id: 'user5',
-          name: 'User 5',
-          icon: 'image/user5.png',
-        },
-      ],
-      techs: [
-        {
-          id: 5,
-          name: 'CSS',
-        },
-      ],
-      frameworks: [
-        {
-          id: 5,
-          name: 'Bootstrap',
-        },
-      ],
-    },
-    {
-      id: 'room4',
-      title: 'Blockchain Innovators',
-      member_limit: 4,
-      hackathon: {
-        id: '4',
-        name: '【金沢開催】技育CAMPハッカソン【全国を巡る "キャラバン" ハッカソン】',
-        icon: 'image/hackathon4.png',
+        hackathon_id: 2,
+        name: '【技育CAMP】マンスリーハッカソン vol.8',
+        icon: 'image/3.jpg',
       },
       now_member: [
         {
           id: 'user6',
-          name: 'User 6',
+          isOwner: true,
           icon: 'image/user6.png',
         },
         {
           id: 'user7',
-          name: 'User 7',
+          isOwner: false,
           icon: 'image/user7.png',
         },
       ],
       techs: [
         {
-          id: 6,
-          name: 'Solidity',
+          tech_tag_id: 1,
+          language: 'CSS',
+        },
+        {
+          tech_tag_id: 2,
+          language: 'JavaScript',
         },
       ],
       frameworks: [
         {
-          id: 6,
-          name: 'Truffle',
+          framework_id: 1,
+          framework: 'BootStrap',
+          tech_tag_id: 1,
+        },
+        {
+          framework_id: 2,
+          framework: '.JQuery',
+          tech_tag_id: 2,
         },
       ],
     },
-    // Continue the same way with the rest of the rooms
-    // ...
+
+    {
+      room_id: 'room4',
+      title: '蛇使い',
+      member_limit: 5,
+      hackathon: {
+        hackathon_id: 1,
+        name: '【金沢開催】技育CAMPハッカソン【全国を巡る "キャラバン" ハッカソン】',
+        icon: 'image/2.jpg',
+      },
+      now_member: [
+        {
+          id: 'user10',
+          isOwner: true,
+          icon: 'image/user10.png',
+        },
+        {
+          id: 'user9',
+          isOwner: false,
+          icon: 'image/user9.png',
+        },
+      ],
+      techs: [
+        {
+          tech_tag_id: 1,
+          language: 'Python',
+        },
+      ],
+      frameworks: [
+        {
+          framework_id: 1,
+          framework: 'Django',
+          tech_tag_id: 2,
+        },
+        {
+          framework_id: 2,
+          framework: 'Flask',
+          tech_tag_id: 2,
+        },
+      ],
+    },
   ]
 
   const userRatingInfo: UserRatingInfo[] = [
@@ -365,6 +364,42 @@ const Room = () => {
       icon: 'image/vercel.png',
     },
   ]
+  const [roomList, setRoomList] = useState<RoomThumb[]>(ROOM_LIST)
+  const handleCreateRoom = (teamName: string, selectedCount: number) => {
+    setRoomList((prev) => [
+      {
+        room_id: 'room6',
+        title: teamName,
+        member_limit: selectedCount,
+        hackathon: {
+          hackathon_id: 1,
+          name: '【技育CAMP】マンスリーハッカソン vol.8',
+          icon: 'image/1.jpg',
+        },
+        now_member: [
+          {
+            id: 'user1',
+            isOwner: true,
+            icon: 'image/user1.png',
+          },
+        ],
+        techs: [
+          {
+            tech_tag_id: 1,
+            language: 'Python',
+          },
+        ],
+        frameworks: [
+          {
+            framework_id: 2,
+            framework: 'Flask',
+            tech_tag_id: 1,
+          },
+        ],
+      },
+      ...prev,
+    ])
+  }
   return (
     <>
       <Header />
@@ -377,7 +412,10 @@ const Room = () => {
           <CenterArea>
             <Suspense fallback={<div>loading...</div>}>
               {roomList?.map((room) => (
-                <CenterRecordCard key={room.id} href={`/room/${room.id}`}>
+                <CenterRecordCard
+                  key={room.room_id}
+                  href={`/room/${room.room_id}`}
+                >
                   <CardMedia
                     component="img"
                     sx={{
@@ -385,7 +423,7 @@ const Room = () => {
                       height: 218,
                       objectFit: 'cover',
                     }}
-                    // image={room.hackathon.icon //
+                    image={room.hackathon.icon}
                     alt={room.hackathon.name}
                   />
                   <RoomRecordRightBox
@@ -422,7 +460,7 @@ const Room = () => {
           alignItems: 'center',
         }}
       >
-        <ModalWindow />
+        <ModalWindow handleCreateRoom={handleCreateRoom} />
       </Box>
     </>
   )

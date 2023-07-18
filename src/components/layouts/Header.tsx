@@ -38,7 +38,6 @@ export const Header = () => {
       sx={{
         width: '100%',
         height: '75px ',
-        py: 2,
         px: 1,
       }}
     >
@@ -50,11 +49,10 @@ export const Header = () => {
           top: 0,
           left: 0,
           width: '100%',
-          maxHeight:'10%',
+          maxHeight: '75px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          py: 3,
           px: 3,
           boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)',
         }}
@@ -90,7 +88,7 @@ export const Header = () => {
                     primary={
                       <Typography
                         style={{
-                          fontWeight:IsActive(item.href) ? 'bold' : 'normal',
+                          fontWeight: IsActive(item.href) ? 'bold' : 'normal',
                           color: IsActive(item.href) ? '#333' : '#aaa',
                         }}
                       >
@@ -105,7 +103,7 @@ export const Header = () => {
           ))}
         </Box>
 
-        <Box sx={{display:"flex",gap:3}}>
+        <Box sx={{ display: 'flex', gap: 3 }}>
           <Link href="/notification">
             {/* <Badge badgeContent={2} variant="solid" color="danger"> */}
             <NotificationsNoneOutlinedIcon
