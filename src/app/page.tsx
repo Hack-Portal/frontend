@@ -10,91 +10,65 @@ import { UserRatingInfo } from '@/components/types/userRating'
 import Image from 'next/image'
 import Link from 'next/link'
 import { HackathonThumb } from './types/hackathon'
+import { Suspense } from 'react'
 
 const Home = () => {
-  // const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-  // const { data, error } = useSWR<HackathonThumb[]>(
-  //   'https://seaffood.com/api/v1/hackathons?page_size=3&page_id=1',
-  //   fetcher,
-  // )
-  // if (data === undefined) return <div>loading...</div>
-  // console.log(data)
+  const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-  const hackathons: HackathonThumb[] = [
-    {
-      hackathon_id: 1,
-      name: '【技育CAMP】マンスリーハッカソン vol.6',
-      icon: '/image/2.jpg',
-      start_date: '2023-07-06', //キックオフ
-      expired: '2021-06-30', //募集締め切り
-      term: 5,
-      HackathonStatusTag: [
-        {
-          status_id: 1,
-          status: '初心者',
-        },
-        {
-          status_id: 2,
-          status: 'オンライン',
-        },
-      ],
-    },
-    {
-      hackathon_id: 2,
-      name: '【技育CAMP】マンスリーハッカソン vol.8',
-      icon: '/image/2.jpg',
-      expired: '2023-07-24',
-      start_date: '2023-08-03',
-      term: 5,
-      HackathonStatusTag: [
-        {
-          status_id: 1,
-          status: '初心者',
-        },
-        {
-          status_id: 2,
-          status: 'オンライン',
-        },
-      ],
-    },
-    {
-      hackathon_id: 3,
-      name: '【技育CAMP】マンスリーハッカソン vol.7',
-      icon: '/image/2.jpg',
-      expired: '2021-07-10',
-      start_date: '2021-07-21',
-      term: 5,
-      HackathonStatusTag: [
-        {
-          status_id: 1,
-          status: '初心者',
-        },
-        {
-          status_id: 2,
-          status: 'オンライン',
-        },
-      ],
-    },
-    {
-      hackathon_id: 4,
-      name: '【金沢開催】技育CAMPハッカソン【全国を巡る "キャラバン" ハッカソン】',
-      icon: '/image/2.jpg',
-      expired: '2021-07-12',
-      start_date: '2021-07-21',
-      term: 3,
-      HackathonStatusTag: [
-        {
-          status_id: 1,
-          status: '初心者',
-        },
-        {
-          status_id: 2,
-          status: 'オンライン',
-        },
-      ],
-    },
-  ]
+  const { data, error } = useSWR<HackathonThumb[]>(
+    'https://seaffood.com/api/v1/hackathons?page_size=10&page_id=1',
+    fetcher,
+  )
+
+  // const hackathons: HackathonThumb[] = [
+  //   {
+  //     id: 1,
+  //     name: 'ハッカソン1',
+  //     icon: '/image/2.jpg',
+  //     start_date: '2021-10-10',
+  //     expired: '2021-10-10',
+  //     term: 3,
+  //     hackthon_tag: [
+  //       'タグ1',
+  //       'タグ2',
+  //       'タグ3',
+  //       'タグ1',
+  //       'タグ2',
+  //       'タグ3',
+  //       'タグ1',
+  //       'タグ2',
+  //       'タグ3',
+  //     ],
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'ハッカソン1',
+  //     icon: '/image/2.jpg',
+  //     expired: '2021-10-10',
+  //     start_date: '2021-10-10',
+  //     term: 3,
+  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'ハッカソン1',
+  //     icon: '/image/2.jpg',
+  //     expired: '2021-10-10',
+  //     start_date: '2021-10-10',
+  //     term: 3,
+  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'ハッカソン1',
+  //     icon: '/image/2.jpg',
+  //     expired: '2021-10-10',
+  //     start_date: '2021-10-10',
+  //     term: 3,
+  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
+  //   },
+  // ]
   const techStacks: TechStack[] = [
     {
       id: '1',
@@ -229,7 +203,10 @@ const Home = () => {
               style={{ marginBottom: 16 }}
             />
           </Link>
-          <HackathonList hackathons={hackathons} />
+
+          <Suspense fallback={<div>loading...</div>}>
+            {data && <HackathonList hackathons={data} />}
+          </Suspense>
         </Grid>
         <Grid item xs>
           <StackList techStacks={techStacks} />

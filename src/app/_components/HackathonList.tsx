@@ -34,6 +34,7 @@ export const HackathonList = (props: Props) => {
             sx={{ width: 218, height: 218, objectFit: 'cover' }}
             title="Your title"
             image={hackathon.icon}
+
           />
 
           <CardContent
@@ -43,6 +44,7 @@ export const HackathonList = (props: Props) => {
               pl: 4,
               minHeight: '218px',
               minWidth: '500px',
+              width:"500px",
             }}
           >
             <Typography
@@ -110,6 +112,18 @@ export const HackathonList = (props: Props) => {
                 />
               </IconButton>
             </CardActions>
+            <Grid container>
+              {hackathon?.HackathonStatusTag?.map((tag, id) => (
+                <Grid item key={id} >
+                  <Chip
+                    label={tag.status}
+                    sx={{ mt: 0.5, mr: 0.5, fontSize: '15px' }}
+                    key={id}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+
           </CardContent>
         </CenterRecordCard>
       ))}
