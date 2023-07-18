@@ -1,11 +1,11 @@
 'use client'
-import { Card, CardMedia, Grtech_tag_id } from '@mui/material'
+import { Card, CardMedia, Grid } from '@mui/material'
 import { SignUpForm } from './_conmponents/SignUpForm'
 import { SelectTech } from './types/tech'
 
 const SignUp = () => {
   return (
-    <Grtech_tag_id
+    <Grid
       container
       justifyContent={'center'}
       alignItems={'center'}
@@ -27,9 +27,9 @@ const SignUp = () => {
           image={'https://source.unsplash.com/random'}
           alt={'left image'}
         />
-        <SignUpForm />
+        <SignUpForm techs={techs} />
       </Card>
-    </Grtech_tag_id>
+    </Grid>
   )
 }
 export default SignUp
