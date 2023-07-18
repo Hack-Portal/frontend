@@ -16,7 +16,7 @@ const SignUp = () => {
         sx={{
           wtech_tag_idth: '80vw',
           height: '80vh',
-          maxWtech_tag_idth: '80vw',
+          maxtech_tag_idth: '80vw',
           maxHeight: '80vh',
           display: 'flex',
         }}

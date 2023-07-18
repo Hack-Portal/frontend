@@ -1,0 +1,541 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Hack-Potal",
+    "description": "# backend\nmemo\napp.env を作って DB_DRIVER=postgres DB_SOURSE=DB接続用URI を記述する必要あり",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "fake"
+    }
+  ],
+  "paths": {
+    "/hackathons": {
+      "post": {
+        "tags": [
+          "hackathons"
+        ],
+        "summary": "ハッカソンを追加する",
+        "description": "ハッカソンを追加する",
+        "operationId": "addHackathon",
+        "requestBody": {
+          "description": "新しいハッカソンを作成する",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Hackathons"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rt_hackathons"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "hackathons"
+        ],
+        "summary": "ハッカソンをリスト取得する",
+        "description": "ハッカソンをリスト取得する",
+        "operationId": "getListHackathon",
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "取得するハッカソンの数",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "description": "取得するページ数",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/rt_hackathons"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hackathons/{hackathon_id}": {
+      "get": {
+        "tags": [
+          "hackathons"
+        ],
+        "summary": "個別のハッカソンの情報を取得する",
+        "description": "ハッカソンをリスト取得する",
+        "operationId": "getHackathon",
+        "parameters": [
+          {
+            "name": "hackathon_id",
+            "in": "query",
+            "description": "取得するハッカソンID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rt_hackathons"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locates": {
+      "get": {
+        "tags": [
+          "locates"
+        ],
+        "parameters": [],
+        "summary": "県情報リストを取得する",
+        "description": "47都道府県をリスト取得する",
+        "operationId": "getListLocates",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/locates"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tech_tags": {
+      "get": {
+        "tags": [
+          "techtags"
+        ],
+        "parameters": [],
+        "summary": "techTagsをすべてリストで取得する",
+        "description": "techTagsをすべてリストで取得する",
+        "operationId": "getListTechTags",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tech_tags"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Hackathons": {
+        "required": [
+          "name",
+          "icon",
+          "link",
+          "expired",
+          "start_date",
+          "term"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "default": "【技育CAMP】マンスリーハッカソン vol.6【オンライン開催】"
+          },
+          "icon": {
+            "type": "string",
+            "example": "image_text(base64)"
+          },
+          "description": {
+            "type": "string",
+            "example": "ここには説明が入る予定だよ!"
+          },
+          "link": {
+            "type": "string",
+            "example": "https://google.com"
+          },
+          "expired": {
+            "type": "string",
+            "example": "2023-07-18T00:00:00.000Z"
+          },
+          "start_date": {
+            "type": "string",
+            "example": "2023-07-22T00:00:00.000Z"
+          },
+          "term": {
+            "type": "integer",
+            "default": [
+              14
+            ]
+          },
+          "status_tags": {
+            "type": "integer",
+            "example": [
+              1,
+              3
+            ]
+          }
+        }
+      },
+      "rt_hackathons": {
+        "required": [
+          "name",
+          "icon",
+          "link",
+          "expired",
+          "start_date",
+          "term"
+        ],
+        "type": "object",
+        "properties": {
+          "hackathons_id": {
+            "type": "integer",
+            "default": [
+              1
+            ]
+          },
+          "name": {
+            "type": "string",
+            "default": "【技育CAMP】マンスリーハッカソン vol.6【オンライン開催】"
+          },
+          "icon": {
+            "type": "string",
+            "example": "image_text(base64)"
+          },
+          "description": {
+            "type": "string",
+            "example": "ここには説明が入る予定だよ!"
+          },
+          "link": {
+            "type": "string",
+            "example": "https://google.com"
+          },
+          "expired": {
+            "type": "string",
+            "example": "2023-07-18T00:00:00.000Z"
+          },
+          "start_date": {
+            "type": "string",
+            "example": "2023-07-22T00:00:00.000Z"
+          },
+          "term": {
+            "type": "integer",
+            "example": 14
+          },
+          "status_tags": {
+            "example": [
+              {
+                "status_id": 1,
+                "status": "オンライン"
+              },
+              {
+                "status_id": 3,
+                "status": "初心者歓迎"
+              }
+            ]
+          }
+        }
+      },
+      "locates": {
+        "type": "array",
+        "default": [
+          {
+            "locate_id": 1,
+            "name": "北海道"
+          },
+          {
+            "locate_id": 2,
+            "name": "青森県"
+          },
+          {
+            "locate_id": 3,
+            "name": "岩手県"
+          },
+          {
+            "locate_id": 4,
+            "name": "宮城県"
+          },
+          {
+            "locate_id": 5,
+            "name": "秋田県"
+          },
+          {
+            "locate_id": 6,
+            "name": "山形県"
+          },
+          {
+            "locate_id": 7,
+            "name": "福島県"
+          },
+          {
+            "locate_id": 8,
+            "name": "茨城県"
+          },
+          {
+            "locate_id": 9,
+            "name": "栃木県"
+          },
+          {
+            "locate_id": 10,
+            "name": "群馬県"
+          },
+          {
+            "locate_id": 11,
+            "name": "埼玉県"
+          },
+          {
+            "locate_id": 12,
+            "name": "千葉県"
+          },
+          {
+            "locate_id": 13,
+            "name": "東京都"
+          },
+          {
+            "locate_id": 14,
+            "name": "神奈川県"
+          },
+          {
+            "locate_id": 15,
+            "name": "新潟県"
+          },
+          {
+            "locate_id": 16,
+            "name": "富山県"
+          },
+          {
+            "locate_id": 17,
+            "name": "石川県"
+          },
+          {
+            "locate_id": 18,
+            "name": "福井県"
+          },
+          {
+            "locate_id": 19,
+            "name": "山梨県"
+          },
+          {
+            "locate_id": 20,
+            "name": "長野県"
+          },
+          {
+            "locate_id": 21,
+            "name": "岐阜県"
+          },
+          {
+            "locate_id": 22,
+            "name": "静岡県"
+          },
+          {
+            "locate_id": 23,
+            "name": "愛知県"
+          },
+          {
+            "locate_id": 24,
+            "name": "三重県"
+          },
+          {
+            "locate_id": 25,
+            "name": "滋賀県"
+          },
+          {
+            "locate_id": 26,
+            "name": "京都県"
+          },
+          {
+            "locate_id": 27,
+            "name": "大阪府"
+          },
+          {
+            "locate_id": 28,
+            "name": "兵庫県"
+          },
+          {
+            "locate_id": 29,
+            "name": "奈良県"
+          },
+          {
+            "locate_id": 30,
+            "name": "和歌山県"
+          },
+          {
+            "locate_id": 31,
+            "name": "鳥取県"
+          },
+          {
+            "locate_id": 32,
+            "name": "島根県"
+          },
+          {
+            "locate_id": 33,
+            "name": "岡山県"
+          },
+          {
+            "locate_id": 34,
+            "name": "広島県"
+          },
+          {
+            "locate_id": 35,
+            "name": "山口県"
+          },
+          {
+            "locate_id": 36,
+            "name": "徳島県"
+          },
+          {
+            "locate_id": 37,
+            "name": "香川県"
+          },
+          {
+            "locate_id": 38,
+            "name": "愛媛県"
+          },
+          {
+            "locate_id": 39,
+            "name": "高知県"
+          },
+          {
+            "locate_id": 40,
+            "name": "福岡県"
+          },
+          {
+            "locate_id": 41,
+            "name": "佐賀県"
+          },
+          {
+            "locate_id": 42,
+            "name": "長崎県"
+          },
+          {
+            "locate_id": 43,
+            "name": "熊本県"
+          },
+          {
+            "locate_id": 44,
+            "name": "大分県"
+          },
+          {
+            "locate_id": 45,
+            "name": "宮崎県"
+          },
+          {
+            "locate_id": 46,
+            "name": "鹿児島県"
+          },
+          {
+            "locate_id": 47,
+            "name": "沖縄県"
+          }
+        ]
+      },
+      "tech_tags": {
+        "type": "array",
+        "default": [
+          {
+            "tech_tag_id": 1,
+            "language": "Python"
+          },
+          {
+            "tech_tag_id": 2,
+            "language": "JavaScript"
+          },
+          {
+            "tech_tag_id": 3,
+            "language": "Java"
+          },
+          {
+            "tech_tag_id": 4,
+            "language": "Go"
+          },
+          {
+            "tech_tag_id": 5,
+            "language": "C"
+          },
+          {
+            "tech_tag_id": 6,
+            "language": "Csharp"
+          },
+          {
+            "tech_tag_id": 7,
+            "language": "Cpp"
+          },
+          {
+            "tech_tag_id": 8,
+            "language": "kotlin"
+          },
+          {
+            "tech_tag_id": 9,
+            "language": "PHP"
+          },
+          {
+            "tech_tag_id": 10,
+            "language": "Rust"
+          },
+          {
+            "tech_tag_id": 11,
+            "language": "Ruby"
+          },
+          {
+            "tech_tag_id": 12,
+            "language": "R"
+          },
+          {
+            "tech_tag_id": 13,
+            "language": "DataBase"
+          },
+          {
+            "tech_tag_id": 14,
+            "language": "Cloud"
+          },
+          {
+            "tech_tag_id": 15,
+            "language": "DevOps"
+          }
+        ]
+      }
+    }
+  }
+}
