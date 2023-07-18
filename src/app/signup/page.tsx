@@ -27,7 +27,7 @@ const SignUp = () => {
           image={'https://source.unsplash.com/random'}
           alt={'left image'}
         />
-        <SignUpForm techs={techs} />
+        <SignUpForm />
       </Card>
     </Grid>
   )
