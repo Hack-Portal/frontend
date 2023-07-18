@@ -76,7 +76,7 @@ const RoomInfo: RoomInfo = {
   room_id: '7b547df5-e692-46d2-aed3-04059775a2f8',
   title: '技育CAMP.vol7 初心者',
   description: 'わいわいしましょう！',
-  is_status: true,
+  is_delete: true,
   member_limit: 5,
   created_at: '',
   Hackathon: {
