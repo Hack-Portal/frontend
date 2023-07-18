@@ -33,7 +33,8 @@ export const HackathonList = (props: Props) => {
             component={'img'}
             sx={{ width: 218, height: 218, objectFit: 'cover' }}
             title="Your title"
-            image={ hackathon.icon}
+            image={hackathon.icon}
+
           />
 
           <CardContent
@@ -42,6 +43,7 @@ export const HackathonList = (props: Props) => {
               flexDirection: 'column',
               pl: 4,
               minHeight: '218px',
+              minWidth: '500px',
               width:"500px",
             }}
           >
@@ -61,32 +63,49 @@ export const HackathonList = (props: Props) => {
 
             <Grid
               container
-              direction={'column'}
-              sx={{ display: 'flex', Width: 250 }}
+              direction={'row'}
+              sx={{ display: 'flex', maxWidth: 300 }}
+              wrap="nowrap"
             >
-              <Typography sx={{ fontSize: '14px' }} color={'#999'}>
-                募集締め切り
-              </Typography>
-              <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                {new Date(hackathon.expired).toLocaleDateString()}
-              </Typography>
-              <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
-                キックオフ
-              </Typography>
-              <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                {new Date(hackathon.start_date).toLocaleDateString()}
-              </Typography>
-              <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
-                期間
-              </Typography>
-              <Typography sx={{ fontSize: '16px' }}>
-                {hackathon.term}日間
-              </Typography>
+              <Grid container direction={'column'}>
+                <Typography sx={{ fontSize: '14px' }} color={'#999'}>
+                  募集締め切り
+                </Typography>
+                <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
+                  {new Date(hackathon.expired).toLocaleDateString()}
+                </Typography>
+                <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
+                  キックオフ
+                </Typography>
+                <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
+                  {new Date(hackathon.start_date).toLocaleDateString()}
+                </Typography>
+                <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
+                  期間
+                </Typography>
+                <Typography sx={{ fontSize: '16px' }}>
+                  {hackathon.term}日間
+                </Typography>
+              </Grid>
+              <Grid container direction={'row'} wrap="nowrap">
+                {hackathon.HackathonStatusTag.map((tag, id) => (
+                  <Grid item key={id}>
+                    <Chip
+                      label={tag.status}
+                      sx={{ mt: 0.5, mr: 0.5, fontSize: '15px' }}
+                      key={id}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
           </CardContent>
 
           <CardContent sx={{ width: '500px' }}>
-            <CardActions sx={{ position:"absolute",right:20,top:20}} disableSpacing>
+            <CardActions
+              sx={{ position: 'absolute', right: 20, top: 20 }}
+              disableSpacing
+            >
               <IconButton aria-label="add to favorites">
                 <BookmarkBorderOutlinedIcon
                   sx={{ height: '30px', width: '30px' }}
@@ -104,6 +123,7 @@ export const HackathonList = (props: Props) => {
                 </Grid>
               ))}
             </Grid>
+
           </CardContent>
         </CenterRecordCard>
       ))}

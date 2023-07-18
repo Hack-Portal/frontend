@@ -1,5 +1,6 @@
 
 export interface Framework {
-    id:number
-    name:string
+    framework_id: number,
+    tech_tag_id: number,
+    framework: string
 }

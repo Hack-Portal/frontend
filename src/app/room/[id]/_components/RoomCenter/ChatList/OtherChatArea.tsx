@@ -22,11 +22,7 @@ export const OtherChatArea = () => {
           wordBreak: 'break-word',
         }}
       >
-        <Typography color={'#333'}>
-          {
-            'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-          }
-        </Typography>
+        <Typography color={'#333'}>{'text'}</Typography>
       </Box>
     </Grid>
   )

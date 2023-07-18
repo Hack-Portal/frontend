@@ -15,27 +15,31 @@ import {
 import { SelectChangeEvent } from '@mui/material'
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded'
 import useSWR from 'swr'
+import { RoomThumb } from '../types/room'
+import { PostModal } from './types/modal'
 
-interface HackathonType {
-  id: number
-  name: string
-  limit: number
+// const fetcher = (url: string) => fetch(url).then((res) => res.json())
+type Props = {
+  handleCreateRoom: (teamName: string, selectedCount: number) => void
 }
+export const ModalWindow = (props: Props) => {
+  const { handleCreateRoom } = props
+  const handleCreateRoomClick = () => {
+    handleCreateRoom(teamName, selectedCount)
+    handleClose()
+  }
+  // const { roomList, error } = useSWR<HackathonType[]>('/api/hackathons', fetcher)
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
-
-export default function ModalWindow() {
-  const { data, error } = useSWR<HackathonType[]>('/api/hackathons', fetcher)
-
-  const [selectedHackathon, setSelectedHackathon] =
-    useState<HackathonType | null>(null)
-  const [selectedCount, setSelectedCount] = useState<number | null>(null)
+  const [selectedHackathon, setSelectedHackathon] = useState<PostModal | null>(
+    null,
+  )
+  const [selectedCount, setSelectedCount] = useState<number>(0)
 
   const [open, setOpen] = useState<boolean>(false)
   const [text, setText] = useState<string>('')
   const [teamName, setTeamName] = useState<string>('')
 
-  const [select1, setSelect1] = useState<HackathonType | null>(null)
+  const [select1, setSelect1] = useState<PostModal | null>(null)
 
   //モーダル開閉
   const handleOpen = () => setOpen(true)
@@ -63,19 +67,39 @@ export default function ModalWindow() {
       setter(event.target.value as string[])
     }
 
-  if (data === undefined) return <div>loading...</div>
+  // if (roomList === undefined) return <div>loading...</div>
 
   const handleSelectHackathonChange = (event: SelectChangeEvent<string>) => {
-    const hackathon = data.find(
-      (hack) => hack.id === Number(event.target.value),
+    const room = roomList.find(
+      (room) => String(room.hackathon_id) == event.target.value,
     )
-    setSelectedHackathon(hackathon || null)
-    setSelectedCount(null)
+
+    setSelectedHackathon(room!)
+    setSelectedCount(0)
   }
 
-  const handleSelectCountChange = (event: SelectChangeEvent<string>) => {
-    setSelectedCount(Number(event.target.value) || null)
+  const handleSelectCountChange = (event: SelectChangeEvent<number>) => {
+    setSelectedCount(parseInt(event.target.value as string, 10)) // ensure the event value is a number
   }
+
+  const roomList: PostModal[] = [
+    {
+      hackathon_id: 1,
+      name: '【技育CAMP】マンスリーハッカソン vol.8',
+    },
+    {
+      hackathon_id: 2,
+      name: '【技育CAMP】マンスリーハッカソン vol.8',
+    },
+    {
+      hackathon_id: 3,
+      name: '【技育CAMP】マンスリーハッカソン vol.7',
+    },
+    {
+      hackathon_id: 4,
+      name: '【金沢開催】技育CAMPハッカソン【全国を巡る "キャラバン" ハッカソン】',
+    },
+  ]
 
   return (
     <Box>
@@ -103,7 +127,7 @@ export default function ModalWindow() {
             width: 750,
           }}
         >
-          <Typography variant='h6'>メンバーを募集する</Typography>
+          <Typography variant="h6">メンバーを募集する</Typography>
           <TextField
             label="チーム名"
             variant="outlined"
@@ -118,39 +142,36 @@ export default function ModalWindow() {
             <Select
               labelId="hackathon-label"
               id="hackathon-select"
-              value={selectedHackathon?.id.toString() || ''}
+              value={selectedHackathon?.hackathon_id.toString() || ''}
               onChange={handleSelectHackathonChange}
-              label="ハッカソン選択"
+              label={selectedHackathon?.name || 'ハッカソン選択'}
             >
-              {data.map((hackathon) => (
-                <MenuItem key={hackathon.id} value={hackathon.id}>
-                  {hackathon.name}
+              {roomList.map((room) => (
+                <MenuItem key={room.hackathon_id} value={room.hackathon_id}>
+                  {room.name}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
-
-          {selectedHackathon && (
-            <FormControl variant="outlined" sx={{ mt: 3 }} fullWidth>
-              <InputLabel id="count-label">募集人数</InputLabel>
-              <Select
-                labelId="count-label"
-                id="count-select"
-                value={selectedCount?.toString() || ''}
-                onChange={handleSelectCountChange}
-                label="募集人数"
-              >
-                {Array.from(
-                  { length: selectedHackathon.limit - 1 },
-                  (_, i) => i + 1,
-                ).map((count) => (
-                  <MenuItem key={count} value={count}>
-                    {count}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          )}
+          <FormControl variant="outlined" sx={{ mt: 3 }} fullWidth>
+            <InputLabel id="count-label">募集人数</InputLabel>
+            <Select
+              labelId="count-label"
+              id="count-select"
+              value={selectedCount || ''} // if selectedCount is null, it will display an empty string
+              onChange={handleSelectCountChange}
+              label="募集人数"
+            >
+              {Array.from(
+                { length: 4 }, // Set this to 4 for 1 to 4
+                (_, i) => i + 1,
+              ).map((count) => (
+                <MenuItem key={count} value={count}>
+                  {count}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             multiline
             rows={4}
@@ -169,7 +190,9 @@ export default function ModalWindow() {
             <Button
               sx={{ mt: 1, mr: 0.5 }}
               disabled={text.length > 140 || text.length === 0}
-              onClick={handleClose}
+              onClick={() => {
+                handleCreateRoomClick()
+              }}
               variant="contained"
               color="primary"
             >

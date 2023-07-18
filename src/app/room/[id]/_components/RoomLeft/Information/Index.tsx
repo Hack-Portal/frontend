@@ -10,13 +10,13 @@ type Props = {
 }
 export const Information = (props: Props) => {
   const { tab } = props
-  const { hackathon, ...roomInfo } = props.roomInfo
+  const { Hackathon, ...roomInfo } = props.roomInfo
   return (
     <Grid container sx={{ height: '100vh' }} direction={'column'}>
       {tab === 0 ? (
         <RoomInformation roomInfo={roomInfo} />
       ) : (
-        <HackathonInformation hackathonInfo={hackathon} />
+        <HackathonInformation hackathonInfo={Hackathon} />
       )}
     </Grid>
   )

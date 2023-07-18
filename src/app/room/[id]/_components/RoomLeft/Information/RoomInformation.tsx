@@ -4,16 +4,15 @@ import { Grid, Typography } from '@mui/material'
 import { CustomAccordion } from './CustomAccordion'
 
 type Props = {
-  roomInfo: Omit<RoomInfo, 'users' | 'hackathon'>
+  roomInfo: Omit<RoomInfo, 'users' | 'Hackathon'>
 }
+
 export const RoomInformation = (props: Props) => {
   const { roomInfo } = props
   return (
     <Grid container direction={'column'} gap={1}>
       <Grid item>
-        <CustomAccordion title={'説明'}>
-          {roomInfo.description}
-        </CustomAccordion>
+        <CustomAccordion title={'説明'}>{roomInfo.description}</CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'募集上限'}>
@@ -22,18 +21,18 @@ export const RoomInformation = (props: Props) => {
       </Grid>
       <Grid item>
         <CustomAccordion title={'使用言語'}>
-          {roomInfo.tech_tags.map((tag) => (
-            <Grid sx={{ mt: 1.5 }} key={tag.id}>
-              {tag.name}
+          {roomInfo.RoomsTechTags.map((tag, index) => (
+            <Grid sx={{ mt: 1.5 }} key={index}>
+              {tag.tech_tag.language}
             </Grid>
           ))}
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'使用フレームワーク'}>
-          {roomInfo.frameworks.map((tag) => (
-            <Typography sx={{ mt: 1.5 }} key={tag.id}>
-              {tag.name}
+          {roomInfo.RoomsFrameworks.map((tag) => (
+            <Typography sx={{ mt: 1.5 }} key={tag.framework.framework_id}>
+              {tag.framework.framework}
             </Typography>
           ))}
         </CustomAccordion>

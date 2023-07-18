@@ -56,7 +56,7 @@ export const RoomList = (props: Props) => {
         </Box>
       </Grid>
       {rooms.map((room) => (
-        <Link href={`/room/${room.id}`} key={room.id}>
+        <Link href={`/room/${room.room_id}`} key={room.room_id}>
           <Grid
             container
             direction={'row'}

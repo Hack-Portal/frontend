@@ -1,19 +1,18 @@
-import { CenterArea } from '@/components/layouts/CenterArea'
-import { Send } from '@mui/icons-material'
-import { Box, Textarea } from '@mui/joy'
-import {
-  Divider,
-  Drawer,
-  Grid,
-  IconButton,
-  InputBase,
-  Paper,
-} from '@mui/material'
-import React from 'react'
+import { useState } from 'react'
 import { SendInputArea } from './SendInputArea'
-import { ChatList } from './ChatList/Index'
+import { Grid } from '@mui/material'
+import { MyChatArea } from './ChatList/MyChatArea'
+import { OtherChatArea } from './ChatList/OtherChatArea'
 
 export const RoomCenter = () => {
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
+    [],
+  )
+
+  const handleSend = (message: string) => {
+    setMessages((prev) => [...prev, { sender: 'me', text: message }])
+  }
+
   return (
     <>
       <Grid
@@ -32,9 +31,10 @@ export const RoomCenter = () => {
           },
         }}
       >
-         
-        <ChatList />
-        <SendInputArea />
+        {messages.map((message, index) => (
+          <MyChatArea key={index} text={message.text} />
+        ))}
+        <SendInputArea onSendMessage={handleSend} />
       </Grid>
     </>
   )

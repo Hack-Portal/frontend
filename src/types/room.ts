@@ -4,12 +4,24 @@ import { Tech } from './tech'
 import { User } from './user'
 
 export interface Room {
-  id: number
-  hackathon: Hackathon
+  room_id: string
+  is_delete: boolean
+  Hackathon: Hackathon
   title: string
   description: string
   member_limit: number
+  created_at: string
   now_member: User[]
-  tech_tags: Tech[]
-  frameworks: Framework[]
+  RoomsTechTags: RoomsTechTags[]
+  RoomsFrameworks: RoomsFrameworks[]
+}
+
+type RoomsTechTags = {
+  count: number
+  tech_tag:Tech
+}
+
+type RoomsFrameworks = {
+  framework:Framework
+  count: number
 }

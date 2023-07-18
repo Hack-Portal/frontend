@@ -1,14 +1,17 @@
 import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
-import { Chip, Grid, Typography } from '@mui/material'
+import { Chip, Grid } from '@mui/material'
 import React from 'react'
 
 type Props = {
   techs: Tech[] | null
   frameworks: Framework[] | null
 }
+
 export const MemberTechArea = (props: Props) => {
+  // Use the first user's techs and frameworks from the mock data
   const { techs, frameworks } = props
+
   return (
     <Grid
       container
@@ -19,15 +22,15 @@ export const MemberTechArea = (props: Props) => {
     >
       {techs?.map((tech) => (
         <Chip
-          label={tech.name}
-          key={tech.id}
+          label={tech.language}
+          key={tech.tech_tag_id}
           sx={{ fontSize: '0.6rem', fontWeight: 'bold' }}
         />
       ))}
       {frameworks?.map((framework) => (
         <Chip
-          label={framework.name}
-          key={framework.id}
+          label={framework.framework}
+          key={framework.framework_id}
           sx={{ fontSize: '0.6rem', fontWeight: 'bold', p: 0.1 }}
         />
       ))}

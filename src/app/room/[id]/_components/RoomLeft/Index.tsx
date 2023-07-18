@@ -8,6 +8,7 @@ type Props = {
   tab: number
   handleSetTab: (tab: number) => void
 }
+
 export const RoomLeft = (props: Props) => {
   const { roomInfo, tab, handleSetTab } = props
   return (
@@ -28,7 +29,7 @@ export const RoomLeft = (props: Props) => {
       wrap="nowrap"
     >
       <Header
-        icon={roomInfo.hackathon.icon}
+        icon={roomInfo.Hackathon.icon}
         title={roomInfo.title}
         handleSetTab={handleSetTab}
         tab={tab}

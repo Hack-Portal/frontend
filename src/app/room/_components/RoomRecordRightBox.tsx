@@ -45,7 +45,18 @@ export const RoomRecordRightBox = (props: Props) => {
             {title}
           </Typography>
 
-          <Typography sx={{ mt: 1, mb: 1.5, fontSize: '16px' }} color={'#999'}>
+          <Typography
+            sx={{
+              width: '220px',
+              mt: 1,
+              mb: 1.5,
+              fontSize: '16px',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+            color={'#999'}
+          >
             {hackathonName}
           </Typography>
           <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
@@ -100,7 +111,7 @@ export const RoomRecordRightBox = (props: Props) => {
           {techs.map((tech, id) => (
             <Grid item key={id}>
               <Chip
-                label={tech.name}
+                label={tech.language}
                 sx={{ mt: 0.5, mr: 0.5, fontSize: '14px' }}
                 key={id}
               />
@@ -114,7 +125,7 @@ export const RoomRecordRightBox = (props: Props) => {
           {frameworks.map((framework, id) => (
             <Grid sx={{ display: 'flex' }} item key={id}>
               <Chip
-                label={framework.name}
+                label={framework.framework}
                 sx={{ mt: 0.3, mr: 0.5, fontSize: '14px' }}
                 key={id}
               />

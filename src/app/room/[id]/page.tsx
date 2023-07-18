@@ -14,13 +14,12 @@ import { fetcher } from '@/util/fetcher'
 type Props = {}
 
 const RoomDetail = (props: Props) => {
-  const { data, error } = useSWR<RoomInfo>('/api/Room', fetcher)
+  const { data, error } = useSWR<any>('/api/Room', fetcher)
   const { tab, handleSetTab } = useTab()
-
 
   const users = data?.users === undefined ? [] : data.users
   const roomInfo = data
- 
+
   return (
     <Box
       sx={{
@@ -41,7 +40,7 @@ const RoomDetail = (props: Props) => {
       >
         {/* member */}
         <Grid item xs>
-          {data && roomInfo&& (
+          {data && roomInfo && (
             <RoomLeft
               roomInfo={roomInfo}
               tab={tab}

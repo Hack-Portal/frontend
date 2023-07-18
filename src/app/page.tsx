@@ -13,6 +13,7 @@ import { HackathonThumb } from './types/hackathon'
 import { Suspense } from 'react'
 
 const Home = () => {
+
   const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
   const { data, error } = useSWR<HackathonThumb[]>(
@@ -125,27 +126,64 @@ const Home = () => {
   const userRatingInfo: UserRatingInfo[] = [
     {
       id: '1',
-      name: 'test',
-      icon: 'https://source.unsplash.com/random',
-      rating: 3,
+      name: 'HackMan',
+      icon: 'image/user1.png',
+      rating: 20,
     },
     {
-      id: '1',
-      name: 'test',
-      icon: 'image/vercel.png',
-      rating: 3,
+      id: '2',
+      name: 'HackMania',
+      icon: 'image/user2.png',
+      rating: 18,
     },
     {
-      id: '1',
-      name: 'test',
-      icon: 'https://source.unsplash.com/random',
-      rating: 3,
+      id: '3',
+      name: 'HackNinja',
+      icon: 'image/user3.png',
+      rating: 17,
     },
     {
-      id: '1',
-      name: 'test',
-      icon: 'https://source.unsplash.com/random',
-      rating: 3,
+      id: '4',
+      name: 'Woker',
+      icon: 'image/user4.png',
+      rating: 16,
+    },
+    {
+      id: '5',
+      name: 'HapyHacker',
+      icon: 'image/user5.png',
+      rating: 14,
+    },
+    {
+      id: '6',
+      name: 'BlueCoder',
+      icon: 'image/user6.png',
+      rating: 13,
+    },
+
+    {
+      id: '7',
+      name: 'purpleCoder',
+      icon: 'image/user7.png',
+      rating: 12,
+    },
+    {
+      id: '8',
+      name: 'Gopher',
+      icon: 'image/user8.png',
+      rating: 11,
+    },
+    {
+      id: '9',
+      name: 'NineHacker',
+      icon: 'image/user9.png',
+      rating: 10,
+    },
+    {
+      id: '10',
+      name: 'TenHacker',
+      icon: 'image/user10.png',
+      rating: 9,
     },
   ]
   return (
@@ -165,6 +203,7 @@ const Home = () => {
               style={{ marginBottom: 16 }}
             />
           </Link>
+
           <Suspense fallback={<div>loading...</div>}>
             {data && <HackathonList hackathons={data} />}
           </Suspense>
