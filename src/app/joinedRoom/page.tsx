@@ -12,7 +12,7 @@ const JoinedRoom = () => {
       title: 'test',
       hackathon: {
         hackathon_id: 1,
-        roomicon: {
+        icon: {
           String: 'https://picsum.photos/200/300',
           Valid: true,
         },
@@ -23,7 +23,7 @@ const JoinedRoom = () => {
       title: 'test',
       hackathon: {
         hackathon_id: 1,
-        roomicon: {
+        icon: {
           String: 'https://picsum.photos/200/300',
           Valid: true,
         },
