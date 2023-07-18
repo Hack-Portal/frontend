@@ -56,7 +56,7 @@ export const RoomList = (props: Props) => {
         </Box>
       </Grid>
       {rooms.map((room) => (
-        <Link href={`/room/${room.id}`} key={room.id}>
+        <Link href={`/room/${room.room_id}`} key={room.room_id}>
           <Grid
             container
             direction={'row'}
@@ -67,7 +67,7 @@ export const RoomList = (props: Props) => {
             justifyContent={'flex-start'}
           >
             <Avatar
-              src={room.hackathon.roomicon.String}
+              src={room.hackathon.icon}
               sx={{ width: 50, height: 50, objectFit: 'cover' }}
             />
             <Typography fontSize={'1.5rem'}>{room.title}</Typography>
