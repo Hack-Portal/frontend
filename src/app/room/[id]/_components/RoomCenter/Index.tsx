@@ -31,13 +31,9 @@ export const RoomCenter = () => {
           },
         }}
       >
-        {messages.map((message, index) =>
-          message.sender === 'me' ? (
-            <MyChatArea key={index} text={message.text} />
-          ) : (
-            <OtherChatArea key={index} text={message.text} />
-          ),
-        )}
+        {messages.map((message, index) => (
+          <MyChatArea key={index} text={message.text} />
+        ))}
         <SendInputArea onSendMessage={handleSend} />
       </Grid>
     </>
