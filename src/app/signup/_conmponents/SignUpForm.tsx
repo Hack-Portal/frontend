@@ -9,11 +9,8 @@ import { TechsList } from './TechList'
 interface FormValues {
   username: string
 }
-type Props = {
-  techs: Tech[]
-}
-export const SignUpForm = (props: Props) => {
-  const { techs } = props
+
+export const SignUpForm = () => {
   const { register, handleSubmit } = useForm<FormValues>()
 
   const onSubmit = (data: FormValues) => {
@@ -38,7 +35,7 @@ export const SignUpForm = (props: Props) => {
         disabled={false}
       />
       <Location />
-      <TechsList techs={techs} />
+      <TechsList />
 
       <Button
         sx={{ mt: 3, mb: 2, width: '200px' }}
