@@ -8,25 +8,19 @@ import { RoomListThumb } from '../room/types/roomList'
 const JoinedRoom = () => {
   const rooms: RoomListThumb[] = [
     {
-      id: 1,
+      room_id: '1',
       title: 'test',
       hackathon: {
         hackathon_id: 1,
-        icon: {
-          String: 'https://picsum.photos/200/300',
-          Valid: true,
-        },
+        icon: 'https://picsum.photos/200/300',
       },
     },
     {
-      id: 1,
+      room_id: '1',
       title: 'test',
       hackathon: {
         hackathon_id: 1,
-        icon: {
-          String: 'https://picsum.photos/200/300',
-          Valid: true,
-        },
+        icon: 'https://picsum.photos/200/300',
       },
     },
   ]
