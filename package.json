@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
     "test": "jest --env=jsdom --verbose",
-    "dev:aspida": "aspida --watch",
+    "dev:aspida": "aspida --watch"
 
 
   },
