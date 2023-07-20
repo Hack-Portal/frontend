@@ -33,29 +33,32 @@ export const RankingList = () => {
         }}
         variant="h5"
       >
-ef      </Typography>
+        HackPortal
+      </Typography>
 
       <Typography
         sx={{
           width: '220px',
           mt: 1,
-          mb: 1.5,
+          mb: 1,
           fontSize: '16px',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
+
         }}
         color={'#999'}
       >
-      wqdwq
+      HackathonName
       </Typography>
+      <Typography sx={{ width:200, fontSize: '16px' ,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',}}>技育CampVol.6マンスリーハッカソン</Typography>
       <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
-        募集開始日
+        Concept
       </Typography>
-      <Typography sx={{ mt: 1, fontSize: '16px' }}>1月22日(金)</Typography>
+      <Typography sx={{  overflowWrap: "breakWord", mt: 1, fontSize: '16px' }}>ハッカソンのメンバー募集やハッカソン情報まとめ</Typography>
 
       <Grid container direction={'row'} sx={{ mt: 2.5, mb: 1.5 }}>
-dwdwdw
+
       </Grid>
     </Grid>
   </CardContent>
@@ -63,30 +66,38 @@ dwdwdw
   <CardContent sx={{ width: 350 }}>
     <Box sx={{ height: 30, flexDirection: 'row' }} />
     <Typography sx={{ fontSize: '14px' }} color={'#999'}>
-      Techs
+      UseTechs
     </Typography>
     <Grid container sx={{ width: '250px', mt: 1 }}>
    
         <Grid item>
-          <Chip
-            label="react"
+        <Chip
+            label="TypeScript"
             sx={{ mt: 0.5, mr: 0.5, fontSize: '14px' }}
            
-          />
+          />         <Chip
+          label="Go"
+          sx={{ mt: 0.5, mr: 0.5, fontSize: '14px' }}
+         
+        />
         </Grid>
 
     </Grid>
     <Typography sx={{ mt: 1.4, fontSize: '14px' }} color={'#999'}>
-      frameworks
+      UseFrameworks
     </Typography>
     <Grid container sx={{ width: '300px', mt: 1 }}>
     
         <Grid sx={{ display: 'flex' }} item >
-          <Chip
-            label="g"
+        <Chip
+            label="react"
             sx={{ mt: 0.3, mr: 0.5, fontSize: '14px' }}
 
-          />
+          />    <Chip
+          label="NEXT"
+          sx={{ mt: 0.3, mr: 0.5, fontSize: '14px' }}
+
+        />
         </Grid>
   
     </Grid>

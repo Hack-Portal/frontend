@@ -167,9 +167,9 @@ const Ranking = () => {
                       height: 218,
                       objectFit: 'cover',
                     }}
-                    image="image/room1.png"
+                    image="image/1.jpg"
                     alt=
-                    "wefw"
+                    "img"
                   />
                   <RankingList />
                 </Card>
