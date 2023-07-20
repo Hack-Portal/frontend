@@ -68,6 +68,7 @@ export const RankingList = () => {
       </Grid>
     </Grid>
   </CardContent>
+  <CardContent sx={{width:"250px"}}>
   <Grid container direction={'row'} sx={{ mt: 2.5, mb: 1.5 }}>
       {dummyData.map((member, index) =>
         member ? (
@@ -102,6 +103,17 @@ export const RankingList = () => {
         ),
       )}
     </Grid>
+    <CardActions
+              sx={{ position: 'absolute', right: 20, top: 20 }}
+              disableSpacing
+            >
+              <IconButton aria-label="add to favorites">
+                <BookmarkBorderOutlinedIcon
+                  sx={{ height: '30px', width: '30px' }}
+                />
+              </IconButton>
+            </CardActions>
+    </CardContent>
   </>
   )
 }
