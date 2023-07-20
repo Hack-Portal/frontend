@@ -68,8 +68,9 @@ export const RankingList = () => {
       </Grid>
     </Grid>
   </CardContent>
-  <CardContent sx={{width:"250px"}}>
-  <Grid container direction={'row'} sx={{ mt: 2.5, mb: 1.5 }}>
+  <CardContent sx={{mt:15,ml:6, width:"250px"}}>
+    <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>Member</Typography>
+  <Grid container direction={'row'} sx={{ mt: 0.5, mb: 1.5 }}>
       {dummyData.map((member, index) =>
         member ? (
           member.isOwner ? (
@@ -103,16 +104,23 @@ export const RankingList = () => {
         ),
       )}
     </Grid>
+    
+  
     <CardActions
-              sx={{ position: 'absolute', right: 20, top: 20 }}
-              disableSpacing
-            >
-              <IconButton aria-label="add to favorites">
-                <BookmarkBorderOutlinedIcon
-                  sx={{ height: '30px', width: '30px' }}
-                />
-              </IconButton>
-            </CardActions>
+  sx={{ position: 'absolute', right: 20, top: 20 }}
+  disableSpacing
+>
+  <Grid container direction="column" alignItems="center">
+    <IconButton aria-label="add to favorites">
+      <FavoriteBorderIcon
+        sx={{ height: '30px', width: '30px' }}
+      />
+    </IconButton>
+    <Typography variant="body2" color="textSecondary" component="p">
+      LikeCount 2
+    </Typography>
+  </Grid>
+</CardActions>
     </CardContent>
   </>
   )
