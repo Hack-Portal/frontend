@@ -7,6 +7,7 @@ import {
   CardMedia,
   Grid,
   Chip,
+  Avatar,
 } from '@mui/material'
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -16,7 +17,12 @@ import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 import Image from 'next/image'
 
-
+const dummyData = Array.from({length: 2}, (_, index) => {
+  return {
+    isOwner: index === 0, // 例として最初のメンバーをオーナーとする
+    icon: 'dummy-icon-url', // ここにダミーデータのアイコンURLを設定
+  };
+});
 export const RankingList = () => {
   return (
    <>
@@ -62,46 +68,40 @@ export const RankingList = () => {
       </Grid>
     </Grid>
   </CardContent>
-
-  <CardContent sx={{ width: 350 }}>
-    <Box sx={{ height: 30, flexDirection: 'row' }} />
-    <Typography sx={{ fontSize: '14px' }} color={'#999'}>
-      UseTechs
-    </Typography>
-    <Grid container sx={{ width: '250px', mt: 1 }}>
-   
-        <Grid item>
-        <Chip
-            label="TypeScript"
-            sx={{ mt: 0.5, mr: 0.5, fontSize: '14px' }}
-           
-          />         <Chip
-          label="Go"
-          sx={{ mt: 0.5, mr: 0.5, fontSize: '14px' }}
-         
-        />
-        </Grid>
-
+  <Grid container direction={'row'} sx={{ mt: 2.5, mb: 1.5 }}>
+      {dummyData.map((member, index) =>
+        member ? (
+          member.isOwner ? (
+            <Badge
+              variant="solid"
+              size="sm"
+              badgeInset="10% 20%"
+              key={index}
+            >
+              <Avatar
+                sx={{ width: 35, height: 35, mr: 0.5 }}
+                src={member.icon}
+                alt={'user-icon'}
+                variant="rounded"
+              />
+            </Badge>
+          ) : (
+            <Avatar
+              sx={{ width: 35, height: 35, mr: 0.5 }}
+              src={member.icon}
+              alt={'user-icon'}
+              variant="rounded"
+              key={index}
+            />
+          )
+        ) : (
+          <Card
+            sx={{ width: 35, height: 35, mr: 0.5, background: '#ddd' }}
+            key={index}
+          ></Card>
+        ),
+      )}
     </Grid>
-    <Typography sx={{ mt: 1.4, fontSize: '14px' }} color={'#999'}>
-      UseFrameworks
-    </Typography>
-    <Grid container sx={{ width: '300px', mt: 1 }}>
-    
-        <Grid sx={{ display: 'flex' }} item >
-        <Chip
-            label="react"
-            sx={{ mt: 0.3, mr: 0.5, fontSize: '14px' }}
-
-          />    <Chip
-          label="NEXT"
-          sx={{ mt: 0.3, mr: 0.5, fontSize: '14px' }}
-
-        />
-        </Grid>
-  
-    </Grid>
-  </CardContent>
   </>
   )
 }
