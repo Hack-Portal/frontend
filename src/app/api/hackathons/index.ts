@@ -6,9 +6,9 @@ export type Methods = {
   post: {
     status: 200
     /** Successful operation */
-    resBody: Types.Rt_hackathons
+    resBody: Types.List_hackathons
     /** 新しいハッカソンを作成する */
-    reqBody: Types.Hackathons
+    reqBody: Types.Create_hackathons
   }
 
   /** ハッカソンをリスト取得する */
@@ -22,6 +22,6 @@ export type Methods = {
 
     status: 200
     /** Successful operation */
-    resBody: Types.Rt_hackathons[]
+    resBody: Types.List_hackathons[]
   }
 }

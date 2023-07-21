@@ -6,21 +6,24 @@ import {
 } from 'firebase/auth'
 import type { AuthProvider } from 'firebase/auth'
 import { auth } from '@/firebase/client'
+import { useSignIn } from './hooks/useSignIn'
+import { Card, CardMedia, Grid } from '@mui/material'
 
-export default function singIn() {
+const SignIn=()=> {
   const googleProvider = new GoogleAuthProvider()
+  const {isSignIn,handleOAuthSignIn} = useSignIn()
 
-  const handleOAuthSignIn = async(provider: AuthProvider) => {
-   const res = await signInWithPopup(auth, provider)
-      // 認証に成功したら ID トークンを NextAuth に渡す
-      return res
-  }
+  
 
   return (
-    <>
-      <p>Choose your sign-in method:</p>
+    <Grid container justifyContent={"center"} alignContent={"center"} sx={{width:"100vw",height:"100vh"}}>
+      <Card>Choose your sign-in method:
+      <CardMedia />
       <br />
       <button onClick={() => handleOAuthSignIn(googleProvider)}>Google</button>
-    </>
+      {isSignIn && <p>Sign in!</p>}
+      </Card>
+    </Grid>
   )
 }
+export default SignIn
