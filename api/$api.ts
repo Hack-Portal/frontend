@@ -197,21 +197,21 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         fetch<Methods6['get']['resBody'], BasicHeaders, Methods6['get']['status']>(prefix, PATH6, GET, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH6}`
     },
-    tech_tags: {
-      /**
-       * techTagsをすべてリストで取得する
-       * @returns Successful operation
-       */
-      get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods8['get']['resBody'], BasicHeaders, Methods8['get']['status']>(prefix, PATH7, GET, option).json(),
-      /**
-       * techTagsをすべてリストで取得する
-       * @returns Successful operation
-       */
-      $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods8['get']['resBody'], BasicHeaders, Methods8['get']['status']>(prefix, PATH7, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH7}`
-    }
+    // tech_tags: {
+    //   /**
+    //    * techTagsをすべてリストで取得する
+    //    * @returns Successful operation
+    //    */
+    //   get: (option?: { config?: T | undefined } | undefined) =>
+    //     fetch<Methods8['get']['resBody'], BasicHeaders, Methods8['get']['status']>(prefix, PATH7, GET, option).json(),
+    //   /**
+    //    * techTagsをすべてリストで取得する
+    //    * @returns Successful operation
+    //    */
+    //   $get: (option?: { config?: T | undefined } | undefined) =>
+    //     fetch<Methods8['get']['resBody'], BasicHeaders, Methods8['get']['status']>(prefix, PATH7, GET, option).json().then(r => r.body),
+    //   $path: () => `${prefix}${PATH7}`
+    // }
   }
 }
 

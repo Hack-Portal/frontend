@@ -6,6 +6,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful operation */
-    resBody: Types.Tech_tags
+    // resBody: Types.Tech_tags
   }
 }
