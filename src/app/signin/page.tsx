@@ -11,9 +11,15 @@ export default function singIn() {
   const googleProvider = new GoogleAuthProvider()
 
   const handleOAuthSignIn = async(provider: AuthProvider) => {
-   const res = await signInWithPopup(auth, provider)
-      // 認証に成功したら ID トークンを NextAuth に渡す
-      return res
+    await signInWithPopup(auth, provider).then((result) => {
+    // ログイン成功時にIDトークンを取得
+    console.log(result.user)
+    return result.user.getIdToken();
+  }).then(idToken=>console.log(idToken))
+  .catch((error) => {
+    // エラー処理
+    console.error('Googleログインエラー:', error);
+  });
   }
 
   return (

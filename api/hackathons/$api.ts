@@ -1,16 +1,16 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
 import { dataToURLString } from 'aspida'
 import type { Methods as Methods0 } from '.'
-import type { Methods as Methods1 } from './_hackathon_id'
+import type { Methods as Methods1 } from './_hackathon_id@number'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? 'fake' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? 'https://seaffood.com/api/v1' : baseURL).replace(/\/$/, '')
   const PATH0 = '/hackathons'
   const GET = 'GET'
   const POST = 'POST'
 
   return {
-    _hackathon_id: (val0: number | string) => {
+    _hackathon_id: (val0: number) => {
       const prefix0 = `${PATH0}/${val0}`
 
       return {
@@ -18,16 +18,15 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
          * ハッカソンをリスト取得する
          * @returns Successful operation
          */
-        get: (option: { query: Methods1['get']['query'], config?: T | undefined }) =>
+        get: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).json(),
         /**
          * ハッカソンをリスト取得する
          * @returns Successful operation
          */
-        $get: (option: { query: Methods1['get']['query'], config?: T | undefined }) =>
+        $get: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).json().then(r => r.body),
-        $path: (option?: { method?: 'get' | undefined; query: Methods1['get']['query'] } | undefined) =>
-          `${prefix}${prefix0}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+        $path: () => `${prefix}${prefix0}`
       }
     },
     /**
