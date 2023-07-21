@@ -6,27 +6,23 @@ import {
 } from 'firebase/auth'
 import type { AuthProvider } from 'firebase/auth'
 import { auth } from '@/firebase/client'
+import { useSignIn } from './hooks/useSignIn'
+import { Card, CardMedia, Grid } from '@mui/material'
 
 export default function singIn() {
   const googleProvider = new GoogleAuthProvider()
+  const {isSignIn,handleOAuthSignIn} = useSignIn()
 
-  const handleOAuthSignIn = async(provider: AuthProvider) => {
-    await signInWithPopup(auth, provider).then((result) => {
-    // ログイン成功時にIDトークンを取得
-    console.log(result.user)
-    return result.user.getIdToken();
-  }).then(idToken=>console.log(idToken))
-  .catch((error) => {
-    // エラー処理
-    console.error('Googleログインエラー:', error);
-  });
-  }
+  
 
   return (
-    <>
-      <p>Choose your sign-in method:</p>
+    <Grid container justifyContent={"center"} alignContent={"center"} sx={{width:"100vw",height:"100vh"}}>
+      <Card>Choose your sign-in method:
+      <CardMedia />
       <br />
       <button onClick={() => handleOAuthSignIn(googleProvider)}>Google</button>
-    </>
+      {isSignIn && <p>Sign in!</p>}
+      </Card>
+    </Grid>
   )
 }
