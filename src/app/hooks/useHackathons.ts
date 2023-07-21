@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import api from "../../../api/$api";
+import api from "../api/$api";
 import aspida from '@aspida/axios'
-import { List_hackathons } from "../../../api/@types";
+import { List_hackathons } from "../api/@types";
 
 
 export const useHackathons = () => {
