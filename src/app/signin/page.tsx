@@ -9,7 +9,7 @@ import { auth } from '@/firebase/client'
 import { useSignIn } from './hooks/useSignIn'
 import { Card, CardMedia, Grid } from '@mui/material'
 
-export default function singIn() {
+const SignIn=()=> {
   const googleProvider = new GoogleAuthProvider()
   const {isSignIn,handleOAuthSignIn} = useSignIn()
 
@@ -26,3 +26,4 @@ export default function singIn() {
     </Grid>
   )
 }
+export default SignIn
