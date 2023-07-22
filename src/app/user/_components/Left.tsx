@@ -4,7 +4,11 @@ import React from 'react'
 
 export const Left = () => {
   return (
-    <Grid width={500} display={'row'} sx={{ textAlign: 'center' }}>
+    <Grid
+      width={400}
+      display={'row'}
+      sx={{ width: '400px', textAlign: 'center', ml: 5, mr: 5, mt: 5 }}
+    >
       <Grid display={'row'} textAlign={'center'} sx={{ ml: 3 }}>
         <Typography sx={{ mt: 2 }}>Profile</Typography>
         <Avatar
@@ -12,31 +16,20 @@ export const Left = () => {
           alt="Remy Sharp"
           src="https://source.unsplash.com/random"
         />
-        <Typography sx={{ mt: 2 }}>John Doe</Typography>
       </Grid>
-      <Grid container display={'flex'} textAlign={'center'}>
-        <Grid
-          display={'row'}
-          xs={3}
-          sx={{ mb: 2, ml: 4, mr: 3 }}
-          alignItems={'center'}
-        >
+      <Grid display={'flex'} xs={4} textAlign={'center'}>
+        <Grid display={'row'} alignItems={'center'}>
           <Typography>rating</Typography>
-          <Typography sx={{ mt: 2 }}>34234</Typography>
+          <Typography>34234</Typography>
         </Grid>
-        <Grid display={'row'} textAlign={'center'} xs={3} sx={{ mb: 2, mr: 3 }}>
+        <Grid display={'row'} textAlign={'center'}>
           <Typography>follow</Typography>
-          <Typography sx={{ mt: 2 }}>33</Typography>
+          <Typography>33</Typography>
         </Grid>
-        <Grid display={'row'} textAlign={'center'} sx={{ ml: 4, mr: 3 }}>
+        <Grid display={'row'} textAlign={'center'}>
           <Typography>follower</Typography>
-          <Typography sx={{ mt: 2 }}>22</Typography>
+          <Typography>22</Typography>
         </Grid>
-      </Grid>
-
-      <Grid display={'row'} textAlign={'center'} sx={{ ml: 4, mr: 3 }}>
-        <Button sx={{ mt: 2, ml: 4, mr: 3 }}>Update Profile</Button>
-        <Button sx={{ mt: 2, ml: 4, mr: 3 }}>Delete</Button>
       </Grid>
 
       <Grid display={'row'} textAlign={'center'} sx={{ ml: 4, mr: 3 }}>
