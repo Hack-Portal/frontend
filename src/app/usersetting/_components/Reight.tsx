@@ -7,7 +7,7 @@ import MailIcon from '@mui/icons-material/Mail'
 import React from 'react'
 export const Reight = () => {
   return (
-    <Grid display={'row'} sx={{ width: '400px', textAlign: 'center', mt: 5 }}>
+    <Grid display={'row'} sx={{ width: '400px', textAlign: 'center', mt: 16 }}>
       <Grid display={'row'} sx={{ textAlign: 'center', mb: 2 }}>
         <MailIcon />
         <Typography sx={{ mt: 1, mr: 2 }}>Email</Typography>

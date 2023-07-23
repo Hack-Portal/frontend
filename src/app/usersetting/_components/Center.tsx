@@ -211,7 +211,7 @@ export const Center = () => {
       sx={{ width: '400px', textAlign: 'center', ml: 5, mr: 5, mt: 8 }}
     >
       <Grid display={'row'} sx={{ textAlign: 'center', mb: 4 }}>
-        <Typography sx={{ mt: 1, mr: 2 }}>Name</Typography>
+        <Typography sx={{ mt: 1, mr: 2, mb: 2 }}>Name</Typography>
         <Input sx={{ height: '10px' }} placeholder="Placeholder" />
       </Grid>
       <Grid display={'row'} sx={{ mb: 8 }}>

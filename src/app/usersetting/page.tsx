@@ -7,7 +7,7 @@ import { Left } from './_components/Left'
 import { Center } from './_components/Center'
 import { Reight } from './_components/Reight'
 
-const profileDetail = () => {
+const profileStting = () => {
   return (
     <>
       <Header />
@@ -31,4 +31,4 @@ const profileDetail = () => {
     </>
   )
 }
-export default profileDetail
+export default profileStting
