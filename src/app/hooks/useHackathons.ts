@@ -11,7 +11,7 @@ export const useHackathons = () => {
         aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
       )
       const response = await client.hackathons.get({
-        body: { page_size: 3, page_id: 1 }, 
+        body: { page_size: 3, page_id: 1 ,expired: true}, 
       })
       console.log(response)
     } catch (error) {
