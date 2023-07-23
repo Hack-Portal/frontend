@@ -208,20 +208,20 @@ export const Center = () => {
   return (
     <Grid
       display={'row'}
-      sx={{ width: '400px', textAlign: 'center', ml: 5, mr: 5, mt: 5 }}
+      sx={{ width: '400px', textAlign: 'center', ml: 5, mr: 5, mt: 8 }}
     >
-      <Grid display={'flex'} sx={{ textAlign: 'center', mb: 2 }}>
+      <Grid display={'row'} sx={{ textAlign: 'center', mb: 4 }}>
         <Typography sx={{ mt: 1, mr: 2 }}>Name</Typography>
         <Input sx={{ height: '10px' }} placeholder="Placeholder" />
       </Grid>
-      <Grid display={'flex'} sx={{ mb: 5 }}>
-        <Typography sx={{ mt: 1, mr: 2 }}>locate</Typography>
+      <Grid display={'row'} sx={{ mb: 8 }}>
+        <Typography sx={{ mt: 1, mr: 2, mb: 2 }}>locate</Typography>
 
         <TextField
           select
           label="locate"
           defaultValue="1"
-          sx={{ height: '20px', width: '120px' }}
+          sx={{ height: '20px', width: '180px' }}
         >
           {Locate.map((option) => (
             <MenuItem key={option.id} value={option.label}>
@@ -230,14 +230,14 @@ export const Center = () => {
           ))}
         </TextField>
       </Grid>
-      <Grid display={'flex'}>
-        <Typography sx={{ mt: 1, mr: 3 }}>Tech</Typography>
+      <Grid display={'row'} sx={{ mb: 8 }}>
+        <Typography sx={{ mt: 1, mr: 3, mb: 2 }}>Tech</Typography>
 
         <TextField
           select
           label="Tech"
           defaultValue="1"
-          sx={{ height: '20px', width: '150px' }}
+          sx={{ height: '20px', width: '200px' }}
         >
           {Tech.map((option) => (
             <MenuItem key={option.id} value={option.label}>
@@ -246,14 +246,14 @@ export const Center = () => {
           ))}
         </TextField>
       </Grid>
-      <Grid display={'flex'} sx={{ mt: 5 }}>
-        <Typography sx={{ mt: 1, mr: 3 }}>Frameworks</Typography>
+      <Grid display={'row'} sx={{ mt: 5 }}>
+        <Typography sx={{ mt: 1, mr: 3, mb: 2 }}>Frameworks</Typography>
 
         <TextField
           select
           label="Frameworks"
           defaultValue="1"
-          sx={{ height: '20px', width: '150px' }}
+          sx={{ height: '20px', width: '200px' }}
         >
           {Tech.map((option) => (
             <MenuItem key={option.id} value={option.label}>
@@ -263,14 +263,19 @@ export const Center = () => {
         </TextField>
       </Grid>
 
-      <Grid display={'row'} sx={{ mt: 8 }}>
+      <Grid display={'row'} sx={{ mt: 12 }}>
         <Typography sx={{ mb: 3 }}>Techs & Frameworks</Typography>
         <Chip label="Javascript" />
         <Chip label="Next" />
       </Grid>
-      <Grid display={'row'} alignItems={'center'} sx={{ mt: 5 }}>
+      <Grid
+        display={'row'}
+        alignItems={'center'}
+        sx={{ width: '400px', mt: 5 }}
+      >
         <Typography sx={{ mb: 3 }}>受賞</Typography>
         <Grid display={'flex'} sx={{ mt: 5 }}>
+          <Chip label="技育CampハッカソンVol.6 企業賞" />
           <Chip label="技育CampハッカソンVol.6 企業賞" />
         </Grid>
       </Grid>

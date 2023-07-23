@@ -19,7 +19,7 @@ const profileDetail = () => {
         sx={{
           margin: 'auto',
           width: '1500px',
-          height: '900px',
+          height: '1000px',
           display: 'flex',
           mb: 10,
         }}
