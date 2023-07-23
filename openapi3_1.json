@@ -1,1395 +1,1665 @@
 {
-  "openapi": "3.1.0",
+  "swagger": "2.0",
   "info": {
-    "title": "Hack-Potal",
-    "description": "# backend\nmemo\napp.env を作って DB_DRIVER=postgres DB_SOURSE=DB接続用URI を記述する必要あり",
-    "version": "0.0.1"
-  },
-  "servers": [
-    {
-      "url": "https://seaffood.com/api/v1"
-    },
-    {
-      "url": "localhost:8080/api/v1"
-    }
-  ],
-  "paths": {
-    "/hackathons": {
-      "post": {
-        "tags": [
-          "hackathons"
-        ],
-        "summary": "ハッカソンを追加する",
-        "description": "ハッカソンを追加する",
-        "operationId": "createHackathon",
-        "requestBody": {
-          "description": "新しいハッカソンを作成する",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/create_hackathons"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/list_hackathons"
-                }
-              }
-            }
-          }
-        }
+      "description": "HackPortal Backend API serice",
+      "title": "Hack Hack Backend API",
+      "termsOfService": "https://seaffood.com/api",
+      "contact": {
+          "name": "murasame",
+          "url": "https://twitter.com/fresh_salmon256",
+          "email": "oogiriminister@gmail.com"
       },
-      "get": {
-        "tags": [
-          "hackathons"
-        ],
-        "summary": "ハッカソンをリスト取得する",
-        "description": "ハッカソンをリスト取得する",
-        "operationId": "getListHackathon",
-        "parameters": [
-          {
-            "name": "page_size",
-            "in": "query",
-            "description": "取得するハッカソンの数",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "page_id",
-            "in": "query",
-            "description": "取得するページ数",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
+      "license": {
+          "name": "No-license",
+          "url": "No-license"
+      },
+      "version": "1.0"
+  },
+  "host": "https://seaffood.com",
+  "basePath": "/api/v1",
+  "paths": {
+      "/accounts": {
+          "post": {
+              "description": "Create an account from the requested body",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Accounts"
+              ],
+              "summary": "Create new account",
+              "parameters": [
+                  {
+                      "description": "Create Account Request Body",
+                      "name": "CreateAccountRequestBody",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                          "$ref": "#/definitions/api.CreateAccountRequestBody"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "create succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.CreateAccountResponses"
+                      }
+                  },
+                  "400": {
+                      "description": "bad request response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "server error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
+      },
+      "/accounts/:from_user_id/follow": {
+          "post": {
+              "description": "Follow!!!!!!!!",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Accounts"
+              ],
+              "summary": "Create Follow",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Accounts API wildcard",
+                      "name": "from_user_id",
+                      "in": "path",
+                      "required": true
+                  },
+                  {
+                      "description": "create Follow Request Body",
+                      "name": "CreateFollowRequestBody",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                          "$ref": "#/definitions/api.CreateFollowRequestBody"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "$ref": "#/definitions/db.Follows"
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "delete": {
+              "description": "Unfollow",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Accounts"
+              ],
+              "summary": "Remove follow",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Accounts API wildcard",
+                      "name": "from_user_id",
+                      "in": "path",
+                      "required": true
+                  },
+                  {
+                      "type": "string",
+                      "name": "to_user_id",
+                      "in": "formData",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.DeleteResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/accounts/:user_id": {
+          "get": {
+              "description": "Return a user from the id specified in the path",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Accounts"
+              ],
+              "summary": "Get account",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Accounts API wildcard",
+                      "name": "user_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Get success response",
+                      "schema": {
+                          "$ref": "#/definitions/api.GetAccountResponses"
+                      }
+                  },
+                  "400": {
+                      "description": "bad request response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "server error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "put": {
+              "description": "Update user info from requested body",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Accounts"
+              ],
+              "summary": "Update Account",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Accounts API wildcard",
+                      "name": "user_id",
+                      "in": "path",
+                      "required": true
+                  },
+                  {
+                      "description": "Update Account Request Body",
+                      "name": "UpdateAccountRequestBody",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                          "$ref": "#/definitions/api.UpdateAccountRequestBody"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Update succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.UpdateAccountResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "bad request response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "server error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "delete": {
+              "description": "Only you can delete your account (logical delete)",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Accounts"
+              ],
+              "summary": "Remove Account",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Accounts API wildcard",
+                      "name": "user_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "delete succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.DeleteResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "bad request response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "server error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/bookmarks": {
+          "post": {
+              "description": "Create a bookmark from the specified hackathon ID",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Bookmark"
+              ],
+              "summary": "Create new bookmark",
+              "parameters": [
+                  {
+                      "description": "Create Bookmark Request Body",
+                      "name": "CreateBookmarkRequestBody",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                          "$ref": "#/definitions/api.CreateBookmarkRequestBody"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "create succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.BookmarkResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "bad request response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "server error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/bookmarks/:hackathon_id": {
+          "get": {
+              "description": "Get my bookmarks",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Bookmark"
+              ],
+              "summary": "Get bookmarks",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Delete Bookmark Request Body",
+                      "name": "ListBookmarkRequestQueries",
+                      "in": "formData",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "delete succsss response",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "$ref": "#/definitions/api.BookmarkResponse"
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "bad request response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "server error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "delete": {
+              "description": "Delete the bookmark of the specified hackathon ID",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Bookmark"
+              ],
+              "summary": "Delete bookmark",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Delete Bookmark Request Body",
+                      "name": "hackathon_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "delete succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.BookmarkResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "bad request response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "server error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/frameworks": {
+          "get": {
+              "description": "Get Framewroks",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Framewroks"
+              ],
+              "summary": "Get Framewroks",
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "$ref": "#/definitions/db.Frameworks"
+                          }
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/hackathons": {
+          "get": {
+              "description": "List Hackathon",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Hackathon"
+              ],
+              "summary": "List Hackathon",
+              "parameters": [
+                  {
+                      "type": "boolean",
+                      "name": "expired",
+                      "in": "formData"
+                  },
+                  {
+                      "type": "integer",
+                      "name": "page_id",
+                      "in": "formData"
+                  },
+                  {
+                      "type": "integer",
+                      "name": "page_size",
+                      "in": "formData"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "$ref": "#/definitions/api.HackathonResponses"
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "post": {
+              "description": "Register a hackathon from given parameters",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Hackathon"
+              ],
+              "summary": "Create Hackathon",
+              "parameters": [
+                  {
+                      "description": "create hackathon Request Body",
+                      "name": "CreateHackathonRequestBody",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                          "$ref": "#/definitions/api.CreateHackathonRequestBody"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.HackathonResponses"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/hackathons/:hackathon_id": {
+          "get": {
+              "description": "Get Hackathon",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Hackathon"
+              ],
+              "summary": "Get Hackathon",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Hackathons API wildcard",
+                      "name": "hackathon_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.HackathonResponses"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/locates": {
+          "get": {
+              "description": "Get Framewroks",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Locates"
+              ],
+              "summary": "Get Framewroks",
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "$ref": "#/definitions/db.Locates"
+                          }
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/rooms": {
+          "get": {
+              "description": "List Account",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Rooms"
+              ],
+              "summary": "List Account",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Rooms API wildcard",
+                      "name": "room_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "type": "array",
+                              "items": {
+                                  "$ref": "#/definitions/db.ListRoomTxResult"
+                              }
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "post": {
+              "description": "Create Rooms",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Rooms"
+              ],
+              "summary": "Create Rooms",
+              "parameters": [
+                  {
+                      "description": "create Room Request Body",
+                      "name": "CreateRoomRequestBody",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                          "$ref": "#/definitions/api.CreateRoomRequestBody"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/db.CreateRoomTxResult"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/rooms/:room_id": {
+          "get": {
+              "description": "Get Room",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Rooms"
+              ],
+              "summary": "Get Room",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Rooms API wildcard",
+                      "name": "room_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.GetRoomResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "put": {
+              "description": "update Room",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Rooms"
+              ],
+              "summary": "update Room",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Rooms API wildcard",
+                      "name": "room_id",
+                      "in": "path",
+                      "required": true
+                  },
+                  {
+                      "description": "update Room Request body",
+                      "name": "UpdateRoomRequestBody",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                          "$ref": "#/definitions/api.UpdateRoomRequestBody"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.GetRoomResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "delete": {
+              "description": "delete Room",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Rooms"
+              ],
+              "summary": "delete Room",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Rooms API wildcard",
+                      "name": "room_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.DeleteResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/rooms/:room_id/addchat": {
+          "post": {
+              "description": "Add Chat Room",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Rooms"
+              ],
+              "summary": "Add Chat Room",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Rooms API wildcard",
+                      "name": "room_id",
+                      "in": "path",
+                      "required": true
+                  },
+                  {
+                      "description": "add chat Room Request body",
+                      "name": "AddChatRequestBody",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                          "$ref": "#/definitions/api.AddChatRequestBody"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.GetRoomResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/rooms/:room_id/members": {
+          "post": {
+              "description": "Add Account In Rooms",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Rooms"
+              ],
+              "summary": "Add Account In Rooms",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Rooms API wildcard",
+                      "name": "room_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/db.CreateRoomTxResult"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          },
+          "delete": {
+              "description": "Remove Account In Rooms",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "Rooms"
+              ],
+              "summary": "Remove Account In Rooms",
+              "parameters": [
+                  {
+                      "type": "string",
+                      "description": "Rooms API wildcard",
+                      "name": "room_id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "$ref": "#/definitions/api.DeleteResponse"
+                      }
+                  },
+                  "400": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      },
+      "/tech_tags": {
+          "get": {
+              "description": "Get Framewroks",
+              "produces": [
+                  "application/json"
+              ],
+              "tags": [
+                  "TechTags"
+              ],
+              "summary": "Get Framewroks",
+              "responses": {
+                  "200": {
+                      "description": "succsss response",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "$ref": "#/definitions/db.TechTags"
+                          }
+                      }
+                  },
+                  "500": {
+                      "description": "error response",
+                      "schema": {
+                          "$ref": "#/definitions/api.ErrorResponse"
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "definitions": {
+      "api.AddChatRequestBody": {
+          "type": "object",
+          "required": [
+              "message"
+          ],
+          "properties": {
+              "message": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.BookmarkResponse": {
+          "type": "object",
+          "properties": {
+              "description": {
+                  "type": "string"
+              },
+              "expired": {
+                  "type": "string"
+              },
+              "hackathon_id": {
+                  "type": "integer"
+              },
+              "icon": {
+                  "type": "string"
+              },
+              "link": {
+                  "type": "string"
+              },
+              "name": {
+                  "type": "string"
+              },
+              "start_date": {
+                  "type": "string"
+              },
+              "term": {
+                  "type": "integer"
+              }
+          }
+      },
+      "api.CreateAccountRequestBody": {
+          "type": "object",
+          "required": [
+              "locate_id",
+              "show_locate",
+              "show_rate",
+              "user_id",
+              "username"
+          ],
+          "properties": {
+              "explanatory_text": {
+                  "type": "string"
+              },
+              "frameworks": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/list_hackathons"
+                      "type": "integer"
                   }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hackathons/{hackathon_id}": {
-      "get": {
-        "tags": [
-          "hackathons"
-        ],
-        "summary": "個別のハッカソンの情報を取得する",
-        "description": "ハッカソンをリスト取得する",
-        "operationId": "getHackathon",
-        "parameters": [
-          {
-            "name": "hackathon_id",
-            "in": "path",
-            "description": "取得するハッカソンID",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/list_hackathons"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/locates": {
-      "get": {
-        "tags": [
-          "locates"
-        ],
-        "parameters": [],
-        "summary": "県情報リストを取得する",
-        "description": "47都道府県をリスト取得する",
-        "operationId": "getListLocates",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/locates"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/tech_tags": {
-      "get": {
-        "tags": [
-          "techtags"
-        ],
-        "parameters": [],
-        "summary": "techTagsをすべてリストで取得する",
-        "description": "techTagsをすべてリストで取得する",
-        "operationId": "getListTechTags",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/tech_tags"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/frameworks": {
-      "get": {
-        "tags": [
-          "frameworks"
-        ],
-        "parameters": [],
-        "summary": "frameworkををすべてリストで取得する",
-        "description": "frameworkををすべてリストで取得する",
-        "operationId": "getListFrameworks",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/frameworks"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/accounts": {
-      "post": {
-        "tags": [
-          "accounts"
-        ],
-        "summary": "アカウントを登録する",
-        "description": "アカウントを登録する",
-        "operationId": "createAccount",
-        "requestBody": {
-          "description": "新しいアカウントを作成する",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/create_account"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/get_account"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/account/{id}": {
-      "get": {
-        "tags": [
-          "accounts"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "取得するユーザーID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "summary": "アカウント情報を取得する",
-        "description": "アカウント情報を取得する",
-        "operationId": "getAccount",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/get_account"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/rooms": {
-      "post": {
-        "tags": [
-          "rooms"
-        ],
-        "summary": "ルームを作成する",
-        "description": "ルームを作成する",
-        "operationId": "createRoom",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/create_room"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "rooms"
-        ],
-        "parameters": [],
-        "summary": "roomリストで取得する",
-        "description": "roomをすべてリストで取得する",
-        "operationId": "getListRooms",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/list_rooms"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/rooms/{room_id}": {
-      "post": {
-        "tags": [
-          "rooms"
-        ],
-        "summary": "ルームにアカウントを追加する",
-        "description": "ルームにアカウントを追加する",
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AddAccountInRoom"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "rooms"
-        ],
-        "summary": "ルーム情報を取得する"
-      }
-    },
-    "/rooms/{room_id}/chatroom": {
-      "post": {
-        "tags": [
-          "rooms"
-        ],
-        "summary": "ルームにチャットを送る"
-      }
-    },
-    "/bookmarks": {
-      "post": {
-        "tags": [
-          "bookmarks"
-        ],
-        "summary": "ブックマークを作成する(付与する)"
-      },
-      "get": {
-        "tags": [
-          "bookmarks"
-        ],
-        "summary": "ブックマーク一覧からハッカソンを取得する"
-      }
-    },
-    "/bookmarks/{hackathons_id}": {
-      "post": {
-        "tags": [
-          "bookmarks"
-        ],
-        "summary": "ブックマークを削除する"
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "create_hackathons": {
-        "required": [
-          "name",
-          "icon",
-          "link",
-          "expired",
-          "start_date",
-          "term"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "default": "【技育CAMP】マンスリーハッカソン vol.6【オンライン開催】"
-          },
-          "icon": {
-            "type": "string",
-            "examples": [
-              "image_url"
-            ]
-          },
-          "description": {
-            "type": "string",
-            "examples": [
-              "ここには説明が入る予定だよ!"
-            ]
-          },
-          "link": {
-            "type": "string",
-            "examples": [
-              "https://google.com"
-            ]
-          },
-          "expired": {
-            "type": "string",
-            "format": "date-time",
-            "examples": [
-              "2023-07-18T00:00:00.000Z"
-            ]
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date-time",
-            "examples": [
-              "2023-07-22T00:00:00.000Z"
-            ]
-          },
-          "term": {
-            "type": "integer",
-            "format": "int32",
-            "examples": [
-              14
-            ]
-          },
-          "status_tags": {
-            "type": "array",
-            "example": [
-              1,
-              3
-            ]
-          }
-        }
-      },
-      "list_hackathons": {
-        "required": [
-          "name",
-          "icon",
-          "link",
-          "expired",
-          "start_date",
-          "term"
-        ],
-        "type": "object",
-        "properties": {
-          "hackathons_id": {
-            "type": "integer",
-            "format": "int32",
-            "examples": [
-              1
-            ]
-          },
-          "name": {
-            "type": "string",
-            "default": "【技育CAMP】マンスリーハッカソン vol.6【オンライン開催】"
-          },
-          "icon": {
-            "type": "string",
-            "examples": [
-              "image_url"
-            ]
-          },
-          "link": {
-            "type": "string",
-            "example": "https://google.com"
-          },
-          "expired": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2023-07-18T00:00:00.000Z"
-          },
-          "start_date": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2023-07-22T00:00:00.000Z"
-          },
-          "term": {
-            "type": "integer",
-            "format": "int32",
-            "examples": [
-              12
-            ]
-          },
-          "status_tags": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "status_id": {
-                  "type": "integer",
-                  "format": "int32"
-                },
-                "status": {
+              },
+              "icon": {
                   "type": "string"
-                }
-              }
-            },
-            "example": [
-              {
-                "status_id": 1,
-                "status": "オンライン"
               },
-              {
-                "status_id": 3,
-                "status": "初心者歓迎"
+              "locate_id": {
+                  "type": "integer"
+              },
+              "password": {
+                  "type": "string"
+              },
+              "show_locate": {
+                  "type": "boolean"
+              },
+              "show_rate": {
+                  "type": "boolean"
+              },
+              "tech_tags": {
+                  "type": "array",
+                  "items": {
+                      "type": "integer"
+                  }
+              },
+              "user_id": {
+                  "type": "string"
+              },
+              "username": {
+                  "type": "string"
               }
-            ]
           }
-        }
       },
-      "create_account": {
-        "required": [
-          "user_id",
-          "username",
-          "locate_id",
-          "rate",
-          "email",
-          "show_rate",
-          "show_locate"
-        ],
-        "properties": {
-          "user_id": {
-            "type": "string",
-            "examples": [
-              "xErbTMD3rFjbDSKv"
-            ]
-          },
-          "username": {
-            "type": "string",
-            "examples": [
-              "testtarou"
-            ]
-          },
-          "icon": {
-            "type": "string",
-            "examples": [
-              null
-            ]
-          },
-          "explanatory_text": {
-            "type": "string",
-            "examples": [
-              null
-            ]
-          },
-          "locate_id": {
-            "type": "integer",
-            "format": "int32",
-            "examples": [
-              23
-            ]
-          },
-          "show_locate": {
-            "type": "boolean",
-            "examples": [
-              true
-            ]
-          },
-          "show_rate": {
-            "type": "boolean",
-            "examples": [
-              true
-            ]
-          },
-          "tech_tags": {
-            "type": "array",
-            "example": {
-              "type": [
-                1,
-                2,
-                3
-              ]
-            }
-          },
-          "frameworks": {
-            "type": "array",
-            "example": [
-              1,
-              4
-            ]
-          }
-        }
-      },
-      "get_account": {
-        "type": "object",
-        "required": [
-          "user_id",
-          "user_name",
-          "locate",
-          "rate",
-          "show_locate",
-          "show_rate",
-          "create_at",
-          "update_at"
-        ],
-        "properties": {
-          "user_id": {
-            "type": "string",
-            "examples": [
-              "xErbTMDv"
-            ]
-          },
-          "user_name": {
-            "type": "string",
-            "examples": [
-              "テスト太郎"
-            ]
-          },
-          "icon": {
-            "type": "string",
-            "example": null
-          },
-          "explanatory_text": {
-            "type": "string",
-            "examples": [
-              null
-            ]
-          },
-          "locate": {
-            "type": "string",
-            "examples": [
-              "愛知県"
-            ]
-          },
-          "rate": {
-            "type": "integer",
-            "format": "int32",
-            "examples": [
-              20
-            ]
-          },
-          "show_locate": {
-            "type": "boolean",
-            "examples": [
-              true
-            ]
-          },
-          "show_rate": {
-            "type": "boolean",
-            "examples": [
-              true
-            ]
-          },
-          "tech_tags": {
-            "example": [
-              {
-                "status_id": 1,
-                "status": "Python"
-              },
-              {
-                "status_id": 2,
-                "status": "JavaScript"
-              },
-              {
-                "status_id": 3,
-                "status": "java"
-              }
-            ]
-          },
-          "frameworks": {
-            "example": [
-              {
-                "framework_id": 1,
-                "tech_tag_id": 1,
-                "framework": "Django"
-              },
-              {
-                "framework_id": 4,
-                "tech_tag_id": 2,
-                "framework": "React.js"
-              }
-            ]
-          }
-        }
-      },
-      "create_room": {
-        "type": null
-      },
-      "AddAccountInRoom": {
-        "type": null
-      },
-      "list_rooms": {
-        "type": "array",
-        "items": {
+      "api.CreateAccountResponses": {
           "type": "object",
           "properties": {
-            "rooms": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "room_id": {
-                    "type": "string"
-                  },
-                  "title": {
-                    "type": "string"
-                  },
-                  "member_limit": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "created_at": {
-                    "type": "string",
-                    "format": "date-time"
+              "explanatory_text": {
+                  "type": "string"
+              },
+              "frameworks": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.Frameworks"
                   }
-                }
-              }
-            },
-            "hackathon": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "hackathons_id": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "hackathon_name": {
-                    "type": "string"
-                  },
-                  "icon": {
-                    "type": "string"
+              },
+              "icon": {
+                  "type": "string"
+              },
+              "locate": {
+                  "type": "string"
+              },
+              "rate": {
+                  "type": "integer"
+              },
+              "show_locate": {
+                  "type": "boolean"
+              },
+              "show_rate": {
+                  "type": "boolean"
+              },
+              "tech_tags": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.TechTags"
                   }
-                }
+              },
+              "user_id": {
+                  "type": "string"
+              },
+              "username": {
+                  "type": "string"
               }
-            },
-            "now_member": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "user_id": {
-                    "type": "string"
-                  },
-                  "icon": {
-                    "type": "string"
-                  },
-                  "is_owner": {
-                    "type": "boolean"
-                  }
-                }
-              }
-            },
-            "members_tech_tags": {
-              "type": "array",
-              "items": {
-                "type": "array"
-              }
-            }
           }
-        },
-        "example": [
-          {
-            "rooms": {
-              "room_id": "f2f5ecdf-2d96-41c3-8d36-2ca22a6d3037",
-              "Title": "メンバー募集中",
-              "member_limit": 5,
-              "created_at": "2023-07-16T03:09:11.76223Z"
-            },
-            "hackathon": {
-              "hackathon_id": 4,
-              "hackathon_name": "【技育CAMP】マンスリーハッカソン vol.7【オンライン開催】",
-              "icon": "https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/vol7.jpg?alt=media&token=34f080a1-1584-44ab-b065-5bc8836a9612"
-            },
-            "now_member": null,
-            "members_tech_tags": [
-              {
-                "tech_tag": {
-                  "tech_tag_id": 1,
-                  "language": "Python"
-                },
-                "count": 1
-              },
-              {
-                "tech_tag": {
-                  "tech_tag_id": 2,
-                  "language": "JavaScript"
-                },
-                "count": 1
-              },
-              {
-                "tech_tag": {
-                  "tech_tag_id": 3,
-                  "language": "Java"
-                },
-                "count": 1
-              },
-              {
-                "tech_tag": {
-                  "tech_tag_id": 5,
-                  "language": "C"
-                },
-                "count": 1
-              },
-              {
-                "tech_tag": {
-                  "tech_tag_id": 7,
-                  "language": "Cpp"
-                },
-                "count": 1
-              }
-            ],
-            "members_frameworks": [
-              {
-                "framework": {
-                  "framework_id": 1,
-                  "tech_tag_id": 1,
-                  "framework": "Django"
-                },
-                "count": 1
-              },
-              {
-                "framework": {
-                  "framework_id": 2,
-                  "tech_tag_id": 1,
-                  "framework": "Flask"
-                },
-                "count": 1
-              },
-              {
-                "framework": {
-                  "framework_id": 4,
-                  "tech_tag_id": 2,
-                  "framework": "React.js"
-                },
-                "count": 1
-              },
-              {
-                "framework": {
-                  "framework_id": 5,
-                  "tech_tag_id": 2,
-                  "framework": "Vue.js"
-                },
-                "count": 1
-              },
-              {
-                "framework": {
-                  "framework_id": 6,
-                  "tech_tag_id": 2,
-                  "framework": "Three.js"
-                },
-                "count": 1
-              },
-              {
-                "framework": {
-                  "framework_id": 8,
-                  "tech_tag_id": 2,
-                  "framework": "Node.js"
-                },
-                "count": 1
-              }
-            ]
-          }
-        ]
       },
-      "locates": {
-        "type": "array",
-        "items": {
+      "api.CreateBookmarkRequestBody": {
           "type": "object",
           "properties": {
-            "locate_id": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "name": {
-              "type": "string"
-            }
+              "hackathon_id": {
+                  "type": "integer"
+              },
+              "user_id": {
+                  "type": "string"
+              }
           }
-        },
-        "default": [
-          {
-            "locate_id": 1,
-            "name": "北海道"
-          },
-          {
-            "locate_id": 2,
-            "name": "青森県"
-          },
-          {
-            "locate_id": 3,
-            "name": "岩手県"
-          },
-          {
-            "locate_id": 4,
-            "name": "宮城県"
-          },
-          {
-            "locate_id": 5,
-            "name": "秋田県"
-          },
-          {
-            "locate_id": 6,
-            "name": "山形県"
-          },
-          {
-            "locate_id": 7,
-            "name": "福島県"
-          },
-          {
-            "locate_id": 8,
-            "name": "茨城県"
-          },
-          {
-            "locate_id": 9,
-            "name": "栃木県"
-          },
-          {
-            "locate_id": 10,
-            "name": "群馬県"
-          },
-          {
-            "locate_id": 11,
-            "name": "埼玉県"
-          },
-          {
-            "locate_id": 12,
-            "name": "千葉県"
-          },
-          {
-            "locate_id": 13,
-            "name": "東京都"
-          },
-          {
-            "locate_id": 14,
-            "name": "神奈川県"
-          },
-          {
-            "locate_id": 15,
-            "name": "新潟県"
-          },
-          {
-            "locate_id": 16,
-            "name": "富山県"
-          },
-          {
-            "locate_id": 17,
-            "name": "石川県"
-          },
-          {
-            "locate_id": 18,
-            "name": "福井県"
-          },
-          {
-            "locate_id": 19,
-            "name": "山梨県"
-          },
-          {
-            "locate_id": 20,
-            "name": "長野県"
-          },
-          {
-            "locate_id": 21,
-            "name": "岐阜県"
-          },
-          {
-            "locate_id": 22,
-            "name": "静岡県"
-          },
-          {
-            "locate_id": 23,
-            "name": "愛知県"
-          },
-          {
-            "locate_id": 24,
-            "name": "三重県"
-          },
-          {
-            "locate_id": 25,
-            "name": "滋賀県"
-          },
-          {
-            "locate_id": 26,
-            "name": "京都府"
-          },
-          {
-            "locate_id": 27,
-            "name": "大阪府"
-          },
-          {
-            "locate_id": 28,
-            "name": "兵庫県"
-          },
-          {
-            "locate_id": 29,
-            "name": "奈良県"
-          },
-          {
-            "locate_id": 30,
-            "name": "和歌山県"
-          },
-          {
-            "locate_id": 31,
-            "name": "鳥取県"
-          },
-          {
-            "locate_id": 32,
-            "name": "島根県"
-          },
-          {
-            "locate_id": 33,
-            "name": "岡山県"
-          },
-          {
-            "locate_id": 34,
-            "name": "広島県"
-          },
-          {
-            "locate_id": 35,
-            "name": "山口県"
-          },
-          {
-            "locate_id": 36,
-            "name": "徳島県"
-          },
-          {
-            "locate_id": 37,
-            "name": "香川県"
-          },
-          {
-            "locate_id": 38,
-            "name": "愛媛県"
-          },
-          {
-            "locate_id": 39,
-            "name": "高知県"
-          },
-          {
-            "locate_id": 40,
-            "name": "福岡県"
-          },
-          {
-            "locate_id": 41,
-            "name": "佐賀県"
-          },
-          {
-            "locate_id": 42,
-            "name": "長崎県"
-          },
-          {
-            "locate_id": 43,
-            "name": "熊本県"
-          },
-          {
-            "locate_id": 44,
-            "name": "大分県"
-          },
-          {
-            "locate_id": 45,
-            "name": "宮崎県"
-          },
-          {
-            "locate_id": 46,
-            "name": "鹿児島県"
-          },
-          {
-            "locate_id": 47,
-            "name": "沖縄県"
-          }
-        ]
       },
-      "tech_tags": {
-        "type": "array",
-        "default": [
-          {
-            "tech_tag_id": 1,
-            "language": "Python"
-          },
-          {
-            "tech_tag_id": 2,
-            "language": "JavaScript"
-          },
-          {
-            "tech_tag_id": 3,
-            "language": "Java"
-          },
-          {
-            "tech_tag_id": 4,
-            "language": "Go"
-          },
-          {
-            "tech_tag_id": 5,
-            "language": "C"
-          },
-          {
-            "tech_tag_id": 6,
-            "language": "Csharp"
-          },
-          {
-            "tech_tag_id": 7,
-            "language": "Cpp"
-          },
-          {
-            "tech_tag_id": 8,
-            "language": "kotlin"
-          },
-          {
-            "tech_tag_id": 9,
-            "language": "PHP"
-          },
-          {
-            "tech_tag_id": 10,
-            "language": "Rust"
-          },
-          {
-            "tech_tag_id": 11,
-            "language": "Ruby"
-          },
-          {
-            "tech_tag_id": 12,
-            "language": "R"
-          },
-          {
-            "tech_tag_id": 13,
-            "language": "DataBase"
-          },
-          {
-            "tech_tag_id": 14,
-            "language": "Cloud"
-          },
-          {
-            "tech_tag_id": 15,
-            "language": "DevOps"
+      "api.CreateFollowRequestBody": {
+          "type": "object",
+          "required": [
+              "to_user_id"
+          ],
+          "properties": {
+              "to_user_id": {
+                  "type": "string"
+              }
           }
-        ]
       },
-      "frameworks": {
-        "type": "array",
-        "default": [
-          {
-            "framework_id": 1,
-            "tech_tag_id": 1,
-            "framework": "Django"
-          },
-          {
-            "framework_id": 2,
-            "tech_tag_id": 1,
-            "framework": "Flask"
-          },
-          {
-            "framework_id": 3,
-            "tech_tag_id": 1,
-            "framework": "FastAPI"
-          },
-          {
-            "framework_id": 4,
-            "tech_tag_id": 2,
-            "framework": "React.js"
-          },
-          {
-            "framework_id": 5,
-            "tech_tag_id": 2,
-            "framework": "Vue.js"
-          },
-          {
-            "framework_id": 6,
-            "tech_tag_id": 2,
-            "framework": "Three.js"
-          },
-          {
-            "framework_id": 7,
-            "tech_tag_id": 2,
-            "framework": "Next.js"
-          },
-          {
-            "framework_id": 8,
-            "tech_tag_id": 2,
-            "framework": "Node.js"
-          },
-          {
-            "framework_id": 9,
-            "tech_tag_id": 2,
-            "framework": "Angular"
-          },
-          {
-            "framework_id": 10,
-            "tech_tag_id": 3,
-            "framework": "JavaPlayFramework"
-          },
-          {
-            "framework_id": 11,
-            "tech_tag_id": 3,
-            "framework": "Spring"
-          },
-          {
-            "framework_id": 12,
-            "tech_tag_id": 3,
-            "framework": "ApacheStruts"
-          },
-          {
-            "framework_id": 13,
-            "tech_tag_id": 3,
-            "framework": "JSF"
-          },
-          {
-            "framework_id": 14,
-            "tech_tag_id": 3,
-            "framework": "Wicket"
-          },
-          {
-            "framework_id": 15,
-            "tech_tag_id": 4,
-            "framework": "Gin"
-          },
-          {
-            "framework_id": 16,
-            "tech_tag_id": 4,
-            "framework": "Beego"
-          },
-          {
-            "framework_id": 17,
-            "tech_tag_id": 4,
-            "framework": "Revel"
-          },
-          {
-            "framework_id": 18,
-            "tech_tag_id": 4,
-            "framework": "Echo"
-          },
-          {
-            "framework_id": 19,
-            "tech_tag_id": 5,
-            "framework": ".NET"
-          },
-          {
-            "framework_id": 20,
-            "tech_tag_id": 5,
-            "framework": "ASP.NET"
-          },
-          {
-            "framework_id": 21,
-            "tech_tag_id": 5,
-            "framework": "ASP.NET MVC"
-          },
-          {
-            "framework_id": 22,
-            "tech_tag_id": 6,
-            "framework": ".NET"
-          },
-          {
-            "framework_id": 23,
-            "tech_tag_id": 6,
-            "framework": "ASP.NET"
-          },
-          {
-            "framework_id": 24,
-            "tech_tag_id": 6,
-            "framework": "ASP.NET MVC"
-          },
-          {
-            "framework_id": 25,
-            "tech_tag_id": 7,
-            "framework": "Qt"
-          },
-          {
-            "framework_id": 26,
-            "tech_tag_id": 8,
-            "framework": "Spring"
-          },
-          {
-            "framework_id": 27,
-            "tech_tag_id": 8,
-            "framework": "Ktor"
-          },
-          {
-            "framework_id": 28,
-            "tech_tag_id": 9,
-            "framework": "Laravel"
-          },
-          {
-            "framework_id": 29,
-            "tech_tag_id": 9,
-            "framework": "Symfony"
-          },
-          {
-            "framework_id": 30,
-            "tech_tag_id": 9,
-            "framework": "CodeIgniter"
-          },
-          {
-            "framework_id": 31,
-            "tech_tag_id": 10,
-            "framework": "Rocket"
-          },
-          {
-            "framework_id": 32,
-            "tech_tag_id": 10,
-            "framework": "Actix-web"
-          },
-          {
-            "framework_id": 33,
-            "tech_tag_id": 10,
-            "framework": "Tide"
-          },
-          {
-            "framework_id": 34,
-            "tech_tag_id": 11,
-            "framework": "Ruby on Rails"
-          },
-          {
-            "framework_id": 35,
-            "tech_tag_id": 11,
-            "framework": "Sinatra"
-          },
-          {
-            "framework_id": 36,
-            "tech_tag_id": 11,
-            "framework": "Hanami"
-          },
-          {
-            "framework_id": 37,
-            "tech_tag_id": 11,
-            "framework": "Padrino"
-          },
-          {
-            "framework_id": 38,
-            "tech_tag_id": 12,
-            "framework": "Mojolicious"
-          },
-          {
-            "framework_id": 39,
-            "tech_tag_id": 12,
-            "framework": "Dancer"
-          },
-          {
-            "framework_id": 40,
-            "tech_tag_id": 13,
-            "framework": "MySQL"
-          },
-          {
-            "framework_id": 41,
-            "tech_tag_id": 13,
-            "framework": "PostgreSQL"
-          },
-          {
-            "framework_id": 42,
-            "tech_tag_id": 13,
-            "framework": "MongoDB"
-          },
-          {
-            "framework_id": 43,
-            "tech_tag_id": 13,
-            "framework": "Oracle"
-          },
-          {
-            "framework_id": 44,
-            "tech_tag_id": 13,
-            "framework": "Couchbase"
-          },
-          {
-            "framework_id": 45,
-            "tech_tag_id": 13,
-            "framework": "SQLServer"
-          },
-          {
-            "framework_id": 46,
-            "tech_tag_id": 13,
-            "framework": "Redis"
-          },
-          {
-            "framework_id": 47,
-            "tech_tag_id": 13,
-            "framework": "AlibabaCloud"
-          },
-          {
-            "framework_id": 48,
-            "tech_tag_id": 13,
-            "framework": "OracleCloud"
-          },
-          {
-            "framework_id": 49,
-            "tech_tag_id": 14,
-            "framework": "AWS"
-          },
-          {
-            "framework_id": 50,
-            "tech_tag_id": 14,
-            "framework": "Microsoft Azure"
-          },
-          {
-            "framework_id": 51,
-            "tech_tag_id": 14,
-            "framework": "GCP"
-          },
-          {
-            "framework_id": 52,
-            "tech_tag_id": 14,
-            "framework": "IBM Cloud"
-          },
-          {
-            "framework_id": 53,
-            "tech_tag_id": 15,
-            "framework": "Docker"
-          },
-          {
-            "framework_id": 54,
-            "tech_tag_id": 15,
-            "framework": "Kubernetes"
+      "api.CreateHackathonRequestBody": {
+          "type": "object",
+          "properties": {
+              "description": {
+                  "type": "string"
+              },
+              "expired": {
+                  "type": "string"
+              },
+              "icon": {
+                  "type": "string"
+              },
+              "link": {
+                  "type": "string"
+              },
+              "name": {
+                  "type": "string"
+              },
+              "start_date": {
+                  "type": "string"
+              },
+              "status_tags": {
+                  "type": "array",
+                  "items": {
+                      "type": "integer"
+                  }
+              },
+              "term": {
+                  "type": "integer"
+              }
           }
-        ]
+      },
+      "api.CreateRoomRequestBody": {
+          "type": "object",
+          "required": [
+              "description",
+              "hackathon_id",
+              "member_limit",
+              "title",
+              "user_id"
+          ],
+          "properties": {
+              "description": {
+                  "type": "string"
+              },
+              "hackathon_id": {
+                  "type": "integer"
+              },
+              "member_limit": {
+                  "type": "integer"
+              },
+              "title": {
+                  "type": "string"
+              },
+              "user_id": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.DeleteResponse": {
+          "type": "object",
+          "properties": {
+              "result": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.ErrorResponse": {
+          "type": "object",
+          "properties": {
+              "error": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.GetAccountResponses": {
+          "type": "object",
+          "properties": {
+              "email": {
+                  "type": "string"
+              },
+              "explanatory_text": {
+                  "type": "string"
+              },
+              "frameworks": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.Frameworks"
+                  }
+              },
+              "icon": {
+                  "type": "string"
+              },
+              "locate": {
+                  "type": "string"
+              },
+              "rate": {
+                  "type": "integer"
+              },
+              "show_locate": {
+                  "type": "boolean"
+              },
+              "show_rate": {
+                  "type": "boolean"
+              },
+              "tech_tags": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.TechTags"
+                  }
+              },
+              "user_id": {
+                  "type": "string"
+              },
+              "username": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.GetRoomResponse": {
+          "type": "object",
+          "properties": {
+              "create_at": {
+                  "type": "string"
+              },
+              "description": {
+                  "type": "string"
+              },
+              "hackathon": {
+                  "$ref": "#/definitions/api.hackathonInfo"
+              },
+              "is_status": {
+                  "type": "boolean"
+              },
+              "member_limit": {
+                  "type": "integer"
+              },
+              "members_frameworks": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.RoomFramework"
+                  }
+              },
+              "members_tech_tags": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.RoomTechTags"
+                  }
+              },
+              "now_member": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.NowRoomAccounts"
+                  }
+              },
+              "room_id": {
+                  "type": "string"
+              },
+              "title": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.HackathonResponses": {
+          "type": "object",
+          "properties": {
+              "description": {
+                  "type": "string"
+              },
+              "expired": {
+                  "type": "string"
+              },
+              "hackathon_id": {
+                  "type": "integer"
+              },
+              "icon": {
+                  "type": "string"
+              },
+              "link": {
+                  "type": "string"
+              },
+              "name": {
+                  "type": "string"
+              },
+              "start_date": {
+                  "type": "string"
+              },
+              "status_tags": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.StatusTags"
+                  }
+              },
+              "term": {
+                  "type": "integer"
+              }
+          }
+      },
+      "api.UpdateAccountRequestBody": {
+          "type": "object",
+          "properties": {
+              "explanatory_text": {
+                  "type": "string"
+              },
+              "hashed_password": {
+                  "type": "string"
+              },
+              "locate_id": {
+                  "type": "integer"
+              },
+              "rate": {
+                  "type": "integer"
+              },
+              "show_locate": {
+                  "type": "boolean"
+              },
+              "show_rate": {
+                  "type": "boolean"
+              },
+              "username": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.UpdateAccountResponse": {
+          "type": "object",
+          "properties": {
+              "created_at": {
+                  "type": "string"
+              },
+              "explanatory_text": {
+                  "type": "string"
+              },
+              "hashed_password": {
+                  "type": "string"
+              },
+              "icon": {
+                  "type": "string"
+              },
+              "locate": {
+                  "type": "string"
+              },
+              "rate": {
+                  "type": "integer"
+              },
+              "show_locate": {
+                  "type": "boolean"
+              },
+              "show_rate": {
+                  "type": "boolean"
+              },
+              "username": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.UpdateRoomRequestBody": {
+          "type": "object",
+          "required": [
+              "description",
+              "member_limit",
+              "title"
+          ],
+          "properties": {
+              "description": {
+                  "type": "string"
+              },
+              "member_limit": {
+                  "type": "integer"
+              },
+              "title": {
+                  "type": "string"
+              }
+          }
+      },
+      "api.hackathonInfo": {
+          "type": "object",
+          "properties": {
+              "description": {
+                  "type": "string"
+              },
+              "expired": {
+                  "type": "string"
+              },
+              "hackathon_id": {
+                  "type": "integer"
+              },
+              "icon": {
+                  "type": "string"
+              },
+              "link": {
+                  "type": "string"
+              },
+              "name": {
+                  "type": "string"
+              },
+              "start_date": {
+                  "type": "string"
+              },
+              "tags": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.StatusTags"
+                  }
+              },
+              "term": {
+                  "type": "integer"
+              }
+          }
+      },
+      "db.CreateRoomTxResult": {
+          "type": "object",
+          "properties": {
+              "accounts": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.NowRoomAccounts"
+                  }
+              },
+              "create_at": {
+                  "type": "string"
+              },
+              "description": {
+                  "type": "string"
+              },
+              "frameworks": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.RoomFramework"
+                  }
+              },
+              "hackathon": {
+                  "$ref": "#/definitions/db.RoomHackathonData"
+              },
+              "hackathon_id": {
+                  "type": "integer"
+              },
+              "is_delete": {
+                  "type": "boolean"
+              },
+              "member_limit": {
+                  "type": "integer"
+              },
+              "room_id": {
+                  "type": "string"
+              },
+              "techtags": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.RoomTechTags"
+                  }
+              },
+              "title": {
+                  "type": "string"
+              }
+          }
+      },
+      "db.Follows": {
+          "type": "object",
+          "properties": {
+              "create_at": {
+                  "type": "string"
+              },
+              "from_user_id": {
+                  "type": "string"
+              },
+              "to_user_id": {
+                  "type": "string"
+              }
+          }
+      },
+      "db.Frameworks": {
+          "type": "object",
+          "properties": {
+              "framework": {
+                  "type": "string"
+              },
+              "framework_id": {
+                  "type": "integer"
+              },
+              "tech_tag_id": {
+                  "type": "integer"
+              }
+          }
+      },
+      "db.ListRoomTxHackathonInfo": {
+          "type": "object",
+          "properties": {
+              "hackathon_id": {
+                  "type": "integer"
+              },
+              "hackathon_name": {
+                  "type": "string"
+              },
+              "icon": {
+                  "type": "string"
+              }
+          }
+      },
+      "db.ListRoomTxResult": {
+          "type": "object",
+          "properties": {
+              "hackathon": {
+                  "$ref": "#/definitions/db.ListRoomTxHackathonInfo"
+              },
+              "members_frameworks": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.RoomFramework"
+                  }
+              },
+              "members_tech_tags": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.RoomTechTags"
+                  }
+              },
+              "now_member": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/definitions/db.NowRoomAccounts"
+                  }
+              },
+              "rooms": {
+                  "$ref": "#/definitions/db.ListRoomTxRoomInfo"
+              }
+          }
+      },
+      "db.ListRoomTxRoomInfo": {
+          "type": "object",
+          "properties": {
+              "created_at": {
+                  "type": "string"
+              },
+              "member_limit": {
+                  "type": "integer"
+              },
+              "room_id": {
+                  "type": "string"
+              },
+              "title": {
+                  "type": "string"
+              }
+          }
+      },
+      "db.Locates": {
+          "type": "object",
+          "properties": {
+              "locate_id": {
+                  "type": "integer"
+              },
+              "name": {
+                  "type": "string"
+              }
+          }
+      },
+      "db.NowRoomAccounts": {
+          "type": "object",
+          "properties": {
+              "icon": {
+                  "type": "string"
+              },
+              "is_owner": {
+                  "type": "boolean"
+              },
+              "user_id": {
+                  "type": "string"
+              }
+          }
+      },
+      "db.RoomFramework": {
+          "type": "object",
+          "properties": {
+              "count": {
+                  "type": "integer"
+              },
+              "framework": {
+                  "$ref": "#/definitions/db.Frameworks"
+              }
+          }
+      },
+      "db.RoomHackathonData": {
+          "type": "object",
+          "properties": {
+              "icon": {
+                  "type": "string"
+              },
+              "id": {
+                  "type": "integer"
+              },
+              "name": {
+                  "type": "string"
+              }
+          }
+      },
+      "db.RoomTechTags": {
+          "type": "object",
+          "properties": {
+              "count": {
+                  "type": "integer"
+              },
+              "tech_tag": {
+                  "$ref": "#/definitions/db.TechTags"
+              }
+          }
+      },
+      "db.StatusTags": {
+          "type": "object",
+          "properties": {
+              "status": {
+                  "type": "string"
+              },
+              "status_id": {
+                  "type": "integer"
+              }
+          }
+      },
+      "db.TechTags": {
+          "type": "object",
+          "properties": {
+              "language": {
+                  "type": "string"
+              },
+              "tech_tag_id": {
+                  "type": "integer"
+              }
+          }
       }
-    }
   }
 }
