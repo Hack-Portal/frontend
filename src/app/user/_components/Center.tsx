@@ -1,6 +1,6 @@
-import { Grid, Input } from '@mui/joy'
-import { Typography, TextField, MenuItem } from '@mui/material'
-
+import { Grid } from '@mui/joy'
+import { Typography, Chip } from '@mui/material'
+import Item from '@mui/material/ListItem'
 import React from 'react'
 export const Center = () => {
   //都道府県
@@ -207,64 +207,26 @@ export const Center = () => {
 
   return (
     <Grid
-      display={'flex'}
-      flexDirection={'column'}
-      sx={{ width: '500px', mt: 12, ml: 2 }}
+      display={'row'}
+      sx={{ width: '600px', textAlign: 'center', mr: 1, ml: 1, mt: 10 }}
     >
-      <Grid display={'row'}>
-        <Typography sx={{ mb: 1 }}>Name</Typography>
-        <Input
-          sx={{ width: '200px', height: '10px' }}
-          placeholder="Placeholder"
-        />
-      </Grid>
-      <Grid display={'row'} sx={{ mt: 3 }}>
-        <Typography sx={{ mb: 1 }}>locate</Typography>
+      <Typography sx={{ mb: 3, fontSize: '20px' }}>過去作</Typography>
 
-        <TextField
-          select
-          label="locate"
-          defaultValue="1"
-          sx={{ height: '20px', width: '180px' }}
-        >
-          {Locate.map((option) => (
-            <MenuItem key={option.id} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Grid>
-      <Grid display={'row'} sx={{ mt: 7 }}>
-        <Typography sx={{ mb: 1 }}>Tech</Typography>
-
-        <TextField
-          select
-          label="Tech"
-          defaultValue="1"
-          sx={{ height: '20px', width: '300px' }}
-        >
-          {Tech.map((option) => (
-            <MenuItem key={option.id} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Grid>
-
-      <Grid display={'row'} sx={{ mt: 7 }}>
-        <Typography sx={{ mb: 1 }}>Frameworks</Typography>
-        <TextField
-          select
-          label="Frameworks"
-          defaultValue="1"
-          sx={{ height: '20px', width: '300px' }}
-        >
-          {Tech.map((option) => (
-            <MenuItem key={option.id} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+      <Grid
+        display={'row'}
+        sx={{
+          margin: 'auto',
+          height: '700px',
+          overflow: 'auto',
+          width: '500px',
+          mt: 5,
+          backgroundColor: '#eee',
+          border: '1px solid #ddd',
+        }}
+      >
+        <Item>
+          <Typography sx={{ mt: 2, fontSize: '20px' }}>作品情報</Typography>
+        </Item>
       </Grid>
     </Grid>
   )
