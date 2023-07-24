@@ -5,9 +5,9 @@ import { Button, Paper, Typography } from '@mui/material'
 import React from 'react'
 import { Left } from './_components/Left'
 import { Center } from './_components/Center'
-import { Right } from './_components/Right'
+import { Reight } from './_components/Reight'
 
-const profileStting = () => {
+const profile = () => {
   return (
     <>
       <Header />
@@ -17,16 +17,16 @@ const profileStting = () => {
         sx={{
           margin: 'auto',
           width: '1600px',
-          height: '800px',
+          height: '1000px',
           display: 'flex',
           mb: 10,
         }}
       >
         <Left />
         <Center />
-        <Right />
+        <Reight />
       </Paper>
     </>
   )
 }
-export default profileStting
+export default profile
