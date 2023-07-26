@@ -12,8 +12,6 @@ import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
 import { Badge } from '@mui/joy'
 import StarRateIcon from '@mui/icons-material/StarRate'
-import { DEFAULT_ECDH_CURVE } from 'tls'
-import { Hammersmith_One } from 'next/font/google'
 
 type Props = {
   hackathonName: string
@@ -29,7 +27,7 @@ export const RoomRecordRightBox = (props: Props) => {
     props
   return (
     <>
-      <CardContent sx={{textAlign:"left", width: 250 }}>
+      <CardContent sx={{ textAlign: 'left', width: 250 }}>
         <Grid container direction={'column'} sx={{ Width: 450, ml: 2 }}>
           <Typography
             sx={{
@@ -104,7 +102,7 @@ export const RoomRecordRightBox = (props: Props) => {
 
       <CardContent sx={{ width: 350 }}>
         <Box sx={{ height: 30, flexDirection: 'row' }} />
-        <Typography sx={{ fontSize: '14px',textAlign:"left"  }} color={'#999'}>
+        <Typography sx={{ fontSize: '14px', textAlign: 'left' }} color={'#999'}>
           Techs
         </Typography>
         <Grid container sx={{ width: '250px', mt: 1 }}>
@@ -118,7 +116,10 @@ export const RoomRecordRightBox = (props: Props) => {
             </Grid>
           ))}
         </Grid>
-        <Typography sx={{ mt: 1.4, fontSize: '14px',textAlign:"left" }} color={'#999'}>
+        <Typography
+          sx={{ mt: 1.4, fontSize: '14px', textAlign: 'left' }}
+          color={'#999'}
+        >
           frameworks
         </Typography>
         <Grid container sx={{ width: '300px', mt: 1 }}>

@@ -14,8 +14,6 @@ import {
 } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material'
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded'
-import useSWR from 'swr'
-import { RoomThumb } from '../types/room'
 import { PostModal } from './types/modal'
 
 // const fetcher = (url: string) => fetch(url).then((res) => res.json())
