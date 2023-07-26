@@ -22,7 +22,7 @@ import { PostModal } from './types/modal'
 type Props = {
   handleCreateRoom: (teamName: string, selectedCount: number) => void
 }
-export const ModalWindow = (props: Props) => {
+export const PostModalWindow = (props: Props) => {
   const { handleCreateRoom } = props
   const handleCreateRoomClick = () => {
     handleCreateRoom(teamName, selectedCount)

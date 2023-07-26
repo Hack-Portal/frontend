@@ -29,7 +29,7 @@ export const RoomRecordRightBox = (props: Props) => {
     props
   return (
     <>
-      <CardContent sx={{ width: 250 }}>
+      <CardContent sx={{textAlign:"left", width: 250 }}>
         <Grid container direction={'column'} sx={{ Width: 450, ml: 2 }}>
           <Typography
             sx={{
@@ -104,7 +104,7 @@ export const RoomRecordRightBox = (props: Props) => {
 
       <CardContent sx={{ width: 350 }}>
         <Box sx={{ height: 30, flexDirection: 'row' }} />
-        <Typography sx={{ fontSize: '14px' }} color={'#999'}>
+        <Typography sx={{ fontSize: '14px',textAlign:"left"  }} color={'#999'}>
           Techs
         </Typography>
         <Grid container sx={{ width: '250px', mt: 1 }}>
@@ -118,7 +118,7 @@ export const RoomRecordRightBox = (props: Props) => {
             </Grid>
           ))}
         </Grid>
-        <Typography sx={{ mt: 1.4, fontSize: '14px' }} color={'#999'}>
+        <Typography sx={{ mt: 1.4, fontSize: '14px',textAlign:"left" }} color={'#999'}>
           frameworks
         </Typography>
         <Grid container sx={{ width: '300px', mt: 1 }}>
