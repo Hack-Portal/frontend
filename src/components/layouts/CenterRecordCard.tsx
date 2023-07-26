@@ -2,14 +2,14 @@ import { Card, CardMedia, Paper } from '@mui/material'
 import Link from 'next/link'
 
 type Props = {
-  link: string
+  href: string
   children: React.ReactNode
 }
 
 export const CenterRecordCard = (props: Props) => {
-  const { link, children } = props
+  const { href, children } = props
   return (
-    <Link href={link}>
+    <Link href={href}>
       <Card
         sx={{
           minHeight: 250,
