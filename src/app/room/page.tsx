@@ -11,7 +11,6 @@ import UserRating from '../../components/layouts/UserRating'
 import { UserRatingInfo } from '@/components/types/userRating'
 import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
-import useSWR from 'swr'
 import { Suspense, useEffect, useState } from 'react'
 import { SelectTech } from '../signup/types/tech'
 import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
@@ -398,7 +397,6 @@ const Room = () => {
       },
       ...prev,
     ])
-    //w
   }
   return (
     <>

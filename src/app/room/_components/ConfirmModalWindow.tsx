@@ -8,7 +8,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export default function ConfirmModalWindow(props: Props) {
+export function ConfirmModalWindow(props: Props) {
   const { href, children } = props
 
   const [open, setOpen] = React.useState(false)

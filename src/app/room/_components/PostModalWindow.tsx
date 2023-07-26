@@ -7,14 +7,12 @@ import {
   TextField,
   FormControl,
   InputLabel,
-  OutlinedInput,
   Chip,
   Select,
   MenuItem,
 } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material'
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded'
-import useSWR from 'swr'
 import { RoomThumb } from '../types/room'
 import { PostModal } from './types/modal'
 
@@ -59,12 +57,6 @@ export const PostModalWindow = (props: Props) => {
     (setter: React.Dispatch<React.SetStateAction<string>>) =>
     (event: ChangeEvent<HTMLInputElement>) => {
       setter(event.target.value)
-    }
-
-  const handleSelectChange =
-    (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
-    (event: SelectChangeEvent<string[]>) => {
-      setter(event.target.value as string[])
     }
 
   // if (roomList === undefined) return <div>loading...</div>

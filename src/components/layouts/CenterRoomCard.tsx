@@ -1,6 +1,7 @@
-import ConfirmModalWindow from '@/app/room/_components/ConfirmModalWindow'
 import { Box } from '@mui/joy'
 import { Card, CardMedia, Paper } from '@mui/material'
+import Link from 'next/link'
+import { ConfirmModalWindow } from '@/app/room/_components/ConfirmModalWindow'
 
 type Props = {
   link: string
