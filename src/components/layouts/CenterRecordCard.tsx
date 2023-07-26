@@ -1,4 +1,3 @@
-import { Box } from '@mui/joy'
 import { Card, CardMedia, Paper } from '@mui/material'
 import Link from 'next/link'
 
