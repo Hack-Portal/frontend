@@ -14,12 +14,7 @@ import { RankingList } from './_components/RankingList'
 import { RoomRecordRightBox } from '../room/_components/RoomRecordRightBox'
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
-import { ModalWindow } from '../room/_components/ModalWindow'
 const Ranking = () => {
-
-
-
-
   const techStacks: TechStack[] = [
     {
       id: '1',
@@ -148,32 +143,31 @@ const Ranking = () => {
         <Grid item>
           <CenterArea>
             <Suspense fallback={<div>loading...</div>}>
-                <Card  
-                        sx={{
-                          minHeight: 250,
-                          maxHeight: 250,
-                          maxWidth: 800,
-                          minWidth: 800,
-                          display: 'flex',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          p:2,
-                          position: 'relative',
-                          }}            >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      width: 218,
-                      height: 218,
-                      objectFit: 'cover',
-                    }}
-                    image="image/1.jpg"
-                    alt=
-                    "img"
-                  />
-                  <RankingList />
-                </Card>
-        
+              <Card
+                sx={{
+                  minHeight: 250,
+                  maxHeight: 250,
+                  maxWidth: 800,
+                  minWidth: 800,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  p: 2,
+                  position: 'relative',
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  sx={{
+                    width: 218,
+                    height: 218,
+                    objectFit: 'cover',
+                  }}
+                  image="image/1.jpg"
+                  alt="img"
+                />
+                <RankingList />
+              </Card>
             </Suspense>
           </CenterArea>
         </Grid>
@@ -197,8 +191,7 @@ const Ranking = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}
-      >
-      </Box>
+      ></Box>
     </>
   )
 }

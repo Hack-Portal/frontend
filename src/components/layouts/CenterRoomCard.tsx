@@ -1,15 +1,17 @@
+import { Box } from '@mui/joy'
 import { Card, CardMedia, Paper } from '@mui/material'
 import Link from 'next/link'
+import { ConfirmModalWindow } from '@/app/room/_components/ConfirmModalWindow'
 
 type Props = {
-  href: string
+  link: string
   children: React.ReactNode
 }
 
-export const CenterRecordCard = (props: Props) => {
-  const { href, children } = props
+export const CenterRoomCard = (props: Props) => {
+  const { link, children } = props
   return (
-    <Link href={href}>
+    <ConfirmModalWindow href={link}>
       <Card
         sx={{
           minHeight: 250,
@@ -25,6 +27,6 @@ export const CenterRecordCard = (props: Props) => {
       >
         {children}
       </Card>
-    </Link>
+    </ConfirmModalWindow>
   )
 }
