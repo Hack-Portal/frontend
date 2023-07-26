@@ -12,10 +12,9 @@ import { UserRatingInfo } from '@/components/types/userRating'
 import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import useSWR from 'swr'
-import { fetcher } from '@/util/fetcher'
 import { Suspense, useEffect, useState } from 'react'
 import { SelectTech } from '../signup/types/tech'
-import image from 'next/image'
+import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
 
 const Room = () => {
   // const { data, error } = useSWR<RoomThumb[]>('/api/room', fetcher)
@@ -398,8 +397,7 @@ const Room = () => {
         ],
       },
       ...prev,
-    ]
-    )
+    ])
     //w
   }
   return (
@@ -414,9 +412,9 @@ const Room = () => {
           <CenterArea>
             <Suspense fallback={<div>loading...</div>}>
               {roomList?.map((room) => (
-                <CenterRecordCard
+                <CenterRoomCard
                   key={room.room_id}
-                   link={`/room/${room.room_id}`}
+                  link={`/room/${room.room_id}`}
                 >
                   <CardMedia
                     component="img"
@@ -436,7 +434,7 @@ const Room = () => {
                     techs={room.techs}
                     frameworks={room.frameworks}
                   />
-                </CenterRecordCard>
+                </CenterRoomCard>
               ))}
             </Suspense>
           </CenterArea>
