@@ -4,7 +4,7 @@ import { Typography } from '@mui/joy'
 export const HackathonData = () => {
   return (
     <>
-      <Box sx={{ width: '1100px' }}>
+      <Box sx={{ width: '1000px' }}>
         <Box display={'row'} sx={{ mt: 2 }}>
           <Grid textAlign={'center'}>
             <CardMedia
@@ -26,8 +26,8 @@ export const HackathonData = () => {
           </Grid>
         </Box>
 
-        <Grid sx={{ mt: 2, width: '1100px', pb: 5 }} margin={'auto'}>
-          <Paper elevation={5} sx={{ width: '1200px', pb: 5 }}>
+        <Grid margin={'auto'} sx={{ mt: 2, width: '950px', pb: 5 }}>
+          <Paper elevation={5} sx={{ width: '950px', pb: 5 }}>
             <Typography
               sx={{
                 m: 'auto',
@@ -49,7 +49,7 @@ export const HackathonData = () => {
                 pt: 2,
               }}
             >
-              <Typography sx={{ mt: 1, fontSize: '20px' }}>
+              <Typography sx={{ fontSize: '16px' }}>
                 ■日程
                 <br />
                 キックオフ : 8月3日(木) 19:00-19:30
@@ -63,7 +63,7 @@ export const HackathonData = () => {
                 <br />
                 ※全てオンラインにて実施されます <br />
               </Typography>
-              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+              <Typography sx={{ mt: 2, fontSize: '16px' }}>
                 ■場所
                 <br />
                 オンライン
@@ -73,7 +73,7 @@ export const HackathonData = () => {
                 開催URLは申し込み後にイベントページに表示されますのでご確認をお願いします。
                 <br />
               </Typography>
-              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+              <Typography sx={{ mt: 2, fontSize: '16px' }}>
                 ■ハッカソンのタイムスケジュール
                 <br />
                 DAY1 <br />
@@ -92,7 +92,7 @@ export const HackathonData = () => {
                 ※2日間の開発時間は、目安となります。各自、お好きな時間に行ってください
                 <br />
               </Typography>
-              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+              <Typography sx={{ mt: 2, fontSize: '16px' }}>
                 ■参加チームについて
                 <br />
                 本ハッカソンは、個人でもチームでも参加可能です。
@@ -100,8 +100,10 @@ export const HackathonData = () => {
                 チーム単位で申し込みをされる場合は、チーム全員が本イベントに申し込みをしてください。
                 <br />
                 なお、即席チーム（希望者同士でのチーム編成）を希望する方は、キックオフにてその旨をお伝えください。
-                <br /> ■制作物について 制作物のテーマ、制約はありません。
                 <br />
+              </Typography>
+              <Typography sx={{ mt: 2, fontSize: '16px' }}>
+                ■制作物について 制作物のテーマ、制約はありません。
                 「プログラミングを用いて制作したものであれば何でもOK」となります。
                 <br />
                 技育CAMPは、 「 初心者大歓迎 」 。<br />
@@ -114,7 +116,8 @@ export const HackathonData = () => {
                 そんな方々にぜひご参加頂ければと思っています。
                 <br />
               </Typography>
-              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+
+              <Typography sx={{ mt: 2, fontSize: '16px' }}>
                 ■事前開発について
                 <br />
                 本ハッカソンでは、約2週間前のキックオフより事前の開発が可能です。
@@ -128,7 +131,7 @@ export const HackathonData = () => {
                 ※キックオフより前の開発はできません
                 <br />
               </Typography>
-              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+              <Typography sx={{ mt: 2, fontSize: '16px' }}>
                 ■事前準備
                 <br />
                 事前にSlack、Zoomのインストールをお願いいたします。
@@ -138,7 +141,7 @@ export const HackathonData = () => {
                 (Slackへの招待は、キックオフ開催週より行います)
                 <br />
               </Typography>
-              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+              <Typography sx={{ mt: 2, fontSize: '16px' }}>
                 ■成果発表について
                 <br />
                 成果発表はプレゼン資料、動作デモ、可能ならばGitHubリポジトリを用意し発表ください。
@@ -148,7 +151,7 @@ export const HackathonData = () => {
                 ※チーム数により発表形式を一部変更する場合がございます。
                 <br />
               </Typography>
-              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+              <Typography sx={{ mt: 2, fontSize: '16px' }}>
                 ■審査方法
                 <br />
                 審査員方式にて行います。詳細は検討中、決定次第ご案内します。
@@ -176,7 +179,7 @@ export const HackathonData = () => {
                 pt: 2,
               }}
             >
-              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+              <Typography sx={{ fontSize: '16px' }}>
                 ■最優秀賞
                 <br />
                 チームに賞金50,000円贈呈いたします
@@ -216,8 +219,7 @@ export const HackathonData = () => {
               sx={{
                 m: 'auto',
                 width: '800px',
-                fontSize: 20,
-                mt: 3,
+                fontSize: '16px',
                 pt: 2,
               }}
             >

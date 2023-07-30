@@ -3,7 +3,7 @@ import { Box, Button } from '@mui/joy'
 import { Paper, Typography } from '@mui/material'
 export const RightCard = () => {
   return (
-    <Box sx={{ mt: 20, width: '100px' }}>
+    <Box sx={{ mt: 20, width: '250px' }}>
       <Paper elevation={3} sx={{ width: '250px', p: 2 }}>
         <Box>
           <Typography
