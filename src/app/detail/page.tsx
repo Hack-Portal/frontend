@@ -18,7 +18,6 @@ const Detail = () => {
             mt: '8px',
           }}
         >
-          <Left />
           <HackathonData />
           <RightCard />
         </Box>

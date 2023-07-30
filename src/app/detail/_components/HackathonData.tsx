@@ -20,8 +20,8 @@ export const HackathonData = () => {
               //2016 × 1286
             />
             {/* HackathonName */}
-            <Typography component="h4" sx={{ mt: 3, fontSize: 40 }}>
-              【技育CAMP】マンスリーハッカソン vol.8
+            <Typography component="h6" sx={{ mt: 3, fontSize: 24 }}>
+              【技育CAMP】マンスリーハッカソン vol.8 【オンライン開催】
             </Typography>
           </Grid>
         </Box>
