@@ -4,25 +4,30 @@ import { Typography } from '@mui/joy'
 export const HackathonData = () => {
   return (
     <>
-      <Box display={'flex'} flexDirection={'column'} sx={{ mt: 2 }}>
-        <Grid margin={'auto'} textAlign={'center'}>
-          <CardMedia
-            component="img"
-            image="image/1.jpg"
-            alt="img"
-            sx={{ width: '1000px', height: '650px', objectFit: 'cover' }}
-            //2016 × 1286
-          />
-          {/* HackathonName */}
-          <Typography component="h4" sx={{ mt: 3, fontSize: 40 }}>
-            【技育CAMP】マンスリーハッカソン vol.8
-          </Typography>
-        </Grid>
-      </Box>
+      <Box sx={{ width: '1100px' }}>
+        <Box display={'row'} sx={{ mt: 2 }}>
+          <Grid textAlign={'center'}>
+            <CardMedia
+              component="img"
+              image="image/1.jpg"
+              alt="img"
+              sx={{
+                width: '950px',
+                height: '600px',
+                objectFit: 'cover',
+                m: 'auto',
+              }}
+              //2016 × 1286
+            />
+            {/* HackathonName */}
+            <Typography component="h4" sx={{ mt: 3, fontSize: 40 }}>
+              【技育CAMP】マンスリーハッカソン vol.8
+            </Typography>
+          </Grid>
+        </Box>
 
-      <Grid sx={{ mt: 2, width: '1000px', height: '2000px' }} margin={'auto'}>
-        <Paper sx={{ width: '1000px', height: '2000px' }}>
-          <Grid>
+        <Grid sx={{ mt: 2, width: '1100px', pb: 5 }} margin={'auto'}>
+          <Paper elevation={5} sx={{ width: '1200px', pb: 5 }}>
             <Typography
               sx={{
                 m: 'auto',
@@ -40,7 +45,7 @@ export const HackathonData = () => {
                 m: 'auto',
                 width: '800px',
                 fontSize: 20,
-                mt: 3,
+                mt: 2,
                 pt: 2,
               }}
             >
@@ -150,8 +155,50 @@ export const HackathonData = () => {
                 <br />
               </Typography>
             </Box>
-          </Grid>
-          <Grid>
+            <Typography
+              sx={{
+                m: 'auto',
+                width: '900px',
+                borderBottom: 'double',
+                fontSize: 30,
+                mt: 2,
+                pt: 2,
+              }}
+            >
+              参加特典(賞)
+            </Typography>
+            <Box
+              sx={{
+                m: 'auto',
+                width: '800px',
+                fontSize: 20,
+                mt: 2,
+                pt: 2,
+              }}
+            >
+              <Typography sx={{ mt: 2, fontSize: '20px' }}>
+                ■最優秀賞
+                <br />
+                チームに賞金50,000円贈呈いたします
+                <br />
+                ■優秀賞
+                <br />
+                チームに賞金30,000円贈呈いたします
+                <br />
+                ■企業賞
+                <br />
+                チームに賞金5,000円贈呈いたします
+                <br />
+                ■参加賞
+                <br />
+                ハッカソンの成果発表された方全員に参加賞1,000円を贈呈いたします
+                ※
+                <br />
+                参加特典についてはサポーターズに会員登録とサポーターズで本イベントのエントリーが必要となります。
+                <br />
+              </Typography>
+            </Box>
+
             <Typography
               sx={{
                 m: 'auto',
@@ -159,14 +206,38 @@ export const HackathonData = () => {
                 borderBottom: 'double',
                 fontSize: 30,
                 mt: 3,
-                pt: 3,
+                pt: 2,
               }}
             >
-              参加特典(賞)
+              注意点
             </Typography>
-          </Grid>
-        </Paper>
-      </Grid>
+
+            <Box
+              sx={{
+                m: 'auto',
+                width: '800px',
+                fontSize: 20,
+                mt: 3,
+                pt: 2,
+              }}
+            >
+              ・申し込み人数が予定数に達した場合、申し込み締切日より前に受付終了致します
+              <br />
+              ・通常オンライン開催の場合支援金の支給はありませんが、本イベントは参加賞として支援金支給があります
+              <br />
+              ・当イベントへ申し込みいただき、ハッカソンの成果発表、アンケートの回答を完了された場合のみ支援金が支給されます
+              <br />
+              ・支援金支給は翌月15日前後になります
+              <br />
+              ・支援金支給条件：
+              <br />
+              プロフィールの顔写真、基本情報、志望職種、学歴情報、志向性、経験情報
+              <br />
+              スキル情報（経験者のみ）を記入している方
+            </Box>
+          </Paper>
+        </Grid>
+      </Box>
     </>
   )
 }
