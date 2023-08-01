@@ -15,11 +15,15 @@ export const useHackathons = () => {
       const response = await client.hackathons.get({
         query: { page_size: 10, page_id: 1 ,expired: false}, 
       })
-      console.log(response)
+      setHackathons(response.body)
     } catch (error) {
       // エラー処理
       console.error('APIリクエストエラー:', error)
+      throw error
     }
   }
-  return { hackathons, handleFetchHackathons }
+  const handleSetHackathons=(hackathons:Api_HackathonResponses[])=>{
+    setHackathons(hackathons)
+  }
+  return { hackathons, handleFetchHackathons, handleSetHackathons }
 }
