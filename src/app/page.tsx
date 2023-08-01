@@ -14,25 +14,18 @@ import { Suspense, useEffect } from 'react'
 import { useHackathons } from './hooks/useHackathons'
 
 const Home = () => {
-
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
   // const { data, error } = useSWR<HackathonThumb[]>(
   //   'https://seaffood.com/api/v1/hackathons?page_size=10&page_id=1',
   //   fetcher,
   // )
-  const data:any = ""
 
-  const {handleFetchHackathons} =useHackathons()
-
-  useEffect(()=>{
-   handleFetchHackathons()
-   const a =async()=>{
-    await fetch("https://api.seaffood.com/current/v1/hackathons?page_size=10&page_id=1").then(res=>res.json()).then(data=>console.log(data)
-    )
-   } 
-   a() 
-  })
+  const { handleFetchHackathons, handleSetHackathons, hackathons } =
+    useHackathons()
+  useEffect(() => {
+    handleFetchHackathons()
+  }, [])
 
   // const hackathons: HackathonThumb[] = [
   //   {
@@ -200,7 +193,7 @@ const Home = () => {
     },
   ]
   return (
-    <>
+    <Suspense fallback={'...loading'}>
       <Header />
       <Grid container direction="row">
         <Grid item xs>
@@ -218,14 +211,14 @@ const Home = () => {
           </Link>
 
           <Suspense fallback={<div>loading...</div>}>
-            {data && <HackathonList hackathons={data} />}
+            {hackathons && <HackathonList hackathons={hackathons} />}
           </Suspense>
         </Grid>
         <Grid item xs>
           <StackList techStacks={techStacks} />
         </Grid>
       </Grid>
-    </>
+    </Suspense>
   )
 }
 export default Home

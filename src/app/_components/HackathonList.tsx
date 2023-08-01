@@ -72,13 +72,13 @@ export const HackathonList = (props: Props) => {
                   募集締め切り
                 </Typography>
                 <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                  {new Date(hackathon.expired).toLocaleDateString()}
+                  {hackathon.expired}
                 </Typography>
                 <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
                   キックオフ
                 </Typography>
                 <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                  {new Date(hackathon.start_date).toLocaleDateString()}
+                  {hackathon.start_date}
                 </Typography>
                 <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
                   期間
@@ -88,7 +88,7 @@ export const HackathonList = (props: Props) => {
                 </Typography>
               </Grid>
               <Grid container direction={'row'} wrap="nowrap">
-                {hackathon.HackathonStatusTag.map((tag, id) => (
+                {hackathon.status_tags?.map((tag, id) => (
                   <Grid item key={id}>
                     <Chip
                       label={tag.status}
@@ -113,7 +113,7 @@ export const HackathonList = (props: Props) => {
               </IconButton>
             </CardActions>
             <Grid container>
-              {hackathon?.HackathonStatusTag?.map((tag, id) => (
+              {hackathon?.status_tags?.map((tag, id) => (
                 <Grid item key={id} >
                   <Chip
                     label={tag.status}
