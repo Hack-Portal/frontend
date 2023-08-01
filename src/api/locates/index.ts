@@ -2,10 +2,10 @@
 import type * as Types from '../@types'
 
 export type Methods = {
-  /** Get Framewroks */
+  /** Get Frameworks */
   get: {
     status: 200
-    /** succsss response */
+    /** success response */
     resBody: Types.Db_Locates[]
   }
 }

@@ -10,25 +10,25 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   return {
     /**
      * Add Account In Rooms
-     * @returns succsss response
+     * @returns success response
      */
     post: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json(),
     /**
      * Add Account In Rooms
-     * @returns succsss response
+     * @returns success response
      */
     $post: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json().then(r => r.body),
     /**
      * Remove Account In Rooms
-     * @returns succsss response
+     * @returns success response
      */
     delete: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json(),
     /**
      * Remove Account In Rooms
-     * @returns succsss response
+     * @returns success response
      */
     $delete: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json().then(r => r.body),

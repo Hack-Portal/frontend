@@ -12,7 +12,7 @@ export type Methods = {
   /** Update user info from requested body */
   put: {
     status: 200
-    /** Update succsss response */
+    /** Update success response */
     resBody: Types.Api_UpdateAccountResponse
     /** Update Account Request Body */
     reqBody: Types.Api_UpdateAccountRequestBody
@@ -21,7 +21,7 @@ export type Methods = {
   /** Only you can delete your account (logical delete) */
   delete: {
     status: 200
-    /** delete succsss response */
+    /** delete success response */
     resBody: Types.Api_DeleteResponse
   }
 }

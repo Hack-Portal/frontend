@@ -5,7 +5,7 @@ export type Methods = {
   /** Add Chat Room */
   post: {
     status: 200
-    /** succsss response */
+    /** success response */
     resBody: Types.Api_GetRoomResponse
     /** add chat Room Request body */
     reqBody: Types.Api_AddChatRequestBody

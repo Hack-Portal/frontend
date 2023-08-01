@@ -5,14 +5,14 @@ export type Methods = {
   /** Add Account In Rooms */
   post: {
     status: 200
-    /** succsss response */
+    /** success response */
     resBody: Types.Db_CreateRoomTxResult
   }
 
   /** Remove Account In Rooms */
   delete: {
     status: 200
-    /** succsss response */
+    /** success response */
     resBody: Types.Api_DeleteResponse
   }
 }

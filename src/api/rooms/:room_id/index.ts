@@ -5,14 +5,14 @@ export type Methods = {
   /** Get Room */
   get: {
     status: 200
-    /** succsss response */
+    /** success response */
     resBody: Types.Api_GetRoomResponse
   }
 
   /** update Room */
   put: {
     status: 200
-    /** succsss response */
+    /** success response */
     resBody: Types.Api_GetRoomResponse
     /** update Room Request body */
     reqBody: Types.Api_UpdateRoomRequestBody
@@ -21,7 +21,7 @@ export type Methods = {
   /** delete Room */
   delete: {
     status: 200
-    /** succsss response */
+    /** success response */
     resBody: Types.Api_DeleteResponse
   }
 }

@@ -21,14 +21,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         /**
          * Add Chat Room
          * @param option.body - add chat Room Request body
-         * @returns succsss response
+         * @returns success response
          */
         post: (option: { body: Methods2['post']['reqBody'], config?: T | undefined }) =>
           fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, PATH2, POST, option).json(),
         /**
          * Add Chat Room
          * @param option.body - add chat Room Request body
-         * @returns succsss response
+         * @returns success response
          */
         $post: (option: { body: Methods2['post']['reqBody'], config?: T | undefined }) =>
           fetch<Methods2['post']['resBody'], BasicHeaders, Methods2['post']['status']>(prefix, PATH2, POST, option).json().then(r => r.body),
@@ -37,25 +37,25 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       members: {
         /**
          * Add Account In Rooms
-         * @returns succsss response
+         * @returns success response
          */
         post: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods3['post']['resBody'], BasicHeaders, Methods3['post']['status']>(prefix, PATH3, POST, option).json(),
         /**
          * Add Account In Rooms
-         * @returns succsss response
+         * @returns success response
          */
         $post: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods3['post']['resBody'], BasicHeaders, Methods3['post']['status']>(prefix, PATH3, POST, option).json().then(r => r.body),
         /**
          * Remove Account In Rooms
-         * @returns succsss response
+         * @returns success response
          */
         delete: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods3['delete']['resBody'], BasicHeaders, Methods3['delete']['status']>(prefix, PATH3, DELETE, option).json(),
         /**
          * Remove Account In Rooms
-         * @returns succsss response
+         * @returns success response
          */
         $delete: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods3['delete']['resBody'], BasicHeaders, Methods3['delete']['status']>(prefix, PATH3, DELETE, option).json().then(r => r.body),
@@ -63,39 +63,39 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       },
       /**
        * Get Room
-       * @returns succsss response
+       * @returns success response
        */
       get: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, PATH1, GET, option).json(),
       /**
        * Get Room
-       * @returns succsss response
+       * @returns success response
        */
       $get: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, PATH1, GET, option).json().then(r => r.body),
       /**
        * update Room
        * @param option.body - update Room Request body
-       * @returns succsss response
+       * @returns success response
        */
       put: (option: { body: Methods1['put']['reqBody'], config?: T | undefined }) =>
         fetch<Methods1['put']['resBody'], BasicHeaders, Methods1['put']['status']>(prefix, PATH1, PUT, option).json(),
       /**
        * update Room
        * @param option.body - update Room Request body
-       * @returns succsss response
+       * @returns success response
        */
       $put: (option: { body: Methods1['put']['reqBody'], config?: T | undefined }) =>
         fetch<Methods1['put']['resBody'], BasicHeaders, Methods1['put']['status']>(prefix, PATH1, PUT, option).json().then(r => r.body),
       /**
        * delete Room
-       * @returns succsss response
+       * @returns success response
        */
       delete: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods1['delete']['resBody'], BasicHeaders, Methods1['delete']['status']>(prefix, PATH1, DELETE, option).json(),
       /**
        * delete Room
-       * @returns succsss response
+       * @returns success response
        */
       $delete: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods1['delete']['resBody'], BasicHeaders, Methods1['delete']['status']>(prefix, PATH1, DELETE, option).json().then(r => r.body),
@@ -103,27 +103,27 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     /**
      * List Account
-     * @returns succsss response
+     * @returns success response
      */
     get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
     /**
      * List Account
-     * @returns succsss response
+     * @returns success response
      */
     $get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json().then(r => r.body),
     /**
      * Create Rooms
      * @param option.body - create Room Request Body
-     * @returns succsss response
+     * @returns success response
      */
     post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json(),
     /**
      * Create Rooms
      * @param option.body - create Room Request Body
-     * @returns succsss response
+     * @returns success response
      */
     $post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json().then(r => r.body),

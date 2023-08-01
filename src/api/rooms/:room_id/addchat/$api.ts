@@ -10,14 +10,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     /**
      * Add Chat Room
      * @param option.body - add chat Room Request body
-     * @returns succsss response
+     * @returns success response
      */
     post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json(),
     /**
      * Add Chat Room
      * @param option.body - add chat Room Request body
-     * @returns succsss response
+     * @returns success response
      */
     $post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json().then(r => r.body),

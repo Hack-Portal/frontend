@@ -60,6 +60,10 @@ export type Api_CreateHackathonRequestBody = {
   term?: number | undefined
 }
 
+export type Api_CreateRateRequestBody = {
+  rate?: number | undefined
+}
+
 export type Api_CreateRoomRequestBody = {
   description: string
   hackathon_id: number
@@ -113,6 +117,12 @@ export type Api_HackathonResponses = {
   start_date?: string | undefined
   status_tags?: Db_StatusTags[] | undefined
   term?: number | undefined
+}
+
+export type Api_RateResponses = {
+  create_at?: string | undefined
+  rate?: number | undefined
+  user_id?: string | undefined
 }
 
 export type Api_UpdateAccountRequestBody = {

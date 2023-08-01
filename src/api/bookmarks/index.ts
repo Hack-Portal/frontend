@@ -5,7 +5,7 @@ export type Methods = {
   /** Create a bookmark from the specified hackathon ID */
   post: {
     status: 200
-    /** create succsss response */
+    /** create success response */
     resBody: Types.Api_BookmarkResponse
     /** Create Bookmark Request Body */
     reqBody: Types.Api_CreateBookmarkRequestBody

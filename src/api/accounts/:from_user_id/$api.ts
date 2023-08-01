@@ -25,13 +25,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json().then(r => r.body),
       /**
        * Unfollow
-       * @returns succsss response
+       * @returns success response
        */
       delete: (option: { body: Methods0['delete']['reqBody'], config?: T | undefined }) =>
         fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option, 'URLSearchParams').json(),
       /**
        * Unfollow
-       * @returns succsss response
+       * @returns success response
        */
       $delete: (option: { body: Methods0['delete']['reqBody'], config?: T | undefined }) =>
         fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option, 'URLSearchParams').json().then(r => r.body),

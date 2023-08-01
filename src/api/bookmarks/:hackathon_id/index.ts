@@ -5,7 +5,7 @@ export type Methods = {
   /** Get my bookmarks */
   get: {
     status: 200
-    /** delete succsss response */
+    /** delete success response */
     resBody: Types.Api_BookmarkResponse[]
     reqFormat: URLSearchParams
 
@@ -18,7 +18,7 @@ export type Methods = {
   /** Delete the bookmark of the specified hackathon ID */
   delete: {
     status: 200
-    /** delete succsss response */
+    /** delete success response */
     resBody: Types.Api_BookmarkResponse
   }
 }

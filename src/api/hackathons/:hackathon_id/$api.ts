@@ -9,13 +9,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   return {
     /**
      * Get Hackathon
-     * @returns succsss response
+     * @returns success response
      */
     get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
     /**
      * Get Hackathon
-     * @returns succsss response
+     * @returns success response
      */
     $get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json().then(r => r.body),

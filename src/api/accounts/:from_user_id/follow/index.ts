@@ -14,7 +14,7 @@ export type Methods = {
   /** Unfollow */
   delete: {
     status: 200
-    /** succsss response */
+    /** success response */
     resBody: Types.Api_DeleteResponse
     reqFormat: URLSearchParams
 

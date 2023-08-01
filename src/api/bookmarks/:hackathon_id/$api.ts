@@ -10,25 +10,25 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   return {
     /**
      * Get my bookmarks
-     * @returns delete succsss response
+     * @returns delete success response
      */
     get: (option: { body: Methods0['get']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option, 'URLSearchParams').json(),
     /**
      * Get my bookmarks
-     * @returns delete succsss response
+     * @returns delete success response
      */
     $get: (option: { body: Methods0['get']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option, 'URLSearchParams').json().then(r => r.body),
     /**
      * Delete the bookmark of the specified hackathon ID
-     * @returns delete succsss response
+     * @returns delete success response
      */
     delete: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json(),
     /**
      * Delete the bookmark of the specified hackathon ID
-     * @returns delete succsss response
+     * @returns delete success response
      */
     $delete: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json().then(r => r.body),

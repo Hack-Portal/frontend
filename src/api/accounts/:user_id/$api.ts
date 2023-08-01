@@ -24,26 +24,26 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     /**
      * Update user info from requested body
      * @param option.body - Update Account Request Body
-     * @returns Update succsss response
+     * @returns Update success response
      */
     put: (option: { body: Methods0['put']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['put']['resBody'], BasicHeaders, Methods0['put']['status']>(prefix, PATH0, PUT, option).json(),
     /**
      * Update user info from requested body
      * @param option.body - Update Account Request Body
-     * @returns Update succsss response
+     * @returns Update success response
      */
     $put: (option: { body: Methods0['put']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['put']['resBody'], BasicHeaders, Methods0['put']['status']>(prefix, PATH0, PUT, option).json().then(r => r.body),
     /**
      * Only you can delete your account (logical delete)
-     * @returns delete succsss response
+     * @returns delete success response
      */
     delete: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json(),
     /**
      * Only you can delete your account (logical delete)
-     * @returns delete succsss response
+     * @returns delete success response
      */
     $delete: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json().then(r => r.body),

@@ -14,25 +14,25 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     _hackathon_id: {
       /**
        * Get my bookmarks
-       * @returns delete succsss response
+       * @returns delete success response
        */
       get: (option: { body: Methods1['get']['reqBody'], config?: T | undefined }) =>
         fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, PATH1, GET, option, 'URLSearchParams').json(),
       /**
        * Get my bookmarks
-       * @returns delete succsss response
+       * @returns delete success response
        */
       $get: (option: { body: Methods1['get']['reqBody'], config?: T | undefined }) =>
         fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, PATH1, GET, option, 'URLSearchParams').json().then(r => r.body),
       /**
        * Delete the bookmark of the specified hackathon ID
-       * @returns delete succsss response
+       * @returns delete success response
        */
       delete: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods1['delete']['resBody'], BasicHeaders, Methods1['delete']['status']>(prefix, PATH1, DELETE, option).json(),
       /**
        * Delete the bookmark of the specified hackathon ID
-       * @returns delete succsss response
+       * @returns delete success response
        */
       $delete: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods1['delete']['resBody'], BasicHeaders, Methods1['delete']['status']>(prefix, PATH1, DELETE, option).json().then(r => r.body),
@@ -41,14 +41,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     /**
      * Create a bookmark from the specified hackathon ID
      * @param option.body - Create Bookmark Request Body
-     * @returns create succsss response
+     * @returns create success response
      */
     post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json(),
     /**
      * Create a bookmark from the specified hackathon ID
      * @param option.body - Create Bookmark Request Body
-     * @returns create succsss response
+     * @returns create success response
      */
     $post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json().then(r => r.body),
