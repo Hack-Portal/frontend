@@ -10,16 +10,29 @@ import { UserRatingInfo } from '@/components/types/userRating'
 import Image from 'next/image'
 import Link from 'next/link'
 import { HackathonThumb } from './types/hackathon'
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
+import { useHackathons } from './hooks/useHackathons'
 
 const Home = () => {
 
-  const fetcher = (url: string) => fetch(url).then((res) => res.json())
+  // const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-  const { data, error } = useSWR<HackathonThumb[]>(
-    'https://seaffood.com/api/v1/hackathons?page_size=10&page_id=1',
-    fetcher,
-  )
+  // const { data, error } = useSWR<HackathonThumb[]>(
+  //   'https://seaffood.com/api/v1/hackathons?page_size=10&page_id=1',
+  //   fetcher,
+  // )
+  const data:any = ""
+
+  const {handleFetchHackathons} =useHackathons()
+
+  useEffect(()=>{
+   handleFetchHackathons()
+   const a =async()=>{
+    await fetch("https://api.seaffood.com/current/v1/hackathons?page_size=10&page_id=1").then(res=>res.json()).then(data=>console.log(data)
+    )
+   } 
+   a() 
+  })
 
   // const hackathons: HackathonThumb[] = [
   //   {

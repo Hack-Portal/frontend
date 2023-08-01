@@ -1,26 +1,33 @@
 import { auth } from '@/firebase/client'
-import { AuthProvider, signInWithPopup } from 'firebase/auth'
-import { useState } from 'react'
+import { AuthProvider, User, signInWithPopup } from 'firebase/auth'
+import { useEffect, useState } from 'react'
 
 export const useSignIn = () => {
-  const [isSignIn, setIsSignIn] = useState(false)
-  const handleSetIsSignIn = () => {
-    setIsSignIn(true)
-  }
+  const [user, setUser] = useState<User | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user)
+      }
+      setIsLoading(false)
+    })
+
+    return () => unsubscribe()
+  }, [])
+
   const handleOAuthSignIn = async (provider: AuthProvider) => {
-    await signInWithPopup(auth, provider)
-      .then((result) => {
-        // ログイン成功時にIDトークンを取得
-        if (result.user) {
-          handleSetIsSignIn()
-          return result.user.getIdToken()
-        }
-      })
-      .then((idToken) => console.log(idToken))
-      .catch((error) => {
-        // エラー処理
-        console.error('Googleログインエラー:', error)
-      })
+    try {
+      const result = await signInWithPopup(auth, provider)
+      if (result.user) {
+        setUser(result.user)
+      }
+    } catch (error) {
+      // エラー処理
+      console.error('Googleログインエラー:', error)
+    }
   }
-  return { isSignIn, handleSetIsSignIn, handleOAuthSignIn }
+
+  return { handleOAuthSignIn, user, isLoading }
 }

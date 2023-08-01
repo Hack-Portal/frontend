@@ -1,15 +1,25 @@
-import { useState } from "react";
-import axios from "axios";
-import api from "../api/$api";
+import { useState } from 'react'
+import axios from 'axios'
 import aspida from '@aspida/axios'
-import { List_hackathons } from "../api/@types";
-
+import api from '@/api/$api'
+import { Api_HackathonResponses } from '@/api/@types'
 
 export const useHackathons = () => {
-    const [hackathons, setHackathons] = useState<List_hackathons[]>([]);
-    const handleFetchHackathons = async () => {
-        const client = api(aspida(axios, { baseURL: 'https://seaffood.com/api/v1' }))
-        const response = await client.hackathons.get({query:{page_size:3,page_id:1}}).then((response) => console.log(response));
+  const [hackathons, setHackathons] = useState<Api_HackathonResponses[]>([])
+  const handleFetchHackathons = async () => {
+    try {
+      const client:any = api(
+        // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
+        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
+      )
+      const response = await client.hackathons.get({
+        query: { page_size: 10, page_id: 1 ,expired: false}, 
+      })
+      console.log(response)
+    } catch (error) {
+      // エラー処理
+      console.error('APIリクエストエラー:', error)
     }
-    return { hackathons, handleFetchHackathons };
+  }
+  return { hackathons, handleFetchHackathons }
 }
