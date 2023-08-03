@@ -61,7 +61,7 @@
                 }
             }
         },
-        "/accounts/:from_user_id/follow": {
+        "/accounts/{from_user_id}/follow": {
             "post": {
                 "description": "Follow!!!!!!!!",
                 "produces": [
@@ -159,7 +159,7 @@
                 }
             }
         },
-        "/accounts/:id/rate": {
+        "/accounts/{id}/rate": {
             "get": {
                 "description": "List Rate for User",
                 "produces": [
@@ -247,7 +247,7 @@
                 }
             }
         },
-        "/accounts/:user_id": {
+        "/accounts/{user_id}": {
             "get": {
                 "description": "Return a user from the id specified in the path",
                 "produces": [
@@ -418,7 +418,7 @@
                 }
             }
         },
-        "/bookmarks/:hackathon_id": {
+        "/bookmarks/{hackathon_id}": {
             "get": {
                 "description": "Get my bookmarks",
                 "produces": [
@@ -629,7 +629,7 @@
                 }
             }
         },
-        "/hackathons/:hackathon_id": {
+        "/hackathons/{hackathon_id}": {
             "get": {
                 "description": "Get Hackathon",
                 "produces": [
@@ -787,7 +787,7 @@
                 }
             }
         },
-        "/rooms/:room_id": {
+        "/rooms/{room_id}": {
             "get": {
                 "description": "Get Room",
                 "produces": [
@@ -915,7 +915,7 @@
                 }
             }
         },
-        "/rooms/:room_id/addchat": {
+        "/rooms/{room_id}/addchat": {
             "post": {
                 "description": "Add Chat Room",
                 "produces": [
@@ -965,7 +965,7 @@
                 }
             }
         },
-        "/rooms/:room_id/members": {
+        "/rooms/{room_id}/members": {
             "post": {
                 "description": "Add Account In Rooms",
                 "produces": [
