@@ -1,9 +1,9 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
 import { dataToURLString } from 'aspida'
-import type { Methods as Methods0 } from '.'
-import type { Methods as Methods1 } from './:from_user_id/follow'
-import type { Methods as Methods2 } from './:id/rate'
-import type { Methods as Methods3 } from './:user_id'
+import type { Methods as Methods0 } from './from_user_id/follow'
+import type { Methods as Methods1 } from './from_user_id/follow'
+import type { Methods as Methods2 } from './id/rate'
+import type { Methods as Methods3 } from './user_id'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '//https://seaffood.com/api/v1' : baseURL).replace(/\/$/, '')
