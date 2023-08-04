@@ -1,4 +1,5 @@
 import { Db_Locates, Db_TechTags, Db_Frameworks } from '@/api/@types'
+import { handleFetchLocates } from '@/util/handleFetchLocates'
 import {
   Avatar,
   Box,
@@ -25,7 +26,7 @@ import {
 
 type Props = {
   control: Control<FieldValues, any>
-  handleSubmit: () => void
+  handleSubmit: any
   user: User | null
   isLoading: boolean
   handleSetIcon: (file: Blob | null) => void
@@ -47,6 +48,7 @@ export const SignInForm = (props: Props) => {
     techTags,
     frameworks,
   } = props
+  
   return (
     <>
       {isLoading || (
@@ -107,7 +109,8 @@ export const SignInForm = (props: Props) => {
                       label="Select"
                       {...field}
                     >
-                      {locates[0] &&
+                      <Suspense fallback={<div>Loading...</div>}>
+                      {locates &&
                         locates.map((locate) => (
                           <MenuItem
                             value={locate.locate_id}
@@ -116,6 +119,7 @@ export const SignInForm = (props: Props) => {
                             {locate.name}
                           </MenuItem>
                         ))}
+                        </Suspense>
                     </Select>
                   </FormControl>
                 )}

@@ -1,19 +1,16 @@
+"use client"
+
 import { AuthProvider, User } from 'firebase/auth'
 import React, { ChangeEvent } from 'react'
 import { GoogleAuthProvider } from 'firebase/auth'
 import { Button, Typography } from '@mui/material'
 import { SignInForm } from './SignInForm'
-import { Control, FieldValues, UseFormHandleSubmit } from 'react-hook-form'
+import { Control, FieldValues, UseFormHandleSubmit, useForm } from 'react-hook-form'
 import { Db_Frameworks, Db_Locates, Db_TechTags } from '@/api/@types'
+import { useIcon } from '@/hooks/useIcon'
+import { useSignIn } from '../../hooks/useSignIn'
 
 type Props = {
-  handleOAuthSignIn: (provider: AuthProvider) => void
-  control: Control<FieldValues, any>
-  handleSubmit: () => void
-  user: User | null
-  isLoading: boolean
-  handleSetIcon: (file: Blob | null) => void
-  preview: string | null
   locates: Db_Locates[]
   techTags: Db_TechTags[]
   frameworks: Db_Frameworks[]
@@ -21,18 +18,21 @@ type Props = {
 
 export const SignInFormContainer = (props: Props) => {
   const {
-    handleOAuthSignIn,
-    handleSubmit,
-    control,
-    user,
-    isLoading,
-    handleSetIcon,
-    preview,
     locates,
     techTags,
     frameworks,
   } = props
+
+  const handleClickLogin = (data: any) => {
+    console.log(data) // フォームの内容が入る
+  }
+  const { handleOAuthSignIn, user, isLoading } = useSignIn()
   const googleProvider = new GoogleAuthProvider()
+  const { control, handleSubmit } = useForm({}) // 使用したいメソッド等
+  const { icon, handleSetIcon, preview } = useIcon()
+  
+  
+
 
   return (
     <>
@@ -56,8 +56,8 @@ export const SignInFormContainer = (props: Props) => {
           Googleでログイン
         </Button>
       )}
-      <Button variant="contained" onClick={handleSubmit}>
-        送信
+      <Button variant="contained" onClick={handleClickLogin}>
+        ログイン
       </Button>
     </>
   )
