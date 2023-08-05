@@ -1,6 +1,6 @@
 'use client'
 import { Header } from '@/components/layouts/Header'
-import { HackathonList } from './_components/HackathonList'
+import { HackathonList } from './components/HackathonList'
 import UserRating from '../components/layouts/UserRating'
 import { Grid } from '@mui/material'
 import useSWR from 'swr'

@@ -1,26 +1,15 @@
-'use client'
+import { Card, CardContent, CardMedia, Grid } from '@/lib/muiRendering'
+import { SignInFormContainer } from './_components/SignInFormContainer/Index'
+import { handleFetchLocates } from '@/services/handleFetchLocates'
+import { Suspense } from 'react'
+import { handleFetchTechTags } from '@/services/handleFetchTechTags'
+import { handleFetchFrameworks } from '@/services/handleFetchFrameworks'
 
-import { useSignIn } from './hooks/useSignIn'
-import { Card, CardContent, CardMedia, Grid } from '@mui/material'
-import {  SignInFormContainer } from './_components/SignInFormContainer/Index'
-import { useForm } from 'react-hook-form'
-import { useIcon } from '../../hooks/useIcon'
-import { handleFetchLocates } from '@/util/handleFetchLocates'
-import { useTechTags } from '@/hooks/useTechTags'
-import { useFrameworks } from '@/hooks/useFrameworks'
+const SignIn = async () => {
+  const techTags = await handleFetchTechTags()
+  const frameworks = await handleFetchFrameworks()
+  const locates = await handleFetchLocates()
 
-const SignIn = () => {
-  const {  handleOAuthSignIn,user,isLoading } = useSignIn()
-  const {icon,handleSetIcon,preview}=useIcon()
-  const { control, handleSubmit } = useForm({}) // 使用したいメソッド等
-  const locates:any = handleFetchLocates()
-  const {techTags} = useTechTags()
-  const {frameworks} = useFrameworks()
-
-  const submit = (data: any) => {
-    console.log(data) // フォームの内容が入る
-    console.log(user)
-  }
   return (
     <Grid
       container
@@ -52,23 +41,16 @@ const SignIn = () => {
             alignItems: 'flex-start',
           }}
         >
-          <SignInFormContainer
-            handleOAuthSignIn={handleOAuthSignIn}
-            control={control}
-            handleSubmit={handleSubmit(submit)}
-            user={user}
-            isLoading={isLoading}
-            handleSetIcon={handleSetIcon}
-            preview={preview}
-            locates={locates}
-            techTags={techTags}
-            frameworks={frameworks}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SignInFormContainer
+              locates={locates}
+              techTags={techTags}
+              frameworks={frameworks}
+            />
+          </Suspense>
         </CardContent>
       </Card>
     </Grid>
   )
 }
 export default SignIn
-
-
