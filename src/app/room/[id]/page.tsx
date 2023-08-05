@@ -9,7 +9,7 @@ import { useTab } from '@/hooks/useTab'
 import { RoomLeft } from './_components/RoomLeft/Index'
 import { RoomRight } from './_components/RoomRight/Index'
 import useSWR from 'swr'
-import { fetcher } from '@/util/fetcher'
+import { fetcher } from '@/services/fetcher'
 
 type Props = {}
 

@@ -1,9 +1,9 @@
 import { Card, CardContent, CardMedia, Grid } from '@/lib/muiRendering'
 import { SignInFormContainer } from './_components/SignInFormContainer/Index'
-import { handleFetchLocates } from '@/util/handleFetchLocates'
+import { handleFetchLocates } from '@/services/handleFetchLocates'
 import { Suspense } from 'react'
-import { handleFetchTechTags } from '@/util/handleFetchTechTags'
-import { handleFetchFrameworks } from '@/util/handleFetchFrameworks'
+import { handleFetchTechTags } from '@/services/handleFetchTechTags'
+import { handleFetchFrameworks } from '@/services/handleFetchFrameworks'
 
 const SignIn = async () => {
   const techTags = await handleFetchTechTags()

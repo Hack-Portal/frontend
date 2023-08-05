@@ -1,5 +1,5 @@
 import { Db_Locates, Db_TechTags, Db_Frameworks } from '@/api/@types'
-import { handleFetchLocates } from '@/util/handleFetchLocates'
+import { handleFetchLocates } from '@/services/handleFetchLocates'
 import {
   Avatar,
   Box,
@@ -9,6 +9,7 @@ import {
   FormGroup,
   FormHelperText,
   FormLabel,
+  Grid,
   InputLabel,
   MenuItem,
   Select,
@@ -48,7 +49,7 @@ export const SignInForm = (props: Props) => {
     techTags,
     frameworks,
   } = props
-  
+
   return (
     <>
       {isLoading || (
@@ -109,7 +110,7 @@ export const SignInForm = (props: Props) => {
                       label="Select"
                       {...field}
                     >
-                      <Suspense fallback={<div>Loading...</div>}>
+                      <MenuItem value={0}>未選択</MenuItem>
                       {locates &&
                         locates.map((locate) => (
                           <MenuItem
@@ -119,7 +120,6 @@ export const SignInForm = (props: Props) => {
                             {locate.name}
                           </MenuItem>
                         ))}
-                        </Suspense>
                     </Select>
                   </FormControl>
                 )}
@@ -134,25 +134,17 @@ export const SignInForm = (props: Props) => {
               <FormGroup {...field}>
                 <FormLabel component="legend">技術</FormLabel>
 
-                {techTags[0] &&
-                  techTags.map((techTag) => (
-                    <FormControlLabel
-                      control={<Checkbox name="check" />}
-                      label={techTag.language}
-                      value={techTag.tech_tag_id}
-                      key={techTag.tech_tag_id}
-                    />
-                  ))}
-                <FormControlLabel
-                  control={<Checkbox name="check" />}
-                  label="チェックボックス"
-                  value={field.value}
-                />
-                <FormControlLabel
-                  control={<Checkbox name="check" />}
-                  label="チェックボックス"
-                  value={field.value}
-                />
+                <Grid container>
+                  {techTags[0] &&
+                    techTags.map((techTag) => (
+                      <FormControlLabel
+                        control={<Checkbox name="check" />}
+                        label={techTag.language}
+                        value={techTag.tech_tag_id}
+                        key={techTag.tech_tag_id}
+                      />
+                    ))}
+                </Grid>
               </FormGroup>
             )}
           />

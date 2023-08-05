@@ -1,7 +1,5 @@
 import api from '@/api/$api'
-import { Db_TechTags } from '@/api/@types'
 import axios from 'axios'
-import { useState } from 'react'
 import aspida from '@aspida/axios'
 
 export const handleFetchTechTags = async () => {
