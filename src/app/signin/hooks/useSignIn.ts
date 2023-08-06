@@ -1,4 +1,4 @@
-import { auth } from '@/firebase/client'
+import { auth } from '@/lib/firebase/client'
 import { AuthProvider, User, signInWithPopup } from 'firebase/auth'
 import { useEffect, useState } from 'react'
 

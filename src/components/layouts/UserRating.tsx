@@ -1,5 +1,5 @@
 import React from 'react'
-import { Chip, Grid, Avatar, Typography } from '@mui/material'
+import { Grid, Avatar, Typography } from '@/lib/mui/muiRendering'
 import { UserRatingInfo } from '../types/userRating'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 const UserRating = (props: Props) => {
   const { users } = props
   return (
-    <Grid container direction={'column'} alignItems={'center'} >
+    <Grid container direction={'column'} alignItems={'center'}>
       <Typography>レーティング</Typography>
 
       {users.map((user, index) => (

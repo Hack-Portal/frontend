@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { Box, Button, Typography } from '@mui/material'
-import Modal from '@mui/material/Modal'
-import { Paper } from '@mui/material'
+import { Box, Button, Typography, Modal } from '@/lib/mui/muiRendering'
+import { Paper } from '@/lib/mui/muiRendering'
 
 type Props = {
   href: string

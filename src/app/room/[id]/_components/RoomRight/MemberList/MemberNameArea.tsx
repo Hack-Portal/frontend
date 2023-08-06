@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 
 type Props = {
@@ -8,13 +8,10 @@ type Props = {
 export const MemberNameArea = (props: Props) => {
   const { name, isOwner } = props
   return (
-    <Grid  container direction={'row'} sx={{width:"80%"}} ml={1}>
+    <Grid container direction={'row'} sx={{ width: '80%' }} ml={1}>
       <Typography color={'#333'}>{name}</Typography>
       {isOwner && (
-        <Typography
-          sx={{ ml: 1 }}
-          color={'#aaa'}
-        >
+        <Typography sx={{ ml: 1 }} color={'#aaa'}>
           オーナー
         </Typography>
       )}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Grid } from '@mui/material'
+import { Avatar, Grid } from '@/lib/mui/muiRendering'
 import { MemberNameArea } from './MemberNameArea'
 import { MemberTechArea } from './MemberTechArea'
 import { User } from '@/types/user'

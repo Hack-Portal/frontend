@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/lib/mui/muiRendering'
 import { Header } from './Header'
 import { RoomInfo } from '../../types/room'
 import { Information } from './Information/Index'

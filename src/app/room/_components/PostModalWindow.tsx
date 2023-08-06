@@ -10,8 +10,8 @@ import {
   Chip,
   Select,
   MenuItem,
-} from '@mui/material'
-import { SelectChangeEvent } from '@mui/material'
+} from '@/lib/mui/muiRendering'
+import { SelectChangeEvent } from '@/lib/mui/muiRendering'
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded'
 import { RoomThumb } from '../types/room'
 import { PostModal } from './types/modal'

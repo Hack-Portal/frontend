@@ -1,5 +1,11 @@
 import React from 'react'
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@/lib/mui/muiRendering'
 
 //所在地の登録
 

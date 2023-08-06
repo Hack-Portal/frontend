@@ -6,11 +6,11 @@ import {
   Typography,
   Chip,
   Box,
-} from '@mui/material'
+  JoyBadge
+} from '@/lib/mui/muiRendering'
 import { RoomUserThumb } from '../types/user'
 import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
-import { Badge } from '@mui/joy'
 import StarRateIcon from '@mui/icons-material/StarRate'
 import { DEFAULT_ECDH_CURVE } from 'tls'
 import { Hammersmith_One } from 'next/font/google'
@@ -29,7 +29,7 @@ export const RoomRecordRightBox = (props: Props) => {
     props
   return (
     <>
-      <CardContent sx={{textAlign:"left", width: 250 }}>
+      <CardContent sx={{ textAlign: 'left', width: 250 }}>
         <Grid container direction={'column'} sx={{ Width: 450, ml: 2 }}>
           <Typography
             sx={{
@@ -68,7 +68,7 @@ export const RoomRecordRightBox = (props: Props) => {
             {Array.from(Array(member_limit)).map((_, index) =>
               now_member[index] ? (
                 now_member[index].isOwner ? (
-                  <Badge
+                  <JoyBadge
                     badgeContent={<StarRateIcon sx={{ width: 8, height: 8 }} />}
                     variant="solid"
                     size="sm"
@@ -81,7 +81,7 @@ export const RoomRecordRightBox = (props: Props) => {
                       alt={'user-icon'}
                       variant="rounded"
                     />
-                  </Badge>
+                  </JoyBadge>
                 ) : (
                   <Avatar
                     sx={{ width: 35, height: 35, mr: 0.5 }}
@@ -104,7 +104,7 @@ export const RoomRecordRightBox = (props: Props) => {
 
       <CardContent sx={{ width: 350 }}>
         <Box sx={{ height: 30, flexDirection: 'row' }} />
-        <Typography sx={{ fontSize: '14px',textAlign:"left"  }} color={'#999'}>
+        <Typography sx={{ fontSize: '14px', textAlign: 'left' }} color={'#999'}>
           Techs
         </Typography>
         <Grid container sx={{ width: '250px', mt: 1 }}>
@@ -118,7 +118,10 @@ export const RoomRecordRightBox = (props: Props) => {
             </Grid>
           ))}
         </Grid>
-        <Typography sx={{ mt: 1.4, fontSize: '14px',textAlign:"left" }} color={'#999'}>
+        <Typography
+          sx={{ mt: 1.4, fontSize: '14px', textAlign: 'left' }}
+          color={'#999'}
+        >
           frameworks
         </Typography>
         <Grid container sx={{ width: '300px', mt: 1 }}>

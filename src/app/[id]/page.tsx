@@ -3,8 +3,7 @@ import { Header } from '@/components/layouts/Header'
 import React from 'react'
 import { HackathonData } from './_components/HackathonData'
 import { RightCard } from './_components/RightCard'
-import { Box } from '@mui/joy'
-import { Left } from './_components/Left'
+import { Box } from '@/lib/mui/muiRendering'
 
 const Detail = () => {
   return (

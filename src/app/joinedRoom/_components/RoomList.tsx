@@ -1,7 +1,6 @@
 import { RoomListThumb } from '@/app/room/types/roomList'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
-import { Avatar, Input, Typography } from '@mui/joy'
-import { Grid, Box } from '@mui/material'
+import { Avatar, Input, Typography,Grid,Box } from '@/lib/mui/muiRendering'
 import Link from 'next/link'
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search'
@@ -42,8 +41,6 @@ export const RoomList = (props: Props) => {
         >
           <Input
             placeholder="Search for anything..."
-            variant="soft"
-            size="sm"
             sx={{
               solid: '6px #e0e0e0',
               '--Input-radius': '40px',

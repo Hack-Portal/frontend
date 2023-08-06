@@ -1,5 +1,5 @@
 'use client'
-import { Card, CardMedia, Grid } from '@mui/material'
+import { Card, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { SignUpForm } from './_conmponents/SignUpForm'
 import { SelectTech } from './types/tech'
 

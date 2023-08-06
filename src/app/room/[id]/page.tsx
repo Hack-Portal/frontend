@@ -2,7 +2,7 @@
 
 import { Header } from '@/components/layouts/Header'
 import React from 'react'
-import { Box, Grid } from '@mui/material'
+import { Box, Grid } from '@/lib/mui/muiRendering'
 import { RoomCenter } from './_components/RoomCenter/Index'
 import { RoomInfo } from './types/room'
 import { useTab } from '@/hooks/useTab'

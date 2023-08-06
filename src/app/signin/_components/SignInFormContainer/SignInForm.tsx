@@ -14,7 +14,7 @@ import {
   MenuItem,
   Select,
   TextField,
-} from '@mui/material'
+} from '@/lib/mui/muiRendering'
 import { User } from 'firebase/auth'
 import React, { ChangeEvent, Suspense, useEffect } from 'react'
 import {

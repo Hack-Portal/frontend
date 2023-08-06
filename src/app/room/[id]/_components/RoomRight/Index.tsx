@@ -1,5 +1,5 @@
-import { Box } from '@mui/joy'
-import { Grid, Typography } from '@mui/material'
+
+import { Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { MemberList } from './MemberList/Index'
 import { RoomUser } from '../../types/user'

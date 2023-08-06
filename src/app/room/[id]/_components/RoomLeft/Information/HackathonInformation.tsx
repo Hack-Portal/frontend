@@ -1,5 +1,5 @@
 import { Hackathon } from '@/types/hackathon'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { CustomAccordion } from './CustomAccordion'
 

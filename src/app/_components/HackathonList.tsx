@@ -1,20 +1,17 @@
-import { Box, Card, IconButton, Sheet, Button, Badge } from '@mui/joy'
-
 import {
-  Paper,
+  IconButton,
   CardActions,
   CardContent,
   CardMedia,
   Grid,
   Chip,
-} from '@mui/material'
+  Typography,
+  BookmarkBorderOutlinedIcon,
+} from '@/lib/mui/muiRendering'
 
-import { HackathonThumb } from '../types/hackathon'
-import Typography from '@mui/material/Typography'
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
+import { HackathonThumb } from '../_types/hackathon'
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
-import Image from 'next/image'
 
 type Props = {
   hackathons: HackathonThumb[]
@@ -34,7 +31,6 @@ export const HackathonList = (props: Props) => {
             sx={{ width: 218, height: 218, objectFit: 'cover' }}
             title="Your title"
             image={hackathon.icon}
-
           />
 
           <CardContent
@@ -44,7 +40,7 @@ export const HackathonList = (props: Props) => {
               pl: 4,
               minHeight: '218px',
               minWidth: '500px',
-              width:"500px",
+              width: '500px',
             }}
           >
             <Typography
@@ -114,7 +110,7 @@ export const HackathonList = (props: Props) => {
             </CardActions>
             <Grid container>
               {hackathon?.status_tags?.map((tag, id) => (
-                <Grid item key={id} >
+                <Grid item key={id}>
                   <Chip
                     label={tag.status}
                     sx={{ mt: 0.5, mr: 0.5, fontSize: '15px' }}
@@ -123,7 +119,6 @@ export const HackathonList = (props: Props) => {
                 </Grid>
               ))}
             </Grid>
-
           </CardContent>
         </CenterRecordCard>
       ))}

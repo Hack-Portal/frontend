@@ -1,6 +1,6 @@
 import React from 'react'
 import { RoomInfo } from '../../../types/room'
-import { Grid } from '@mui/material'
+import { Grid } from '@/lib/mui/muiRendering'
 import { RoomInformation } from './RoomInformation'
 import { HackathonInformation } from './HackathonInformation'
 

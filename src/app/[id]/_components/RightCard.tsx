@@ -1,6 +1,5 @@
 import React from 'react'
-import { Box, Button } from '@mui/joy'
-import { Paper, Typography } from '@mui/material'
+import { Paper, Typography,Box, Button } from '@/lib/mui/muiRendering'
 export const RightCard = () => {
   return (
     <Box

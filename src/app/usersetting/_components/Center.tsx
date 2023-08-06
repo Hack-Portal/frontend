@@ -1,5 +1,5 @@
 import { Grid, Input } from '@mui/joy'
-import { Typography, TextField, MenuItem } from '@mui/material'
+import { Typography, TextField, MenuItem } from '@/lib/mui/muiRendering'
 
 import React from 'react'
 export const Center = () => {

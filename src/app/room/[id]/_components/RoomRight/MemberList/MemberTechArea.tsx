@@ -1,6 +1,6 @@
 import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
-import { Chip, Grid } from '@mui/material'
+import { Chip, Grid } from '@/lib/mui/muiRendering'
 import React from 'react'
 
 type Props = {

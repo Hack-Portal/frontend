@@ -1,4 +1,4 @@
-import { Card, CardMedia, Paper } from '@mui/material'
+import { Card, CardMedia, Paper } from '@/lib/mui/muiRendering'
 import Link from 'next/link'
 
 type Props = {

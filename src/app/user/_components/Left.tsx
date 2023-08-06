@@ -1,7 +1,5 @@
-import { Avatar, Box, Button, Grid } from '@mui/joy'
-import { Typography, Chip } from '@mui/material'
+import { Avatar,Grid,Typography,Chip } from '@/lib/mui/muiRendering'
 import React from 'react'
-import Item from '@mui/material/ListItem'
 export const Left = () => {
   return (
     <Grid
