@@ -1,31 +1,23 @@
-'use client'
 import { Header } from '@/components/layouts/Header'
-import { HackathonList } from './components/HackathonList'
+import { HackathonList } from './_components/HackathonList'
 import UserRating from '../components/layouts/UserRating'
-import { Grid } from '@mui/material'
-import useSWR from 'swr'
+import { Grid } from '@/lib/mui/muiRendering'
 import StackList from '../components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import { UserRatingInfo } from '@/components/types/userRating'
 import Image from 'next/image'
 import Link from 'next/link'
-import { HackathonThumb } from './types/hackathon'
 import { Suspense, useEffect } from 'react'
-import { useHackathons } from './hooks/useHackathons'
+import { FetchHackathons } from './_services/fetchHackathons'
 
-const Home = () => {
+const Home = async () => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())
-
+  const fetchHackathons = new FetchHackathons()
+  const hackathons = await fetchHackathons.fetchAllHackathons()
   // const { data, error } = useSWR<HackathonThumb[]>(
   //   'https://seaffood.com/api/v1/hackathons?page_size=10&page_id=1',
   //   fetcher,
   // )
-
-  const { handleFetchHackathons, handleSetHackathons, hackathons } =
-    useHackathons()
-  useEffect(() => {
-    handleFetchHackathons()
-  }, [])
 
   // const hackathons: HackathonThumb[] = [
   //   {

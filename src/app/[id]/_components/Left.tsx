@@ -1,4 +1,4 @@
-import { Box } from '@mui/joy'
+import { Box } from '@/lib/mui/muiRendering'
 import React from 'react'
 
 export const Left = () => {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { SendInputArea } from './SendInputArea'
-import { Grid } from '@mui/material'
+import { Grid } from '@/lib/mui/muiRendering'
 import { MyChatArea } from './ChatList/MyChatArea'
 import { OtherChatArea } from './ChatList/OtherChatArea'
 

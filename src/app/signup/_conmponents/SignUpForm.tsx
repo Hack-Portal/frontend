@@ -1,7 +1,6 @@
 import React from 'react'
-import { Container, Sheet, Typography } from '@mui/joy'
 import { Location } from './Location'
-import { Box, Button, Card, Grid, TextField } from '@mui/material'
+import { Box, Button, Card, Grid, TextField,Typography } from '@/lib/mui/muiRendering'
 import { useForm } from 'react-hook-form'
 import { Tech } from '@/types/tech'
 import { TechsList } from './TechList'

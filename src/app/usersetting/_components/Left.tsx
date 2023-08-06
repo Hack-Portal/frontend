@@ -1,5 +1,4 @@
-import { Avatar, Box, Button, Grid } from '@mui/joy'
-import { Typography } from '@mui/material'
+import { Typography,Avatar, Box, Button, Grid  } from '@/lib/mui/muiRendering'
 import React from 'react'
 
 export const Left = () => {

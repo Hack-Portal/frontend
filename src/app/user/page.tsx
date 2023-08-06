@@ -1,7 +1,6 @@
 'use client'
 import { Header } from '@/components/layouts/Header'
-import { Box, Container, Grid } from '@mui/joy'
-import { Button, Paper, Typography } from '@mui/material'
+import { Button, Paper, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { Left } from './_components/Left'
 import { Center } from './_components/Center'

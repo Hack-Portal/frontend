@@ -1,6 +1,5 @@
 import React from 'react'
-import { Grid, Box, Paper, CardMedia } from '@mui/material'
-import { Typography } from '@mui/joy'
+import { Grid, Box, Paper, CardMedia,Typography } from '@/lib/mui/muiRendering'
 export const HackathonData = () => {
   return (
     <>

@@ -1,6 +1,5 @@
-import { Grid } from '@mui/joy'
-import { Typography, Chip } from '@mui/material'
-import Item from '@mui/material/ListItem'
+
+import { Typography, Grid } from '@/lib/mui/muiRendering'
 import React from 'react'
 export const Center = () => {
   //都道府県
@@ -224,9 +223,8 @@ export const Center = () => {
           border: '1px solid #ddd',
         }}
       >
-        <Item>
           <Typography sx={{ mt: 2, fontSize: '20px' }}>作品情報</Typography>
-        </Item>
+       
       </Grid>
     </Grid>
   )

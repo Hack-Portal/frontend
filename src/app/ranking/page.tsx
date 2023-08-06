@@ -1,7 +1,7 @@
 'use client'
 import { Header } from '@/components/layouts/Header'
 
-import { Box, Card, CardMedia, Grid } from '@mui/material'
+import { Box, Card, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import useSWR from 'swr'
 import { TechStack } from '@/types/techStack'
 import { UserRatingInfo } from '@/components/types/userRating'

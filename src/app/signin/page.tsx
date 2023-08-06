@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Grid } from '@/lib/muiRendering'
+import { Card, CardContent, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { SignInFormContainer } from './_components/SignInFormContainer/Index'
 import { handleFetchLocates } from '@/services/handleFetchLocates'
 import { Suspense } from 'react'

@@ -1,5 +1,10 @@
-import { Box } from '@mui/system'
-import { Grid, Avatar, Typography, CardMedia } from '@mui/material'
+import {
+  Grid,
+  Avatar,
+  Typography,
+  CardMedia,
+  Box,
+} from '@/lib/mui/muiRendering'
 import React from 'react'
 import { TechStack } from '@/types/techStack'
 
@@ -21,13 +26,13 @@ const StackList = (props: Props) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            mb:2
+            mb: 2,
           }}
         >
-          <Typography sx={{  mb: 2 }} color={'#999'}>
+          <Typography sx={{ mb: 2 }} color={'#999'}>
             {techStack.label}
           </Typography>
-          <Box >
+          <Box>
             <CardMedia
               component="img"
               sx={{

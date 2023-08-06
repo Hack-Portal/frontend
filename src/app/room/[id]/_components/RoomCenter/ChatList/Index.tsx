@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { MyChatArea } from './MyChatArea'
 import { OtherChatArea } from './OtherChatArea'

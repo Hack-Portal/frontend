@@ -1,18 +1,16 @@
+"use client"
 import * as React from 'react'
-import Badge from '@mui/joy/Badge'
 import Box from '@mui/joy/Box'
-import Input from '@mui/joy/Input'
 import ListItem from '@mui/joy/ListItem'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import Link from 'next/link'
 import Sheet from '@mui/joy/Sheet'
-import GroupsIcon from '@mui/icons-material/Groups'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined'
 import Image from 'next/image'
-import { Grid, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { useCustomRouter } from './hooks/CustomRouter'
 
 export const Header = () => {

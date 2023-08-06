@@ -1,5 +1,4 @@
-import { Box, Textarea } from '@mui/joy'
-import { IconButton } from '@mui/material'
+import { IconButton,Box,Textarea } from '@/lib/mui/muiRendering'
 import React, { useState } from 'react'
 import SendIcon from '@mui/icons-material/Send'
 

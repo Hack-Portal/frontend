@@ -1,5 +1,5 @@
 import { Tech } from '@/types/tech'
-import { Grid } from '@mui/material'
+import { Grid } from '@/lib/mui/muiRendering'
 
 type Props = {
   techs: Tech[]

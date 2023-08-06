@@ -1,6 +1,6 @@
 import React from 'react'
 import { RoomInfo } from '../../../types/room'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography } from '@/lib/mui/muiRendering'
 import { CustomAccordion } from './CustomAccordion'
 
 type Props = {

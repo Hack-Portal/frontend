@@ -1,5 +1,5 @@
-import { Sheet } from '@mui/joy'
-import { Avatar, Box, Grid, Paper, Typography } from '@mui/material'
+
+import { Avatar, Box, Grid, Paper, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 
 export const OtherChatArea = () => {

@@ -1,6 +1,4 @@
-import { Box } from '@mui/joy'
-import { Card, CardMedia, Paper } from '@mui/material'
-import Link from 'next/link'
+import { Card, CardMedia, Paper } from '@/lib/mui/muiRendering'
 import { ConfirmModalWindow } from '@/app/room/_components/ConfirmModalWindow'
 
 type Props = {

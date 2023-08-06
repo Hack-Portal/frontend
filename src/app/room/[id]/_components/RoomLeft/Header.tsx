@@ -1,4 +1,11 @@
-import { Avatar, Box, Grid, Tab, Tabs, Typography } from '@mui/material'
+import {
+  Avatar,
+  Box,
+  Grid,
+  Tab,
+  Tabs,
+  Typography,
+} from '@/lib/mui/muiRendering'
 import React from 'react'
 
 type Props = {
