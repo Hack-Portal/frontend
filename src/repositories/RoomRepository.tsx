@@ -8,7 +8,7 @@ export class RoomRepository implements RoomInterface {
   private static instance: RoomRepository
   private authorization: string | null = null
 
-  public static getInstance(): RoomInterface {
+  public static getInstance(): RoomRepository {
     if (!RoomRepository.instance) {
       RoomRepository.instance = new RoomRepository()
     }

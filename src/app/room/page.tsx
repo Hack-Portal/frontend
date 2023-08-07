@@ -14,9 +14,12 @@ import { TechStack } from '@/types/techStack'
 import { Suspense, useEffect, useState } from 'react'
 import { SelectTech } from '../signup/types/tech'
 import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
+import { FetchRooms } from './_services/fetchRooms'
 
-const Room = () => {
-  // const { data, error } = useSWR<RoomThumb[]>('/api/room', fetcher)
+const Room = async () => {
+  const fetchRooms = new FetchRooms()
+  const rooms = await fetchRooms.fetchAllRooms()
+
   const techs: SelectTech[] = [
     {
       id: 1,

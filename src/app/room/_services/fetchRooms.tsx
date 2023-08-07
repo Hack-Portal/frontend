@@ -8,7 +8,7 @@ export class FetchRooms {
     this.RoomRepository = RoomRepository.getInstance()
   }
 
-  public async fetchAllHackathons() {
+  public async fetchAllRooms() {
     try {
       const rooms = await this.RoomRepository.fetchAll()
       return rooms
