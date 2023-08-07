@@ -1,35 +1,16 @@
-'use client'
-import { Card, CardMedia, Grid } from '@/lib/mui/muiRendering'
-import { SignUpForm } from './_conmponents/SignUpForm'
-import { SelectTech } from './types/tech'
+import { SignBox } from '@/components/layouts/SignBox'
+import { SignUpFormContainer } from './_conmponents/SignUpFormContainer/Index'
+import { FetchLocates } from './services/fetchLocates'
 
-const SignUp = () => {
+
+const SignUp = async() => {
+  const fetchLocates = new FetchLocates()
+  const locates = await fetchLocates.fetchAllLocates()
+
   return (
-    <Grid
-      container
-      justifyContent={'center'}
-      alignItems={'center'}
-      bgcolor={'primary'}
-      sx={{ wtech_tag_idth: '100vw', height: '100vh' }}
-    >
-      <Card
-        sx={{
-          wtech_tag_idth: '80vw',
-          height: '80vh',
-          maxtech_tag_idth: '80vw',
-          maxHeight: '80vh',
-          display: 'flex',
-        }}
-      >
-        <CardMedia
-          component="img"
-          sx={{ wtech_tag_idth: '40%', height: '100vh', objectFit: 'cover' }}
-          image={'https://source.unsplash.com/random'}
-          alt={'left image'}
-        />
-        <SignUpForm />
-      </Card>
-    </Grid>
+    <SignBox>
+        <SignUpFormContainer locates={locates}/>
+    </SignBox>
   )
 }
 export default SignUp

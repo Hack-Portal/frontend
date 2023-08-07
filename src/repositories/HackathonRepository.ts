@@ -16,6 +16,10 @@ export class HackathonRepository implements HackathonInterface {
     return HackathonRepository.instance
   }
 
+  /**
+   *  ハッカソン一覧を取得する
+   * @returns  ハッカソン一覧
+   */
   public async fetchAll() {
     try {
       const client: any = api(
@@ -36,6 +40,10 @@ export class HackathonRepository implements HackathonInterface {
       throw error
     }
   }
+
+  /**
+   * 
+   */
 }
 
 // シングルトンインスタンスとは、特定のクラスから生成されるオブジェクト（インスタンス）がプログラム全体で1つだけ存在することを保証するデザインパターン（設計原則）のことを指します。このパターンは「シングルトンパターン」と呼ばれます。
