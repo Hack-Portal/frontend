@@ -17,6 +17,7 @@ export class RoomRepository implements RoomInterface {
 
   public async fetchAll() {
     try {
+      //型定義必要かも？
       const client: any = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
         aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
@@ -26,6 +27,7 @@ export class RoomRepository implements RoomInterface {
 
       const response = await client.rooms.get({
         query: { room_id: 1 },
+        //ヘッダー googletoken
         headers: { authorization: this.authorization },
       })
       return response.body
