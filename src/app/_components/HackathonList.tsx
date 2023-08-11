@@ -23,7 +23,7 @@ export const HackathonList = (props: Props) => {
     <CenterArea>
       {hackathons.map((hackathon) => (
         <CenterRecordCard
-          href={`/hackathons?page_size=3&page_id=1${hackathon.hackathon_id}`}
+          href={`/${hackathon.hackathon_id}`}
           key={hackathon.hackathon_id}
         >
           <CardMedia
