@@ -1,6 +1,13 @@
 import React from 'react'
-import { Paper, Typography,Box, Button } from '@/lib/mui/muiRendering'
-export const RightCard = () => {
+import { Paper, Typography, Box, Button, Link } from '@/lib/mui/muiRendering'
+import { MiniCard } from '../types/MiniCard'
+
+type Props = {
+  detail: MiniCard
+}
+
+export const RightCard = (props: Props) => {
+  const { detail } = props
   return (
     <Box
       sx={{
@@ -26,7 +33,7 @@ export const RightCard = () => {
             募集締め切り
           </Typography>
           <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-            7月11日(月)
+            {detail.expired}
           </Typography>
         </Box>
         <Box>
@@ -42,7 +49,7 @@ export const RightCard = () => {
             キックオフ
           </Typography>
           <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-            7月31日(月)
+            {detail.start_date}
           </Typography>
         </Box>
         <Box>
@@ -58,10 +65,14 @@ export const RightCard = () => {
           >
             期間
           </Typography>
-          <Typography sx={{ mt: 0.5, fontSize: '20px' }}>二日間</Typography>
+          <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
+            {detail.term}日間
+          </Typography>
         </Box>
         <Box sx={{ mt: 3 }} textAlign={'center'}>
-          <Button sx={{ margin: 'auto' }}>公式サイトへ</Button>
+          <Link href={detail.link}>
+            <Button sx={{ margin: 'auto' }}>公式サイトへ</Button>
+          </Link>
         </Box>
       </Paper>
     </Box>
