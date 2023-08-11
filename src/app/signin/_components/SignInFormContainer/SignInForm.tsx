@@ -1,5 +1,4 @@
 import { Db_Locates, Db_TechTags, Db_Frameworks } from '@/api/@types'
-import { handleFetchLocates } from '@/services/handleFetchLocates'
 import {
   Avatar,
   Box,

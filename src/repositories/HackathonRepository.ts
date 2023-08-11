@@ -15,6 +15,10 @@ export class HackathonRepository implements HackathonInterface {
     return HackathonRepository.instance
   }
 
+  /**
+   *  ハッカソン一覧を取得する
+   * @returns  ハッカソン一覧
+   */
   public async fetchAll() {
     try {
       const client: any = api(
@@ -28,6 +32,7 @@ export class HackathonRepository implements HackathonInterface {
         query: { page_size: 10, page_id: 1, expired: false },
         // headers: { authorization: this.authorization },
       })
+
       return response.body
     } catch (error) {
       // エラー処理
@@ -35,7 +40,7 @@ export class HackathonRepository implements HackathonInterface {
       throw error
     }
   }
-
+  
   public async fetchById(hackathonId: string) {
     try {
       const client = api(
