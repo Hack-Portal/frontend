@@ -32,7 +32,9 @@ export const RightCard = (props: Props) => {
           >
             募集締め切り
           </Typography>
-          <Typography sx={{ mt: 0.5, fontSize: '20px' }}></Typography>
+          <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
+            {detail.expired}
+          </Typography>
         </Box>
         <Box>
           <Typography
@@ -64,7 +66,7 @@ export const RightCard = (props: Props) => {
             期間
           </Typography>
           <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-            {detail.term}
+            {detail.term}日間
           </Typography>
         </Box>
         <Box sx={{ mt: 3 }} textAlign={'center'}>
