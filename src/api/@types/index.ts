@@ -180,7 +180,7 @@ export type Api_hackathonInfo = {
   link?: string | undefined
   name?: string | undefined
   start_date?: string | undefined
-  tags?: Db_StatusTags[] | undefined
+  status_tags?: Db_StatusTags[] | undefined
   term?: number | undefined
 }
 

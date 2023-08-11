@@ -1,12 +1,17 @@
 'use client'
 
 import { Header } from '@/components/layouts/Header'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { HackathonData } from './_components/HackathonData'
 import { RightCard } from './_components/RightCard'
 import { Box } from '@/lib/mui/muiRendering'
+import { FetchHackathonDetail } from './_services/fetchHackathonDetail'
 
-const Detail = () => {
+const Detail = async (props: { params: { id: string } }) => {
+  const { id } = props.params
+  // const fetcher = (url: string) => fetch(url).then((res) => res.json())
+  const fetchHackathon = new FetchHackathonDetail()
+  const hackathonDetail = await fetchHackathon.fetchHackathonDetail(id)
   return (
     <>
       <Header />
@@ -18,8 +23,10 @@ const Detail = () => {
             mt: '8px',
           }}
         >
-          <HackathonData />
-          <RightCard />
+          <Suspense fallback={<div>loading...</div>}>
+            {hackathonDetail && <HackathonData detail={hackathonDetail} />}
+            {hackathonDetail && <RightCard detail={hackathonDetail} />}
+          </Suspense>
         </Box>
       </Box>
     </>

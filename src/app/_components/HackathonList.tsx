@@ -23,7 +23,7 @@ export const HackathonList = (props: Props) => {
     <CenterArea>
       {hackathons.map((hackathon) => (
         <CenterRecordCard
-          href={`/hackathons?page_size=3&page_id=1${hackathon.hackathon_id}`}
+          href={`/${hackathon.hackathon_id}`}
           key={hackathon.hackathon_id}
         >
           <CardMedia
@@ -83,17 +83,6 @@ export const HackathonList = (props: Props) => {
                   {hackathon.term}日間
                 </Typography>
               </Grid>
-              <Grid container direction={'row'} wrap="nowrap">
-                {hackathon.status_tags?.map((tag, id) => (
-                  <Grid item key={id}>
-                    <Chip
-                      label={tag.status}
-                      sx={{ mt: 0.5, mr: 0.5, fontSize: '15px' }}
-                      key={id}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
             </Grid>
           </CardContent>
 
@@ -108,7 +97,16 @@ export const HackathonList = (props: Props) => {
                 />
               </IconButton>
             </CardActions>
-            <Grid container>
+            <Grid
+              container
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                transform: 'translate(-150px, 40px)',
+              }}
+            >
               {hackathon?.status_tags?.map((tag, id) => (
                 <Grid item key={id}>
                   <Chip
