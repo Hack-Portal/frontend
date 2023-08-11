@@ -1,6 +1,7 @@
 import { auth } from '@/lib/firebase/client'
 import { AuthProvider, User, signInWithPopup } from 'firebase/auth'
 
+
 export class FirebaseRepository {
   private static instance: FirebaseRepository | null = null
 

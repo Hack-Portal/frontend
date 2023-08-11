@@ -7,6 +7,7 @@ export type Methods = {
     status: 200
     /** create succsss response */
     resBody: Types.Api_CreateAccountResponses
+    reqFormat: FormData
     /** Create Account Request Body */
     reqBody: Types.Api_CreateAccountRequestBody
   }

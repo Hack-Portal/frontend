@@ -1,8 +1,7 @@
 'use client'
 
-import { AuthProvider, User } from 'firebase/auth'
+import { AuthProvider, GoogleAuthProvider, User } from 'firebase/auth'
 import React, { ChangeEvent } from 'react'
-import { GoogleAuthProvider } from 'firebase/auth'
 import { Button, Grid, Typography } from '@/lib/mui/muiRendering'
 import {
   Control,
@@ -10,13 +9,15 @@ import {
   UseFormHandleSubmit,
   useForm,
 } from 'react-hook-form'
-import { Db_Frameworks, Db_Locates, Db_TechTags } from '@/api/@types'
 import { useIcon } from '@/hooks/useIcon'
 import { useSignIn } from '../../hooks/useSignIn'
 import { SignUpForm } from '../SignUpForm'
 import { SelectLogin } from './SelectLogin'
 import { useSelectLogin } from '../../hooks/useSelectLogin'
 import { CreateUser } from '../../services/createUser'
+import { SignUpFormData } from '../../types/formData'
+import { Db_Locates } from '@/api/@types'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   locates: Db_Locates[]
@@ -26,9 +27,11 @@ export const SignUpFormContainer = (props: Props) => {
   const { locates } = props
   const { signIn, user, isLoading, handleSetSelected, selected } = useSignIn()
   const googleProvider = new GoogleAuthProvider()
-  const { control, handleSubmit } = useForm({}) // 使用したいメソッド等
+  const { control, handleSubmit } = useForm<SignUpFormData>() // 使用したいメソッド等
   const { icon, handleSetIcon, preview } = useIcon()
   const UserInstance = new CreateUser()
+  const router = useRouter()
+  
 
   return (
     <Grid
@@ -49,7 +52,7 @@ export const SignUpFormContainer = (props: Props) => {
       ) : (
         <SignUpForm
           control={control}
-          handleSubmit={handleSubmit(UserInstance.create)}
+          handleSubmit={handleSubmit((data)=>{UserInstance.create(data) ? router.push('/user'):null})}
           handleSetIcon={handleSetIcon}
           preview={preview}
           locates={locates}

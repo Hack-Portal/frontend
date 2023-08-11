@@ -2,14 +2,15 @@ import { initializeApp, getApps } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
+  apiKey: "AIzaSyAnXu36V-xQCUD6DKHHYG7_2aDZDUmMm1A",
+  authDomain: "hack-portal-2.firebaseapp.com",
+  projectId: "hack-portal-2",
+  storageBucket: "hack-portal-2.appspot.com",
+  messagingSenderId: "268339067936",
+  appId: "1:268339067936:web:997cfb460a2e8f773d9045",
+  measurementId: "G-SHG9DH3XRM"
 };
+
 
 const app = getApps()?.length ? getApps()[0] : initializeApp(firebaseConfig)
 
