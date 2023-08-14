@@ -3,10 +3,13 @@ import aspida from '@aspida/axios'
 import api from '@/api/$api'
 import { getAuthorizationHeader } from '../utils/headerManager'
 import { RoomInterface } from '@/types/RoomInterface'
+import { FirebaseRepository } from './FirebaseRepository'
+import { UserRepository } from './UserRepository'
 
 export class RoomRepository implements RoomInterface {
   private static instance: RoomRepository
   private authorization: string | null = null
+  private firebaseRepository: FirebaseRepository
 
   public static getInstance(): RoomRepository {
     if (!RoomRepository.instance) {
@@ -14,20 +17,23 @@ export class RoomRepository implements RoomInterface {
     }
     return RoomRepository.instance
   }
+  constructor() {
+    this.firebaseRepository = FirebaseRepository.getInstance()
+  }
 
   public async fetchAll() {
+    const user = await this.firebaseRepository.getCurrentUser()
     try {
-      //型定義必要かも？
       const client: any = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
         aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
       )
-
+      const token = await user?.getIdToken()
       this.authorization = getAuthorizationHeader()
 
       const response = await client.rooms.get({
         query: { room_id: 1 },
-        //ヘッダー googletoken
+        token: token,
         headers: { authorization: this.authorization },
       })
       return response.body
