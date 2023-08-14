@@ -1,6 +1,8 @@
-import { auth } from '@/lib/firebase/client'
+import { auth, db } from '@/lib/firebase/client'
 import { AuthProvider, User, signInWithPopup } from 'firebase/auth'
-
+import { FirebaseError } from 'firebase/app'
+import { collection, query, where, onSnapshot, Unsubscribe, QuerySnapshot, DocumentData } from 'firebase/firestore'
+import { Chat } from '@/types/chat'
 
 export class FirebaseRepository {
   private static instance: FirebaseRepository | null = null
@@ -33,4 +35,38 @@ export class FirebaseRepository {
       throw error // エラーを呼び出し元に伝播させる
     }
   }
+
+  public async signOut(): Promise<void> {
+    try {
+      await auth.signOut()
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+        console.log(e)
+        throw e
+      }
+    }
+  }
+
+  public fetchChatMessages(roomId: string, callback: (chats: string[]) => void):(()=>void)|undefined{
+    try {
+      const _query = query(collection(db, 'chatrooms'), where('UID', '==', roomId));
+      const unsubscribe = onSnapshot(_query, (querySnapshot: QuerySnapshot<DocumentData>) => {
+        const chats: string[] = [];
+        // ドキュメントの変更を監視します,差分を取得します
+        querySnapshot.docChanges().forEach((change) => {
+        if (change.type === 'added' || change.type === 'modified') {
+          const data = change.doc.data() as Chat; // ドキュメントデータをChat型として扱います
+          chats.push(data.Message);
+        }
+      });
+        callback(chats); // コールバックで結果を返します
+      });
+      return unsubscribe; // サブスクリプションの解除に使用できる関数を返します
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+        console.log(e);
+        throw e;
+      }
+    }
+  };
 }
