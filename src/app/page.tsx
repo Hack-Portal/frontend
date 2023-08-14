@@ -15,54 +15,6 @@ const Home = async () => {
   const fetchHackathons = new FetchHackathons()
   const hackathons = await fetchHackathons.fetchAllHackathons()
 
-  // const hackathons: HackathonThumb[] = [
-  //   {
-  //     id: 1,
-  //     name: 'ハッカソン1',
-  //     icon: '/image/2.jpg',
-  //     start_date: '2021-10-10',
-  //     expired: '2021-10-10',
-  //     term: 3,
-  //     hackthon_tag: [
-  //       'タグ1',
-  //       'タグ2',
-  //       'タグ3',
-  //       'タグ1',
-  //       'タグ2',
-  //       'タグ3',
-  //       'タグ1',
-  //       'タグ2',
-  //       'タグ3',
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'ハッカソン1',
-  //     icon: '/image/2.jpg',
-  //     expired: '2021-10-10',
-  //     start_date: '2021-10-10',
-  //     term: 3,
-  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'ハッカソン1',
-  //     icon: '/image/2.jpg',
-  //     expired: '2021-10-10',
-  //     start_date: '2021-10-10',
-  //     term: 3,
-  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'ハッカソン1',
-  //     icon: '/image/2.jpg',
-  //     expired: '2021-10-10',
-  //     start_date: '2021-10-10',
-  //     term: 3,
-  //     hackthon_tag: ['タグ1', 'タグ2', 'タグ3'],
-  //   },
-  // ]
   const techStacks: TechStack[] = [
     {
       id: '1',
@@ -203,7 +155,9 @@ const Home = async () => {
           </Suspense>
         </Grid>
         <Grid item xs>
-          <StackList techStacks={techStacks} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <StackList techStacks={techStacks} />
+          </Suspense>
         </Grid>
       </Grid>
     </Suspense>

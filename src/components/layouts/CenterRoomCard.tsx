@@ -1,3 +1,4 @@
+'use client'
 import { Card, CardMedia, Paper } from '@/lib/mui/muiRendering'
 import { ConfirmModalWindow } from '@/app/room/_components/ConfirmModalWindow'
 

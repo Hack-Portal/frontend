@@ -1,3 +1,3 @@
-import { Hackathon } from "@/types/hackathon"
+import { Hackathon } from '@/types/hackathon'
 
-export type PostModal=Pick<Hackathon,"hackathon_id"|"name">
+export type PostModal = Pick<Hackathon, 'hackathon_id' | 'name'>

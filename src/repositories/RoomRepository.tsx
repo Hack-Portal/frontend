@@ -1,53 +1,41 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '@/api/$api'
-import { HackathonInterface } from '@/types/HackathonInterface'
 import { getAuthorizationHeader } from '../utils/headerManager'
+import { RoomInterface } from '@/types/RoomInterface'
+import { FirebaseRepository } from './FirebaseRepository'
+import { UserRepository } from './UserRepository'
 
-export class HackathonRepository implements HackathonInterface {
-  private static instance: HackathonRepository
+export class RoomRepository implements RoomInterface {
+  private static instance: RoomRepository
   private authorization: string | null = null
+  private firebaseRepository: FirebaseRepository
 
-  public static getInstance(): HackathonRepository {
-    if (!HackathonRepository.instance) {
-      HackathonRepository.instance = new HackathonRepository()
+  public static getInstance(): RoomRepository {
+    if (!RoomRepository.instance) {
+      RoomRepository.instance = new RoomRepository()
     }
-    return HackathonRepository.instance
+    return RoomRepository.instance
+  }
+  constructor() {
+    this.firebaseRepository = FirebaseRepository.getInstance()
   }
 
-  /**
-   *  ハッカソン一覧を取得する
-   * @returns  ハッカソン一覧
-   */
   public async fetchAll() {
+    const user = await this.firebaseRepository.getCurrentUser()
     try {
       const client: any = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
         aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
       )
-
+      const token = await user?.getIdToken()
       this.authorization = getAuthorizationHeader()
 
-      const response = await client.hackathons.get({
-        query: { page_size: 10, page_id: 1, expired: false },
+      const response = await client.rooms.get({
+        query: { room_id: 1 },
+        token: token,
         headers: { authorization: this.authorization },
       })
-
-      return response.body
-    } catch (error) {
-      // エラー処理
-      console.error('APIリクエストエラー:', error)
-      throw error
-    }
-  }
-  
-  public async fetchById(hackathonId: string) {
-    try {
-      const client = api(
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
-      )
-
-      const response = await client.hackathons._hackathon_id(hackathonId).get()
       return response.body
     } catch (error) {
       // エラー処理
