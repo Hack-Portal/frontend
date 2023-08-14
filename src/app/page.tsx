@@ -155,7 +155,9 @@ const Home = async () => {
           </Suspense>
         </Grid>
         <Grid item xs>
-          <StackList techStacks={techStacks} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <StackList techStacks={techStacks} />
+          </Suspense>
         </Grid>
       </Grid>
     </Suspense>
