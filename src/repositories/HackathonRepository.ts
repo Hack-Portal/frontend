@@ -2,7 +2,7 @@ import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '@/api/$api'
 import { HackathonInterface } from '@/types/HackathonInterface'
-// import { getAuthorizationHeader } from '../utils/headerManager'
+import { getAuthorizationHeader } from '../utils/headerManager'
 
 export class HackathonRepository implements HackathonInterface {
   private static instance: HackathonRepository
@@ -26,11 +26,11 @@ export class HackathonRepository implements HackathonInterface {
         aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
       )
 
-      // this.authorization = getAuthorizationHeader()
+      this.authorization = getAuthorizationHeader()
 
       const response = await client.hackathons.get({
         query: { page_size: 10, page_id: 1, expired: false },
-        // headers: { authorization: this.authorization },
+        headers: { authorization: this.authorization },
       })
 
       return response.body
