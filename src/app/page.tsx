@@ -14,10 +14,6 @@ const Home = async () => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())
   const fetchHackathons = new FetchHackathons()
   const hackathons = await fetchHackathons.fetchAllHackathons()
-  // const { data, error } = useSWR<HackathonThumb[]>(
-  //   'https://seaffood.com/api/v1/hackathons?page_size=10&page_id=1',
-  //   fetcher,
-  // )
 
   // const hackathons: HackathonThumb[] = [
   //   {

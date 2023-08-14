@@ -21,6 +21,9 @@
         "/accounts": {
             "post": {
                 "description": "Create an account from the requested body",
+                "consumes": [
+                    "multipart/form-data"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -30,18 +33,99 @@
                 "summary": "Create new account",
                 "parameters": [
                     {
-                        "description": "Create Account Request Body",
-                        "name": "CreateAccountRequestBody",
+                        "description": "AccountsID",
+                        "name": "user_id",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateAccountRequestBody"
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "username",
+                        "name": "username",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "type": "file",
+                        "description": "icon image",
+                        "name": "icon",
+                        "in": "formData"
+                    },
+                    {
+                        "description": "explanatory text",
+                        "name": "explanatory_text",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "locate id",
+                        "name": "locate_id",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "password",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "show locate",
+                        "name": "show_locate",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "show rate",
+                        "name": "show_rate",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "tech tags",
+                        "name": "tech_tags",
+                        "in": "body",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    {
+                        "description": "frameworks",
+                        "name": "frameworks",
+                        "in": "body",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "create succsss response",
+                        "description": "create success response",
                         "schema": {
                             "$ref": "#/definitions/api.CreateAccountResponses"
                         }
@@ -542,13 +626,6 @@
                 "summary": "List Hackathon",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "description": "page size",
-                        "name": "expired",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
                         "type": "integer",
                         "description": "page size",
                         "name": "page_size",
@@ -692,6 +769,145 @@
                     },
                     "500": {
                         "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/past_works": {
+            "get": {
+                "description": "list pastWorks",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PastWorks"
+                ],
+                "summary": "List pastWorks",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "page_size",
+                        "name": "page_size",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "page_id",
+                        "name": "page_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/api.CreatePastWorkResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create pastWork",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PastWorks"
+                ],
+                "summary": "Create pastWork",
+                "parameters": [
+                    {
+                        "description": "past work",
+                        "name": "past_work",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/api.CreatePastWorkRequestBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.CreatePastWorkResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/past_works/{opus}": {
+            "get": {
+                "description": "get pastWork",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PastWorks"
+                ],
+                "summary": "Get pastWork",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "PastWorks API wildcard",
+                        "name": "opus",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.CreatePastWorkResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "$ref": "#/definitions/api.ErrorResponse"
                         }
@@ -1116,54 +1332,6 @@
                 }
             }
         },
-        "api.CreateAccountRequestBody": {
-            "type": "object",
-            "required": [
-                "locate_id",
-                "show_locate",
-                "show_rate",
-                "user_id",
-                "username"
-            ],
-            "properties": {
-                "explanatory_text": {
-                    "type": "string"
-                },
-                "frameworks": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "icon": {
-                    "type": "string"
-                },
-                "locate_id": {
-                    "type": "integer"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "show_locate": {
-                    "type": "boolean"
-                },
-                "show_rate": {
-                    "type": "boolean"
-                },
-                "tech_tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "user_id": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
         "api.CreateAccountResponses": {
             "type": "object",
             "properties": {
@@ -1256,6 +1424,79 @@
                 },
                 "term": {
                     "type": "integer"
+                }
+            }
+        },
+        "api.CreatePastWorkRequestBody": {
+            "type": "object",
+            "properties": {
+                "account_past_works": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "explanatory_text": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "past_work_frameworks": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "past_work_tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "thumbnail_image": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "api.CreatePastWorkResponse": {
+            "type": "object",
+            "properties": {
+                "account_past_works": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/db.AccountPastWorks"
+                    }
+                },
+                "explanatory_text": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "opus": {
+                    "type": "integer"
+                },
+                "past_work_frameworks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/db.PastWorkFrameworks"
+                    }
+                },
+                "past_work_tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/db.PastWorkTags"
+                    }
+                },
+                "thumbnail_image": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
                 }
             }
         },
@@ -1559,6 +1800,17 @@
                 }
             }
         },
+        "db.AccountPastWorks": {
+            "type": "object",
+            "properties": {
+                "opus": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
         "db.CreateRoomTxResult": {
             "type": "object",
             "properties": {
@@ -1716,6 +1968,28 @@
                 },
                 "user_id": {
                     "type": "string"
+                }
+            }
+        },
+        "db.PastWorkFrameworks": {
+            "type": "object",
+            "properties": {
+                "framework_id": {
+                    "type": "integer"
+                },
+                "opus": {
+                    "type": "integer"
+                }
+            }
+        },
+        "db.PastWorkTags": {
+            "type": "object",
+            "properties": {
+                "opus": {
+                    "type": "integer"
+                },
+                "tech_tag_id": {
+                    "type": "integer"
                 }
             }
         },

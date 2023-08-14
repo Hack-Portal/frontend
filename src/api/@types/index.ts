@@ -60,6 +60,25 @@ export type Api_CreateHackathonRequestBody = {
   term?: number | undefined
 }
 
+export type Api_CreatePastWorkRequestBody = {
+  account_past_works?: string[] | undefined
+  explanatory_text?: string | undefined
+  name?: string | undefined
+  past_work_frameworks?: number[] | undefined
+  past_work_tags?: number[] | undefined
+  thumbnail_image?: number[] | undefined
+}
+
+export type Api_CreatePastWorkResponse = {
+  account_past_works?: Db_AccountPastWorks[] | undefined
+  explanatory_text?: string | undefined
+  name?: string | undefined
+  opus?: number | undefined
+  past_work_frameworks?: Db_PastWorkFrameworks[] | undefined
+  past_work_tags?: Db_PastWorkTags[] | undefined
+  thumbnail_image?: number[] | undefined
+}
+
 export type Api_CreateRateRequestBody = {
   rate?: number | undefined
 }
@@ -161,8 +180,13 @@ export type Api_hackathonInfo = {
   link?: string | undefined
   name?: string | undefined
   start_date?: string | undefined
-  tags?: Db_StatusTags[] | undefined
+  status_tags?: Db_StatusTags[] | undefined
   term?: number | undefined
+}
+
+export type Db_AccountPastWorks = {
+  opus?: number | undefined
+  user_id?: string | undefined
 }
 
 export type Db_CreateRoomTxResult = {
@@ -221,6 +245,16 @@ export type Db_NowRoomAccounts = {
   icon?: string | undefined
   is_owner?: boolean | undefined
   user_id?: string | undefined
+}
+
+export type Db_PastWorkFrameworks = {
+  framework_id?: number | undefined
+  opus?: number | undefined
+}
+
+export type Db_PastWorkTags = {
+  opus?: number | undefined
+  tech_tag_id?: number | undefined
 }
 
 export type Db_RoomFramework = {
