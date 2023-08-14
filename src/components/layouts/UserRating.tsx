@@ -1,13 +1,9 @@
 import React from 'react'
 import { Grid, Avatar, Typography } from '@/lib/mui/muiRendering'
-import { UserRatingInfo } from '../types/userRating'
 
-type Props = {
-  users: UserRatingInfo[]
-}
+//Api_RateResponses
 
-const UserRating = (props: Props) => {
-  const { users } = props
+const UserRating = () => {
   return (
     <Grid container direction={'column'} alignItems={'center'}>
       <Typography>レーティング</Typography>
