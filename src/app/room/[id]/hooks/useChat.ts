@@ -5,13 +5,14 @@ export const useChatMessage = () => {
   const [chatMessages, setChatMessages] = useState<string[] | null>(null)
   const firebaseRepository = FirebaseRepository.getInstance()
   const roomId = 'room1'
+  const { fetchChatMessages, addChatMessage } = firebaseRepository
 
   useEffect(() => {
-    const { fetchChatMessages } = firebaseRepository
-
     // チャットメッセージの変更を監視
     const unsubscribe = fetchChatMessages(roomId, (chats) => {
-      setChatMessages((prevState)=>prevState?[...prevState,...chats]:chats)
+      setChatMessages((prevState) =>
+        prevState ? [...prevState, ...chats] : chats,
+      )
     })
 
     // コンポーネントのアンマウント時に監視を解除
@@ -21,9 +22,11 @@ export const useChatMessage = () => {
   }, [roomId])
 
   const handleSendChatMessage = async (message: string) => {
-    setChatMessages((prevState) =>
-      prevState ? [...prevState, message] : [message],
-    )
+    // setChatMessages((prevState) =>
+    //   prevState ? [...prevState, message] : [message],
+    // )
+    const result = await addChatMessage(roomId, message)
+    return result
   }
 
   return { chatMessages, handleSendChatMessage }

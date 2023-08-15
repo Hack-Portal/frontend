@@ -14,6 +14,7 @@ export type Methods = {
     status: 200
     /** success response */
     resBody: Types.Api_HackathonResponses
+    reqFormat: FormData
     /** create hackathon Request Body */
     reqBody: Types.Api_CreateHackathonRequestBody
   }
