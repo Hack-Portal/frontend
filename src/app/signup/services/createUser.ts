@@ -18,6 +18,9 @@ export class CreateUser {
 
   public create: SubmitHandler<SignUpFormData> = async (formData) => {
     const user = await this.firebaseRepository.getCurrentUser()
+    
+    
+    
     const uuid = uuidv4()
 
     if (!user) {
@@ -36,6 +39,7 @@ export class CreateUser {
     }
     try {
       const user = await this.userRepository.create(body, token)
+      
 
       return user
     } catch (error) {

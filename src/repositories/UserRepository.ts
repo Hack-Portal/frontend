@@ -43,7 +43,7 @@ export class UserRepository implements UserInterface {
    */
   public async fetchById(id: string) {
     try {
-      const client= api(
+      const client = api(
         aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
       )
 
@@ -60,12 +60,13 @@ export class UserRepository implements UserInterface {
    * @returns ユーザー
    * @throws Error
    */
-  public async create(body: Api_CreateAccountRequestBody,token:string) {
+  public async create(body: Api_CreateAccountRequestBody, token: string) {
     try {
       const client = api(
         aspida(axios, {
           baseURL: process.env.NEXT_PUBLIC_API_URL,
-          headers: { 'Content-Type': 'application/json',DBAuthorization:token}
+          // headers: { 'Content-Type': 'application/json',"DBAuthorization":token}
+          headers: { 'Content-Type': 'application/json', authorization: token },
         }),
       )
 
