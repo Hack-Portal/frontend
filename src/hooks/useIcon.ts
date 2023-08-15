@@ -10,7 +10,7 @@ export const useIcon = () => {
         const preview = URL.createObjectURL(file);
         setIcon(file);
         setPreview(preview);
-        console.log(preview);
+        
     }
 
     return { handleSetIcon, icon,preview }

@@ -52,7 +52,7 @@ export const SignUpFormContainer = (props: Props) => {
       ) : (
         <SignUpForm
           control={control}
-          handleSubmit={handleSubmit((data)=>{UserInstance.create(data) ? router.push('/user'):null})}
+          handleSubmit={handleSubmit(async(data)=>{await UserInstance.create(data) ? router.push('/user'):router.push('/user')})}
           handleSetIcon={handleSetIcon}
           preview={preview}
           locates={locates}
