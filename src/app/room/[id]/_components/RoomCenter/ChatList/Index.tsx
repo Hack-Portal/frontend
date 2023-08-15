@@ -4,11 +4,11 @@ import { MyChatArea } from './MyChatArea'
 import { OtherChatArea } from './OtherChatArea'
 
 type Props = {
-  chatMessages: string[]|null
+  chatMessages: string[] | null
 }
 
 export const ChatList = (props: Props) => {
-  const {chatMessages} = props
+  const { chatMessages } = props
   return (
     <Grid
       container
@@ -30,10 +30,9 @@ export const ChatList = (props: Props) => {
       }}
       wrap="nowrap"
     >
-      {chatMessages?.map((chatMessage) => (
-        <MyChatArea chatMessage={chatMessage} />
+      {chatMessages?.map((chatMessage, index) => (
+        <MyChatArea chatMessage={chatMessage} key={index + 1} />
       ))}
-      
     </Grid>
   )
 }
