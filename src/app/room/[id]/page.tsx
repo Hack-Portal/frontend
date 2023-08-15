@@ -1,5 +1,3 @@
-'use client'
-
 import { Header } from '@/components/layouts/Header'
 import React from 'react'
 import { Box, Grid } from '@/lib/mui/muiRendering'
@@ -12,7 +10,6 @@ import { RoomRight } from './_components/RoomRight/Index'
 type Props = {}
 
 const RoomDetail = (props: Props) => {
-  const { tab, handleSetTab } = useTab()
 
   return (
     <Box

@@ -3,11 +3,12 @@ import { Avatar, Box, Grid, Paper, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import Image from 'next/image'
 
-interface MyChatAreaProps {
-  text: string
+type Props = {
+  chatMessage: string
 }
 
-export const MyChatArea: React.FC<MyChatAreaProps> = ({ text }) => {
+export const MyChatArea= (props:Props) => {
+  const {chatMessage} = props
   return (
     <Grid
       container
@@ -27,7 +28,7 @@ export const MyChatArea: React.FC<MyChatAreaProps> = ({ text }) => {
           wordBreak: 'break-word',
         }}
       >
-        <Typography color={'#fff'}>{text}</Typography>
+        <Typography color={'#fff'}>{chatMessage}</Typography>
       </Box>
       <Avatar src={'/image/user1.png'} variant="rounded" />
     </Grid>

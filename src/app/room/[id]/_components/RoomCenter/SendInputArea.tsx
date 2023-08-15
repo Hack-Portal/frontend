@@ -1,24 +1,16 @@
-import { IconButton,Box,Textarea } from '@/lib/mui/muiRendering'
-import React, { useState } from 'react'
+import { IconButton,Box,Textarea, Avatar, InputLabel, TextField } from '@/lib/mui/muiRendering'
+import React, { FormEventHandler, useState } from 'react'
 import SendIcon from '@mui/icons-material/Send'
+import { Control, Controller } from 'react-hook-form'
+import { ChatFormData } from '../../types/ChatFormData'
 
-interface SendInputAreaProps {
-  onSendMessage: (message: string) => void
+type Props ={
+  control:Control<ChatFormData, any>
+  handleSubmit: FormEventHandler<HTMLFormElement>
 }
 
-export const SendInputArea: React.FC<SendInputAreaProps> = ({
-  onSendMessage,
-}) => {
-  const [message, setMessage] = useState('')
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(event.target.value)
-  }
-
-  const handleSend = () => {
-    onSendMessage(message)
-    setMessage('')
-  }
+export const SendInputArea= (props:Props) => {
+  const {handleSubmit,control} = props
 
   return (
     <Box
@@ -31,21 +23,28 @@ export const SendInputArea: React.FC<SendInputAreaProps> = ({
         background: '#fff',
         justifyContent: 'center',
       }}
+      component={'form'}
+      onSubmit={handleSubmit}
     >
-      <Textarea
-        value={message}
-        onChange={handleInputChange}
-        placeholder="Type in here…"
-        sx={{
-          width: '90%',
-          fontSize: '1rem',
-        }}
-      />
+        <Controller
+          name="message"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+              <TextField
+                {...field}
+                placeholder="Type in here…"
+                sx={{
+                  width: '90%',
+                  fontSize: '1rem',
+                }}
+              />
+          )}
+        />
       <IconButton
-        type="button"
+        type="submit"
         sx={{ p: '10px' }}
         aria-label="search"
-        onClick={handleSend}
       >
         <SendIcon color="primary" />
       </IconButton>

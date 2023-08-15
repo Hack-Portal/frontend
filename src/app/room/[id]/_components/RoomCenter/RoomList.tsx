@@ -5,17 +5,20 @@ import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
 import { CardMedia } from '@/lib/mui/muiRendering'
 import { RoomThumb } from '@/app/room/types/room'
 import { RoomRecordRightBox } from '@/app/room/_components/RoomRecordRightBox'
+import { Db_ListRoomTxResult } from '@/api/@types'
+import { FetchRooms } from '@/app/room/_services/fetchRooms'
+import { useRooms } from '../../hooks/useRooms'
 
-type Props = {
-  roomList: RoomThumb[]
-}
-export const RoomList = (props: Props) => {
-  const { roomList } = props
+
+
+export const RoomList = () => {
+  const { rooms} =useRooms()
+
   return (
     <>
       <CenterArea>
-        {roomList?.map((room) => (
-          <CenterRoomCard key={room.room_id} link={`/room/${room.room_id}`}>
+        {rooms?.map((room) => (
+          <CenterRoomCard key={room.rooms?.room_id} link={`/room/${room.rooms?.room_id}`}>
             <CardMedia
               component="img"
               sx={{
@@ -23,16 +26,16 @@ export const RoomList = (props: Props) => {
                 height: 218,
                 objectFit: 'cover',
               }}
-              image={room.hackathon.icon}
-              alt={room.hackathon.name}
+              image={room.hackathon?.icon}
+              alt={room.hackathon?.hackathon_name}
             />
             <RoomRecordRightBox
-              hackathonName={room.hackathon.name}
-              title={room.title}
-              member_limit={room.member_limit}
-              now_member={room.now_member}
-              techs={room.techs}
-              frameworks={room.frameworks}
+              hackathonName={room.hackathon?.hackathon_name!}
+              title={room.rooms?.title!}
+              member_limit={room.rooms?.member_limit!}
+              now_member={room.now_member!}
+              techs={room.members_tech_tags!}
+              frameworks={room.members_frameworks!}
             />
           </CenterRoomCard>
         ))}

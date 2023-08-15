@@ -6,7 +6,7 @@ export type Methods = {
   get: {
     status: 200
     /** success response */
-    resBody: Types.Db_ListRoomTxResult[][]
+    resBody: Types.Db_ListRoomTxResult[]
   }
 
   /** Create Rooms */

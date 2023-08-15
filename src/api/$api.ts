@@ -157,15 +157,15 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       },
       /**
        * Create an account from the requested body
-       * @param option.body - Create Account Request Body
-       * @returns create succsss response
+       * @param option.body - create account Request Body
+       * @returns create success response
        */
       post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
         fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option, 'FormData').json(),
       /**
        * Create an account from the requested body
-       * @param option.body - Create Account Request Body
-       * @returns create succsss response
+       * @param option.body - create account Request Body
+       * @returns create success response
        */
       $post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
         fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option, 'FormData').json().then(r => r.body),
@@ -272,14 +272,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns success response
        */
       post: (option: { body: Methods7['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH5, POST, option).json(),
+        fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH5, POST, option, 'FormData').json(),
       /**
        * Register a hackathon from given parameters
        * @param option.body - create hackathon Request Body
        * @returns success response
        */
       $post: (option: { body: Methods7['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH5, POST, option).json().then(r => r.body),
+        fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH5, POST, option, 'FormData').json().then(r => r.body),
       $path: () => `${prefix}${PATH5}`,
     },
     locates: {

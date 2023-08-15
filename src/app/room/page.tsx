@@ -1,3 +1,4 @@
+// "use client"
 import { Header } from '@/components/layouts/Header'
 import { Avatar, Box, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { PostModalWindow } from './_components/PostModalWindow'
@@ -9,11 +10,10 @@ import { Suspense } from 'react'
 import { SelectTech } from '../signup/types/tech'
 import { FetchRooms } from './_services/fetchRooms'
 import { RoomList } from './[id]/_components/RoomCenter/RoomList'
+import { CreateUser } from '../signup/services/createUser'
 
-const Room = async () => {
-  const fetchRooms = new FetchRooms()
-  const rooms = await fetchRooms.fetchAllRooms()
-
+const Room = () => {
+  
   const techs: SelectTech[] = [
     {
       id: 1,
@@ -191,7 +191,7 @@ const Room = async () => {
             <UserRating users={userRatingInfo} />
           </Grid>
           <Grid item>
-            <RoomList roomList={rooms} />
+            <RoomList />
           </Grid>
           <Grid item xs>
             <StackList techStacks={techStacks} />
