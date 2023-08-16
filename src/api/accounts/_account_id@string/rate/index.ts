@@ -11,15 +11,15 @@ export type Methods = {
 
     status: 200
     /** success response */
-    resBody: Types.Api_RateResponses[]
+    resBody: Types.Domain_AccountRateResponse[]
   }
 
   /** Create Rate for User */
   post: {
     status: 200
     /** success response */
-    resBody: Types.Api_RateResponses
+    resBody: Types.Controller_SuccessResponse
     /** Create Rate Request Body */
-    reqBody: Types.Api_CreateRateRequestBody
+    reqBody: Types.Domain_CreateRateRequestBody
   }
 }

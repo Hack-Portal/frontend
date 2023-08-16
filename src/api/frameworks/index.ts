@@ -6,6 +6,6 @@ export type Methods = {
   get: {
     status: 200
     /** success response */
-    resBody: Types.Db_Frameworks[]
+    resBody: Types.Repository_Framework[]
   }
 }

@@ -140,15 +140,14 @@ const Ranking = () => {
         <Grid item xs>
           <UserRating users={userRatingInfo} />
         </Grid>
-        <Grid item>
+        <Grid item sx={{p:3,width:"70vw"}}>
           <CenterArea>
             <Suspense fallback={<div>loading...</div>}>
               <Card
                 sx={{
                   minHeight: 250,
                   maxHeight: 250,
-                  maxWidth: 800,
-                  minWidth: 800,
+                  width: '100%',
                   display: 'flex',
                   flexDirection: 'row',
                   alignItems: 'center',

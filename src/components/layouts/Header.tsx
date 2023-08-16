@@ -35,7 +35,7 @@ export const Header = () => {
     <Box
       sx={{
         width: '100%',
-        height: '75px ',
+        height: '56px ',
         px: 1,
       }}
     >

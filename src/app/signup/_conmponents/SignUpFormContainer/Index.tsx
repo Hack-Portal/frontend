@@ -16,11 +16,11 @@ import { SelectLogin } from './SelectLogin'
 import { useSelectLogin } from '../../hooks/useSelectLogin'
 import { CreateUser } from '../../services/createUser'
 import { SignUpFormData } from '../../types/formData'
-import { Db_Locates } from '@/api/@types'
+import { Repository_Locate } from '@/api/@types'
 import { useRouter } from 'next/navigation'
 
 type Props = {
-  locates: Db_Locates[]
+  locates: Repository_Locate[]
 }
 
 export const SignUpFormContainer = (props: Props) => {
@@ -31,7 +31,6 @@ export const SignUpFormContainer = (props: Props) => {
   const { icon, handleSetIcon, preview } = useIcon()
   const UserInstance = new CreateUser()
   const router = useRouter()
-  
 
   return (
     <Grid
@@ -52,7 +51,11 @@ export const SignUpFormContainer = (props: Props) => {
       ) : (
         <SignUpForm
           control={control}
-          handleSubmit={handleSubmit(async(data)=>{await UserInstance.create(data) ? router.push('/user'):router.push('/user')})}
+          handleSubmit={handleSubmit(async (data) => {
+            ;(await UserInstance.create(data))
+              ? router.push('/user')
+              : router.push('/user')
+          })}
           handleSetIcon={handleSetIcon}
           preview={preview}
           locates={locates}

@@ -1,5 +1,5 @@
-import { Api_hackathonInfo } from '@/api/@types'
+import {  Domain_HackathonResponses } from '@/api/@types'
 export type MiniCard = Pick<
-  Api_hackathonInfo,
+  Domain_HackathonResponses,
   'hackathon_id' | 'expired' | 'start_date' | 'term' | 'link'
 >

@@ -135,18 +135,18 @@ const Home = async () => {
   return (
     <Suspense fallback={'...loading'}>
       <Header />
-      <Grid container direction="row">
+      <Grid container direction="row" justifyContent={"center"}>
         <Grid item xs>
           <UserRating users={userRatingInfo} />
         </Grid>
-        <Grid item>
+        <Grid item sx={{p:3,width:"70vw"}}>
           <Link href="">
             <Image
               src="/image/mainbanner.svg"
               alt="me"
               width={800}
               height={150}
-              style={{ marginBottom: 16 }}
+              style={{ marginBottom: 16,width:"100%",backgroundColor:"#2A98FD" }}
             />
           </Link>
 
