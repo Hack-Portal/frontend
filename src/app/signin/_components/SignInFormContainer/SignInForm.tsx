@@ -1,4 +1,8 @@
-import { Repository_Locate, Db_TechTags, Db_Frameworks } from '@/api/@types'
+import {
+  Repository_Locate,
+  Repository_TechTag,
+  Repository_Framework,
+} from '@/api/@types'
 import {
   Avatar,
   Box,
@@ -32,8 +36,8 @@ type Props = {
   handleSetIcon: (file: Blob | null) => void
   preview: string | null
   locates: Repository_Locate[]
-  techTags: Db_TechTags[]
-  frameworks: Db_Frameworks[]
+  techTags: Repository_TechTag[]
+  frameworks: Repository_Framework[]
 }
 
 export const SignInForm = (props: Props) => {
