@@ -21,6 +21,7 @@ import {
 import { SignUpFormData } from '../types/formData'
 import { ChangeEvent, FormEventHandler, ReactNode } from 'react'
 import { Db_Locates } from '@/api/@types'
+import { Typography } from '@mui/joy'
 
 type Props = {
   control: Control<SignUpFormData, any>
@@ -37,6 +38,7 @@ export const SignUpForm = (props: Props) => {
   return (
     <>
       <Box component="form" onSubmit={handleSubmit}>
+        <Typography>アイコン選択</Typography>
         <Controller
           name="icon"
           control={control}
@@ -55,6 +57,7 @@ export const SignUpForm = (props: Props) => {
             </InputLabel>
           )}
         />
+        <Typography>名前</Typography>
         <Controller
           name="username"
           control={control}
@@ -65,7 +68,6 @@ export const SignUpForm = (props: Props) => {
           render={({ field, formState: { errors } }) => (
             <TextField
               {...field}
-              label="名前"
               fullWidth
               placeholder="名前を入力してください"
               error={errors.username ? true : false}
@@ -73,6 +75,8 @@ export const SignUpForm = (props: Props) => {
             />
           )}
         />
+        <Typography>Email</Typography>
+
         <Controller
           name="email"
           control={control}
@@ -83,7 +87,6 @@ export const SignUpForm = (props: Props) => {
           render={({ field, formState: { errors } }) => (
             <TextField
               {...field}
-              label="Eメール"
               fullWidth
               placeholder="名前を入力してください"
               error={errors.email ? true : false}
@@ -91,6 +94,8 @@ export const SignUpForm = (props: Props) => {
             />
           )}
         />
+        <Typography>パスワード</Typography>
+
         <Controller
           name="password"
           control={control}
@@ -101,7 +106,6 @@ export const SignUpForm = (props: Props) => {
           render={({ field, formState: { errors } }) => (
             <TextField
               {...field}
-              label="パスワード"
               fullWidth
               placeholder="名前を入力してください"
               error={errors.password ? true : false}
@@ -110,6 +114,8 @@ export const SignUpForm = (props: Props) => {
             />
           )}
         />
+        <Typography>居住地</Typography>
+
         <Controller
           name="locate_id"
           control={control}
@@ -123,7 +129,6 @@ export const SignUpForm = (props: Props) => {
               defaultValue={0}
               render={({ field, formState: { errors } }) => (
                 <FormControl fullWidth error={errors.locate_id ? true : false}>
-                  <InputLabel id="select-label">居住地</InputLabel>
                   <Controller
                     name="locate_id"
                     control={control}

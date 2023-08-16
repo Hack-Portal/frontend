@@ -31,7 +31,6 @@ export const SignUpFormContainer = (props: Props) => {
   const { icon, handleSetIcon, preview } = useIcon()
   const UserInstance = new CreateUser()
   const router = useRouter()
-  
 
   return (
     <Grid
@@ -43,7 +42,9 @@ export const SignUpFormContainer = (props: Props) => {
         height: '100%',
       }}
     >
-      <Typography variant={'h4'}>新規登録</Typography>
+      <Typography variant={'h4'} sx={{ mt: 2, mb: 2 }}>
+        新規登録
+      </Typography>
       {selected === null ? (
         <SelectLogin
           handleSetSelected={handleSetSelected}
@@ -52,7 +53,11 @@ export const SignUpFormContainer = (props: Props) => {
       ) : (
         <SignUpForm
           control={control}
-          handleSubmit={handleSubmit(async(data)=>{await UserInstance.create(data) ? router.push('/user'):router.push('/user')})}
+          handleSubmit={handleSubmit(async (data) => {
+            ;(await UserInstance.create(data))
+              ? router.push('/user')
+              : router.push('/user')
+          })}
           handleSetIcon={handleSetIcon}
           preview={preview}
           locates={locates}

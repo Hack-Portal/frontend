@@ -1,23 +1,102 @@
-import { Button, Typography,Grid } from '@/lib/mui/muiRendering'
+import {
+  Button,
+  Typography,
+  Grid,
+  Link,
+  FormControl,
+  InputLabel,
+  Input,
+  TextField,
+} from '@/lib/mui/muiRendering'
 import { AuthProvider } from 'firebase/auth'
 import React from 'react'
+import { useForm, Controller } from 'react-hook-form'
 import { LoginType } from '../../types/loginType'
+import { Box } from '@mui/joy'
 
 type Props = {
-    handleOAuthSignIn: () => void
-    handleSetSelected: (selected:LoginType) => void
+  handleOAuthSignIn: () => void
+  handleSetSelected: (selected: LoginType) => void
 }
-export const SelectLogin = (props:Props) => {
-    const {handleSetSelected,handleOAuthSignIn} = props
+
+export const SelectLogin = (props: Props) => {
+  const { handleSetSelected, handleOAuthSignIn } = props
+  const { control, handleSubmit } = useForm()
+
+  const onSubmit = (data: any) => {
+    console.log(data)
+    // ここでログイン処理などを行う
+  }
+
   return (
-    <Grid>
-      <Button onClick={handleOAuthSignIn}>
-        Googleで登録
+    <Box
+      sx={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <Button sx={{ width: 230, mt: 3 }} onClick={handleOAuthSignIn}>
+        <img
+          src="/image/google_sign.png"
+          alt="google"
+          style={{ width: '100%' }}
+        />
       </Button>
-      <Typography>または</Typography>
-      <Button variant="contained" onClick={()=>handleSetSelected("email")}>
-        メールアドレスで登録
-      </Button>
-    </Grid>
+      <Typography sx={{ fontSize: 16, mt: 2 }}>または</Typography>
+      <Box sx={{ textAlign: 'center' }}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormControl sx={{ mt: 2, width: '70%' }}>
+            <Typography sx={{ textAlign: 'left' }}>Email</Typography>
+            <Controller
+              name="email"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  id="email"
+                  placeholder="メールアドレスを入力してください"
+                />
+              )}
+            />
+          </FormControl>
+
+          <FormControl sx={{ mt: 2, width: '70%' }}>
+            <Typography sx={{ textAlign: 'left' }}>パスワード</Typography>
+            <Controller
+              name="password"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  id="password-input"
+                  type="password"
+                  placeholder="パスワードを入力してください"
+                />
+              )}
+            />
+          </FormControl>
+
+          <Button
+            sx={{ mt: 3, width: '70%' }}
+            variant="contained"
+            type="submit"
+          >
+            メールアドレスで登録
+          </Button>
+        </form>
+
+        <Typography sx={{ fontSize: 16, mt: 4 }}>
+          アカウントをお持ちの方は
+        </Typography>
+        <Link href={'/signin'}>
+          <Typography sx={{ fontSize: 16, mt: 1 }}>ログイン</Typography>
+        </Link>
+      </Box>
+    </Box>
   )
 }

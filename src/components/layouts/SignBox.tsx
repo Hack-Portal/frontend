@@ -1,4 +1,4 @@
-import { CardContent, Grid, Card, CardMedia } from '@/lib/mui/muiRendering'
+import { CardContent, Grid, Card, CardMedia, Box } from '@/lib/mui/muiRendering'
 import { ReactNode } from 'react'
 
 type Props = {
@@ -30,11 +30,12 @@ export const SignBox = (props: Props) => {
         />
         <CardContent
           sx={{
-            width: '60%',
+            mt: 5,
+            width: '100%',
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'flex-start',
+            alignItems: 'center',
           }}
         >
           {children}
