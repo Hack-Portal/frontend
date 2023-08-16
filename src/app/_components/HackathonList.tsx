@@ -7,11 +7,15 @@ import {
   Chip,
   Typography,
   BookmarkBorderOutlinedIcon,
+  SensorDoorOutlinedIcon,
+  FlagOutlinedIcon,
+  HourglassEmptyOutlinedIcon,
 } from '@/lib/mui/muiRendering'
 
 import { HackathonThumb } from '../_types/hackathon'
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
+import { HacakathonColumn } from './HacakathonColumn'
 
 type Props = {
   hackathons: HackathonThumb[]
@@ -19,12 +23,25 @@ type Props = {
 
 export const HackathonList = (props: Props) => {
   const { hackathons } = props
+  const COLUMN = {
+    expired: {
+      label: '募集締め切り',
+    },
+    start_date: {
+      label: 'キックオフ',
+    },
+    term: {
+      label: '期間',
+    },
+  }
+
   return (
     <CenterArea>
       {hackathons.map((hackathon) => (
         <CenterRecordCard
           href={`/${hackathon.hackathon_id}`}
           key={hackathon.hackathon_id}
+          
         >
           <CardMedia
             component={'img'}
@@ -32,7 +49,6 @@ export const HackathonList = (props: Props) => {
             title="Your title"
             image={hackathon.icon}
           />
-
           <CardContent
             sx={{
               display: 'flex',
@@ -40,7 +56,8 @@ export const HackathonList = (props: Props) => {
               pl: 4,
               minHeight: '218px',
               minWidth: '500px',
-              width: '500px',
+              width: '100%',
+              justifyContent: 'space-between',
             }}
           >
             <Typography
@@ -49,54 +66,58 @@ export const HackathonList = (props: Props) => {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
-                fontSize: '23px',
+                fontSize: '1.6rem',
+                fontWeight: 'bold',
                 pb: 2,
               }}
               variant="h3"
             >
               {hackathon.name}
             </Typography>
-
-            <Grid
-              container
-              direction={'row'}
-              sx={{ display: 'flex', maxWidth: 300 }}
-              wrap="nowrap"
-            >
-              <Grid container direction={'column'}>
-                <Typography sx={{ fontSize: '14px' }} color={'#999'}>
-                  募集締め切り
-                </Typography>
-                <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                  {hackathon.expired}
-                </Typography>
-                <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
-                  キックオフ
-                </Typography>
-                <Typography sx={{ mt: 0.5, fontSize: '16px' }}>
-                  {hackathon.start_date}
-                </Typography>
-                <Typography sx={{ mt: 0.5, fontSize: '14px' }} color={'#999'}>
-                  期間
-                </Typography>
-                <Typography sx={{ fontSize: '16px' }}>
-                  {hackathon.term}日間
-                </Typography>
-              </Grid>
-            </Grid>
-          </CardContent>
-
-          <CardContent sx={{ width: '500px' }}>
-            <CardActions
-              sx={{ position: 'absolute', right: 20, top: 20 }}
-              disableSpacing
-            >
-              <IconButton aria-label="add to favorites">
-                <BookmarkBorderOutlinedIcon
-                  sx={{ height: '30px', width: '30px' }}
-                />
-              </IconButton>
-            </CardActions>
+                <Grid
+                  container
+                  direction={'row'}
+                  flexWrap={'nowrap'}
+                  alignItems={'center'}
+                  gap={3}
+                  width={"100%"}
+                >
+                  <HacakathonColumn
+                    title={COLUMN.expired.label}
+                    value={hackathon.expired?.substring(0, 10)}
+                    icon={
+                      <SensorDoorOutlinedIcon
+                        sx={{ color: '#aaa', width: '30px', height: '30px' }}
+                      />
+                    }
+                  />
+                  <HacakathonColumn
+                    title={COLUMN.start_date.label}
+                    value={hackathon.start_date?.substring(0, 10)}
+                    icon={
+                      <FlagOutlinedIcon
+                        sx={{
+                          color: '#aaa',
+                          width: '30px',
+                          height: '30px',
+                        }}
+                      />
+                    }
+                  />
+                  <HacakathonColumn
+                    title={COLUMN.term.label}
+                    value={`${hackathon.term}日間`}
+                    icon={
+                      <HourglassEmptyOutlinedIcon
+                        sx={{
+                          color: '#aaa',
+                          width: '30px',
+                          height: '30px',
+                        }}
+                      />
+                    }
+                  />
+                </Grid>
             <Grid
               container
               sx={{
@@ -104,7 +125,10 @@ export const HackathonList = (props: Props) => {
                 flexDirection: 'row',
                 justifyContent: 'flex-start',
                 alignItems: 'center',
-                transform: 'translate(-150px, 40px)',
+                // width: '300px',
+                flexWrap: 'wrap',
+                pt: 2,
+                gap: 1,
               }}
             >
               {hackathon?.status_tags?.map((tag, id) => (
@@ -118,6 +142,19 @@ export const HackathonList = (props: Props) => {
               ))}
             </Grid>
           </CardContent>
+
+          {/* <CardContent sx={{ width: '500px' }}> */}
+          {/* <CardActions
+              sx={{ position: 'absolute', right: 20, top: 20 }}
+              disableSpacing
+            >
+              <IconButton aria-label="add to favorites">
+                <BookmarkBorderOutlinedIcon
+                  sx={{ height: '30px', width: '30px' }}
+                />
+              </IconButton>
+            </CardActions> */}
+          {/* </CardContent> */}
         </CenterRecordCard>
       ))}
     </CenterArea>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Avatar, Typography } from '@/lib/mui/muiRendering'
+import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
 import { UserRatingInfo } from '../types/userRating'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 const UserRating = (props: Props) => {
   const { users } = props
   return (
-    <Grid container direction={'column'} alignItems={'center'}>
+    <Card sx={{display:"flex",flexDirection:"column",alignItems:"center",pt:3,width:"15vw"}}  >
       <Typography>レーティング</Typography>
 
       {users.map((user, index) => (
@@ -18,6 +18,7 @@ const UserRating = (props: Props) => {
           key={user.id}
           sx={{
             mt: 3,
+            mb:2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -43,7 +44,7 @@ const UserRating = (props: Props) => {
           <Typography color={'#999'}>rating: {user.rating}</Typography>
         </Grid>
       ))}
-    </Grid>
+    </Card>
   )
 }
 

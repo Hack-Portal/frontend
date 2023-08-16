@@ -11,12 +11,12 @@ import {
   UseFormHandleSubmit,
   useForm,
 } from 'react-hook-form'
-import { Db_Frameworks, Db_Locates, Db_TechTags } from '@/api/@types'
+import { Db_Frameworks, Repository_Locate, Db_TechTags } from '@/api/@types'
 import { useIcon } from '@/hooks/useIcon'
 import { useSignIn } from '../../../signup/hooks/useSignIn'
 
 type Props = {
-  locates: Db_Locates[]
+  locates: Repository_Locate[]
   techTags: Db_TechTags[]
   frameworks: Db_Frameworks[]
 }

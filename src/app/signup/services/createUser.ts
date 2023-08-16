@@ -1,4 +1,4 @@
-import { Api_CreateAccountRequestBody } from '@/api/@types'
+import { Domain_CreateAccountRequest } from '@/api/@types'
 import { UserRepository } from '@/repositories/UserRepository'
 import { FieldValues, SubmitHandler } from 'react-hook-form'
 import { SignUpFormData } from '../types/formData'
@@ -18,9 +18,7 @@ export class CreateUser {
 
   public create: SubmitHandler<SignUpFormData> = async (formData) => {
     const user = await this.firebaseRepository.getCurrentUser()
-    
-    
-    
+
     const uuid = uuidv4()
 
     if (!user) {
@@ -28,10 +26,9 @@ export class CreateUser {
     }
     const token = await user?.getIdToken()
 
-    const body: Api_CreateAccountRequestBody = {
+    const body: Domain_CreateAccountRequest = {
       icon: formData.icon,
       locate_id: formData.locate_id,
-      password: formData.password,
       username: formData.username,
       show_locate: false,
       show_rate: false,
@@ -39,7 +36,6 @@ export class CreateUser {
     }
     try {
       const user = await this.userRepository.create(body, token)
-      
 
       return user
     } catch (error) {

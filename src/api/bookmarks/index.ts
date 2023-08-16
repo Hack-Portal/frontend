@@ -6,8 +6,8 @@ export type Methods = {
   post: {
     status: 200
     /** create success response */
-    resBody: Types.Api_BookmarkResponse
+    resBody: Types.Domain_BookmarkResponse
     /** Create Bookmark Request Body */
-    reqBody: Types.Api_CreateBookmarkRequestBody
+    reqBody: Types.Domain_CreateBookmarkRequest
   }
 }

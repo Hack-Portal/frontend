@@ -1,11 +1,11 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
-import api from '@/api/$api'
 import { getAuthorizationHeader } from '../utils/headerManager'
 import { RoomInterface } from '@/types/RoomInterface'
 import { FirebaseRepository } from './FirebaseRepository'
 import { UserRepository } from './UserRepository'
 import { CreateUser } from '@/app/signup/services/createUser'
+import api from '@/api/$api'
 
 export class RoomRepository implements RoomInterface {
   private static instance: RoomRepository
@@ -29,16 +29,20 @@ export class RoomRepository implements RoomInterface {
     try {
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
+        
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_API_URL,
+          // baseURL: process.env.NEXT_PUBLIC_API_URL,
+          baseURL: "https://api.seaffood.com/test/v1",
           headers: {
             // authorization: this.authorization,
-            authorization: token,
+            "Content-Type": "application/json",
+            DBAuthorization: token,
           },
         }),
       )
 
       const response = await client.rooms.get()
+      console.log(response)
       return response.body
     } catch (error) {
       // エラー処理

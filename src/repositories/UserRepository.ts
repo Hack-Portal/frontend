@@ -2,7 +2,7 @@ import { UserInterface } from '@/types/UserInterface'
 import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '@/api/$api'
-import { Api_CreateAccountRequestBody } from '@/api/@types'
+import { Domain_CreateAccountRequest } from '@/api/@types'
 
 export class UserRepository implements UserInterface {
   private static instance: UserRepository | null = null
@@ -60,7 +60,7 @@ export class UserRepository implements UserInterface {
    * @returns ユーザー
    * @throws Error
    */
-  public async create(body: Api_CreateAccountRequestBody, token: string) {
+  public async create(body: Domain_CreateAccountRequest, token: string) {
     try {
       const client = api(
         aspida(axios, {

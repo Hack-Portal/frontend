@@ -1,4 +1,4 @@
-import { Db_Locates, Db_TechTags, Db_Frameworks } from '@/api/@types'
+import { Repository_Locate, Db_TechTags, Db_Frameworks } from '@/api/@types'
 import {
   Avatar,
   Box,
@@ -31,7 +31,7 @@ type Props = {
   isLoading: boolean
   handleSetIcon: (file: Blob | null) => void
   preview: string | null
-  locates: Db_Locates[]
+  locates: Repository_Locate[]
   techTags: Db_TechTags[]
   frameworks: Db_Frameworks[]
 }

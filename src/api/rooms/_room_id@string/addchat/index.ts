@@ -6,8 +6,8 @@ export type Methods = {
   post: {
     status: 200
     /** success response */
-    resBody: Types.Api_GetRoomResponse
+    resBody: Types.Domain_GetRoomResponse
     /** add chat Room Request body */
-    reqBody: Types.Api_AddChatRequestBody
+    reqBody: Types.Domain_AddChatRequestBody
   }
 }
