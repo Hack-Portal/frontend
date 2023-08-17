@@ -32,11 +32,12 @@ export class RoomRepository implements RoomInterface {
         
         aspida(axios, {
           // baseURL: process.env.NEXT_PUBLIC_API_URL,
-          baseURL: "https://api.seaffood.com/test/v1",
+          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
             // authorization: this.authorization,
             "Content-Type": "application/json",
-            DBAuthorization: token,
+            dbauthorization_type: "email",
+            dbauthorization: "",
           },
         }),
       )

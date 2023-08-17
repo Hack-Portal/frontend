@@ -1,5 +1,3 @@
-
-
 import { Header } from '@/components/layouts/Header'
 import React, { Suspense } from 'react'
 import { HackathonData } from './_components/HackathonData'
@@ -20,12 +18,10 @@ const Detail = async (props: { params: { id: string } }) => {
           sx={{
             display: 'flex',
             justifyContent: 'center',
-            mt: '8px',
           }}
         >
           <Suspense fallback={<div>loading...</div>}>
             {hackathonDetail && <HackathonData detail={hackathonDetail} />}
-            {hackathonDetail && <RightCard detail={hackathonDetail} />}
           </Suspense>
         </Box>
       </Box>

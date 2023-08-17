@@ -9,59 +9,46 @@ type Props = {
 export const HackathonData = (props: Props) => {
   const { detail } = props
   return (
-    <>
-      <Box sx={{ width: '1000px' }}>
-        <Box display={'row'} sx={{ mt: 2 }}>
-          <Grid textAlign={'center'}>
-            <CardMedia
-              component="img"
-              image={detail.icon}
-              alt="img"
-              sx={{
-                width: '950px',
-                height: '600px',
-                objectFit: 'cover',
-                m: 'auto',
-              }}
-              //2016 × 1286
-            />
-            {/* HackathonName */}
-            <Typography component="h6" sx={{ mt: 3, fontSize: 24 }}>
-              {detail.name}
-            </Typography>
-          </Grid>
-        </Box>
+    <Grid container direction={'column'} alignItems={'center'} width={'100%'}>
+      <CardMedia
+        component="img"
+        image={detail.icon}
+        alt="img"
+        sx={{
+          width: '950px',
+          height: '500px',
+          objectFit: 'cover',
+        }}
+        //2016 × 1286
+      />
+      {/* HackathonName */}
+      <Grid
+        width={'100vw'}
+        sx={{ background: '#fff', p: 5 }}
+        container
+        alignItems={'center'}
+        direction={'column'}
+      >
+        <Grid width={'950px'}>
+          <Typography sx={{ fontSize: "2rem", fontWeight: 'bold', mb: 5 }}>
+            {detail.name}
+          </Typography>
+          <Typography
+            sx={{
+              m: 'auto',
+              borderBottom: 'double',
+              fontSize: '1.7rem',
+              my: 2,
+            }}
+          >
+            ハッカソン詳細
+          </Typography>
 
-        <Grid margin={'auto'} sx={{ mt: 2, width: '950px', pb: 5 }}>
-          <Paper elevation={5} sx={{ width: '950px', pb: 5 }}>
-            <Typography
-              sx={{
-                m: 'auto',
-                width: '900px',
-                borderBottom: 'double',
-                fontSize: 30,
-                mt: 3,
-                pt: 2,
-              }}
-            >
-              ハッカソン詳細
-            </Typography>
-            <Box
-              sx={{
-                m: 'auto',
-                width: '800px',
-                fontSize: 20,
-                mt: 2,
-                pt: 2,
-              }}
-            >
-              <Typography sx={{ fontSize: '16px' }}>
-                {detail.description}
-              </Typography>
-            </Box>
-          </Paper>
+          <Typography sx={{ fontSize: '1.3rem' }}>
+            {detail.description}
+          </Typography>
         </Grid>
-      </Box>
-    </>
+      </Grid>
+    </Grid>
   )
 }
