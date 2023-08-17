@@ -38,8 +38,8 @@ export class RoomRepository implements RoomInterface {
           headers: {
             // authorization: this.authorization,
             "Content-Type": "application/json",
-            dbauthorization_type: "email",
-            dbauthorization: process.env.NEXT_PUBLIC_TEST_EMAIL_TOKEN,
+            
+            dbauthorization: "email " + process.env.NEXT_PUBLIC_TEST_EMAIL_TOKEN,
           },
         }),
       )
