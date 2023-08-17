@@ -1,5 +1,5 @@
-import { Api_RateResponses } from '@/api/@types'
+import { Domain_AccountRateResponse } from '../../api/@types'
 
 export interface RatingInterface {
-  fetchAll(): Promise<Api_RateResponses>
+  fetchAll(account_id: string): Promise<Domain_AccountRateResponse[]>
 }

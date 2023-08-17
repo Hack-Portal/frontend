@@ -1,6 +1,6 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
-import api from '@/api/$api'
+import api from '../../api/$api'
 import { getAuthorizationHeader } from '../utils/headerManager'
 import { RatingInterface } from '@/types/RatingInterface'
 
@@ -15,15 +15,14 @@ export class RatingRepository implements RatingInterface {
     return RatingRepository.instance
   }
 
-  public async fetchAll() {
+  public async fetchAll(account_id: string) {
     try {
       const client: any = api(
-        // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
         aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
       )
       this.authorization = getAuthorizationHeader()
 
-      const response = await client.rooms.get({
+      const response = await client.accounts._account_id(account_id).rate.get({
         headers: { authorization: this.authorization },
       })
       return response.body
