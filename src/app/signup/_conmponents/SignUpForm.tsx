@@ -15,9 +15,7 @@ import { User } from 'firebase/auth'
 import { Controller, Control } from 'react-hook-form'
 import { SignUpFormData } from '../types/formData'
 import { FormEventHandler } from 'react'
-import { Db_Locates } from '@/api/@types'
 import { Repository_Locate } from '@/api/@types'
-
 
 type Props = {
   control: Control<SignUpFormData, any>
