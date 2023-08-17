@@ -12,15 +12,9 @@ import {
   TextField,
 } from '@/lib/mui/muiRendering'
 import { User } from 'firebase/auth'
-import {
-  Controller,
-  Control,
-  FieldValues,
-  UseFormHandleSubmit,
-  SubmitHandler,
-} from 'react-hook-form'
+import { Controller, Control } from 'react-hook-form'
 import { SignUpFormData } from '../types/formData'
-import { ChangeEvent, FormEventHandler, ReactNode } from 'react'
+import { FormEventHandler } from 'react'
 import { Db_Locates } from '@/api/@types'
 import { Repository_Locate } from '@/api/@types'
 
