@@ -1,12 +1,38 @@
 import React from 'react'
-import { Grid, Avatar, Typography } from '@/lib/mui/muiRendering'
+import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
 import { UserRatingInfo } from '../types/userRating'
 
-//Api_RateResponses
-
+const users: UserRatingInfo[] = [
+  {
+    id: '1',
+    name: 'user1',
+    icon: '/images/user1.png',
+    rating: 1000,
+  },
+  {
+    id: '2',
+    name: 'user2',
+    icon: '/images/user2.png',
+    rating: 900,
+  },
+  {
+    id: '3',
+    name: 'user3',
+    icon: '/images/user3.png',
+    rating: 800,
+  },
+]
 const UserRating = () => {
   return (
-    <Grid container direction={'column'} alignItems={'center'}>
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        pt: 3,
+        width: '15vw',
+      }}
+    >
       <Typography>レーティング</Typography>
 
       {users.map((user, index) => (
@@ -15,6 +41,7 @@ const UserRating = () => {
           key={user.id}
           sx={{
             mt: 3,
+            mb: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
