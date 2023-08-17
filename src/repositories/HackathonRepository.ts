@@ -21,6 +21,7 @@ export class HackathonRepository implements HackathonInterface {
    */
   public async fetchAll() {
     try {
+      this.authorization = getAuthorizationHeader()
       const client: any = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
         aspida(axios, {
@@ -28,8 +29,6 @@ export class HackathonRepository implements HackathonInterface {
           headers: { authorization: this.authorization },
         }),
       )
-
-      this.authorization = getAuthorizationHeader()
 
       const response = await client.hackathons.get({
         query: { page_size: 10, page_id: 1, expired: false },
