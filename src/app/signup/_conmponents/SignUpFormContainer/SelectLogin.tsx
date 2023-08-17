@@ -7,6 +7,7 @@ import {
   InputLabel,
   Input,
   TextField,
+  Paper,
 } from '@/lib/mui/muiRendering'
 import { AuthProvider } from 'firebase/auth'
 import React from 'react'
@@ -38,13 +39,19 @@ export const SelectLogin = (props: Props) => {
         flexDirection: 'column',
       }}
     >
-      <Button sx={{ width: 230, mt: 3 }} onClick={handleOAuthSignIn}>
-        <img
-          src="/image/google_sign.png"
-          alt="google"
-          style={{ width: '100%' }}
-        />
-      </Button>
+      <Typography sx={{ textAlign: 'center', fontSize: 32, mt: 2, mb: 2 }}>
+        新規登録
+      </Typography>
+      <Paper elevation={3} sx={{ mt: 4, width: '65%' }}>
+        <Button sx={{ width: '100%' }} onClick={handleOAuthSignIn}>
+          <img
+            src="/image/google_sign.png"
+            alt="google"
+            style={{ width: '50%' }}
+          />
+        </Button>
+      </Paper>
+
       <Typography sx={{ fontSize: 16, mt: 2 }}>または</Typography>
       <Box sx={{ textAlign: 'center' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -55,11 +62,7 @@ export const SelectLogin = (props: Props) => {
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <TextField
-                  {...field}
-                  id="email"
-                  placeholder="メールアドレスを入力してください"
-                />
+                <TextField {...field} id="email" placeholder="Email" />
               )}
             />
           </FormControl>
@@ -75,7 +78,7 @@ export const SelectLogin = (props: Props) => {
                   {...field}
                   id="password-input"
                   type="password"
-                  placeholder="パスワードを入力してください"
+                  placeholder="password"
                 />
               )}
             />
@@ -91,11 +94,8 @@ export const SelectLogin = (props: Props) => {
         </form>
 
         <Typography sx={{ fontSize: 16, mt: 4 }}>
-          アカウントをお持ちの方は
+          アカウントをお持ちの方は <Link href={'/signin'}>ログイン</Link>
         </Typography>
-        <Link href={'/signin'}>
-          <Typography sx={{ fontSize: 16, mt: 1 }}>ログイン</Typography>
-        </Link>
       </Box>
     </Box>
   )

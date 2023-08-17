@@ -37,7 +37,14 @@ export const SignUpForm = (props: Props) => {
 
   return (
     <>
-      <Box component="form" onSubmit={handleSubmit}>
+      <Box
+        sx={{ width: '100%', height: '100%' }}
+        component="form"
+        onSubmit={handleSubmit}
+      >
+        <Typography sx={{ textAlign: 'center', fontSize: 32, mt: 2, mb: 2 }}>
+          新規登録
+        </Typography>
         <Typography>アイコン選択</Typography>
         <Controller
           name="icon"

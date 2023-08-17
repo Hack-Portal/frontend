@@ -22,12 +22,6 @@ export const SignBox = (props: Props) => {
           height: '90vh',
         }}
       >
-        <CardMedia
-          component={'img'}
-          sx={{ width: '50%', height: '100%', objectFit: 'cover' }}
-          title="Your title"
-          image={'/image/jin.png'}
-        />
         <CardContent
           sx={{
             mt: 5,
@@ -40,6 +34,12 @@ export const SignBox = (props: Props) => {
         >
           {children}
         </CardContent>
+        <CardMedia
+          component={'img'}
+          sx={{ width: '50%', height: '100%', objectFit: 'cover' }}
+          title="Your title"
+          image={'/image/next.png'}
+        />
       </Card>
     </Grid>
   )
