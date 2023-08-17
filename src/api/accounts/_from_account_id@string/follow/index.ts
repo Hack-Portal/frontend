@@ -5,21 +5,21 @@ export type Methods = {
   /** Follow!!!!!!!! */
   post: {
     status: 200
-    /** succsss response */
-    resBody: Types.Db_Follows[]
+    /** success response */
+    resBody: Types.Repository_Follow[]
     /** create Follow Request Body */
-    reqBody: Types.Api_CreateFollowRequestBody
+    reqBody: Types.Domain_CreateFollowRequestBody
   }
 
-  /** Unfollow */
+  /** Remove follow account */
   delete: {
     status: 200
     /** success response */
-    resBody: Types.Api_DeleteResponse
+    resBody: Types.Controller_SuccessResponse
     reqFormat: URLSearchParams
 
     reqBody: {
-      to_user_id: string
+      to_account_id: string
     }
   }
 }

@@ -1,6 +1,6 @@
-import { Api_HackathonResponses } from '@/api/@types'
+import { Domain_HackathonResponses } from '@/api/@types'
 
 export type HackathonThumb = Omit<
-  Api_HackathonResponses,
+  Domain_HackathonResponses,
   'description' | 'link'
 >

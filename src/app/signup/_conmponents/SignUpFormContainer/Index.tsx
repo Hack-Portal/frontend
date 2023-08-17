@@ -16,11 +16,11 @@ import { SelectLogin } from './SelectLogin'
 import { useSelectLogin } from '../../hooks/useSelectLogin'
 import { CreateUser } from '../../services/createUser'
 import { SignUpFormData } from '../../types/formData'
-import { Db_Locates } from '@/api/@types'
+import { Repository_Locate } from '@/api/@types'
 import { useRouter } from 'next/navigation'
 
 type Props = {
-  locates: Db_Locates[]
+  locates: Repository_Locate[]
 }
 
 export const SignUpFormContainer = (props: Props) => {

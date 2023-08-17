@@ -6,13 +6,13 @@ export type Methods = {
   post: {
     status: 200
     /** success response */
-    resBody: Types.Db_CreateRoomTxResult
+    resBody: Types.Controller_SuccessResponse
   }
 
   /** Remove Account In Rooms */
   delete: {
     status: 200
     /** success response */
-    resBody: Types.Api_DeleteResponse
+    resBody: Types.Controller_SuccessResponse
   }
 }

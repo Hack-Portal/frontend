@@ -7,6 +7,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Typography,
   SelectChangeEvent,
   TextField,
 } from '@/lib/mui/muiRendering'
@@ -21,14 +22,15 @@ import {
 import { SignUpFormData } from '../types/formData'
 import { ChangeEvent, FormEventHandler, ReactNode } from 'react'
 import { Db_Locates } from '@/api/@types'
-import { Typography } from '@mui/joy'
+import { Repository_Locate } from '@/api/@types'
+
 
 type Props = {
   control: Control<SignUpFormData, any>
   handleSubmit: FormEventHandler<HTMLFormElement>
   handleSetIcon: (file: Blob | null) => void
   preview: string | null
-  locates: Db_Locates[]
+  locates: Repository_Locate[]
   user: User | null
 }
 

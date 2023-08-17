@@ -22,7 +22,7 @@ import { Chat } from '@/types/chat'
 import api from '@/api/$api'
 import aspida from '@aspida/axios'
 import axios from 'axios'
-import { Api_GetRoomResponse } from '@/api/@types'
+import { Domain_GetRoomResponse } from '@/api/@types'
 
 export class FirebaseRepository {
   private static instance: FirebaseRepository | null = null
@@ -113,7 +113,7 @@ export class FirebaseRepository {
   public async addChatMessage(
     roomId: string,
     message: string,
-  ): Promise<Api_GetRoomResponse> {
+  ): Promise<Domain_GetRoomResponse> {
     const user = await this.getCurrentUser()
     if (!user) throw new Error('ユーザーが存在しません')
     const token = await user?.getIdToken()
@@ -128,7 +128,7 @@ export class FirebaseRepository {
       )
       const response = await client.rooms
         ._room_id(roomId)
-        .addchat.post({ body: { message: message } })
+        .addchat.post({ body: { message: message ,account_id:user.uid} })
       return response.body
     } catch (error) {
       // エラー処理

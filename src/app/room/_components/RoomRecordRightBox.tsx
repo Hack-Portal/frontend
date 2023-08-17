@@ -6,21 +6,25 @@ import {
   Typography,
   Chip,
   Box,
-  JoyBadge
+  JoyBadge,
 } from '@/lib/mui/muiRendering'
 import { RoomUserThumb } from '../types/user'
 import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
 import StarRateIcon from '@mui/icons-material/StarRate'
-import{ Db_NowRoomAccounts, Db_RoomFramework, Db_RoomTechTags } from '@/api/@types'
+import {
+  Domain_NowRoomAccounts,
+  Domain_RoomFramework,
+  Domain_RoomTechTags,
+} from '@/api/@types'
 
 type Props = {
   hackathonName: string
   title: string
   member_limit: number
-  now_member: Db_NowRoomAccounts[]
-  techs: Db_RoomTechTags[]
-  frameworks: Db_RoomFramework[]
+  now_member: Domain_NowRoomAccounts[]
+  techs: Domain_RoomTechTags[]
+  frameworks: Domain_RoomFramework[]
 }
 
 export const RoomRecordRightBox = (props: Props) => {
