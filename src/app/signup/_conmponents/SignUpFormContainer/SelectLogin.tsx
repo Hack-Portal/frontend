@@ -42,27 +42,17 @@ export const SelectLogin = (props: Props) => {
       <Typography sx={{ textAlign: 'center', fontSize: 32, mt: 2, mb: 2 }}>
         新規登録
       </Typography>
-      <Paper elevation={3} sx={{ mt: 4, width: '65%' }}>
-        <Button sx={{ width: '100%' }} onClick={handleOAuthSignIn}>
-          <img
-            src="/image/google_sign.png"
-            alt="google"
-            style={{ width: '50%' }}
-          />
-        </Button>
-      </Paper>
 
-      <Typography sx={{ fontSize: 16, mt: 2 }}>または</Typography>
       <Box sx={{ textAlign: 'center' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl sx={{ mt: 2, width: '70%' }}>
-            <Typography sx={{ textAlign: 'left' }}>Email</Typography>
+            <Typography sx={{ textAlign: 'left' }}>メールアドレス</Typography>
             <Controller
               name="email"
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <TextField {...field} id="email" placeholder="Email" />
+                <TextField {...field} id="email" placeholder="メールアドレス" />
               )}
             />
           </FormControl>
@@ -78,7 +68,7 @@ export const SelectLogin = (props: Props) => {
                   {...field}
                   id="password-input"
                   type="password"
-                  placeholder="password"
+                  placeholder="パスワード"
                 />
               )}
             />
@@ -93,6 +83,17 @@ export const SelectLogin = (props: Props) => {
           </Button>
         </form>
 
+        <Typography sx={{ fontSize: 16, mt: 3 }}>または</Typography>
+
+        <Paper elevation={3} sx={{ m: 'auto', mt: 3, width: '65%' }}>
+          <Button sx={{ width: '100%' }} onClick={handleOAuthSignIn}>
+            <img
+              src="/image/google_sign.png"
+              alt="google"
+              style={{ width: '50%' }}
+            />
+          </Button>
+        </Paper>
         <Typography sx={{ fontSize: 16, mt: 4 }}>
           アカウントをお持ちの方は <Link href={'/signin'}>ログイン</Link>
         </Typography>
