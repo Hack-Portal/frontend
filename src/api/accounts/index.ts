@@ -5,10 +5,9 @@ export type Methods = {
   /** Create an account from the requested body */
   post: {
     status: 200
-    /** create succsss response */
-    resBody: Types.Api_CreateAccountResponses
-    reqFormat: FormData
-    /** Create Account Request Body */
-    reqBody: Types.Api_CreateAccountRequestBody
+    /** create success response */
+    resBody: Types.Domain_AccountResponses
+    /** Create Account Request */
+    reqBody: Types.Domain_CreateAccountRequest
   }
 }

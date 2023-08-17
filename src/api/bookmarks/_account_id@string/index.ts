@@ -5,13 +5,13 @@ export type Methods = {
   /** Get my bookmarks */
   get: {
     status: 200
-    /** delete success response */
-    resBody: Types.Api_BookmarkResponse[]
+    /** success response */
+    resBody: Types.Domain_BookmarkResponse[]
     reqFormat: URLSearchParams
 
     reqBody: {
-      /** Delete Bookmark Request Body */
-      ListBookmarkRequestQueries: string
+      page_id?: number | undefined
+      page_size?: number | undefined
     }
   }
 
@@ -19,6 +19,6 @@ export type Methods = {
   delete: {
     status: 200
     /** delete success response */
-    resBody: Types.Api_BookmarkResponse
+    resBody: Types.Domain_BookmarkResponse
   }
 }

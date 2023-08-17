@@ -1,5 +1,5 @@
-import { Api_hackathonInfo } from '@/api/@types'
+import { Domain_HackathonResponses } from '@/api/@types'
 export type CenterCard = Pick<
-  Api_hackathonInfo,
+Domain_HackathonResponses,
   'description' | 'hackathon_id' | 'icon' | 'name'
 >

@@ -6,6 +6,6 @@ export type Methods = {
   get: {
     status: 200
     /** success response */
-    resBody: Types.Db_TechTags[]
+    resBody: Types.Repository_TechTag[]
   }
 }

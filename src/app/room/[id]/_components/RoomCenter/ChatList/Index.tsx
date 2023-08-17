@@ -3,8 +3,12 @@ import React from 'react'
 import { MyChatArea } from './MyChatArea'
 import { OtherChatArea } from './OtherChatArea'
 
-type Props = {}
+type Props = {
+  chatMessages: string[] | null
+}
+
 export const ChatList = (props: Props) => {
+  const { chatMessages } = props
   return (
     <Grid
       container
@@ -26,11 +30,9 @@ export const ChatList = (props: Props) => {
       }}
       wrap="nowrap"
     >
-      <MyChatArea text={''} />
-      <OtherChatArea />
-      <MyChatArea text={''} />
-      <OtherChatArea />
-      <MyChatArea text={''} />
+      {chatMessages?.map((chatMessage, index) => (
+        <MyChatArea chatMessage={chatMessage} key={index + 1} />
+      ))}
     </Grid>
   )
 }

@@ -1,4 +1,4 @@
-
+'use client'
 import {
   Avatar,
   Box,
@@ -7,27 +7,22 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Typography,
   SelectChangeEvent,
   TextField,
 } from '@/lib/mui/muiRendering'
 import { User } from 'firebase/auth'
-import {
-  Controller,
-  Control,
-  FieldValues,
-  UseFormHandleSubmit,
-  SubmitHandler,
-} from 'react-hook-form'
+import { Controller, Control } from 'react-hook-form'
 import { SignUpFormData } from '../types/formData'
-import { ChangeEvent, FormEventHandler, ReactNode } from 'react'
-import { Db_Locates } from '@/api/@types'
+import { FormEventHandler } from 'react'
+import { Repository_Locate } from '@/api/@types'
 
 type Props = {
   control: Control<SignUpFormData, any>
   handleSubmit: FormEventHandler<HTMLFormElement>
   handleSetIcon: (file: Blob | null) => void
   preview: string | null
-  locates: Db_Locates[]
+  locates: Repository_Locate[]
   user: User | null
 }
 
@@ -36,7 +31,15 @@ export const SignUpForm = (props: Props) => {
 
   return (
     <>
-      <Box component="form" onSubmit={handleSubmit}>
+      <Box
+        sx={{ width: '100%', height: '100%' }}
+        component="form"
+        onSubmit={handleSubmit}
+      >
+        <Typography sx={{ textAlign: 'center', fontSize: 32, mt: 2, mb: 2 }}>
+          新規登録
+        </Typography>
+        <Typography>アイコン選択</Typography>
         <Controller
           name="icon"
           control={control}
@@ -55,6 +58,7 @@ export const SignUpForm = (props: Props) => {
             </InputLabel>
           )}
         />
+        <Typography>名前</Typography>
         <Controller
           name="username"
           control={control}
@@ -65,7 +69,6 @@ export const SignUpForm = (props: Props) => {
           render={({ field, formState: { errors } }) => (
             <TextField
               {...field}
-              label="名前"
               fullWidth
               placeholder="名前を入力してください"
               error={errors.username ? true : false}
@@ -73,6 +76,8 @@ export const SignUpForm = (props: Props) => {
             />
           )}
         />
+        <Typography>Email</Typography>
+
         <Controller
           name="email"
           control={control}
@@ -83,7 +88,6 @@ export const SignUpForm = (props: Props) => {
           render={({ field, formState: { errors } }) => (
             <TextField
               {...field}
-              label="Eメール"
               fullWidth
               placeholder="名前を入力してください"
               error={errors.email ? true : false}
@@ -91,6 +95,8 @@ export const SignUpForm = (props: Props) => {
             />
           )}
         />
+        <Typography>パスワード</Typography>
+
         <Controller
           name="password"
           control={control}
@@ -101,7 +107,6 @@ export const SignUpForm = (props: Props) => {
           render={({ field, formState: { errors } }) => (
             <TextField
               {...field}
-              label="パスワード"
               fullWidth
               placeholder="名前を入力してください"
               error={errors.password ? true : false}
@@ -110,6 +115,8 @@ export const SignUpForm = (props: Props) => {
             />
           )}
         />
+        <Typography>居住地</Typography>
+
         <Controller
           name="locate_id"
           control={control}
@@ -123,7 +130,6 @@ export const SignUpForm = (props: Props) => {
               defaultValue={0}
               render={({ field, formState: { errors } }) => (
                 <FormControl fullWidth error={errors.locate_id ? true : false}>
-                  <InputLabel id="select-label">居住地</InputLabel>
                   <Controller
                     name="locate_id"
                     control={control}

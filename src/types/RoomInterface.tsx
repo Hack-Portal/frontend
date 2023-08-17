@@ -1,5 +1,5 @@
-import { Api_GetRoomResponse, Db_ListRoomTxResult } from '@/api/@types'
+import { Domain_GetRoomResponse, Domain_ListRoomResponse } from '@/api/@types'
 
 export interface RoomInterface {
-  fetchAll(): Promise<Db_ListRoomTxResult[][]>
+  fetchAll(): Promise<Domain_ListRoomResponse[]>
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, Avatar, Typography } from '@/lib/mui/muiRendering'
+import { UserRatingInfo } from '../types/userRating'
 
 //Api_RateResponses
 
@@ -39,7 +40,7 @@ const UserRating = () => {
           <Typography color={'#999'}>rating: {user.rating}</Typography>
         </Grid>
       ))}
-    </Grid>
+    </Card>
   )
 }
 

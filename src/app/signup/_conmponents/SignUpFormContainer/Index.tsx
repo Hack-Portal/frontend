@@ -2,25 +2,19 @@
 
 import { AuthProvider, GoogleAuthProvider, User } from 'firebase/auth'
 import React, { ChangeEvent } from 'react'
-import { Button, Grid, Typography } from '@/lib/mui/muiRendering'
-import {
-  Control,
-  FieldValues,
-  UseFormHandleSubmit,
-  useForm,
-} from 'react-hook-form'
+import { Grid } from '@/lib/mui/muiRendering'
+import { useForm } from 'react-hook-form'
 import { useIcon } from '@/hooks/useIcon'
 import { useSignIn } from '../../hooks/useSignIn'
 import { SignUpForm } from '../SignUpForm'
 import { SelectLogin } from './SelectLogin'
-import { useSelectLogin } from '../../hooks/useSelectLogin'
 import { CreateUser } from '../../services/createUser'
 import { SignUpFormData } from '../../types/formData'
-import { Db_Locates } from '@/api/@types'
+import { Repository_Locate } from '@/api/@types'
 import { useRouter } from 'next/navigation'
 
 type Props = {
-  locates: Db_Locates[]
+  locates: Repository_Locate[]
 }
 
 export const SignUpFormContainer = (props: Props) => {
@@ -31,7 +25,6 @@ export const SignUpFormContainer = (props: Props) => {
   const { icon, handleSetIcon, preview } = useIcon()
   const UserInstance = new CreateUser()
   const router = useRouter()
-  
 
   return (
     <Grid
@@ -43,7 +36,6 @@ export const SignUpFormContainer = (props: Props) => {
         height: '100%',
       }}
     >
-      <Typography variant={'h4'}>新規登録</Typography>
       {selected === null ? (
         <SelectLogin
           handleSetSelected={handleSetSelected}
@@ -52,7 +44,11 @@ export const SignUpFormContainer = (props: Props) => {
       ) : (
         <SignUpForm
           control={control}
-          handleSubmit={handleSubmit((data)=>{UserInstance.create(data) ? router.push('/user'):null})}
+          handleSubmit={handleSubmit(async (data) => {
+            ;(await UserInstance.create(data))
+              ? router.push('/user')
+              : router.push('/user')
+          })}
           handleSetIcon={handleSetIcon}
           preview={preview}
           locates={locates}

@@ -21,9 +21,6 @@
         "/accounts": {
             "post": {
                 "description": "Create an account from the requested body",
-                "consumes": [
-                    "multipart/form-data"
-                ],
                 "produces": [
                     "application/json"
                 ],
@@ -33,93 +30,12 @@
                 "summary": "Create new account",
                 "parameters": [
                     {
-                        "description": "AccountsID",
-                        "name": "user_id",
+                        "description": "Create Account Request",
+                        "name": "CreateAccountRequest",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "username",
-                        "name": "username",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "type": "file",
-                        "description": "icon image",
-                        "name": "icon",
-                        "in": "formData"
-                    },
-                    {
-                        "description": "explanatory text",
-                        "name": "explanatory_text",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "locate id",
-                        "name": "locate_id",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "description": "password",
-                        "name": "password",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "show locate",
-                        "name": "show_locate",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "boolean"
-                        }
-                    },
-                    {
-                        "description": "show rate",
-                        "name": "show_rate",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "boolean"
-                        }
-                    },
-                    {
-                        "description": "tech tags",
-                        "name": "tech_tags",
-                        "in": "body",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer"
-                            }
-                        }
-                    },
-                    {
-                        "description": "frameworks",
-                        "name": "frameworks",
-                        "in": "body",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer"
-                            }
+                            "$ref": "#/definitions/domain.CreateAccountRequest"
                         }
                     }
                 ],
@@ -127,123 +43,153 @@
                     "200": {
                         "description": "create success response",
                         "schema": {
-                            "$ref": "#/definitions/api.CreateAccountResponses"
+                            "$ref": "#/definitions/domain.AccountResponses"
                         }
                     },
                     "400": {
                         "description": "bad request response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "server error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
             }
         },
-        "/accounts/{from_user_id}/follow": {
-            "post": {
-                "description": "Follow!!!!!!!!",
+        "/accounts/{account_id}": {
+            "get": {
+                "description": "Return a account from the id specified in the path",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Accounts"
                 ],
-                "summary": "Create Follow",
+                "summary": "Get account",
                 "parameters": [
                     {
                         "type": "string",
                         "description": "Accounts API wildcard",
-                        "name": "from_user_id",
+                        "name": "account_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get success response",
+                        "schema": {
+                            "$ref": "#/definitions/domain.AccountResponses"
+                        }
+                    },
+                    "400": {
+                        "description": "bad request response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "server error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update account info from requested body",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "Update Account",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Accounts API wildcard",
+                        "name": "account_id",
                         "in": "path",
                         "required": true
                     },
                     {
-                        "description": "create Follow Request Body",
-                        "name": "CreateFollowRequestBody",
+                        "description": "Update Account Request Body",
+                        "name": "UpdateAccountRequest",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateFollowRequestBody"
+                            "$ref": "#/definitions/domain.UpdateAccountRequest"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "succsss response",
+                        "description": "Update success response",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/db.Follows"
-                            }
+                            "$ref": "#/definitions/domain.AccountResponses"
                         }
                     },
                     "400": {
-                        "description": "error response",
+                        "description": "bad request response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
-                        "description": "error response",
+                        "description": "server error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
             },
             "delete": {
-                "description": "Unfollow",
+                "description": "Only you can delete your account (logical delete)",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Accounts"
                 ],
-                "summary": "Remove follow",
+                "summary": "Remove Account",
                 "parameters": [
                     {
                         "type": "string",
                         "description": "Accounts API wildcard",
-                        "name": "from_user_id",
+                        "name": "account_id",
                         "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "name": "to_user_id",
-                        "in": "formData",
                         "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "success response",
+                        "description": "delete success response",
                         "schema": {
-                            "$ref": "#/definitions/api.DeleteResponse"
+                            "$ref": "#/definitions/controller.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "error response",
+                        "description": "bad request response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
-                        "description": "error response",
+                        "description": "server error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
             }
         },
-        "/accounts/{id}/rate": {
+        "/accounts/{account_id}/rate": {
             "get": {
                 "description": "List Rate for User",
                 "produces": [
@@ -254,6 +200,13 @@
                 ],
                 "summary": "List Rate",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Account ID",
+                        "name": "account_id",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "type": "integer",
                         "name": "page_id",
@@ -271,20 +224,20 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/api.RateResponses"
+                                "$ref": "#/definitions/domain.AccountRateResponse"
                             }
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -305,7 +258,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateRateRequestBody"
+                            "$ref": "#/definitions/domain.CreateRateRequestBody"
                         }
                     }
                 ],
@@ -313,147 +266,117 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.RateResponses"
+                            "$ref": "#/definitions/controller.SuccessResponse"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
             }
         },
-        "/accounts/{user_id}": {
-            "get": {
-                "description": "Return a user from the id specified in the path",
+        "/accounts/{from_account_id}/follow": {
+            "post": {
+                "description": "Follow!!!!!!!!",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Accounts"
                 ],
-                "summary": "Get account",
+                "summary": "Create Follow",
                 "parameters": [
                     {
                         "type": "string",
                         "description": "Accounts API wildcard",
-                        "name": "user_id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Get success response",
-                        "schema": {
-                            "$ref": "#/definitions/api.GetAccountResponses"
-                        }
-                    },
-                    "400": {
-                        "description": "bad request response",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "server error response",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Update user info from requested body",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Accounts"
-                ],
-                "summary": "Update Account",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Accounts API wildcard",
-                        "name": "user_id",
+                        "name": "from_account_id",
                         "in": "path",
                         "required": true
                     },
                     {
-                        "description": "Update Account Request Body",
-                        "name": "UpdateAccountRequestBody",
+                        "description": "create Follow Request Body",
+                        "name": "CreateFollowRequestBody",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateAccountRequestBody"
+                            "$ref": "#/definitions/domain.CreateFollowRequestBody"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Update success response",
+                        "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateAccountResponse"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/repository.Follow"
+                            }
                         }
                     },
                     "400": {
-                        "description": "bad request response",
+                        "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
-                        "description": "server error response",
+                        "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
             },
             "delete": {
-                "description": "Only you can delete your account (logical delete)",
+                "description": "Remove follow account",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Accounts"
                 ],
-                "summary": "Remove Account",
+                "summary": "Remove follow",
                 "parameters": [
                     {
                         "type": "string",
                         "description": "Accounts API wildcard",
-                        "name": "user_id",
+                        "name": "from_account_id",
                         "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "to_account_id",
+                        "in": "formData",
                         "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success response",
+                        "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.DeleteResponse"
+                            "$ref": "#/definitions/controller.SuccessResponse"
                         }
                     },
                     "400": {
-                        "description": "bad request response",
+                        "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
-                        "description": "server error response",
+                        "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -472,11 +395,11 @@
                 "parameters": [
                     {
                         "description": "Create Bookmark Request Body",
-                        "name": "CreateBookmarkRequestBody",
+                        "name": "CreateBookmarkRequest",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateBookmarkRequestBody"
+                            "$ref": "#/definitions/domain.CreateBookmarkRequest"
                         }
                     }
                 ],
@@ -484,25 +407,25 @@
                     "200": {
                         "description": "create success response",
                         "schema": {
-                            "$ref": "#/definitions/api.BookmarkResponse"
+                            "$ref": "#/definitions/domain.BookmarkResponse"
                         }
                     },
                     "400": {
                         "description": "bad request response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "server error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
             }
         },
-        "/bookmarks/{hackathon_id}": {
+        "/bookmarks/{account_id}": {
             "get": {
                 "description": "Get my bookmarks",
                 "produces": [
@@ -515,32 +438,42 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Delete Bookmark Request Body",
-                        "name": "ListBookmarkRequestQueries",
-                        "in": "formData",
+                        "description": "account_id",
+                        "name": "account_id",
+                        "in": "path",
                         "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page_id",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page_size",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success response",
+                        "description": "success response",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/api.BookmarkResponse"
+                                "$ref": "#/definitions/domain.BookmarkResponse"
                             }
                         }
                     },
                     "400": {
                         "description": "bad request response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "server error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -558,7 +491,7 @@
                     {
                         "type": "string",
                         "description": "Delete Bookmark Request Body",
-                        "name": "hackathon_id",
+                        "name": "account_id",
                         "in": "path",
                         "required": true
                     }
@@ -567,19 +500,19 @@
                     "200": {
                         "description": "delete success response",
                         "schema": {
-                            "$ref": "#/definitions/api.BookmarkResponse"
+                            "$ref": "#/definitions/domain.BookmarkResponse"
                         }
                     },
                     "400": {
                         "description": "bad request response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "server error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -601,14 +534,14 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/db.Frameworks"
+                                "$ref": "#/definitions/repository.Framework"
                             }
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -626,18 +559,19 @@
                 "summary": "List Hackathon",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "page size",
-                        "name": "page_size",
-                        "in": "path",
-                        "required": true
+                        "type": "boolean",
+                        "name": "expired",
+                        "in": "formData"
                     },
                     {
                         "type": "integer",
-                        "description": "page id",
                         "name": "page_id",
-                        "in": "path",
-                        "required": true
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page_size",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -646,20 +580,20 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/api.HackathonResponses"
+                                "$ref": "#/definitions/domain.HackathonResponses"
                             }
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -680,7 +614,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateHackathonRequestBody"
+                            "$ref": "#/definitions/domain.CreateHackathonRequestBody"
                         }
                     }
                 ],
@@ -688,19 +622,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.HackathonResponses"
+                            "$ref": "#/definitions/domain.HackathonResponses"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -729,19 +663,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.HackathonResponses"
+                            "$ref": "#/definitions/domain.HackathonResponses"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -763,153 +697,14 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/db.Locates"
+                                "$ref": "#/definitions/repository.Locate"
                             }
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/past_works": {
-            "get": {
-                "description": "list pastWorks",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "PastWorks"
-                ],
-                "summary": "List pastWorks",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "page_size",
-                        "name": "page_size",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "page_id",
-                        "name": "page_id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/api.CreatePastWorkResponse"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "create pastWork",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "PastWorks"
-                ],
-                "summary": "Create pastWork",
-                "parameters": [
-                    {
-                        "description": "past work",
-                        "name": "past_work",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/api.CreatePastWorkRequestBody"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.CreatePastWorkResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/past_works/{opus}": {
-            "get": {
-                "description": "get pastWork",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "PastWorks"
-                ],
-                "summary": "Get pastWork",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "PastWorks API wildcard",
-                        "name": "opus",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.CreatePastWorkResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -927,11 +722,14 @@
                 "summary": "List Account",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Rooms API wildcard",
-                        "name": "room_id",
-                        "in": "path",
-                        "required": true
+                        "type": "integer",
+                        "name": "page_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page_size",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -940,23 +738,20 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/db.ListRoomTxResult"
-                                }
+                                "$ref": "#/definitions/domain.ListRoomResponse"
                             }
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -977,7 +772,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateRoomRequestBody"
+                            "$ref": "#/definitions/domain.CreateRoomRequestBody"
                         }
                     }
                 ],
@@ -985,19 +780,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/db.CreateRoomTxResult"
+                            "$ref": "#/definitions/domain.GetRoomResponse"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -1026,19 +821,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.GetRoomResponse"
+                            "$ref": "#/definitions/domain.GetRoomResponse"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -1066,7 +861,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateRoomRequestBody"
+                            "$ref": "#/definitions/domain.UpdateRoomRequestBody"
                         }
                     }
                 ],
@@ -1074,19 +869,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.GetRoomResponse"
+                            "$ref": "#/definitions/domain.GetRoomResponse"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -1113,19 +908,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.DeleteResponse"
+                            "$ref": "#/definitions/controller.SuccessResponse"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -1155,7 +950,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.AddChatRequestBody"
+                            "$ref": "#/definitions/domain.AddChatRequestBody"
                         }
                     }
                 ],
@@ -1163,19 +958,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.GetRoomResponse"
+                            "$ref": "#/definitions/domain.GetRoomResponse"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -1204,19 +999,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/db.CreateRoomTxResult"
+                            "$ref": "#/definitions/controller.SuccessResponse"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -1243,19 +1038,19 @@
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "$ref": "#/definitions/api.DeleteResponse"
+                            "$ref": "#/definitions/controller.SuccessResponse"
                         }
                     },
                     "400": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -1277,14 +1072,14 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/db.TechTags"
+                                "$ref": "#/definitions/repository.TechTag"
                             }
                         }
                     },
                     "500": {
                         "description": "error response",
                         "schema": {
-                            "$ref": "#/definitions/api.ErrorResponse"
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     }
                 }
@@ -1292,18 +1087,102 @@
         }
     },
     "definitions": {
-        "api.AddChatRequestBody": {
+        "controller.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "controller.SuccessResponse": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.AccountRateResponse": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "rate": {
+                    "type": "integer"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.AccountResponses": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "explanatory_text": {
+                    "type": "string"
+                },
+                "frameworks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repository.Framework"
+                    }
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "locate": {
+                    "type": "string"
+                },
+                "rate": {
+                    "type": "integer"
+                },
+                "show_locate": {
+                    "type": "boolean"
+                },
+                "show_rate": {
+                    "type": "boolean"
+                },
+                "tech_tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repository.TechTag"
+                    }
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.AddChatRequestBody": {
             "type": "object",
             "required": [
+                "account_id",
                 "message"
             ],
             "properties": {
+                "account_id": {
+                    "type": "string"
+                },
                 "message": {
                     "type": "string"
                 }
             }
         },
-        "api.BookmarkResponse": {
+        "domain.BookmarkResponse": {
             "type": "object",
             "properties": {
                 "description": {
@@ -1332,8 +1211,13 @@
                 }
             }
         },
-        "api.CreateAccountResponses": {
+        "domain.CreateAccountRequest": {
             "type": "object",
+            "required": [
+                "locate_id",
+                "user_id",
+                "username"
+            ],
             "properties": {
                 "explanatory_text": {
                     "type": "string"
@@ -1341,16 +1225,10 @@
                 "frameworks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.Frameworks"
+                        "type": "integer"
                     }
                 },
-                "icon": {
-                    "type": "string"
-                },
-                "locate": {
-                    "type": "string"
-                },
-                "rate": {
+                "locate_id": {
                     "type": "integer"
                 },
                 "show_locate": {
@@ -1362,7 +1240,7 @@
                 "tech_tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.TechTags"
+                        "type": "integer"
                     }
                 },
                 "user_id": {
@@ -1373,38 +1251,35 @@
                 }
             }
         },
-        "api.CreateBookmarkRequestBody": {
+        "domain.CreateBookmarkRequest": {
             "type": "object",
             "properties": {
-                "hackathon_id": {
-                    "type": "integer"
-                },
-                "user_id": {
+                "account_id": {
                     "type": "string"
+                },
+                "opus": {
+                    "type": "integer"
                 }
             }
         },
-        "api.CreateFollowRequestBody": {
+        "domain.CreateFollowRequestBody": {
             "type": "object",
             "required": [
-                "to_user_id"
+                "to_account_id"
             ],
             "properties": {
-                "to_user_id": {
+                "to_account_id": {
                     "type": "string"
                 }
             }
         },
-        "api.CreateHackathonRequestBody": {
+        "domain.CreateHackathonRequestBody": {
             "type": "object",
             "properties": {
                 "description": {
                     "type": "string"
                 },
                 "expired": {
-                    "type": "string"
-                },
-                "icon": {
                     "type": "string"
                 },
                 "link": {
@@ -1427,80 +1302,7 @@
                 }
             }
         },
-        "api.CreatePastWorkRequestBody": {
-            "type": "object",
-            "properties": {
-                "account_past_works": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "explanatory_text": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "past_work_frameworks": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "past_work_tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "thumbnail_image": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            }
-        },
-        "api.CreatePastWorkResponse": {
-            "type": "object",
-            "properties": {
-                "account_past_works": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.AccountPastWorks"
-                    }
-                },
-                "explanatory_text": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "opus": {
-                    "type": "integer"
-                },
-                "past_work_frameworks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.PastWorkFrameworks"
-                    }
-                },
-                "past_work_tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.PastWorkTags"
-                    }
-                },
-                "thumbnail_image": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            }
-        },
-        "api.CreateRateRequestBody": {
+        "domain.CreateRateRequestBody": {
             "type": "object",
             "properties": {
                 "rate": {
@@ -1508,16 +1310,19 @@
                 }
             }
         },
-        "api.CreateRoomRequestBody": {
+        "domain.CreateRoomRequestBody": {
             "type": "object",
             "required": [
+                "account_id",
                 "description",
                 "hackathon_id",
                 "member_limit",
-                "title",
-                "user_id"
+                "title"
             ],
             "properties": {
+                "account_id": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -1529,73 +1334,10 @@
                 },
                 "title": {
                     "type": "string"
-                },
-                "user_id": {
-                    "type": "string"
                 }
             }
         },
-        "api.DeleteResponse": {
-            "type": "object",
-            "properties": {
-                "result": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.ErrorResponse": {
-            "type": "object",
-            "properties": {
-                "error": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.GetAccountResponses": {
-            "type": "object",
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "explanatory_text": {
-                    "type": "string"
-                },
-                "frameworks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.Frameworks"
-                    }
-                },
-                "icon": {
-                    "type": "string"
-                },
-                "locate": {
-                    "type": "string"
-                },
-                "rate": {
-                    "type": "integer"
-                },
-                "show_locate": {
-                    "type": "boolean"
-                },
-                "show_rate": {
-                    "type": "boolean"
-                },
-                "tech_tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.TechTags"
-                    }
-                },
-                "user_id": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.GetRoomResponse": {
+        "domain.GetRoomResponse": {
             "type": "object",
             "properties": {
                 "create_at": {
@@ -1605,7 +1347,7 @@
                     "type": "string"
                 },
                 "hackathon": {
-                    "$ref": "#/definitions/api.hackathonInfo"
+                    "$ref": "#/definitions/domain.HackathonInfo"
                 },
                 "is_status": {
                     "type": "boolean"
@@ -1616,19 +1358,19 @@
                 "members_frameworks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.RoomFramework"
+                        "$ref": "#/definitions/domain.RoomFramework"
                     }
                 },
                 "members_tech_tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.RoomTechTags"
+                        "$ref": "#/definitions/domain.RoomTechTags"
                     }
                 },
                 "now_member": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.NowRoomAccounts"
+                        "$ref": "#/definitions/domain.NowRoomAccounts"
                     }
                 },
                 "room_id": {
@@ -1639,7 +1381,36 @@
                 }
             }
         },
-        "api.HackathonResponses": {
+        "domain.HackathonInfo": {
+            "type": "object",
+            "properties": {
+                "hackathon_id": {
+                    "type": "integer"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string"
+                },
+                "status_tag": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repository.StatusTag"
+                    }
+                },
+                "term": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.HackathonResponses": {
             "type": "object",
             "properties": {
                 "description": {
@@ -1666,7 +1437,7 @@
                 "status_tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.StatusTags"
+                        "$ref": "#/definitions/repository.StatusTag"
                     }
                 },
                 "term": {
@@ -1674,219 +1445,7 @@
                 }
             }
         },
-        "api.RateResponses": {
-            "type": "object",
-            "properties": {
-                "create_at": {
-                    "type": "string"
-                },
-                "rate": {
-                    "type": "integer"
-                },
-                "user_id": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.UpdateAccountRequestBody": {
-            "type": "object",
-            "properties": {
-                "explanatory_text": {
-                    "type": "string"
-                },
-                "hashed_password": {
-                    "type": "string"
-                },
-                "locate_id": {
-                    "type": "integer"
-                },
-                "rate": {
-                    "type": "integer"
-                },
-                "show_locate": {
-                    "type": "boolean"
-                },
-                "show_rate": {
-                    "type": "boolean"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.UpdateAccountResponse": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "explanatory_text": {
-                    "type": "string"
-                },
-                "hashed_password": {
-                    "type": "string"
-                },
-                "icon": {
-                    "type": "string"
-                },
-                "locate": {
-                    "type": "string"
-                },
-                "rate": {
-                    "type": "integer"
-                },
-                "show_locate": {
-                    "type": "boolean"
-                },
-                "show_rate": {
-                    "type": "boolean"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.UpdateRoomRequestBody": {
-            "type": "object",
-            "required": [
-                "description",
-                "member_limit",
-                "title"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "member_limit": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.hackathonInfo": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "expired": {
-                    "type": "string"
-                },
-                "hackathon_id": {
-                    "type": "integer"
-                },
-                "icon": {
-                    "type": "string"
-                },
-                "link": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "start_date": {
-                    "type": "string"
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.StatusTags"
-                    }
-                },
-                "term": {
-                    "type": "integer"
-                }
-            }
-        },
-        "db.AccountPastWorks": {
-            "type": "object",
-            "properties": {
-                "opus": {
-                    "type": "integer"
-                },
-                "user_id": {
-                    "type": "string"
-                }
-            }
-        },
-        "db.CreateRoomTxResult": {
-            "type": "object",
-            "properties": {
-                "accounts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.NowRoomAccounts"
-                    }
-                },
-                "create_at": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "frameworks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.RoomFramework"
-                    }
-                },
-                "hackathon": {
-                    "$ref": "#/definitions/db.RoomHackathonData"
-                },
-                "hackathon_id": {
-                    "type": "integer"
-                },
-                "is_delete": {
-                    "type": "boolean"
-                },
-                "member_limit": {
-                    "type": "integer"
-                },
-                "room_id": {
-                    "type": "string"
-                },
-                "techtags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/db.RoomTechTags"
-                    }
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "db.Follows": {
-            "type": "object",
-            "properties": {
-                "create_at": {
-                    "type": "string"
-                },
-                "from_user_id": {
-                    "type": "string"
-                },
-                "to_user_id": {
-                    "type": "string"
-                }
-            }
-        },
-        "db.Frameworks": {
-            "type": "object",
-            "properties": {
-                "framework": {
-                    "type": "string"
-                },
-                "framework_id": {
-                    "type": "integer"
-                },
-                "tech_tag_id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "db.ListRoomTxHackathonInfo": {
+        "domain.ListRoomHackathonInfo": {
             "type": "object",
             "properties": {
                 "hackathon_id": {
@@ -1900,36 +1459,36 @@
                 }
             }
         },
-        "db.ListRoomTxResult": {
+        "domain.ListRoomResponse": {
             "type": "object",
             "properties": {
                 "hackathon": {
-                    "$ref": "#/definitions/db.ListRoomTxHackathonInfo"
+                    "$ref": "#/definitions/domain.ListRoomHackathonInfo"
                 },
                 "members_frameworks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.RoomFramework"
+                        "$ref": "#/definitions/domain.RoomFramework"
                     }
                 },
                 "members_tech_tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.RoomTechTags"
+                        "$ref": "#/definitions/domain.RoomTechTags"
                     }
                 },
                 "now_member": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/db.NowRoomAccounts"
+                        "$ref": "#/definitions/domain.NowRoomAccounts"
                     }
                 },
                 "rooms": {
-                    "$ref": "#/definitions/db.ListRoomTxRoomInfo"
+                    "$ref": "#/definitions/domain.ListRoomRoomInfo"
                 }
             }
         },
-        "db.ListRoomTxRoomInfo": {
+        "domain.ListRoomRoomInfo": {
             "type": "object",
             "properties": {
                 "created_at": {
@@ -1946,7 +1505,123 @@
                 }
             }
         },
-        "db.Locates": {
+        "domain.NowRoomAccounts": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "is_owner": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "domain.RoomFramework": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "framework": {
+                    "$ref": "#/definitions/repository.Framework"
+                }
+            }
+        },
+        "domain.RoomTechTags": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "tech_tag": {
+                    "$ref": "#/definitions/repository.TechTag"
+                }
+            }
+        },
+        "domain.UpdateAccountRequest": {
+            "type": "object",
+            "properties": {
+                "explanatory_text": {
+                    "type": "string"
+                },
+                "frameworks": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "locate_id": {
+                    "type": "integer"
+                },
+                "show_locate": {
+                    "type": "boolean"
+                },
+                "show_rate": {
+                    "type": "boolean"
+                },
+                "tech_tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "user_id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.UpdateRoomRequestBody": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "hackathonID": {
+                    "type": "integer"
+                },
+                "member_limit": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "repository.Follow": {
+            "type": "object",
+            "properties": {
+                "create_at": {
+                    "type": "string"
+                },
+                "from_account_id": {
+                    "type": "string"
+                },
+                "to_account_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "repository.Framework": {
+            "type": "object",
+            "properties": {
+                "framework": {
+                    "type": "string"
+                },
+                "framework_id": {
+                    "type": "integer"
+                },
+                "tech_tag_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "repository.Locate": {
             "type": "object",
             "properties": {
                 "locate_id": {
@@ -1957,79 +1632,7 @@
                 }
             }
         },
-        "db.NowRoomAccounts": {
-            "type": "object",
-            "properties": {
-                "icon": {
-                    "type": "string"
-                },
-                "is_owner": {
-                    "type": "boolean"
-                },
-                "user_id": {
-                    "type": "string"
-                }
-            }
-        },
-        "db.PastWorkFrameworks": {
-            "type": "object",
-            "properties": {
-                "framework_id": {
-                    "type": "integer"
-                },
-                "opus": {
-                    "type": "integer"
-                }
-            }
-        },
-        "db.PastWorkTags": {
-            "type": "object",
-            "properties": {
-                "opus": {
-                    "type": "integer"
-                },
-                "tech_tag_id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "db.RoomFramework": {
-            "type": "object",
-            "properties": {
-                "count": {
-                    "type": "integer"
-                },
-                "framework": {
-                    "$ref": "#/definitions/db.Frameworks"
-                }
-            }
-        },
-        "db.RoomHackathonData": {
-            "type": "object",
-            "properties": {
-                "icon": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "db.RoomTechTags": {
-            "type": "object",
-            "properties": {
-                "count": {
-                    "type": "integer"
-                },
-                "tech_tag": {
-                    "$ref": "#/definitions/db.TechTags"
-                }
-            }
-        },
-        "db.StatusTags": {
+        "repository.StatusTag": {
             "type": "object",
             "properties": {
                 "status": {
@@ -2040,7 +1643,7 @@
                 }
             }
         },
-        "db.TechTags": {
+        "repository.TechTag": {
             "type": "object",
             "properties": {
                 "language": {

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
-import api from '@/api/$api'
 import { HackathonInterface } from '@/types/HackathonInterface'
 import { getAuthorizationHeader } from '../utils/headerManager'
+import api from '@/api/$api'
 
 export class HackathonRepository implements HackathonInterface {
   private static instance: HackathonRepository

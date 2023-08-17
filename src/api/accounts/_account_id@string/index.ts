@@ -2,26 +2,26 @@
 import type * as Types from '../../@types'
 
 export type Methods = {
-  /** Return a user from the id specified in the path */
+  /** Return a account from the id specified in the path */
   get: {
     status: 200
     /** Get success response */
-    resBody: Types.Api_GetAccountResponses
+    resBody: Types.Domain_AccountResponses
   }
 
-  /** Update user info from requested body */
+  /** Update account info from requested body */
   put: {
     status: 200
     /** Update success response */
-    resBody: Types.Api_UpdateAccountResponse
+    resBody: Types.Domain_AccountResponses
     /** Update Account Request Body */
-    reqBody: Types.Api_UpdateAccountRequestBody
+    reqBody: Types.Domain_UpdateAccountRequest
   }
 
   /** Only you can delete your account (logical delete) */
   delete: {
     status: 200
     /** delete success response */
-    resBody: Types.Api_DeleteResponse
+    resBody: Types.Controller_SuccessResponse
   }
 }

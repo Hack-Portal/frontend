@@ -6,22 +6,25 @@ import {
   Typography,
   Chip,
   Box,
-  JoyBadge
+  JoyBadge,
 } from '@/lib/mui/muiRendering'
 import { RoomUserThumb } from '../types/user'
 import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
 import StarRateIcon from '@mui/icons-material/StarRate'
-import { DEFAULT_ECDH_CURVE } from 'tls'
-import { Hammersmith_One } from 'next/font/google'
+import {
+  Domain_NowRoomAccounts,
+  Domain_RoomFramework,
+  Domain_RoomTechTags,
+} from '@/api/@types'
 
 type Props = {
   hackathonName: string
   title: string
   member_limit: number
-  now_member: RoomUserThumb[]
-  techs: Tech[]
-  frameworks: Framework[]
+  now_member: Domain_NowRoomAccounts[]
+  techs: Domain_RoomTechTags[]
+  frameworks: Domain_RoomFramework[]
 }
 
 export const RoomRecordRightBox = (props: Props) => {
@@ -67,7 +70,7 @@ export const RoomRecordRightBox = (props: Props) => {
           <Grid container direction={'row'} sx={{ mt: 2.5, mb: 1.5 }}>
             {Array.from(Array(member_limit)).map((_, index) =>
               now_member[index] ? (
-                now_member[index].isOwner ? (
+                now_member[index].is_owner ? (
                   <JoyBadge
                     badgeContent={<StarRateIcon sx={{ width: 8, height: 8 }} />}
                     variant="solid"
@@ -111,7 +114,7 @@ export const RoomRecordRightBox = (props: Props) => {
           {techs.map((tech, id) => (
             <Grid item key={id}>
               <Chip
-                label={tech.language}
+                label={tech.tech_tag?.language}
                 sx={{ mt: 0.5, mr: 0.5, fontSize: '14px' }}
                 key={id}
               />
@@ -128,7 +131,7 @@ export const RoomRecordRightBox = (props: Props) => {
           {frameworks.map((framework, id) => (
             <Grid sx={{ display: 'flex' }} item key={id}>
               <Chip
-                label={framework.framework}
+                label={framework.framework?.framework}
                 sx={{ mt: 0.3, mr: 0.5, fontSize: '14px' }}
                 key={id}
               />

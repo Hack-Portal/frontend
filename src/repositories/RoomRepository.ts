@@ -1,10 +1,11 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
-import api from '@/api/$api'
 import { getAuthorizationHeader } from '../utils/headerManager'
 import { RoomInterface } from '@/types/RoomInterface'
 import { FirebaseRepository } from './FirebaseRepository'
 import { UserRepository } from './UserRepository'
+import { CreateUser } from '@/app/signup/services/createUser'
+import api from '@/api/$api'
 
 export class RoomRepository implements RoomInterface {
   private static instance: RoomRepository
@@ -23,19 +24,25 @@ export class RoomRepository implements RoomInterface {
 
   public async fetchAll() {
     const user = await this.firebaseRepository.getCurrentUser()
+    if (!user) throw new Error('ユーザーが存在しません')
+    const token = await user?.getIdToken()
     try {
-      const client: any = api(
+      const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
+        
+        aspida(axios, {
+          // baseURL: process.env.NEXT_PUBLIC_API_URL,
+          baseURL: "https://api.seaffood.com/test/v1",
+          headers: {
+            // authorization: this.authorization,
+            "Content-Type": "application/json",
+            DBAuthorization: token,
+          },
+        }),
       )
-      const token = await user?.getIdToken()
-      this.authorization = getAuthorizationHeader()
 
-      const response = await client.rooms.get({
-        query: { room_id: 1 },
-        token: token,
-        headers: { authorization: this.authorization },
-      })
+      const response = await client.rooms.get()
+      console.log(response)
       return response.body
     } catch (error) {
       // エラー処理

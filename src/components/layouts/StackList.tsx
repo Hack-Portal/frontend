@@ -4,6 +4,7 @@ import {
   Typography,
   CardMedia,
   Box,
+  Card,
 } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { TechStack } from '@/types/techStack'
@@ -15,8 +16,17 @@ interface Props {
 const StackList = (props: Props) => {
   const { techStacks } = props
   return (
-    <Grid container direction={'column'} alignItems={'center'}>
-      <Typography>UseStacks</Typography>
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        pt: 3,
+        width: '15vw',
+        height: '100%',
+      }}
+    >
+      <Typography>技術スタック</Typography>
       {techStacks.map((techStack) => (
         <Grid
           item
@@ -49,7 +59,7 @@ const StackList = (props: Props) => {
           <Typography sx={{ mt: 0.5 }}>{techStack.name}</Typography>
         </Grid>
       ))}
-    </Grid>
+    </Card>
   )
 }
 
