@@ -2,18 +2,12 @@
 
 import { AuthProvider, GoogleAuthProvider, User } from 'firebase/auth'
 import React, { ChangeEvent } from 'react'
-import { Button, Grid, Typography } from '@/lib/mui/muiRendering'
-import {
-  Control,
-  FieldValues,
-  UseFormHandleSubmit,
-  useForm,
-} from 'react-hook-form'
+import { Grid } from '@/lib/mui/muiRendering'
+import { useForm } from 'react-hook-form'
 import { useIcon } from '@/hooks/useIcon'
 import { useSignIn } from '../../hooks/useSignIn'
 import { SignUpForm } from '../SignUpForm'
 import { SelectLogin } from './SelectLogin'
-import { useSelectLogin } from '../../hooks/useSelectLogin'
 import { CreateUser } from '../../services/createUser'
 import { SignUpFormData } from '../../types/formData'
 import { Repository_Locate } from '@/api/@types'
@@ -42,7 +36,6 @@ export const SignUpFormContainer = (props: Props) => {
         height: '100%',
       }}
     >
-      <Typography variant={'h4'}>新規登録</Typography>
       {selected === null ? (
         <SelectLogin
           handleSetSelected={handleSetSelected}
