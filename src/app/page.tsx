@@ -7,7 +7,7 @@ import { TechStack } from '@/types/techStack'
 import { UserRatingInfo } from '@/components/types/userRating'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import { FetchHackathons } from './_services/fetchHackathons'
 
 const Home = async () => {
