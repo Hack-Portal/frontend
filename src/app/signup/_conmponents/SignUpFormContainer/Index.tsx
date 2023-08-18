@@ -32,10 +32,16 @@ type Props = {
 export const SignUpFormContainer = (props: Props) => {
   const { locates } = props
   const { icon, handleSetIcon, preview } = useIcon()
-  const { isLogin, user,error, handleEmailLogin, handleGoogleLogin, createUser } =
-    useSignUp()
-    console.log(user);
-    
+  const {
+    isLogin,
+    user,
+    error,
+    handleEmailLogin,
+    handleGoogleLogin,
+    createUser,
+  } = useSignUp()
+  console.log(user)
+
   return (
     <Grid
       container
@@ -49,17 +55,15 @@ export const SignUpFormContainer = (props: Props) => {
       <Box
         sx={{
           width: '100%',
-          height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           flexDirection: 'column',
-          gap:5,
+          gap: 5,
+          mt:5
         }}
       >
-        <Typography sx={{fontSize: 32,}}>
-          新規登録
-        </Typography>
+        <Typography sx={{ fontSize: 32 }}>新規登録</Typography>
         {isLogin ? (
           <SignUpDetailForm
             createUser={createUser}

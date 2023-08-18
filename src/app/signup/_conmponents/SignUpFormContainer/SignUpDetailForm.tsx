@@ -30,9 +30,16 @@ export const SignUpDetailForm = (props: Props) => {
 
   return (
     <Grid
-      sx={{ width: '100%', height: '100%' }}
+      sx={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
       component="form"
       onSubmit={handleSubmit(createUser)}
+      direction={'column'}
     >
       <Controller
         name="icon"
@@ -48,11 +55,14 @@ export const SignUpDetailForm = (props: Props) => {
               }}
               sx={{ display: 'none' }}
             />
-            <Avatar src={preview!} />
+            <Avatar
+              src={preview!}
+              sx={{ width: '60px', height: '60px', mb: 5 }}
+            />
           </InputLabel>
         )}
       />
-      <Typography>名前</Typography>
+
       <Controller
         name="username"
         control={control}
@@ -64,65 +74,47 @@ export const SignUpDetailForm = (props: Props) => {
           <TextField
             {...field}
             fullWidth
-            placeholder="名前を入力してください"
+            label="名前"
             error={errors.username ? true : false}
             helperText={errors.username?.message as string}
+            sx={{ width: '70%', mb: 4 }}
           />
         )}
       />
-      <Typography>居住地</Typography>
-      <Controller
-        name="locate_id"
-        control={control}
-        rules={{
-          required: { value: true, message: '必須入力' },
-        }}
-        render={({ field, formState: { errors } }) => (
-          <Controller
-            name="locate_id"
-            control={control}
-            defaultValue={0}
-            render={({ field, formState: { errors } }) => (
-              <FormControl fullWidth error={errors.locate_id ? true : false}>
-                <Controller
-                  name="locate_id"
-                  control={control}
-                  render={({
-                    field: { onChange, value, onBlur, name, ref },
-                  }) => {
-                    const handleChange: (event: any) => void = (event) => {
-                      onChange(event) // react-hook-formのonChangeハンドラにイベントを渡す
-                    }
-                    return (
-                      <Select
-                        labelId="select-label"
-                        id="select"
-                        label="Select"
-                        inputRef={ref}
-                        onChange={handleChange} // 修正されたハンドラを使用
-                        value={value}
-                        onBlur={onBlur}
-                      >
-                        <MenuItem value={0}>未選択</MenuItem>
-                        {locates &&
-                          locates.map((locate) => (
-                            <MenuItem
-                              value={locate.locate_id}
-                              key={locate.locate_id}
-                            >
-                              {locate.name}
-                            </MenuItem>
-                          ))}
-                      </Select>
-                    )
-                  }}
-                />
-                <Button type="submit">登録</Button>
-              </FormControl>
-            )}
-          />
-        )}
-      />
+      <FormControl sx={{ width: '70%' }}>
+        <Controller
+          defaultValue={0}
+          name="locate_id"
+          control={control}
+          render={({ field: { onChange, value, onBlur, name, ref } }) => {
+            const handleChange: (event: any) => void = (event) => {
+              onChange(event) // react-hook-formのonChangeハンドラにイベントを渡す
+            }
+            return (
+              <Select
+                labelId="select-label"
+                id="select"
+                inputRef={ref}
+                onChange={handleChange} // 修正されたハンドラを使用
+                value={value}
+                onBlur={onBlur}
+                sx={{ width: '100%', mb: 4 }}
+              >
+                <MenuItem value={0}>
+                  <Typography sx={{color:"#777"}}>居住地を選択</Typography>
+                </MenuItem>
+                {locates &&
+                  locates.map((locate) => (
+                    <MenuItem value={locate.locate_id} key={locate.locate_id}>
+                      {locate.name}
+                    </MenuItem>
+                  ))}
+              </Select>
+            )
+          }}
+        />
+        <Button type="submit" sx={{ width: '100%' }} variant="contained">登録</Button>
+      </FormControl>
     </Grid>
   )
 }

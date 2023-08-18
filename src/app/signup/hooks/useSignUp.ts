@@ -51,6 +51,7 @@ export const useSignUp = () => {
   }
 
   const createUser = async (formData: SignUpFormData) => {
+    console.log(formData)
     const user = await User.create(formData)
     if (user) {
       handlePushRouter('/signin')
