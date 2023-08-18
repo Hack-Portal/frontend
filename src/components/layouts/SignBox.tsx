@@ -24,7 +24,6 @@ export const SignBox = (props: Props) => {
       >
         <CardContent
           sx={{
-            mt: 5,
             width: '100%',
             height: '100%',
             display: 'flex',
@@ -36,7 +35,7 @@ export const SignBox = (props: Props) => {
         </CardContent>
         <CardMedia
           component={'img'}
-          sx={{ width: '50%', height: '100%', objectFit: 'cover' }}
+          sx={{ width: '60%', height: '100%', objectFit: 'cover' }}
           title="Your title"
           image={'/image/next.png'}
         />

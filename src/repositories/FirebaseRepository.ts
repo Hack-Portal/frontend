@@ -4,6 +4,7 @@ import {
   User,
   browserLocalPersistence,
   browserSessionPersistence,
+  createUserWithEmailAndPassword,
   onAuthStateChanged,
   setPersistence,
   signInWithPopup,
@@ -50,7 +51,24 @@ export class FirebaseRepository {
     }
   }
 
-  public async OAuthSignIn(provider: AuthProvider): Promise<User> {
+  public async SNSSignIn(provider: AuthProvider): Promise<User> {
+    try {
+      const result = await setPersistence(auth, browserLocalPersistence).then(
+        async () => {
+          // 以降の認証が指定した永続性で行われる
+          const result = await signInWithPopup(auth, provider)
+
+          return result.user
+        },
+      )
+      return result
+    } catch (error) {
+      console.error('ログインエラー:', error)
+      throw error // エラーを呼び出し元に伝播させる
+    }
+  }
+
+  public async emailSignIn(provider: AuthProvider): Promise<User> {
     try {
       const result = await setPersistence(auth, browserLocalPersistence).then(
         async () => {
@@ -66,6 +84,24 @@ export class FirebaseRepository {
       throw error // エラーを呼び出し元に伝播させる
     }
   }
+
+  public async emailSignUp(email: string, password: string): Promise<User | string> {
+    try {
+      // メールアドレスとパスワードを使ってユーザーを登録します
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+  
+      // 登録したユーザー情報を返します
+      return result.user;
+    } catch (error) {
+      if (error instanceof Error) { // エラーの型チェック
+        const errorCode = (error as FirebaseError).code; // FirebaseErrorとして扱う
+       return errorCode
+      }
+      throw error
+  }
+}
+   
+
 
   // public async signOut(): Promise<void> {
   //   try {
@@ -136,4 +172,5 @@ export class FirebaseRepository {
       throw error
     }
   }
+
 }
