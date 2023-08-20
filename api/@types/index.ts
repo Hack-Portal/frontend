@@ -87,10 +87,20 @@ export type Domain_CreateRoomRequestBody = {
   title: string
 }
 
+export type Domain_CreateUserRequest = {
+  email: string
+  password: string
+}
+
+export type Domain_CreateUserResponse = {
+  token?: string | undefined
+  user_id?: string | undefined
+}
+
 export type Domain_GetRoomResponse = {
   create_at?: string | undefined
   description?: string | undefined
-  hackathon?: Domain_RoomHackathonInfo | undefined
+  hackathon?: Domain_HackathonInfo | undefined
   is_status?: boolean | undefined
   member_limit?: number | undefined
   members_frameworks?: Domain_RoomFramework[] | undefined
@@ -98,6 +108,16 @@ export type Domain_GetRoomResponse = {
   now_member?: Domain_NowRoomAccounts[] | undefined
   room_id?: string | undefined
   title?: string | undefined
+}
+
+export type Domain_HackathonInfo = {
+  hackathon_id?: number | undefined
+  icon?: string | undefined
+  link?: string | undefined
+  name?: string | undefined
+  start_date?: string | undefined
+  status_tag?: Repository_StatusTag[] | undefined
+  term?: number | undefined
 }
 
 export type Domain_HackathonResponses = {
@@ -142,16 +162,6 @@ export type Domain_NowRoomAccounts = {
 export type Domain_RoomFramework = {
   count?: number | undefined
   framework?: Repository_Framework | undefined
-}
-
-export type Domain_RoomHackathonInfo = {
-  hackathon_id?: number | undefined
-  icon?: string | undefined
-  link?: string | undefined
-  name?: string | undefined
-  start_date?: string | undefined
-  status_tag?: Repository_StatusTag[] | undefined
-  term?: number | undefined
 }
 
 export type Domain_RoomTechTags = {

@@ -2,6 +2,18 @@
 import type * as Types from '../../../@types'
 
 export type Methods = {
+  /** Get follow account */
+  get: {
+    status: 200
+    /** success response */
+    resBody: Types.Controller_SuccessResponse
+    reqFormat: URLSearchParams
+
+    reqBody: {
+      to_account_id: string
+    }
+  }
+
   /** Follow!!!!!!!! */
   post: {
     status: 200
