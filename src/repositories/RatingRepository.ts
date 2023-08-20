@@ -15,14 +15,14 @@ export class RatingRepository implements RatingInterface {
     return RatingRepository.instance
   }
 
-  public async fetchAll(account_id: string) {
+  public async fetchAll() {
     try {
       const client: any = api(
         aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
       )
       this.authorization = getAuthorizationHeader()
 
-      const response = await client.accounts._account_id(account_id).rate.get({
+      const response = await client.rate.get({
         headers: { authorization: this.authorization },
       })
       return response.body

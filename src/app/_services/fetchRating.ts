@@ -8,10 +8,22 @@ export class FetchRating {
     this.ratingRepository = RatingRepository.getInstance()
   }
 
-  public async fetchRating(account_id: string) {
+  public async fetchRating() {
     try {
-      const rating = await this.ratingRepository.fetchAll(account_id)
-      return rating
+      const rating = await this.ratingRepository.fetchAll()
+
+      // rateの高い順にソート
+      const sortedRating = rating.sort((a: any, b: any) => b.rate - a.rate)
+
+      // indexを付与
+      const indexedRating = sortedRating.map((item: any, index: number) => {
+        return {
+          ...item,
+          index: index + 1, // 1から始める順位
+        }
+      })
+
+      return indexedRating
     } catch (error) {
       console.error('Serviceのエラー:', error)
       throw error
