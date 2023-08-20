@@ -1,6 +1,6 @@
 import React from 'react'
-import { Grid, Avatar, Typography, Card } from '../../lib/mui/muiRendering'
-import { FetchRating } from '../../app/_services/fetchRating'
+import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
+import { FetchRating } from '@/app/_services/fetchRating'
 
 const ratingRating = async () => {
   const fetchRatings = new FetchRating()

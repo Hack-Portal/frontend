@@ -1,4 +1,4 @@
-import { RatingRepository } from '../../repositories/RatingRepository'
+import { RatingRepository } from '@/repositories/RatingRepository'
 
 export class FetchRating {
   // このクラス内でRatingRepositoryを使うために、RatingRepositoryをインスタンス化しておく
