@@ -1,18 +1,13 @@
 import React from 'react'
-import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
+import { Grid, Avatar, Typography, Card, Rating } from '@/lib/mui/muiRendering'
 import { FetchRating } from '../../app/_services/fetchRating'
 import { type } from 'os'
 import { RatingInterface } from '@/types/RatingInterface'
 
-const UserRating = async () => {
+const ratingRating = async () => {
   const fetchRatings = new FetchRating()
   const indexRating = await fetchRatings.fetchRating()
-
-  type User = {
-    user: RatingInterface
-    index: number
-  }
-
+  const { rating, index } = indexRating
   return (
     <Card
       sx={{
@@ -24,11 +19,11 @@ const UserRating = async () => {
       }}
     >
       <Typography>レーティング</Typography>
-      {/* //型が違う */}
-      {indexRating.map((user: any, index: number) => (
+      {/* //map内型エラー */}
+      {rating.map(() => (
         <Grid
           item
-          key={user.account_id}
+          key={rating.account_id}
           sx={{
             mt: 3,
             mb: 2,
@@ -51,14 +46,14 @@ const UserRating = async () => {
           >
             {index + 1}位
           </Typography>
-          <Avatar alt={user.username} src={indexRating.icon} />
+          <Avatar alt={rating.username} src={rating.icon} />
 
-          <Typography>{user.username}</Typography>
-          <Typography color={'#999'}>rating: {user.rate}</Typography>
+          <Typography>{rating.ratingname}</Typography>
+          <Typography color={'#999'}>rating: {rating.rate}</Typography>
         </Grid>
       ))}
     </Card>
   )
 }
 
-export default UserRating
+export default ratingRating

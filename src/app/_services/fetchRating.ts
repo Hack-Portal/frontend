@@ -12,7 +12,7 @@ export class FetchRating {
     try {
       const rating = await this.ratingRepository.fetchAll()
 
-      // rateの高い順にソート
+      // rate 降順ソート
       const sortedRating = rating.sort((a: any, b: any) => b.rate - a.rate)
 
       // indexを付与

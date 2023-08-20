@@ -5,7 +5,7 @@ import { RoomInterface } from '@/types/RoomInterface'
 import { FirebaseRepository } from './FirebaseRepository'
 import { UserRepository } from './UserRepository'
 import { CreateUser } from '@/app/signup/services/createUser'
-import api from '@/api/$api'
+import api from '../../api/$api'
 
 export class RoomRepository implements RoomInterface {
   private static instance: RoomRepository
@@ -29,13 +29,13 @@ export class RoomRepository implements RoomInterface {
     try {
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
-        
+
         aspida(axios, {
           // baseURL: process.env.NEXT_PUBLIC_API_URL,
-          baseURL: "https://api.seaffood.com/test/v1",
+          baseURL: 'https://api.seaffood.com/test/v1',
           headers: {
             // authorization: this.authorization,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             DBAuthorization: token,
           },
         }),
