@@ -1,7 +1,7 @@
-import { RatingRepository } from '@/repositories/RatingRepository'
+import { RatingRepository } from '../../repositories/RatingRepository'
 
 export class FetchRating {
-  // このクラス内でHackathonRepositoryを使うために、HackathonRepositoryをインスタンス化しておく
+  // このクラス内でRatingRepositoryを使うために、RatingRepositoryをインスタンス化しておく
   private ratingRepository: RatingRepository
 
   constructor() {
@@ -11,19 +11,7 @@ export class FetchRating {
   public async fetchRating() {
     try {
       const rating = await this.ratingRepository.fetchAll()
-
-      // rate 降順ソート
-      const sortedRating = rating.sort((a: any, b: any) => b.rate - a.rate)
-
-      // indexを付与
-      const indexedRating = sortedRating.map((item: any, index: number) => {
-        return {
-          ...item,
-          index: index + 1, // 1から始める順位
-        }
-      })
-
-      return indexedRating
+      return rating
     } catch (error) {
       console.error('Serviceのエラー:', error)
       throw error

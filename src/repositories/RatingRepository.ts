@@ -2,7 +2,7 @@ import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '../../api/$api'
 import { getAuthorizationHeader } from '../utils/headerManager'
-import { RatingInterface } from '@/types/RatingInterface'
+import { RatingInterface } from '../types/RatingInterface'
 
 export class RatingRepository implements RatingInterface {
   private static instance: RatingRepository
@@ -24,6 +24,7 @@ export class RatingRepository implements RatingInterface {
 
       const response = await client.rate.get({
         headers: { authorization: this.authorization },
+        query: { page_id: 1, page_size: 10 },
       })
       return response.body
     } catch (error) {

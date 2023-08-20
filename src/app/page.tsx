@@ -8,6 +8,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense, useEffect } from 'react'
 import { FetchHackathons } from './_services/fetchHackathons'
+import { FetchRating } from './_services/fetchRating'
+import React from 'react'
 
 const Home = async () => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())

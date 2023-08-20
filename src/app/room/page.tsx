@@ -13,7 +13,6 @@ import { RoomList } from './[id]/_components/RoomCenter/RoomList'
 import { CreateUser } from '../signup/services/createUser'
 
 const Room = () => {
-  
   const techs: SelectTech[] = [
     {
       id: 1,
@@ -188,7 +187,7 @@ const Room = () => {
         <Header />
         <Grid container direction="row">
           <Grid item xs>
-            <UserRating users={userRatingInfo} />
+            <UserRating />
           </Grid>
           <Grid item>
             <RoomList />
