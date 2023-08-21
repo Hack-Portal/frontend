@@ -2,7 +2,6 @@ import { UserInterface } from '@/types/UserInterface'
 import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '@/api/$api'
-import { Domain_CreateAccountRequest } from '@/api/@types'
 
 export class UserRepository implements UserInterface {
   private static instance: UserRepository | null = null

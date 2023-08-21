@@ -26,23 +26,17 @@ export class CreateUser implements CreateUserInterface {
 
     const body = new FormData()
 
-    console.log(formData)
-
     // テキストデータを追加
     body.append('locate_id', String(formData.locate_id))
     body.append('username', formData.username)
     body.append('show_locate', "false")
-    body.append('show_rate', "show_rate")
+    body.append('show_rate', "false")
     body.append('account_id', user.uid)
 
     // アイコン（ファイル）を追加
     if (formData.icon) {
       body.append('icon', formData.icon)
     }
-    body.forEach((value, key) => {
-      console.log(key + ': ' + value);
-    });
-    console.log(body)
     try {
       const user = await this.userRepository.create(body, token)
       return user

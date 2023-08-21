@@ -6,13 +6,11 @@ export type Methods = {
   get: {
     status: 200
     /** success response */
-    resBody: Types.Domain_FollowResponse[]
+    resBody: Types.Controller_SuccessResponse
     reqFormat: URLSearchParams
 
     reqBody: {
-      mode?: boolean | undefined
-      page_id?: string | undefined
-      page_size?: string | undefined
+      to_account_id: string
     }
   }
 
@@ -33,7 +31,7 @@ export type Methods = {
     reqFormat: URLSearchParams
 
     reqBody: {
-      account_id: string
+      to_account_id: string
     }
   }
 }

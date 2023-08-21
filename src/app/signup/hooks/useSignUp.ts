@@ -60,6 +60,7 @@ export const useSignUp = () => {
       handlePushRouter('/signin')
     }
   }
+
   return {
     isLogin,
     user,
