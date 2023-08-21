@@ -1,7 +1,7 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
 import { HackathonInterface } from '@/types/HackathonInterface'
-import { getAuthorizationHeader } from '../utils/headerManager'
+import { getAuthorizationHeader } from '@/utils/headerManager'
 import api from '@/api/$api'
 
 export class HackathonRepository implements HackathonInterface {
