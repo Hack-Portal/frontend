@@ -53,7 +53,7 @@ export const SignUpSelectForm = (props: Props) => {
           />
         </FormControl>
 
-        <FormControl sx={{ width: '70%', mb: 1 }}>
+        <FormControl sx={{ width: '70%', mb: 4 }}>
           <Controller
             name="password"
             control={control}

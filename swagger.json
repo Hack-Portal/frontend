@@ -21,6 +21,9 @@
         "/accounts": {
             "post": {
                 "description": "Create an account from the requested body",
+                "consumes": [
+                    "multipart/form-data"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -303,29 +306,17 @@
                         "required": true
                     },
                     {
-                        "type": "boolean",
-                        "name": "mode",
-                        "in": "formData"
-                    },
-                    {
                         "type": "string",
-                        "name": "page_id",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "page_size",
-                        "in": "formData"
+                        "name": "to_account_id",
+                        "in": "formData",
+                        "required": true
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "success response",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/domain.FollowResponse"
-                            }
+                            "$ref": "#/definitions/controller.SuccessResponse"
                         }
                     },
                     "400": {
@@ -412,7 +403,7 @@
                     },
                     {
                         "type": "string",
-                        "name": "account_id",
+                        "name": "to_account_id",
                         "in": "formData",
                         "required": true
                     }
@@ -1470,20 +1461,6 @@
                 }
             }
         },
-        "domain.FollowResponse": {
-            "type": "object",
-            "properties": {
-                "account_id": {
-                    "type": "string"
-                },
-                "icon": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
         "domain.GetRoomResponse": {
             "type": "object",
             "properties": {
@@ -1690,13 +1667,7 @@
         },
         "domain.UpdateAccountRequest": {
             "type": "object",
-            "required": [
-                "account_id"
-            ],
             "properties": {
-                "account_id": {
-                    "type": "string"
-                },
                 "explanatory_text": {
                     "type": "string"
                 },

@@ -87,12 +87,6 @@ export type Domain_CreateRoomRequestBody = {
   title: string
 }
 
-export type Domain_FollowResponse = {
-  account_id?: string | undefined
-  icon?: string | undefined
-  username?: string | undefined
-}
-
 export type Domain_GetRoomResponse = {
   create_at?: string | undefined
   description?: string | undefined
@@ -166,7 +160,6 @@ export type Domain_RoomTechTags = {
 }
 
 export type Domain_UpdateAccountRequest = {
-  account_id: string
   explanatory_text?: string | undefined
   frameworks?: number[] | undefined
   locate_id?: number | undefined
