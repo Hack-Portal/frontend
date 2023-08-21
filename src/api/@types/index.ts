@@ -46,15 +46,14 @@ export type Domain_BookmarkResponse = {
 }
 
 export type Domain_CreateAccountRequest = {
+  account_id: string
   explanatory_text?: string | undefined
   frameworks?: number[] | undefined
   locate_id: number
   show_locate?: boolean | undefined
   show_rate?: boolean | undefined
   tech_tags?: number[] | undefined
-  user_id: string
   username: string
-  icon?: string | undefined
 }
 
 export type Domain_CreateBookmarkRequest = {
@@ -88,10 +87,16 @@ export type Domain_CreateRoomRequestBody = {
   title: string
 }
 
+export type Domain_FollowResponse = {
+  account_id?: string | undefined
+  icon?: string | undefined
+  username?: string | undefined
+}
+
 export type Domain_GetRoomResponse = {
   create_at?: string | undefined
   description?: string | undefined
-  hackathon?: Domain_HackathonInfo | undefined
+  hackathon?: Domain_RoomHackathonInfo | undefined
   is_status?: boolean | undefined
   member_limit?: number | undefined
   members_frameworks?: Domain_RoomFramework[] | undefined
@@ -99,18 +104,6 @@ export type Domain_GetRoomResponse = {
   now_member?: Domain_NowRoomAccounts[] | undefined
   room_id?: string | undefined
   title?: string | undefined
-}
-
-export type Domain_HackathonInfo = {
-  description?: string
-  expired?: string
-  hackathon_id?: number | undefined
-  icon?: string | undefined
-  link?: string | undefined
-  name?: string | undefined
-  start_date?: string | undefined
-  status_tag?: Repository_StatusTag[] | undefined
-  term?: number | undefined
 }
 
 export type Domain_HackathonResponses = {
@@ -157,19 +150,29 @@ export type Domain_RoomFramework = {
   framework?: Repository_Framework | undefined
 }
 
+export type Domain_RoomHackathonInfo = {
+  hackathon_id?: number | undefined
+  icon?: string | undefined
+  link?: string | undefined
+  name?: string | undefined
+  start_date?: string | undefined
+  status_tag?: Repository_StatusTag[] | undefined
+  term?: number | undefined
+}
+
 export type Domain_RoomTechTags = {
   count?: number | undefined
   tech_tag?: Repository_TechTag | undefined
 }
 
 export type Domain_UpdateAccountRequest = {
+  account_id: string
   explanatory_text?: string | undefined
   frameworks?: number[] | undefined
   locate_id?: number | undefined
   show_locate?: boolean | undefined
   show_rate?: boolean | undefined
   tech_tags?: number[] | undefined
-  user_id?: string | undefined
   username?: string | undefined
 }
 
@@ -203,6 +206,7 @@ export type Repository_StatusTag = {
 }
 
 export type Repository_TechTag = {
+  icon?: string | undefined
   language?: string | undefined
   tech_tag_id?: number | undefined
 }

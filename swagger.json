@@ -285,6 +285,63 @@
             }
         },
         "/accounts/{from_account_id}/follow": {
+            "get": {
+                "description": "Get follow account",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "Get follow",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Accounts API wildcard",
+                        "name": "from_account_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "name": "mode",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page_id",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page_size",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.FollowResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "Follow!!!!!!!!",
                 "produces": [
@@ -355,7 +412,7 @@
                     },
                     {
                         "type": "string",
-                        "name": "to_account_id",
+                        "name": "account_id",
                         "in": "formData",
                         "required": true
                     }
@@ -699,6 +756,53 @@
                             "items": {
                                 "$ref": "#/definitions/repository.Locate"
                             }
+                        }
+                    },
+                    "500": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/rate": {
+            "get": {
+                "description": "List Account Rate",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Rate"
+                ],
+                "summary": "List Account Rate",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "page_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page_size",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.AccountRateResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
                     "500": {
@@ -1056,6 +1160,35 @@
                 }
             }
         },
+        "/status_tags": {
+            "get": {
+                "description": "Get Frameworks",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TechTags"
+                ],
+                "summary": "Get Frameworks",
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/repository.StatusTag"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/tech_tags": {
             "get": {
                 "description": "Get Frameworks",
@@ -1214,11 +1347,14 @@
         "domain.CreateAccountRequest": {
             "type": "object",
             "required": [
+                "account_id",
                 "locate_id",
-                "user_id",
                 "username"
             ],
             "properties": {
+                "account_id": {
+                    "type": "string"
+                },
                 "explanatory_text": {
                     "type": "string"
                 },
@@ -1242,9 +1378,6 @@
                     "items": {
                         "type": "integer"
                     }
-                },
-                "user_id": {
-                    "type": "string"
                 },
                 "username": {
                     "type": "string"
@@ -1337,6 +1470,20 @@
                 }
             }
         },
+        "domain.FollowResponse": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
         "domain.GetRoomResponse": {
             "type": "object",
             "properties": {
@@ -1347,7 +1494,7 @@
                     "type": "string"
                 },
                 "hackathon": {
-                    "$ref": "#/definitions/domain.HackathonInfo"
+                    "$ref": "#/definitions/domain.RoomHackathonInfo"
                 },
                 "is_status": {
                     "type": "boolean"
@@ -1378,35 +1525,6 @@
                 },
                 "title": {
                     "type": "string"
-                }
-            }
-        },
-        "domain.HackathonInfo": {
-            "type": "object",
-            "properties": {
-                "hackathon_id": {
-                    "type": "integer"
-                },
-                "icon": {
-                    "type": "string"
-                },
-                "link": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "start_date": {
-                    "type": "string"
-                },
-                "status_tag": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/repository.StatusTag"
-                    }
-                },
-                "term": {
-                    "type": "integer"
                 }
             }
         },
@@ -1530,6 +1648,35 @@
                 }
             }
         },
+        "domain.RoomHackathonInfo": {
+            "type": "object",
+            "properties": {
+                "hackathon_id": {
+                    "type": "integer"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string"
+                },
+                "status_tag": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repository.StatusTag"
+                    }
+                },
+                "term": {
+                    "type": "integer"
+                }
+            }
+        },
         "domain.RoomTechTags": {
             "type": "object",
             "properties": {
@@ -1543,7 +1690,13 @@
         },
         "domain.UpdateAccountRequest": {
             "type": "object",
+            "required": [
+                "account_id"
+            ],
             "properties": {
+                "account_id": {
+                    "type": "string"
+                },
                 "explanatory_text": {
                     "type": "string"
                 },
@@ -1567,9 +1720,6 @@
                     "items": {
                         "type": "integer"
                     }
-                },
-                "user_id": {
-                    "type": "string"
                 },
                 "username": {
                     "type": "string"
@@ -1646,6 +1796,9 @@
         "repository.TechTag": {
             "type": "object",
             "properties": {
+                "icon": {
+                    "type": "string"
+                },
                 "language": {
                     "type": "string"
                 },

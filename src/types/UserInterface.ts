@@ -4,8 +4,7 @@ import {
 } from '@/api/@types'
 
 export interface UserInterface {
-  fetchAll: () => Promise<Domain_AccountResponses[]>
-  fetchById: (id: string) => Promise<Domain_AccountResponses>
+  fetchById: (id: string,token:string) => Promise<Domain_AccountResponses|string>
   create: (
     body: Domain_CreateAccountRequest,
     token: string,

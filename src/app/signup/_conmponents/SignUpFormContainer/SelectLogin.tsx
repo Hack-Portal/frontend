@@ -14,6 +14,7 @@ import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { LoginType } from '../../types/loginType'
 import { Box } from '@mui/joy'
+import Image from 'next/image'
 
 type Props = {
   handleOAuthSignIn: () => void
@@ -87,10 +88,12 @@ export const SelectLogin = (props: Props) => {
 
         <Paper elevation={3} sx={{ m: 'auto', mt: 3, width: '65%' }}>
           <Button sx={{ width: '100%' }} onClick={handleOAuthSignIn}>
-            <img
+            <Image
               src="/image/google_sign.png"
               alt="google"
-              style={{ width: '50%' }}
+              style={{ width: '50%', height: '50%',objectFit:"cover"}}
+              width={500}
+              height={500}
             />
           </Button>
         </Paper>
