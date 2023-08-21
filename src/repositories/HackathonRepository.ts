@@ -40,7 +40,7 @@ export class HackathonRepository implements HackathonInterface {
       throw error
     }
   }
-  
+
   public async fetchById(hackathonId: string) {
     try {
       const client = api(

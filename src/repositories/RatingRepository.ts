@@ -1,6 +1,6 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
-import api from '../../api/$api'
+import api from '@/api/$api'
 import { getAuthorizationHeader } from '@/utils/headerManager'
 import { RatingInterface } from '@/types/RatingInterface'
 
