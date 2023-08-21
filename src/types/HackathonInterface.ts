@@ -1,4 +1,4 @@
-import { Domain_HackathonResponses, Domain_HackathonInfo } from '@/api/@types'
+import { Domain_HackathonResponses } from '@/api/@types'
 
 export interface HackathonInterface {
   fetchAll(): Promise<Domain_HackathonResponses[]>

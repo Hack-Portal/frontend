@@ -13,6 +13,7 @@ import {
 import { EmailSignUpFormData } from '../../types/formData'
 import { Controller, useForm } from 'react-hook-form'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type Props = {
   handleEmailLogin: (data: EmailSignUpFormData) => void
@@ -86,11 +87,13 @@ export const SignUpSelectForm = (props: Props) => {
 
       <Paper elevation={1} sx={{ mt: 3, width: '70%' }}>
         <Button sx={{ width: '100%' }} onClick={handleGoogleLogin}>
-          <img
-            src="/image/google_sign.png"
-            alt="google"
-            style={{ width: '50%' }}
-          />
+        <Image
+              src="/image/google_sign.png"
+              alt="google"
+              style={{ width: '50%', height: '50%',objectFit:"cover"}}
+              width={500}
+              height={500}
+            />
         </Button>
       </Paper>
       <Typography sx={{ fontSize: 16, mt: 4 }}>
