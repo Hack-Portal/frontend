@@ -12,13 +12,13 @@ import {
   HourglassEmptyOutlinedIcon,
 } from '@/lib/mui/muiRendering'
 
-import { HackathonThumb } from '../_types/hackathon'
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 import { HacakathonColumn } from './HacakathonColumn'
+import { Domain_HackathonResponses } from '@/api/@types'
 
 type Props = {
-  hackathons: HackathonThumb[]
+  hackathons: Domain_HackathonResponses[]
 }
 
 export const HackathonList = (props: Props) => {
@@ -39,9 +39,8 @@ export const HackathonList = (props: Props) => {
     <CenterArea>
       {hackathons.map((hackathon) => (
         <CenterRecordCard
-          href={`/${hackathon.hackathon_id}`}
+          href={hackathon.link ? hackathon.link : ''}
           key={hackathon.hackathon_id}
-          
         >
           <CardMedia
             component={'img'}
@@ -74,50 +73,50 @@ export const HackathonList = (props: Props) => {
             >
               {hackathon.name}
             </Typography>
-                <Grid
-                  container
-                  direction={'row'}
-                  flexWrap={'nowrap'}
-                  alignItems={'center'}
-                  gap={3}
-                  width={"100%"}
-                >
-                  <HacakathonColumn
-                    title={COLUMN.expired.label}
-                    value={hackathon.expired?.substring(0, 10)}
-                    icon={
-                      <SensorDoorOutlinedIcon
-                        sx={{ color: '#aaa', width: '30px', height: '30px' }}
-                      />
-                    }
+            <Grid
+              container
+              direction={'row'}
+              flexWrap={'nowrap'}
+              alignItems={'center'}
+              gap={3}
+              width={'100%'}
+            >
+              <HacakathonColumn
+                title={COLUMN.expired.label}
+                value={hackathon.expired?.substring(0, 10)}
+                icon={
+                  <SensorDoorOutlinedIcon
+                    sx={{ color: '#aaa', width: '30px', height: '30px' }}
                   />
-                  <HacakathonColumn
-                    title={COLUMN.start_date.label}
-                    value={hackathon.start_date?.substring(0, 10)}
-                    icon={
-                      <FlagOutlinedIcon
-                        sx={{
-                          color: '#aaa',
-                          width: '30px',
-                          height: '30px',
-                        }}
-                      />
-                    }
+                }
+              />
+              <HacakathonColumn
+                title={COLUMN.start_date.label}
+                value={hackathon.start_date?.substring(0, 10)}
+                icon={
+                  <FlagOutlinedIcon
+                    sx={{
+                      color: '#aaa',
+                      width: '30px',
+                      height: '30px',
+                    }}
                   />
-                  <HacakathonColumn
-                    title={COLUMN.term.label}
-                    value={`${hackathon.term}日間`}
-                    icon={
-                      <HourglassEmptyOutlinedIcon
-                        sx={{
-                          color: '#aaa',
-                          width: '30px',
-                          height: '30px',
-                        }}
-                      />
-                    }
+                }
+              />
+              <HacakathonColumn
+                title={COLUMN.term.label}
+                value={`${hackathon.term}日間`}
+                icon={
+                  <HourglassEmptyOutlinedIcon
+                    sx={{
+                      color: '#aaa',
+                      width: '30px',
+                      height: '30px',
+                    }}
                   />
-                </Grid>
+                }
+              />
+            </Grid>
             <Grid
               container
               sx={{

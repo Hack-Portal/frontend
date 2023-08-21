@@ -1,64 +1,44 @@
 'use client'
-
-import { AuthProvider, User } from 'firebase/auth'
 import React, { ChangeEvent } from 'react'
-import { GoogleAuthProvider } from 'firebase/auth'
-import { Button, Typography } from '@/lib/mui/muiRendering'
+import {
+  Box,
+  Grid,
+  Typography,
+} from '@/lib/mui/muiRendering'
+
 import { SignInForm } from './SignInForm'
-import {
-  Control,
-  FieldValues,
-  UseFormHandleSubmit,
-  useForm,
-} from 'react-hook-form'
-import {
-  Repository_Framework,
-  Repository_Locate,
-  Repository_TechTag,
-} from '@/api/@types'
-import { useIcon } from '@/hooks/useIcon'
-import { useSignIn } from '../../../signup/hooks/useSignIn'
+import { useSignIn } from '../../hooks/useSignIn'
 
-type Props = {
-  locates: Repository_Locate[]
-  techTags: Repository_TechTag[]
-  frameworks: Repository_Framework[]
-}
-
-export const SignInFormContainer = (props: Props) => {
-  const { locates, techTags, frameworks } = props
-
-  const handleClickLogin = (data: any) => {
-    console.log(data) // フォームの内容が入る
-  }
-  const { signIn, user, isLoading } = useSignIn()
-  const googleProvider = new GoogleAuthProvider()
-  const { control, handleSubmit } = useForm({}) // 使用したいメソッド等
-  const { icon, handleSetIcon, preview } = useIcon()
-
+export const SignInFormContainer = () => {
+  const { error,handleEmailLogin,handleGoogleLogin} = useSignIn()
   return (
-    <>
-      <Typography variant={'h4'}>ログイン</Typography>
-
-      <SignInForm
-        control={control}
-        handleSubmit={handleSubmit}
-        user={user}
-        isLoading={isLoading}
-        handleSetIcon={handleSetIcon}
-        preview={preview}
-        locates={locates}
-        techTags={techTags}
-        frameworks={frameworks}
-      />
-      {user ? (
-        <></>
-      ) : (
-        <Button onClick={() => signIn(googleProvider)}>Googleでログイン</Button>
-      )}
-      <Button variant="contained" onClick={handleClickLogin}>
-        ログイン
-      </Button>
-    </>
+    <Grid
+      container
+      direction={'column'}
+      alignItems={'center'}
+      sx={{
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          gap: 5,
+          mt: 5,
+        }}
+      >
+        <Typography sx={{ fontSize: 32 }}>ログイン</Typography>
+        <SignInForm
+          emailLogin={handleEmailLogin}
+          googleLogin={handleGoogleLogin}
+          error={error}
+        />
+      </Box>
+    </Grid>
   )
 }

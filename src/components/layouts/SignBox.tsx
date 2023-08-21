@@ -29,15 +29,16 @@ export const SignBox = (props: Props) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            background: '#f6f6f6',
           }}
         >
           {children}
         </CardContent>
         <CardMedia
           component={'img'}
-          sx={{ width: '60%', height: '100%', objectFit: 'cover' }}
+          sx={{ width: '60%', height: '100%', objectFit: 'contain',background:'#f6f6f6' }}
           title="Your title"
-          image={'/image/next.png'}
+          image={'/image/signupmedia.png'}
         />
       </Card>
     </Grid>

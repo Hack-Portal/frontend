@@ -31,7 +31,6 @@ type Props = {
 
 export const SignUpFormContainer = (props: Props) => {
   const { locates } = props
-  const { icon, handleSetIcon, preview } = useIcon()
   const {
     isLogin,
     user,
@@ -39,8 +38,9 @@ export const SignUpFormContainer = (props: Props) => {
     handleEmailLogin,
     handleGoogleLogin,
     createUser,
+    handleSetIcon,
+    preview,
   } = useSignUp()
-  console.log(user)
 
   return (
     <Grid
@@ -60,7 +60,7 @@ export const SignUpFormContainer = (props: Props) => {
           justifyContent: 'center',
           flexDirection: 'column',
           gap: 5,
-          mt:5
+          mt: 5,
         }}
       >
         <Typography sx={{ fontSize: 32 }}>新規登録</Typography>

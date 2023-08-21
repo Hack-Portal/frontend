@@ -8,16 +8,11 @@ const SignIn = async () => {
   // const locates = await handleFetchLocates()
 
   return (
-    <></>
-    // <SignBox>
-    //   <Suspense fallback={<div>Loading...</div>}>
-    //     <SignInFormContainer
-    //       locates={locates}
-    //       techTags={techTags}
-    //       frameworks={frameworks}
-    //     />
-    //   </Suspense>
-    // </SignBox>
+    <SignBox>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SignInFormContainer/>
+      </Suspense>
+    </SignBox>
   )
 }
 export default SignIn

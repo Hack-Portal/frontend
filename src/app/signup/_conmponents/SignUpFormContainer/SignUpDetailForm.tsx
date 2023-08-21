@@ -18,7 +18,7 @@ import { Repository_Locate } from '@/api/@types'
 
 type Props = {
   createUser: (data: SignUpFormData) => void
-  handleSetIcon: (file: Blob | null) => void
+  handleSetIcon: (file: File | null) => void
   preview: string | null
   locates: Repository_Locate[]
   user?: User
@@ -44,7 +44,6 @@ export const SignUpDetailForm = (props: Props) => {
       <Controller
         name="icon"
         control={control}
-        defaultValue=""
         render={({ field }) => (
           <InputLabel>
             <TextField

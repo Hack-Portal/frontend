@@ -27,16 +27,18 @@ export class RoomRepository implements RoomInterface {
     if (!user) throw new Error('ユーザーが存在しません')
     const token = await user?.getIdToken()
     try {
+      console.log(process.env.NEXT_PUBLIC_TEST_URL)
+      console.log(process.env.NEXT_PUBLIC_TEST_EMAIL_TOKEN)
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
         
         aspida(axios, {
           // baseURL: process.env.NEXT_PUBLIC_API_URL,
-          baseURL: "https://api.seaffood.com/test/v1",
+          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
             // authorization: this.authorization,
             "Content-Type": "application/json",
-            DBAuthorization: token,
+            dbAuthorization: token,
           },
         }),
       )

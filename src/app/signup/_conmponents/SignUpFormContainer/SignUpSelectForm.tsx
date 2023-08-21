@@ -73,9 +73,9 @@ export const SignUpSelectForm = (props: Props) => {
           href="/"
           style={{ width: '70%', display: 'flex', justifyContent: 'flex-end' }}
         >
-          <Typography mb={4} color="#1994e2">
+          {/* <Typography mb={4} color="#1994e2" fontSize={"0.8rem"}>
             パスワードを忘れた方へ
-          </Typography>
+          </Typography> */}
         </Link>
         <Button sx={{ width: '70%' }} variant="contained" type="submit">
           登録

@@ -16,24 +16,6 @@ export class UserRepository implements UserInterface {
     return this.instance
   }
 
-  /**
-   * ユーザー一覧を取得する
-   * @returns ユーザー一覧
-   * @throws Error
-   */
-  public async fetchAll() {
-    try {
-      const client: any = api(
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
-      )
-
-      const response = await client.users.get()
-      return response.body
-    } catch (error) {
-      console.error('APIリクエストエラー:', error)
-      throw error
-    }
-  }
 
   /**
    * ユーザーを取得する
@@ -41,10 +23,17 @@ export class UserRepository implements UserInterface {
    * @returns ユーザー
    * @throws Error
    */
-  public async fetchById(id: string) {
+  public async fetchById(id: string, token: string) {
     try {
+      console.log(token)
       const client = api(
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
+        aspida(axios, {
+          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          headers: {
+            'Content-Type': 'application/json',
+            dbauthorization: token,
+          },
+        }),
       )
 
       const response = await client.accounts._account_id(id).get()
@@ -59,14 +48,17 @@ export class UserRepository implements UserInterface {
    * ユーザーを作成する
    * @returns ユーザー
    * @throws Error
+   * @param body formData
    */
-  public async create(body: Domain_CreateAccountRequest, token: string) {
+  public async create(body: any, token: string) {
+  // public async create(body: any, token: string) {
+    console.log(body);
+    
     try {
       const client = api(
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_API_URL,
-          // headers: { 'Content-Type': 'application/json',"DBAuthorization":token}
-          headers: { 'Content-Type': 'application/json', authorization: token },
+          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          headers: { dbauthorization: token },
         }),
       )
 

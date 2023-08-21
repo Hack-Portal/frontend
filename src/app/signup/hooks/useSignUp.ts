@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { CreateUser } from '../services/createUser'
 import { EmailSignUpFormData, SignUpFormData } from '../types/formData'
 import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { useIcon } from '@/hooks/useIcon'
 
 export const useSignUp = () => {
   const [isLogin, setIsLogin] = useState(false)
@@ -11,6 +12,7 @@ export const useSignUp = () => {
   const [error, setError] = useState<string>()
   const User = new CreateUser()
   const { handlePushRouter } = useCustomRouter()
+  const { icon, handleSetIcon, preview } = useIcon()
 
   const handleEmailLogin = async (formData: EmailSignUpFormData) => {
     const user = await User.authEmail(formData, () => {
@@ -51,8 +53,9 @@ export const useSignUp = () => {
   }
 
   const createUser = async (formData: SignUpFormData) => {
+    const requestData =  {...formData,icon:icon}
     console.log(formData)
-    const user = await User.create(formData)
+    const user = await User.create(requestData)
     if (user) {
       handlePushRouter('/signin')
     }
@@ -64,5 +67,7 @@ export const useSignUp = () => {
     handleEmailLogin,
     handleGoogleLogin,
     createUser,
+    handleSetIcon,
+    preview,
   }
 }

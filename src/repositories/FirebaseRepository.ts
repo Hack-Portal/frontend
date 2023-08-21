@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   setPersistence,
+  signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
@@ -24,6 +25,7 @@ import api from '@/api/$api'
 import aspida from '@aspida/axios'
 import axios from 'axios'
 import { Domain_GetRoomResponse } from '@/api/@types'
+import { EmailSignInFormData } from '@/app/signin/types/formData'
 
 export class FirebaseRepository {
   private static instance: FirebaseRepository | null = null
@@ -68,20 +70,19 @@ export class FirebaseRepository {
     }
   }
 
-  public async emailSignIn(provider: AuthProvider): Promise<User> {
+  public async emailSignIn(email:string,password:string ): Promise<User|string> {
     try {
-      const result = await setPersistence(auth, browserLocalPersistence).then(
-        async () => {
-          // 以降の認証が指定した永続性で行われる
-          const result = await signInWithPopup(auth, provider)
-
-          return result.user
-        },
-      )
-      return result
+      // メールアドレスとパスワードを使ってユーザーをログインさせます
+      const result = await signInWithEmailAndPassword(auth, email, password);
+  
+      // ログインしたユーザー情報を返します
+      return result.user;
     } catch (error) {
-      console.error('Googleログインエラー:', error)
-      throw error // エラーを呼び出し元に伝播させる
+      if (error instanceof Error) { // エラーの型チェック
+        const errorCode = (error as FirebaseError).code; // FirebaseErrorとして扱う
+        return errorCode;
+      }
+      throw error;
     }
   }
 

@@ -1,158 +1,105 @@
-import {
-  Repository_Locate,
-  Repository_TechTag,
-  Repository_Framework,
-} from '@/api/@types'
+import React from 'react'
 import {
   Avatar,
   Box,
-  Checkbox,
+  Button,
   FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  FormLabel,
   Grid,
   InputLabel,
-  MenuItem,
-  Select,
+  Paper,
   TextField,
+  Typography,
 } from '@/lib/mui/muiRendering'
-import { User } from 'firebase/auth'
-import React, { ChangeEvent, Suspense, useEffect } from 'react'
-import {
-  useForm,
-  Controller,
-  Control,
-  FieldValues,
-  UseFormHandleSubmit,
-} from 'react-hook-form'
+import { EmailSignInFormData } from '../../types/formData'
+import { Controller, useForm } from 'react-hook-form'
+import Link from 'next/link'
 
 type Props = {
-  control: Control<FieldValues, any>
-  handleSubmit: any
-  user: User | null
-  isLoading: boolean
-  handleSetIcon: (file: Blob | null) => void
-  preview: string | null
-  locates: Repository_Locate[]
-  techTags: Repository_TechTag[]
-  frameworks: Repository_Framework[]
+  emailLogin: (data: EmailSignInFormData) => void
+  googleLogin: () => void
+  error?: string
 }
 
 export const SignInForm = (props: Props) => {
-  const {
-    control,
-    handleSubmit,
-    user,
-    isLoading,
-    handleSetIcon,
-    preview,
-    locates,
-    techTags,
-    frameworks,
-  } = props
+  const { emailLogin, googleLogin,error } = props
+  const { control, handleSubmit } = useForm<EmailSignInFormData>() // 使用したいメソッド等
 
   return (
-    <>
-      {isLoading || (
-        <Box component="form" onSubmit={handleSubmit}>
+    <Grid container direction={'column'} alignItems={'center'} width={'100%'}>
+      <Box
+        component="form"
+        onSubmit={handleSubmit(emailLogin)}
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <FormControl sx={{ width: '70%', mb: 4 }}>
           <Controller
-            name="icon"
+            name="email"
             control={control}
+            defaultValue=""
             render={({ field }) => (
-              <InputLabel>
-                <TextField
-                  {...field}
-                  type="file"
-                  onChange={(e: any) => {
-                    handleSetIcon(e.currentTarget.files![0])
-                  }}
-                  sx={{ display: 'none' }}
-                />
-                <Avatar src={preview!} />
-              </InputLabel>
-            )}
-          />
-          <Controller
-            name="username"
-            control={control}
-            defaultValue={user?.displayName}
-            rules={{
-              required: { value: true, message: '必須入力' },
-            }}
-            render={({ field, formState: { errors } }) => (
               <TextField
                 {...field}
-                label="名前"
-                fullWidth
-                placeholder="名前を入力してください"
-                error={errors.text ? true : false}
-                helperText={errors.text?.message as string}
+                id="email"
+                placeholder=""
+                label="メールアドレス"
+                size="small"
               />
             )}
           />
-          <Controller
-            name="locate"
-            control={control}
-            defaultValue={user?.email}
-            rules={{
-              required: { value: true, message: '必須入力' },
-            }}
-            render={({ field, formState: { errors } }) => (
-              <Controller
-                name="select"
-                control={control}
-                defaultValue={0}
-                render={({ field, formState: { errors } }) => (
-                  <FormControl fullWidth error={errors.select ? true : false}>
-                    <InputLabel id="select-label">居住地</InputLabel>
-                    <Select
-                      labelId="select-label"
-                      id="select"
-                      label="Select"
-                      {...field}
-                    >
-                      <MenuItem value={0}>未選択</MenuItem>
-                      {locates &&
-                        locates.map((locate) => (
-                          <MenuItem
-                            value={locate.locate_id}
-                            key={locate.locate_id}
-                          >
-                            {locate.name}
-                          </MenuItem>
-                        ))}
-                    </Select>
-                  </FormControl>
-                )}
-              />
-            )}
-          />
-          <Controller
-            name="check"
-            control={control}
-            defaultValue={true}
-            render={({ field, formState: { errors } }) => (
-              <FormGroup {...field}>
-                <FormLabel component="legend">技術</FormLabel>
+        </FormControl>
 
-                <Grid container>
-                  {techTags[0] &&
-                    techTags.map((techTag) => (
-                      <FormControlLabel
-                        control={<Checkbox name="check" />}
-                        label={techTag.language}
-                        value={techTag.tech_tag_id}
-                        key={techTag.tech_tag_id}
-                      />
-                    ))}
-                </Grid>
-              </FormGroup>
+        <FormControl sx={{ width: '70%', mb: 1 }}>
+          <Controller
+            name="password"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                {...field}
+                id="password-input"
+                type="password"
+                label="パスワード"
+                size="small"
+              />
             )}
           />
-        </Box>
-      )}
-    </>
+        </FormControl>
+        {error && <Typography sx={{ color: 'red' }}>{error}</Typography>}
+        <Link
+          href="/"
+          style={{ width: '70%', display: 'flex', justifyContent: 'flex-end' }}
+        >
+          <Typography mb={4} color="#1994e2" fontSize={'0.8rem'}>
+            パスワードを忘れた方へ
+          </Typography>
+        </Link>
+        <Button sx={{ width: '70%' }} variant="contained" type="submit">
+          ログイン
+        </Button>
+      </Box>
+
+      <Typography sx={{ fontSize: 16, mt: 3 }}>または</Typography>
+
+      <Paper elevation={1} sx={{ mt: 3, width: '70%' }}>
+        <Button sx={{ width: '100%' }} onClick={googleLogin}>
+          <img
+            src="/image/google_sign.png"
+            alt="google"
+            style={{ width: '50%' }}
+          />
+        </Button>
+      </Paper>
+      <Typography sx={{ fontSize: 16, mt: 4 }}>
+        アカウントをお持ちでない方は{' '}
+        <Link href={'/signup'} style={{ color: '#1994e2' }}>
+          会員登録
+        </Link>
+      </Typography>
+    </Grid>
   )
 }

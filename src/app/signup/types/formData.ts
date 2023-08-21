@@ -1,7 +1,7 @@
 
 export type SignUpFormData={
     username: string;
-    icon: string;
+    icon: File|null;
     locate_id: number;
 }
 

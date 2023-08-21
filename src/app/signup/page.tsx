@@ -8,7 +8,7 @@ const SignUp = async () => {
   const locates = await fetchLocates.fetchAllLocates()
 
   return (
-    <Box sx={{ backgroundColor: '#99ccff' }}>
+    <Box sx={{ backgroundColor: '#eee' }}>
       <SignBox>
         <SignUpFormContainer locates={locates} />
       </SignBox>
