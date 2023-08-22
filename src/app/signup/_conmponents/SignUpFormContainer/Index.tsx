@@ -1,29 +1,17 @@
 'use client'
 
-import { AuthProvider, GoogleAuthProvider, User } from 'firebase/auth'
-import React, { ChangeEvent } from 'react'
+import React, {useEffect } from 'react'
 import {
-  Avatar,
   Box,
-  Button,
-  FormControl,
   Grid,
-  InputLabel,
-  Paper,
-  TextField,
   Typography,
 } from '@/lib/mui/muiRendering'
-import { Controller, useForm } from 'react-hook-form'
-import { useIcon } from '@/hooks/useIcon'
 import { SignUpDetailForm } from './SignUpDetailForm'
-import { SelectLogin } from './SelectLogin'
-import { CreateUser } from '../../services/createUser'
-import { EmailSignUpFormData, SignUpFormData } from '../../types/formData'
 import { Repository_Locate } from '@/api/@types'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { useSignUp } from '../../hooks/useSignUp'
 import { SignUpSelectForm } from './SignUpSelectForm'
+import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { LoginCheck } from '@/services/LoginCheck'
 
 type Props = {
   locates: Repository_Locate[]
@@ -41,6 +29,13 @@ export const SignUpFormContainer = (props: Props) => {
     handleSetIcon,
     preview,
   } = useSignUp()
+  const { handlePushRouter } = useCustomRouter()
+
+  // 既にログインしている場合はリダイレクト
+  useEffect(() => {
+    const login = new LoginCheck()
+    login.check(()=>handlePushRouter('/user'))
+  }, [])
 
   return (
     <Grid

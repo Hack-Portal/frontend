@@ -104,16 +104,29 @@ export class FirebaseRepository {
    
 
 
-  // public async signOut(): Promise<void> {
-  //   try {
-  //     await auth.signOut()
-  //   } catch (e) {
-  //     if (e instanceof FirebaseError) {
-  //       console.log(e)
-  //       throw e
-  //     }
-  //   }
-  // }
+  public async signOut(): Promise<void> {
+    try {
+      await auth.signOut()
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+        console.log(e)
+        throw e
+      }
+    }
+  }
+
+  public async deleteAccount(): Promise<void> {
+    try {
+      const user = await this.getCurrentUser()
+      if (!user) throw new Error('ユーザーが存在しません')
+      await user.delete()
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+        console.log(e)
+        throw e
+      }
+    }
+  }
 
   public fetchChatMessages(
     roomId: string,

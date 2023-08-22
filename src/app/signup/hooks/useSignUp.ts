@@ -19,8 +19,6 @@ export const useSignUp = () => {
       setIsLogin(true)
     })
     if (typeof user == 'string') {
-      console.log(user)
-
       switch (user) {
         case 'auth/email-already-in-use':
           setError('このメールアドレスは既に使用されています')
@@ -54,7 +52,6 @@ export const useSignUp = () => {
 
   const createUser = async (formData: SignUpFormData) => {
     const requestData =  {...formData,icon:icon}
-    console.log(formData)
     const user = await User.create(requestData)
     if (user) {
       handlePushRouter('/signin')
