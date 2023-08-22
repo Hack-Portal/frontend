@@ -1,24 +1,32 @@
 import React from 'react'
 import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
-import { UserRatingInfo } from '../types/userRating'
+import { FetchRating } from '@/app/_services/fetchRating'
 
-type Props = {
-  users: UserRatingInfo[]
-}
+const ratingRating = async () => {
+  const fetchRatings = new FetchRating()
+  const rating = await fetchRatings.fetchRating()
 
-const UserRating = (props: Props) => {
-  const { users } = props
+  if (!rating) return <div>loading...</div>
+
+  let index: number = 0
   return (
-    <Card sx={{display:"flex",flexDirection:"column",alignItems:"center",pt:3,width:"15vw"}}  >
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        pt: 3,
+        width: '15vw',
+      }}
+    >
       <Typography>レーティング</Typography>
-
-      {users.map((user, index) => (
+      {rating.map((data: any, index: number) => (
         <Grid
           item
-          key={user.id}
+          key={data.account_id}
           sx={{
             mt: 3,
-            mb:2,
+            mb: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -38,14 +46,14 @@ const UserRating = (props: Props) => {
           >
             {index + 1}位
           </Typography>
-          <Avatar alt={user.name} src={user.icon} />
+          <Avatar alt={data.username} src={data.icon} />
 
-          <Typography>{user.name}</Typography>
-          <Typography color={'#999'}>rating: {user.rating}</Typography>
+          <Typography>{data.rate}</Typography>
+          <Typography color={'#999'}>rating: {data.rate}</Typography>
         </Grid>
       ))}
     </Card>
   )
 }
 
-export default UserRating
+export default ratingRating

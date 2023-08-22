@@ -18,7 +18,7 @@ const ratingRating = async () => {
       }}
     >
       <Typography>レーティング</Typography>
-      {ratingData.map((data: any, index: number) => (
+      {ratingData.map((data: any) => (
         <Grid
           item
           key={data.account_id}
@@ -30,7 +30,7 @@ const ratingRating = async () => {
             alignItems: 'center',
           }}
         >
-          <Typography
+          {/* <Typography
             mb={1}
             color={
               index + 1 === 1
@@ -43,7 +43,7 @@ const ratingRating = async () => {
             }
           >
             {index + 1}位
-          </Typography>
+          </Typography> */}
           <Avatar alt={data.username} src={data.icon} />
 
           <Typography>{data.rate}</Typography>

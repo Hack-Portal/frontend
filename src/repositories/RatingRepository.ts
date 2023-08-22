@@ -3,6 +3,7 @@ import aspida from '@aspida/axios'
 import api from '@/api/$api'
 import { getAuthorizationHeader } from '@/utils/headerManager'
 import { RatingInterface } from '@/types/RatingInterface'
+//404エラーが出る
 
 export class RatingRepository implements RatingInterface {
   private static instance: RatingRepository
@@ -23,8 +24,8 @@ export class RatingRepository implements RatingInterface {
       this.authorization = getAuthorizationHeader()
 
       const response = await client.rate.get({
-        headers: { authorization: this.authorization },
         query: { page_id: 1, page_size: 10 },
+        headers: { authorization: this.authorization },
       })
       return response.body
     } catch (error) {
