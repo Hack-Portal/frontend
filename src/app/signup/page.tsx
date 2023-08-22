@@ -6,6 +6,7 @@ import { Box } from '@/lib/mui/muiRendering'
 const SignUp = async () => {
   const fetchLocates = new FetchLocates()
   const locates = await fetchLocates.fetchAllLocates()
+  
 
   return (
     <Box sx={{ backgroundColor: '#eee' }}>

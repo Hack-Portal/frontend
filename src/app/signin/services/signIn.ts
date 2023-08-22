@@ -23,8 +23,6 @@ export class SignIn {
       password,
     )
 
-    console.log(firebaseUser)
-    console.log('aaa')
 
     // errorなら
     if (typeof firebaseUser == 'string') {

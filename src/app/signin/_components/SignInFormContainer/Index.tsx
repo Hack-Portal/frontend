@@ -1,5 +1,5 @@
 'use client'
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useEffect } from 'react'
 import {
   Box,
   Grid,
@@ -8,9 +8,17 @@ import {
 
 import { SignInForm } from './SignInForm'
 import { useSignIn } from '../../hooks/useSignIn'
+import { LoginCheck } from '@/services/LoginCheck'
+import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
 
 export const SignInFormContainer = () => {
   const { error,handleEmailLogin,handleGoogleLogin} = useSignIn()
+  const { handlePushRouter } = useCustomRouter()
+  useEffect(() => {
+    const login = new LoginCheck()
+    login.check(()=>handlePushRouter('/user'))
+  }, [])
+
   return (
     <Grid
       container
