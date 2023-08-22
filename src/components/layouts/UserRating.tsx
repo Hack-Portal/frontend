@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
 import { FetchRating } from '@/app/_services/fetchRating'
+import { Domain_AccountRateResponse } from '@/api/@types'
 
 const ratingRating = async () => {
   const fetchRatings = new FetchRating()
@@ -19,7 +20,7 @@ const ratingRating = async () => {
         }}
       >
         <Typography>レーティング</Typography>
-        {rating.map((data: any, index: number) => (
+        {rating.map((data: Domain_AccountRateResponse, index: number) => (
           <Grid
             item
             key={data.account_id}
