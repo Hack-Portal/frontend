@@ -8,7 +8,6 @@ const ratingRating = async () => {
 
   if (!rating) return <div>loading...</div>
 
-  let index: number = 0
   return (
     <Card
       sx={{
