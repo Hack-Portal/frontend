@@ -19,7 +19,7 @@ export class RatingRepository implements RatingInterface {
   public async fetchAll() {
     try {
       const client: any = api(
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
+        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_TEST_URL }),
       )
       this.authorization = getAuthorizationHeader()
 
