@@ -1,8 +1,8 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
-import { HackathonInterface } from '@/types/HackathonInterface'
-import { getAuthorizationHeader } from '@/utils/headerManager'
 import api from '@/api/$api'
+import { HackathonInterface } from '@/types/HackathonInterface'
+import { getAuthorizationHeader } from '../utils/headerManager'
 
 export class HackathonRepository implements HackathonInterface {
   private static instance: HackathonRepository
@@ -33,21 +33,6 @@ export class HackathonRepository implements HackathonInterface {
         headers: { authorization: this.authorization },
       })
 
-      return response.body
-    } catch (error) {
-      // エラー処理
-      console.error('APIリクエストエラー:', error)
-      throw error
-    }
-  }
-
-  public async fetchById(hackathonId: string) {
-    try {
-      const client = api(
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
-      )
-
-      const response = await client.hackathons._hackathon_id(hackathonId).get()
       return response.body
     } catch (error) {
       // エラー処理

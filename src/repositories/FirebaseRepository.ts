@@ -4,8 +4,10 @@ import {
   User,
   browserLocalPersistence,
   browserSessionPersistence,
+  createUserWithEmailAndPassword,
   onAuthStateChanged,
   setPersistence,
+  signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
@@ -23,6 +25,7 @@ import api from '@/api/$api'
 import aspida from '@aspida/axios'
 import axios from 'axios'
 import { Domain_GetRoomResponse } from '@/api/@types'
+import { EmailSignInFormData } from '@/app/signin/types/formData'
 
 export class FirebaseRepository {
   private static instance: FirebaseRepository | null = null
@@ -50,7 +53,7 @@ export class FirebaseRepository {
     }
   }
 
-  public async OAuthSignIn(provider: AuthProvider): Promise<User> {
+  public async SNSSignIn(provider: AuthProvider): Promise<User> {
     try {
       const result = await setPersistence(auth, browserLocalPersistence).then(
         async () => {
@@ -62,10 +65,44 @@ export class FirebaseRepository {
       )
       return result
     } catch (error) {
-      console.error('Googleログインエラー:', error)
+      console.error('ログインエラー:', error)
       throw error // エラーを呼び出し元に伝播させる
     }
   }
+
+  public async emailSignIn(email:string,password:string ): Promise<User|string> {
+    try {
+      // メールアドレスとパスワードを使ってユーザーをログインさせます
+      const result = await signInWithEmailAndPassword(auth, email, password);
+  
+      // ログインしたユーザー情報を返します
+      return result.user;
+    } catch (error) {
+      if (error instanceof Error) { // エラーの型チェック
+        const errorCode = (error as FirebaseError).code; // FirebaseErrorとして扱う
+        return errorCode;
+      }
+      throw error;
+    }
+  }
+
+  public async emailSignUp(email: string, password: string): Promise<User | string> {
+    try {
+      // メールアドレスとパスワードを使ってユーザーを登録します
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+  
+      // 登録したユーザー情報を返します
+      return result.user;
+    } catch (error) {
+      if (error instanceof Error) { // エラーの型チェック
+        const errorCode = (error as FirebaseError).code; // FirebaseErrorとして扱う
+       return errorCode
+      }
+      throw error
+  }
+}
+   
+
 
   // public async signOut(): Promise<void> {
   //   try {
@@ -136,4 +173,5 @@ export class FirebaseRepository {
       throw error
     }
   }
+
 }

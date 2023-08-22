@@ -6,15 +6,18 @@ import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import { FetchHackathons } from './_services/fetchHackathons'
 import { FetchRating } from './_services/fetchRating'
 import React from 'react'
+
+export const dynamic = "force-static";
 
 const Home = async () => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())
   const fetchHackathons = new FetchHackathons()
   const hackathons = await fetchHackathons.fetchAllHackathons()
+  
 
   const techStacks: TechStack[] = [
     {
