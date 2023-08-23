@@ -77,6 +77,7 @@ const Room = async () => {
           <Grid item xs>
             {/* @ts-expect-error Server Component */}
             <UserRating />
+
           </Grid>
           <Grid item>
             <RoomList />
