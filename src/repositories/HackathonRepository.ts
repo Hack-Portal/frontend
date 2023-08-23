@@ -22,16 +22,16 @@ export class HackathonRepository implements HackathonInterface {
    */
   public async fetchAll() {
     try {
-      const client :any= api(
+      const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
+        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL , headers: { authorization: this.authorization }}),
       )
 
       this.authorization = getAuthorizationHeader()
 
       const response = await client.hackathons.get({
         query: { page_size: 10, page_id: 1, expired: false },
-        headers: { authorization: this.authorization },
+       
       }) 
 
       return response.body as Domain_HackathonResponses[]

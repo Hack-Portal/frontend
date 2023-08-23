@@ -25,7 +25,7 @@ type Props = {
 
 export const PostModalWindow = (props: Props) => {
   const { hackathons } = props
-  const { room, createRoom } = useRoom()
+  const { createRoom } = useRoom()
   const [open, setOpen] = useState(false)
 
   // todo:logicを分離する
