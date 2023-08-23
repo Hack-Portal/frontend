@@ -4,16 +4,15 @@ import type * as Types from '../../../@types'
 export type Methods = {
   /** Get follow account */
   get: {
-    status: 200
-    /** success response */
-    resBody: Types.Domain_FollowResponse[]
-    reqFormat: URLSearchParams
-
-    reqBody: {
+    query?: {
       mode?: boolean | undefined
       page_id?: string | undefined
       page_size?: string | undefined
-    }
+    } | undefined
+
+    status: 200
+    /** success response */
+    resBody: Types.Domain_FollowResponse[]
   }
 
   /** Follow!!!!!!!! */
@@ -27,13 +26,12 @@ export type Methods = {
 
   /** Remove follow account */
   delete: {
+    query: {
+      account_id: string
+    }
+
     status: 200
     /** success response */
     resBody: Types.Controller_SuccessResponse
-    reqFormat: URLSearchParams
-
-    reqBody: {
-      account_id: string
-    }
   }
 }

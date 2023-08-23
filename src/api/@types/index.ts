@@ -34,17 +34,6 @@ export type Domain_AddChatRequestBody = {
   message: string
 }
 
-export type Domain_BookmarkResponse = {
-  description?: string | undefined
-  expired?: string | undefined
-  hackathon_id?: number | undefined
-  icon?: string | undefined
-  link?: string | undefined
-  name?: string | undefined
-  start_date?: string | undefined
-  term?: number | undefined
-}
-
 export type Domain_CreateAccountRequest = {
   account_id: string
   explanatory_text?: string | undefined
@@ -54,11 +43,6 @@ export type Domain_CreateAccountRequest = {
   show_rate?: boolean | undefined
   tech_tags?: string | undefined
   username: string
-}
-
-export type Domain_CreateBookmarkRequest = {
-  account_id?: string | undefined
-  opus?: number | undefined
 }
 
 export type Domain_CreateFollowRequestBody = {

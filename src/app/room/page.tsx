@@ -1,9 +1,6 @@
-// "use client"
 import { Header } from '@/components/layouts/Header'
 import { Avatar, Box, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { PostModalWindow } from './_components/PostModalWindow'
-import UserRating from '../../components/layouts/UserRating'
-import { UserRatingInfo } from '@/components/types/userRating'
 import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import { Suspense } from 'react'
@@ -12,6 +9,7 @@ import { RoomList } from './_components/RoomList'
 import { CreateUser } from '../signup/services/createUser'
 import { FetchHackathons } from '../_services/fetchHackathons'
 import { HackathonService } from './_services/Hackathon'
+import {UserRating} from '@/components/layouts/UserRating'
 
 export const dynamic = "force-static";
 
@@ -69,69 +67,6 @@ const Room = async() => {
     },
   ]
 
-  const userRatingInfo: UserRatingInfo[] = [
-    {
-      id: '1',
-      name: 'HackMan',
-      icon: 'image/user1.png',
-      rating: 20,
-    },
-    {
-      id: '2',
-      name: 'HackMania',
-      icon: 'image/user2.png',
-      rating: 18,
-    },
-    {
-      id: '3',
-      name: 'HackNinja',
-      icon: 'image/user3.png',
-      rating: 17,
-    },
-    {
-      id: '4',
-      name: 'Woker',
-      icon: 'image/user4.png',
-      rating: 16,
-    },
-    {
-      id: '5',
-      name: 'HapyHacker',
-      icon: 'image/user5.png',
-      rating: 14,
-    },
-    {
-      id: '6',
-      name: 'BlueCoder',
-      icon: 'image/user6.png',
-      rating: 13,
-    },
-
-    {
-      id: '7',
-      name: 'purpleCoder',
-      icon: 'image/user7.png',
-      rating: 12,
-    },
-    {
-      id: '8',
-      name: 'Gopher',
-      icon: 'image/user8.png',
-      rating: 11,
-    },
-    {
-      id: '9',
-      name: 'NineHacker',
-      icon: 'image/user9.png',
-      rating: 10,
-    },
-    {
-      id: '10',
-      name: 'TenHacker',
-      icon: 'image/user10.png',
-      rating: 9,
-    },
-  ]
   const techStacks: TechStack[] = [
     {
       id: '1',
@@ -193,7 +128,8 @@ const Room = async() => {
         <Header />
         <Grid container direction="row">
           <Grid item xs>
-            <UserRating users={userRatingInfo} />
+            {/* @ts-expect-error Server Component */}
+            <UserRating />
           </Grid>
           <Grid item>
             <RoomList 
