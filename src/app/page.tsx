@@ -1,6 +1,7 @@
 import { Header } from '@/components/layouts/Header'
 import { HackathonList } from './_components/HackathonList'
 import {UserRating} from '../components/layouts/UserRating'
+
 import { Grid } from '@/lib/mui/muiRendering'
 import StackList from '../components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
