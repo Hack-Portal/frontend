@@ -8,12 +8,17 @@ import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import { Suspense } from 'react'
 import { SelectTech } from '../signup/types/tech'
-import { FetchRooms } from './_services/fetchRooms'
-import { RoomList } from './[id]/_components/RoomCenter/RoomList'
+import { RoomList } from './_components/RoomList'
 import { CreateUser } from '../signup/services/createUser'
+import { FetchHackathons } from '../_services/fetchHackathons'
+import { HackathonService } from './_services/Hackathon'
 
-const Room = () => {
-  
+export const dynamic = "force-static";
+
+const Room = async() => {
+  const Hackathon = new HackathonService()
+  const hackathons = await Hackathon.fetchAll()
+
   const techs: SelectTech[] = [
     {
       id: 1,
@@ -191,7 +196,8 @@ const Room = () => {
             <UserRating users={userRatingInfo} />
           </Grid>
           <Grid item>
-            <RoomList />
+            <RoomList 
+            />
           </Grid>
           <Grid item xs>
             <StackList techStacks={techStacks} />
@@ -214,7 +220,7 @@ const Room = () => {
           alignItems: 'center',
         }}
       >
-        <PostModalWindow />
+        <PostModalWindow hackathons={hackathons}/>
       </Box>
     </>
   )

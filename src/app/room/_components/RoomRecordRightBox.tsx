@@ -8,7 +8,7 @@ import {
   Box,
   JoyBadge,
 } from '@/lib/mui/muiRendering'
-import { RoomUserThumb } from '../types/user'
+import { RoomUserThumb } from '../_types/user'
 import { Framework } from '@/types/framework'
 import { Tech } from '@/types/tech'
 import StarRateIcon from '@mui/icons-material/StarRate'
@@ -111,7 +111,7 @@ export const RoomRecordRightBox = (props: Props) => {
           Techs
         </Typography>
         <Grid container sx={{ width: '250px', mt: 1 }}>
-          {techs.map((tech, id) => (
+          {techs?.map((tech, id) => (
             <Grid item key={id}>
               <Chip
                 label={tech.tech_tag?.language}
@@ -128,7 +128,7 @@ export const RoomRecordRightBox = (props: Props) => {
           frameworks
         </Typography>
         <Grid container sx={{ width: '300px', mt: 1 }}>
-          {frameworks.map((framework, id) => (
+          {frameworks?.map((framework, id) => (
             <Grid sx={{ display: 'flex' }} item key={id}>
               <Chip
                 label={framework.framework?.framework}

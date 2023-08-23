@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Box,
   Modal,
@@ -14,41 +14,47 @@ import {
 } from '@/lib/mui/muiRendering'
 import { BorderColorRoundedIcon } from '@/lib/mui/muiRendering'
 import { useForm } from 'react-hook-form'
-import { PostModal } from './types/modal'
+import { Domain_HackathonResponses } from '@/api/@types'
+import { PostRoom } from '../_types/postroom'
+import { RoomService } from '../_services/Room'
+import { useRoom } from '../_hooks/useRoom'
 
-// type Props = {
-//   roomList: PostModal[]
-// }
+type Props = {
+  hackathons: Domain_HackathonResponses[]
+}
 
-export const PostModalWindow = () => {
-  // const { roomList } = props
+export const PostModalWindow = (props: Props) => {
+  const { hackathons } = props
+  const { room, createRoom } = useRoom()
   const [open, setOpen] = useState(false)
 
+  // todo:logicを分離する
   const {
     register,
     handleSubmit,
     setValue,
     watch,
     formState: { errors },
-  } = useForm({
+  } = useForm<PostRoom>({
     defaultValues: {
-      teamName: '',
-      selectedHackathon: '',
-      selectedCount: 0,
-      text: '',
+      title: '',
+      hackathon_id: 0,
+      member_limit: 0,
+      description: '',
     },
   })
 
-  const text = watch('text')
+  const text = watch('description')
   const handleOpen = () => setOpen(true)
   const handleClose = () => {
     setOpen(false)
-    setValue('teamName', '')
-    setValue('selectedHackathon', '')
-    setValue('text', '')
+    setValue('title', '')
+    setValue('hackathon_id', 2)
+    setValue('description', '')
   }
 
-  const onSubmit = () => {
+  const onSubmit = (data: PostRoom) => {
+    createRoom(data)
     handleClose()
   }
 
@@ -81,7 +87,7 @@ export const PostModalWindow = () => {
           >
             <Typography variant="h6">メンバーを募集する</Typography>
             <TextField
-              {...register('teamName', { maxLength: 40, minLength: 1 })}
+              {...register('title', { maxLength: 40, minLength: 1 })}
               label="チーム名"
               variant="outlined"
               sx={{ mt: 3 }}
@@ -91,22 +97,25 @@ export const PostModalWindow = () => {
             <FormControl variant="outlined" sx={{ mt: 3 }} fullWidth>
               <InputLabel id="hackathon-label">ハッカソン選択</InputLabel>
               <Select
-                {...register('selectedHackathon')}
+                {...register('hackathon_id')}
                 labelId="hackathon-label"
                 id="hackathon-select"
                 label="ハッカソン選択"
               >
-                {/* {roomList.map((room) => (
-                  <MenuItem key={room.hackathon_id} value={room.hackathon_id}>
-                    {room.name}
+                {hackathons.map((hackathon) => (
+                  <MenuItem
+                    key={hackathon.hackathon_id}
+                    value={hackathon.hackathon_id}
+                  >
+                    {hackathon.name}
                   </MenuItem>
-                ))} */}
+                ))}
               </Select>
             </FormControl>
             <FormControl variant="outlined" sx={{ mt: 3 }} fullWidth>
               <InputLabel id="count-label">募集人数</InputLabel>
               <Select
-                {...register('selectedCount')}
+                {...register('member_limit')}
                 labelId="count-label"
                 id="count-select"
                 label="募集人数"
@@ -119,7 +128,7 @@ export const PostModalWindow = () => {
               </Select>
             </FormControl>
             <TextField
-              {...register('text', { maxLength: 140, minLength: 1 })}
+              {...register('description', { maxLength: 140, minLength: 1 })}
               multiline
               rows={4}
               variant="outlined"
@@ -129,7 +138,7 @@ export const PostModalWindow = () => {
               fullWidth
             />
             <Box textAlign={'right'} sx={{ mt: 1 }}>
-              <Typography color={errors.text ? 'error' : 'initial'}>
+              <Typography color={errors.description ? 'error' : 'initial'}>
                 {text.length}/140
               </Typography>
               <Button

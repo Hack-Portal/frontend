@@ -1,3 +1,4 @@
+import RecoilProvider from '@/provider/recoilProvider';
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -14,7 +15,9 @@ export default function RootLayout(props:any) {
   return (
       <html lang="ja">
         <body className={inter.className}>
-          <main>{children}</main>
+          <main>
+            <RecoilProvider>{children}</RecoilProvider>
+            </main>
         </body>
       </html>
   )
