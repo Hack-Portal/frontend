@@ -15,8 +15,10 @@ export function ConfirmModalWindow(props: Props) {
   const handleClose = () => setOpen(false)
 
   return (
-    <div>
-      <Button onClick={handleOpen}>{children}</Button>
+    <Box sx={{ width: '100%' }}>
+      <Button onClick={handleOpen} fullWidth sx={{ p: 0 }}>
+        {children}
+      </Button>
       <Modal open={open} onClose={handleClose}>
         <Paper
           sx={{
@@ -38,13 +40,13 @@ export function ConfirmModalWindow(props: Props) {
             </Typography>
             <Box display={'flex'} justifyContent={'center'} sx={{ mt: 2 }}>
               <Button href={href}>はい</Button>
-              <Button href="/room" sx={{ color: '#111' }}>
+              <Button onClick={handleClose} sx={{ color: '#111' }}>
                 いいえ
               </Button>
             </Box>
           </Box>
         </Paper>
       </Modal>
-    </div>
+    </Box>
   )
 }

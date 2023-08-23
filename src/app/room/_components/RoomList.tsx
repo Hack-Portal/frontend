@@ -5,10 +5,7 @@ import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
 import { CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { RoomThumb } from '@/app/room/_types/room'
 import { RoomRecordRightBox } from '@/app/room/_components/RoomRecordRightBox'
-import {
-  Domain_HackathonResponses,
-  Domain_ListRoomResponse,
-} from '@/api/@types'
+
 import { useRoom } from '../_hooks/useRoom'
 
 // type Props = {
@@ -20,7 +17,6 @@ export const RoomList = () => {
   const { rooms } = useRoom()
   
   return (
-    <Grid sx={{ p: 3, width: '70vw' }}>
       <CenterArea>
         {rooms?.map((room) => (
           <CenterRoomCard
@@ -48,6 +44,5 @@ export const RoomList = () => {
           </CenterRoomCard>
         ))}
       </CenterArea>
-    </Grid>
   )
 }
