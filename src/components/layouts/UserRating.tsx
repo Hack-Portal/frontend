@@ -8,7 +8,7 @@ const ratingRating = async () => {
   const fetchRatings = new FetchRating()
   const rating = await fetchRatings.fetchRating()
 
-  if (!rating) return <div>loading...</div>
+  if (!rating) return <>loading...</>
   else
     return (
       <Card
