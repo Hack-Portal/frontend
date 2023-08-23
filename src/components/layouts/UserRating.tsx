@@ -1,10 +1,9 @@
-'use client'
 import React from 'react'
 import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
 import { FetchRating } from '@/app/_services/fetchRating'
 import { Domain_AccountRateResponse } from '@/api/@types'
 
-const ratingRating = async () => {
+export const Rating = async () => {
   const fetchRatings = new FetchRating()
   const rating = await fetchRatings.fetchRating()
 
@@ -56,5 +55,3 @@ const ratingRating = async () => {
       </Card>
     )
 }
-
-export default ratingRating
