@@ -1,4 +1,3 @@
-'use client'
 import { Header } from '@/components/layouts/Header'
 import { Avatar, Box, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { PostModalWindow } from './_components/PostModalWindow'

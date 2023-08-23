@@ -1,4 +1,3 @@
-'use client '
 import { Header } from '@/components/layouts/Header'
 import { HackathonList } from './_components/HackathonList'
 import UserRating from '../components/layouts/UserRating'
