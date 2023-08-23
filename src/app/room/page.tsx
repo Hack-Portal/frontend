@@ -9,7 +9,6 @@ import { SelectTech } from '../signup/types/tech'
 import { FetchRooms } from './_services/fetchRooms'
 import { RoomList } from './[id]/_components/RoomCenter/RoomList'
 import { CreateUser } from '../signup/services/createUser'
-
 const Room = () => {
   const techs: SelectTech[] = [
     {

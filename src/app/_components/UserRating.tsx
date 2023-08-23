@@ -1,7 +1,7 @@
-export const dynamic = 'force-static'
 import React from 'react'
 import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
 import { FetchRating } from '@/app/_services/fetchRating'
+import { Domain_AccountRateResponse } from '@/api/@types'
 
 const ratingRating = async () => {
   const fetchRatings = new FetchRating()
@@ -19,7 +19,7 @@ const ratingRating = async () => {
       }}
     >
       <Typography>レーティング</Typography>
-      {ratingData.map((data: any) => (
+      {ratingData.map((data: Domain_AccountRateResponse, index: number) => (
         <Grid
           item
           key={data.account_id}
@@ -31,7 +31,7 @@ const ratingRating = async () => {
             alignItems: 'center',
           }}
         >
-          {/* <Typography
+          <Typography
             mb={1}
             color={
               index + 1 === 1
@@ -44,7 +44,7 @@ const ratingRating = async () => {
             }
           >
             {index + 1}位
-          </Typography> */}
+          </Typography>
           <Avatar alt={data.username} src={data.icon} />
 
           <Typography>{data.rate}</Typography>
