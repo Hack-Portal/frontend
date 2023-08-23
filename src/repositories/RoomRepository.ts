@@ -3,14 +3,12 @@ import aspida from '@aspida/axios'
 import { getAuthorizationHeader } from '../utils/headerManager'
 import { RoomInterface } from '@/types/RoomInterface'
 import { FirebaseRepository } from './FirebaseRepository'
-import { UserRepository } from './UserRepository'
-import { CreateUser } from '@/app/signup/services/createUser'
 import api from '@/api/$api'
+import { Domain_CreateRoomRequestBody } from '@/api/@types'
 
 export class RoomRepository implements RoomInterface {
   private static instance: RoomRepository
   private authorization: string | null = null
-  private firebaseRepository: FirebaseRepository
 
   public static getInstance(): RoomRepository {
     if (!RoomRepository.instance) {
@@ -18,33 +16,70 @@ export class RoomRepository implements RoomInterface {
     }
     return RoomRepository.instance
   }
-  constructor() {
-    this.firebaseRepository = FirebaseRepository.getInstance()
-  }
 
-  public async fetchAll() {
-    const user = await this.firebaseRepository.getCurrentUser()
-    if (!user) throw new Error('ユーザーが存在しません')
-    const token = await user?.getIdToken()
+  public async fetchAll(token: string) {
     try {
-      console.log(process.env.NEXT_PUBLIC_TEST_URL)
-      console.log(process.env.NEXT_PUBLIC_TEST_EMAIL_TOKEN)
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
-        
+
         aspida(axios, {
           // baseURL: process.env.NEXT_PUBLIC_API_URL,
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
             // authorization: this.authorization,
-            "Content-Type": "application/json",
             dbAuthorization: token,
           },
         }),
       )
 
-      const response = await client.rooms.get()
+      const response = await client.rooms.get({
+        query: { page_size: 10, page_id: 1 },
+      })
       console.log(response)
+      return response.body
+    } catch (error) {
+      // エラー処理
+      console.error('APIリクエストエラー:', error)
+      throw error
+    }
+  }
+
+  // public async fetchById(id: number) {
+  //   const user = await this.firebaseRepository.getCurrentUser()
+  //   if (!user) throw new Error('ユーザーが存在しません')
+  //   const token = await user?.getIdToken()
+  //   try {
+  //     const client = api(
+  //       aspida(axios, {
+  //         baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+  //         headers: {
+  //           // authorization: this.authorization,
+  //           "Content-Type": "application/json",
+  //           dbAuthorization: token,
+  //         },
+  //       }),
+  //     )
+  //     const response = await client.rooms._id(id).get()
+  //     return response.body
+  //   } catch (error) {
+  //     // エラー処理
+  //     console.error('APIリクエストエラー:', error)
+  //     throw error
+  //   }
+  // }
+
+  public async create(roomInfo: Domain_CreateRoomRequestBody, token: string) {
+    try {
+      const client = api(
+        aspida(axios, {
+          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          headers: {
+            authorization: this.authorization,
+            dbAuthorization: token,
+          },
+        }),
+      )
+      const response = await client.rooms.post({ body: roomInfo })
       return response.body
     } catch (error) {
       // エラー処理

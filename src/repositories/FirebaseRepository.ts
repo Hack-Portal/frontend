@@ -53,6 +53,18 @@ export class FirebaseRepository {
     }
   }
 
+  public async getToken(): Promise<string> {
+    try {
+      const user = await this.getCurrentUser()
+      if (!user) throw new Error('ユーザーが存在しません')
+      const token = await user.getIdToken()
+      return token
+    } catch (error) {
+      console.error('トークン取得エラー:', error)
+      throw error // エラーを呼び出し元に伝播させる
+    }
+  }
+
   public async SNSSignIn(provider: AuthProvider): Promise<User> {
     try {
       const result = await setPersistence(auth, browserLocalPersistence).then(

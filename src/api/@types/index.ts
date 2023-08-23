@@ -34,31 +34,15 @@ export type Domain_AddChatRequestBody = {
   message: string
 }
 
-export type Domain_BookmarkResponse = {
-  description?: string | undefined
-  expired?: string | undefined
-  hackathon_id?: number | undefined
-  icon?: string | undefined
-  link?: string | undefined
-  name?: string | undefined
-  start_date?: string | undefined
-  term?: number | undefined
-}
-
 export type Domain_CreateAccountRequest = {
   account_id: string
   explanatory_text?: string | undefined
-  frameworks?: number[] | undefined
+  frameworks?: string | undefined
   locate_id: number
   show_locate?: boolean | undefined
   show_rate?: boolean | undefined
-  tech_tags?: number[] | undefined
+  tech_tags?: string | undefined
   username: string
-}
-
-export type Domain_CreateBookmarkRequest = {
-  account_id?: string | undefined
-  opus?: number | undefined
 }
 
 export type Domain_CreateFollowRequestBody = {
@@ -87,6 +71,12 @@ export type Domain_CreateRoomRequestBody = {
   title: string
 }
 
+export type Domain_FollowResponse = {
+  account_id?: string | undefined
+  icon?: string | undefined
+  username?: string | undefined
+}
+
 export type Domain_GetRoomResponse = {
   create_at?: string | undefined
   description?: string | undefined
@@ -110,6 +100,15 @@ export type Domain_HackathonResponses = {
   start_date?: string | undefined
   status_tags?: Repository_StatusTag[] | undefined
   term?: number | undefined
+}
+
+export type Domain_ListPastWorkResponse = {
+  explanatory_text?: string | undefined
+  frameworks?: Repository_Framework[] | undefined
+  members?: Domain_PastWorkMembers[] | undefined
+  name?: string | undefined
+  opus?: number | undefined
+  tech_tags?: Repository_TechTag[] | undefined
 }
 
 export type Domain_ListRoomHackathonInfo = {
@@ -139,6 +138,34 @@ export type Domain_NowRoomAccounts = {
   is_owner?: boolean | undefined
 }
 
+export type Domain_PastWorkMembers = {
+  account_id?: string | undefined
+  icon?: string | undefined
+  name?: string | undefined
+}
+
+export type Domain_PastWorkRequestBody = {
+  account_past_works?: string | undefined
+  explanatory_text?: string | undefined
+  name?: string | undefined
+  past_work_frameworks?: string | undefined
+  past_work_tags?: string | undefined
+}
+
+export type Domain_PastWorkResponse = {
+  award_data_id?: number | undefined
+  create_at?: string | undefined
+  explanatory_text?: string | undefined
+  frameworks?: Repository_Framework[] | undefined
+  is_delete?: boolean | undefined
+  members?: Domain_PastWorkMembers[] | undefined
+  name?: string | undefined
+  opus?: number | undefined
+  tech_tags?: Repository_TechTag[] | undefined
+  thumbnail_image?: string | undefined
+  update_at?: string | undefined
+}
+
 export type Domain_RoomFramework = {
   count?: number | undefined
   framework?: Repository_Framework | undefined
@@ -161,11 +188,11 @@ export type Domain_RoomTechTags = {
 
 export type Domain_UpdateAccountRequest = {
   explanatory_text?: string | undefined
-  frameworks?: number[] | undefined
+  frameworks?: string | undefined
   locate_id?: number | undefined
   show_locate?: boolean | undefined
   show_rate?: boolean | undefined
-  tech_tags?: number[] | undefined
+  tech_tags?: string | undefined
   username?: string | undefined
 }
 

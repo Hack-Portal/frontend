@@ -1,4 +1,4 @@
-export const dynamic = 'force-static'
+
 import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '@/api/$api'
@@ -7,7 +7,7 @@ import { RatingInterface } from '@/types/RatingInterface'
 
 export class RatingRepository implements RatingInterface {
   private static instance: RatingRepository
-  // private authorization: string | null = null
+  private authorization: string | null = null
 
   public static getInstance(): RatingRepository {
     if (!RatingRepository.instance) {
@@ -18,13 +18,12 @@ export class RatingRepository implements RatingInterface {
 
   public async fetchAll() {
     try {
-      const client: any = api(
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_TEST_URL }),
+      const client = api(
+        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_TEST_URL,headers: { authorization: this.authorization } }),
       )
-      // this.authorization = getAuthorizationHeader()
+      this.authorization = getAuthorizationHeader()
 
       const response = await client.rate.get({
-        // header: { authorization: this.authorization },
         query: { page_id: 1, page_size: 10 },
       })
       return response.body

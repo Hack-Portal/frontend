@@ -1,64 +1,18 @@
 import { Header } from '@/components/layouts/Header'
 import { Avatar, Box, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { PostModalWindow } from './_components/PostModalWindow'
-import { Rating } from '../../components/layouts/UserRating'
 import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import { Suspense } from 'react'
-import { SelectTech } from '../signup/types/tech'
-import { FetchRooms } from './_services/fetchRooms'
-import { RoomList } from './[id]/_components/RoomCenter/RoomList'
-import { CreateUser } from '../signup/services/createUser'
-const Room = () => {
-  const techs: SelectTech[] = [
-    {
-      id: 1,
-      name: 'Python',
-      frameworks: [
-        {
-          framework_id: 1,
-          framework: 'Django',
-          tech_tag_id: 1,
-        },
-        {
-          framework_id: 2,
-          framework: 'Flask',
-          tech_tag_id: 1,
-        },
-        {
-          framework_id: 3,
-          framework: 'FastAPI',
-          tech_tag_id: 1,
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: 'JavaScript',
-      frameworks: [
-        {
-          framework_id: 1,
-          framework: 'React',
-          tech_tag_id: 2,
-        },
-        {
-          framework_id: 2,
-          framework: 'Vue',
-          tech_tag_id: 2,
-        },
-        {
-          framework_id: 3,
-          framework: 'Next',
-          tech_tag_id: 2,
-        },
-        {
-          framework_id: 4,
-          framework: 'Nuxt',
-          tech_tag_id: 2,
-        },
-      ],
-    },
-  ]
+import { RoomList } from './_components/RoomList'
+import { HackathonService } from './_services/Hackathon'
+import { UserRating } from '@/components/layouts/UserRating'
+
+export const dynamic = 'force-static'
+
+const Room = async () => {
+  const Hackathon = new HackathonService()
+  const hackathons = await Hackathon.fetchAll()
 
   const techStacks: TechStack[] = [
     {
@@ -121,7 +75,8 @@ const Room = () => {
         <Header />
         <Grid container direction="row">
           <Grid item xs>
-            <Rating />
+            <UserRating />
+
           </Grid>
           <Grid item>
             <RoomList />
@@ -147,7 +102,7 @@ const Room = () => {
           alignItems: 'center',
         }}
       >
-        <PostModalWindow />
+        <PostModalWindow hackathons={hackathons} />
       </Box>
     </>
   )
