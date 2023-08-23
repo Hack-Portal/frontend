@@ -1,6 +1,6 @@
 import { Header } from '@/components/layouts/Header'
 import { HackathonList } from './_components/HackathonList'
-import {UserRating} from '../components/layouts/UserRating'
+import { UserRating } from '../components/layouts/UserRating'
 import { Grid } from '@/lib/mui/muiRendering'
 import StackList from '../components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
@@ -8,6 +8,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { FetchHackathons } from './_services/fetchHackathons'
+
+export const dynamic = 'force-static'
 
 const Home = async () => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())

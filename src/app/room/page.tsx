@@ -4,68 +4,15 @@ import { PostModalWindow } from './_components/PostModalWindow'
 import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import { Suspense } from 'react'
-import { SelectTech } from '../signup/types/tech'
 import { RoomList } from './_components/RoomList'
-import { CreateUser } from '../signup/services/createUser'
-import { FetchHackathons } from '../_services/fetchHackathons'
 import { HackathonService } from './_services/Hackathon'
-import {UserRating} from '@/components/layouts/UserRating'
+import { UserRating } from '@/components/layouts/UserRating'
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static'
 
-const Room = async() => {
+const Room = async () => {
   const Hackathon = new HackathonService()
   const hackathons = await Hackathon.fetchAll()
-
-  const techs: SelectTech[] = [
-    {
-      id: 1,
-      name: 'Python',
-      frameworks: [
-        {
-          framework_id: 1,
-          framework: 'Django',
-          tech_tag_id: 1,
-        },
-        {
-          framework_id: 2,
-          framework: 'Flask',
-          tech_tag_id: 1,
-        },
-        {
-          framework_id: 3,
-          framework: 'FastAPI',
-          tech_tag_id: 1,
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: 'JavaScript',
-      frameworks: [
-        {
-          framework_id: 1,
-          framework: 'React',
-          tech_tag_id: 2,
-        },
-        {
-          framework_id: 2,
-          framework: 'Vue',
-          tech_tag_id: 2,
-        },
-        {
-          framework_id: 3,
-          framework: 'Next',
-          tech_tag_id: 2,
-        },
-        {
-          framework_id: 4,
-          framework: 'Nuxt',
-          tech_tag_id: 2,
-        },
-      ],
-    },
-  ]
 
   const techStacks: TechStack[] = [
     {
@@ -132,8 +79,7 @@ const Room = async() => {
             <UserRating />
           </Grid>
           <Grid item>
-            <RoomList 
-            />
+            <RoomList />
           </Grid>
           <Grid item xs>
             <StackList techStacks={techStacks} />
@@ -156,7 +102,7 @@ const Room = async() => {
           alignItems: 'center',
         }}
       >
-        <PostModalWindow hackathons={hackathons}/>
+        <PostModalWindow hackathons={hackathons} />
       </Box>
     </>
   )

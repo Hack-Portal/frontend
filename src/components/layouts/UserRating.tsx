@@ -3,6 +3,8 @@ import { Grid, Avatar, Typography, Card } from '@/lib/mui/muiRendering'
 import { FetchRating } from '@/app/_services/fetchRating'
 import { Domain_AccountRateResponse } from '@/api/@types'
 
+export const dynamic = "force-static";
+
 export const UserRating = async () => {
   const fetchRatings = new FetchRating()
   const rating = await fetchRatings.fetchRating()
