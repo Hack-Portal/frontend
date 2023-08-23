@@ -1,6 +1,6 @@
 import { Header } from '@/components/layouts/Header'
 import { HackathonList } from './_components/HackathonList'
-import UserRating from '../components/layouts/UserRating'
+import { Rating } from '../components/layouts/UserRating'
 import { Grid } from '@/lib/mui/muiRendering'
 import StackList from '../components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
@@ -74,7 +74,7 @@ const Home = async () => {
       <Header />
       <Grid container direction="row" justifyContent={'center'}>
         <Grid item xs>
-          <UserRating />
+          <Rating />
         </Grid>
         <Grid item sx={{ p: 3, width: '70vw' }}>
           <Link href="">

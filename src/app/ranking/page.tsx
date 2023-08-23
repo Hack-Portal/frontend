@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import StackList from '@/components/layouts/StackList'
-import UserRating from '@/components/layouts/UserRating'
+import { Rating } from '@/components/layouts/UserRating'
 import { RankingList } from './_components/RankingList'
 import { RoomRecordRightBox } from '../room/_components/RoomRecordRightBox'
 import { CenterArea } from '@/components/layouts/CenterArea'
@@ -75,7 +75,7 @@ const Ranking = () => {
 
       <Grid container direction="row">
         <Grid item xs>
-          <UserRating />
+          <Rating />
         </Grid>
         <Grid item sx={{ p: 3, width: '70vw' }}>
           <CenterArea>

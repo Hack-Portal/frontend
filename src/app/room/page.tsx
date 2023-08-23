@@ -1,7 +1,7 @@
 import { Header } from '@/components/layouts/Header'
 import { Avatar, Box, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { PostModalWindow } from './_components/PostModalWindow'
-import UserRating from '../../components/layouts/UserRating'
+import { Rating } from '../../components/layouts/UserRating'
 import StackList from '@/components/layouts/StackList'
 import { TechStack } from '@/types/techStack'
 import { Suspense } from 'react'
@@ -121,7 +121,7 @@ const Room = () => {
         <Header />
         <Grid container direction="row">
           <Grid item xs>
-            <UserRating />
+            <Rating />
           </Grid>
           <Grid item>
             <RoomList />
