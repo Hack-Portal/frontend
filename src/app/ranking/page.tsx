@@ -74,7 +74,6 @@ const Ranking = () => {
 
       <Grid container direction="row">
         <Grid item xs>
-           {/* @ts-expect-error Server Component */}
           <UserRating />
         </Grid>
         <Grid item sx={{ p: 3, width: '70vw' }}>

@@ -75,7 +75,6 @@ const Room = async () => {
         <Header />
         <Grid container direction="row">
           <Grid item xs>
-            {/* @ts-expect-error Server Component */}
             <UserRating />
 
           </Grid>

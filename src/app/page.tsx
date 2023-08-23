@@ -77,7 +77,6 @@ const Home = async () => {
       <Header />
       <Grid container direction="row" justifyContent={'center'}>
         <Grid item xs>
-          {/* @ts-expect-error Server Component */}
           <UserRating />
         </Grid>
         <Grid item sx={{ p: 3, width: '70vw' }}>
