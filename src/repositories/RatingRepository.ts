@@ -25,7 +25,6 @@ export class RatingRepository implements RatingInterface {
 
       const response = await client.rate.get({
         query: { page_id: 1, page_size: 10 },
-        headers: { authorization: this.authorization },
       })
       return response.body
     } catch (error) {
