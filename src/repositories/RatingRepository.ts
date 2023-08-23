@@ -4,7 +4,6 @@ import aspida from '@aspida/axios'
 import api from '@/api/$api'
 import { getAuthorizationHeader } from '@/utils/headerManager'
 import { RatingInterface } from '@/types/RatingInterface'
-//404エラーが出る
 
 export class RatingRepository implements RatingInterface {
   private static instance: RatingRepository

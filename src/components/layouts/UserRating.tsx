@@ -8,50 +8,49 @@ export const Rating = async () => {
   const rating = await fetchRatings.fetchRating()
 
   if (!rating) return <>loading...</>
-  else
-    return (
-      <Card
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          pt: 3,
-          width: '15vw',
-        }}
-      >
-        <Typography>レーティング</Typography>
-        {rating.map((data: Domain_AccountRateResponse, index: number) => (
-          <Grid
-            item
-            key={data.account_id}
-            sx={{
-              mt: 3,
-              mb: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
+  return (
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        pt: 3,
+        width: '15vw',
+      }}
+    >
+      <Typography>レーティング</Typography>
+      {rating.map((data: Domain_AccountRateResponse, index: number) => (
+        <Grid
+          item
+          key={data.account_id}
+          sx={{
+            mt: 3,
+            mb: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography
+            mb={1}
+            color={
+              index + 1 === 1
+                ? '#e6b422'
+                : index + 1 === 2
+                ? '#999'
+                : index + 1 === 3
+                ? '#b87333'
+                : '#333'
+            }
           >
-            <Typography
-              mb={1}
-              color={
-                index + 1 === 1
-                  ? '#e6b422'
-                  : index + 1 === 2
-                  ? '#999'
-                  : index + 1 === 3
-                  ? '#b87333'
-                  : '#333'
-              }
-            >
-              {index + 1}位
-            </Typography>
-            <Avatar alt={data.username} src={data.icon} />
+            {index + 1}位
+          </Typography>
+          <Avatar alt={data.username} src={data.icon} />
 
-            <Typography>{data.rate}</Typography>
-            <Typography color={'#999'}>rating: {data.rate}</Typography>
-          </Grid>
-        ))}
-      </Card>
-    )
+          <Typography>{data.rate}</Typography>
+          <Typography color={'#999'}>rating: {data.rate}</Typography>
+        </Grid>
+      ))}
+    </Card>
+  )
 }
