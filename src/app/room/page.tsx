@@ -76,9 +76,8 @@ const Room = async () => {
         <Grid container direction="row">
           <Grid item xs>
             <UserRating />
-
           </Grid>
-          <Grid item>
+          <Grid item sx={{ p: 3, width: '70vw' }}>
             <RoomList />
           </Grid>
           <Grid item xs>

@@ -23,7 +23,6 @@ export class UserRepository implements UserInterface {
    */
   public async fetchById(id: string, token: string) {
     try {
-      console.log(token)
       const client = api(
         aspida(axios, {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
@@ -50,20 +49,36 @@ export class UserRepository implements UserInterface {
    */
   public async create(body: any, token: string) {
     // public async create(body: any, token: string) {
-    console.log(body)
+
+    for (let [key, value] of body.entries()) {
+      console.log(`${key}: ${value}`)
+    }
 
     try {
-      const client = api(
-        aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+      // const client = api(
+      //   aspida(axios, {
+      //     baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+      //     headers: {
+      //       dbauthorization: token,
+      //     },
+      //   }),
+      // )
+
+      // const response = await client.accounts.post({ body: body })
+
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_TEST_URL + '/accounts',
+        {
+          method: 'POST',
           headers: {
             dbauthorization: token,
           },
-        }),
+          body: body,
+        },
       )
+      const data = await response.json()
 
-      const response = await client.accounts.post({ body: body })
-      return response.body
+      return data.body
     } catch (error) {
       console.error('APIリクエストエラー:', error)
       throw error
