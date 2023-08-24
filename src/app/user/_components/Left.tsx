@@ -1,6 +1,21 @@
-import { Avatar,Grid,Typography,Chip } from '@/lib/mui/muiRendering'
+'use client'
+import { Avatar, Grid, Typography, Chip } from '@/lib/mui/muiRendering'
 import React from 'react'
-export const Left = () => {
+import {
+  Domain_AccountResponses,
+  Repository_Framework,
+  Repository_TechTag,
+} from '@/api/@types'
+
+type Props = {
+  data: Domain_AccountResponses
+  techs: Repository_TechTag[] | undefined
+  frameworks: Repository_Framework[] | undefined
+  follow: number
+  follower: number
+}
+export const Left = (props: Props) => {
+  const { data, techs, frameworks, follow, follower } = props
   return (
     <Grid
       display={'row'}
@@ -10,8 +25,8 @@ export const Left = () => {
         <Typography sx={{ mt: 2, mb: 3, fontSize: '30px' }}>Profile</Typography>
         <Avatar
           sx={{ width: 150, height: 150, margin: 'auto' }}
+          src={data.icon}
           alt="Remy Sharp"
-          src="https://source.unsplash.com/random"
         />
         <Typography sx={{ mt: 4, fontSize: '25px' }}>Name</Typography>
       </Grid>
@@ -19,15 +34,15 @@ export const Left = () => {
       <Grid display={'flex'} justifyContent={'space-around'} sx={{ mt: 5 }}>
         <Grid alignItems={'center'}>
           <Typography>rating</Typography>
-          <Typography>34234</Typography>
+          <Typography>{data.show_rate}</Typography>
         </Grid>
         <Grid textAlign={'center'}>
           <Typography>follow</Typography>
-          <Typography>33</Typography>
+          <Typography>{follow}</Typography>
         </Grid>
         <Grid textAlign={'center'}>
           <Typography>follower</Typography>
-          <Typography>22</Typography>
+          <Typography>{follower}</Typography>
         </Grid>
       </Grid>
 
@@ -35,11 +50,7 @@ export const Left = () => {
         <Typography sx={{ mt: 2 }} color={'#999'}>
           introduction
         </Typography>
-        <Typography sx={{ mt: 2 }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-          voluptatum, quibusdam, quia, quos voluptates voluptatibus quod
-          voluptatem quas quae doloribus quidem. Quisquam voluptatum, quibusdam,
-        </Typography>
+        <Typography sx={{ mt: 2 }}>{data.explanatory_text}</Typography>
       </Grid>
       <Typography sx={{ mt: 3, mb: 3 }}>Techs & Frameworks</Typography>
       <Grid
@@ -49,10 +60,18 @@ export const Left = () => {
         justifyContent={'space-around'}
         sx={{ mt: 3, width: '200px' }}
       >
-        <Chip label="Javascript" />
-        <Chip label="Javascript" />
+        {techs?.map((tech) => {
+          return (
+            <Chip sx={{ mt: 2 }} key={tech.tech_tag_id} label={tech.language} />
+          )
+        })}
+        {frameworks?.map((framework) => {
+          return (
+            <Chip key={framework.framework_id} label={framework.framework} />
+          )
+        })}
       </Grid>
-
+      {/* 
       <Typography sx={{ mt: 3, mb: 3 }}>受賞</Typography>
       <Grid
         width={'300px'}
@@ -61,9 +80,8 @@ export const Left = () => {
         flexDirection={'column'}
         sx={{ mt: 3 }}
       >
-        <Chip sx={{ mt: 2 }} label="技育CampハッカソンVol.6 企業賞" />
-        <Chip sx={{ mt: 2 }} label="技育CampハッカソンVol.6 企業賞" />
-      </Grid>
+
+      </Grid> */}
     </Grid>
   )
 }
