@@ -78,7 +78,6 @@ export type Domain_FollowResponse = {
 }
 
 export type Domain_GetRoomResponse = {
-  create_at?: string | undefined
   description?: string | undefined
   hackathon?: Domain_RoomHackathonInfo | undefined
   is_status?: boolean | undefined
@@ -112,6 +111,7 @@ export type Domain_ListPastWorkResponse = {
 }
 
 export type Domain_ListRoomHackathonInfo = {
+  expired?: string | undefined
   hackathon_id?: number | undefined
   hackathon_name?: string | undefined
   icon?: string | undefined
@@ -172,6 +172,7 @@ export type Domain_RoomFramework = {
 }
 
 export type Domain_RoomHackathonInfo = {
+  expired?: string | undefined
   hackathon_id?: number | undefined
   icon?: string | undefined
   link?: string | undefined

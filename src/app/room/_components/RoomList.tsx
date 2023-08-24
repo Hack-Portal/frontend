@@ -4,11 +4,8 @@ import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
 import { CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { RoomThumb } from '@/app/room/_types/room'
-import { RoomRecordRightBox } from '@/app/room/_components/RoomRecordRightBox'
-import {
-  Domain_HackathonResponses,
-  Domain_ListRoomResponse,
-} from '@/api/@types'
+import { RoomRecordRightBox } from '@/app/room/_components/RoomList/RoomRecordRightBox'
+
 import { useRoom } from '../_hooks/useRoom'
 
 // type Props = {
@@ -17,37 +14,38 @@ import { useRoom } from '../_hooks/useRoom'
 export const RoomList = () => {
   // const { hackathons } = props
 
-  const { rooms } = useRoom()
-  
+  const { rooms,handleSetPreview,previewRoom } = useRoom()
+
   return (
-    <Grid sx={{ p: 3, width: '70vw' }}>
-      <CenterArea>
-        {rooms?.map((room) => (
-          <CenterRoomCard
-            key={room.room_id}
-            link={`/room/${room.room_id}`}
-          >
-            <CardMedia
-              component="img"
-              sx={{
-                width: 218,
-                height: 218,
-                objectFit: 'cover',
-              }}
-              image={room.hackathon?.icon}
-              alt={room.hackathon?.name}
-            />
-            <RoomRecordRightBox
-              hackathonName={room.hackathon?.name!}
-              title={room.title!}
-              member_limit={room.member_limit!}
-              now_member={room.now_member!}
-              techs={room.members_tech_tags!}
-              frameworks={room.members_frameworks!}
-            />
-          </CenterRoomCard>
-        ))}
-      </CenterArea>
-    </Grid>
+    <CenterArea>
+      {rooms?.map((room) => (
+        <CenterRoomCard
+          key={room.rooms?.room_id}
+          link={`/room/${room.rooms?.room_id}`}
+          handleSetPreview={()=>handleSetPreview(room)}
+          previewRoom={previewRoom}
+        >
+          <CardMedia
+            component="img"
+            sx={{
+              width: 218,
+              height: 218,
+              objectFit: 'cover',
+            }}
+            image={room.hackathon?.icon}
+            alt={room.hackathon?.hackathon_name}
+          />
+          <RoomRecordRightBox
+            hackathonName={room.hackathon?.hackathon_name}
+            title={room.rooms?.title}
+            member_limit={room.rooms?.member_limit}
+            now_member={room.now_member}
+            techs={room.members_tech_tags}
+            frameworks={room.members_frameworks}
+            expired={room.hackathon?.expired}
+          />
+        </CenterRoomCard>
+      ))}
+    </CenterArea>
   )
 }
