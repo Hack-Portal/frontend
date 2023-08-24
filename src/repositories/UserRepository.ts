@@ -15,7 +15,6 @@ export class UserRepository implements UserInterface {
     return this.instance
   }
 
-
   /**
    * ユーザーを取得する
    * @param id ユーザーID
@@ -30,7 +29,7 @@ export class UserRepository implements UserInterface {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
             'Content-Type': 'application/json',
-            dbauthorization: token,
+            dbauthorization: process.env.NEXT_PUBLIC_TEST_EMAIL_TOKEN,
           },
         }),
       )
@@ -50,14 +49,16 @@ export class UserRepository implements UserInterface {
    * @param body formData
    */
   public async create(body: any, token: string) {
-  // public async create(body: any, token: string) {
-    console.log(body);
-    
+    // public async create(body: any, token: string) {
+    console.log(body)
+
     try {
       const client = api(
         aspida(axios, {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
-          headers: { dbauthorization: token },
+          headers: {
+            dbauthorization: token,
+          },
         }),
       )
 
