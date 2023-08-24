@@ -1524,9 +1524,6 @@
         "domain.GetRoomResponse": {
             "type": "object",
             "properties": {
-                "create_at": {
-                    "type": "string"
-                },
                 "description": {
                     "type": "string"
                 },
@@ -1635,6 +1632,9 @@
         "domain.ListRoomHackathonInfo": {
             "type": "object",
             "properties": {
+                "expired": {
+                    "type": "string"
+                },
                 "hackathon_id": {
                     "type": "integer"
                 },
@@ -1801,6 +1801,9 @@
         "domain.RoomHackathonInfo": {
             "type": "object",
             "properties": {
+                "expired": {
+                    "type": "string"
+                },
                 "hackathon_id": {
                     "type": "integer"
                 },
