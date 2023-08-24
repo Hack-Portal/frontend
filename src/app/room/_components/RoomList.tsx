@@ -14,7 +14,7 @@ import { useRoom } from '../_hooks/useRoom'
 export const RoomList = () => {
   // const { hackathons } = props
 
-  const { rooms } = useRoom()
+  const { rooms,handleSetPreview,previewRoom } = useRoom()
 
   return (
     <CenterArea>
@@ -22,6 +22,8 @@ export const RoomList = () => {
         <CenterRoomCard
           key={room.rooms?.room_id}
           link={`/room/${room.rooms?.room_id}`}
+          handleSetPreview={()=>handleSetPreview(room)}
+          previewRoom={previewRoom}
         >
           <CardMedia
             component="img"

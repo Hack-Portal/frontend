@@ -1,4 +1,4 @@
-import {  Domain_ListRoomResponse } from '@/api/@types'
+import { Domain_ListRoomResponse } from '@/api/@types'
 import { useEffect, useState } from 'react'
 import { RoomService } from '../_services/Room'
 import { PostRoom } from '../_types/postroom'
@@ -7,7 +7,11 @@ import { roomListState } from '@/store/atoms/roomsAtom'
 
 export const useRoom = () => {
   const [rooms, setRooms] =
-    useRecoilState< Domain_ListRoomResponse[]>(roomListState)
+    useRecoilState<Domain_ListRoomResponse[]>(roomListState)
+  const [previewRoom, setPreviewRoom] = useState<Domain_ListRoomResponse>()
+  const handleSetPreview = (room: Domain_ListRoomResponse) => {
+    setPreviewRoom(room)
+  }
   const fetchRooms = async () => {
     const Room = new RoomService()
     const response = await Room.fetchAll()
@@ -28,5 +32,5 @@ export const useRoom = () => {
     fetchRooms()
   }, [])
 
-  return { rooms, createRoom }
+  return { rooms, createRoom, previewRoom, handleSetPreview  }
 }

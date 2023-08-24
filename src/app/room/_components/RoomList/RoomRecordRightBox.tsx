@@ -62,7 +62,7 @@ export const RoomRecordRightBox = (props: Props) => {
             fontSize: '1.6rem',
             width: '220px',
           }}
-          variant="h5"
+          
         >
           {title}
         </Typography>

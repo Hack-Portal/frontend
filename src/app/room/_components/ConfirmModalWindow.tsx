@@ -1,22 +1,40 @@
 import * as React from 'react'
-import { Box, Button, Typography, Modal } from '@/lib/mui/muiRendering'
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  CardMedia,
+} from '@/lib/mui/muiRendering'
 import { Paper } from '@/lib/mui/muiRendering'
+import { Domain_ListRoomResponse } from '@/api/@types'
+import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
+import { RoomRecordRightBox } from './RoomList/RoomRecordRightBox'
 
 type Props = {
   href: string
   children: React.ReactNode
+  previewRoom?: Domain_ListRoomResponse
+  handleSetPreview?: () => void
 }
 
 export function ConfirmModalWindow(props: Props) {
-  const { href, children } = props
+  const { href, children, previewRoom, handleSetPreview } = props
 
   const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
+  const handleOpen = () => {
+    setOpen(true)
+    handleSetPreview && handleSetPreview()
+  }
   const handleClose = () => setOpen(false)
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Button onClick={handleOpen} fullWidth sx={{ p: 0 }}>
+      <Button
+        onClick={handleOpen}
+        fullWidth
+        sx={{ p: 0, textTransform: 'none' }}
+      >
         {children}
       </Button>
       <Modal open={open} onClose={handleClose}>
@@ -27,20 +45,65 @@ export function ConfirmModalWindow(props: Props) {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 400,
             bgcolor: 'background.paper',
-            border: '2px solid #000',
             boxShadow: 24,
+            justifyContent: 'center',
             p: 4,
           }}
         >
-          <Box display={'flex'} margin={'auto'} flexDirection={'column'}>
-            <Typography textAlign={'center'}>
+          <Box
+            display={'flex'}
+            flexDirection={'column'}
+            alignItems={'center'}
+            gap={4}
+          >
+            <Typography sx={{ fontSize: '2rem' }}>
               このルームに入室しますか？
             </Typography>
-            <Box display={'flex'} justifyContent={'center'} sx={{ mt: 2 }}>
-              <Button href={href}>はい</Button>
-              <Button onClick={handleClose} sx={{ color: '#111' }}>
+            <Paper
+              sx={{
+                minHeight: 250,
+                maxHeight: 250,
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                p: 2,
+                position: 'relative',
+                boxSizing: 'border-box',
+                overflow: 'hidden',
+              }}
+            >
+              <CardMedia
+                component="img"
+                sx={{
+                  width: 218,
+                  height: 218,
+                  objectFit: 'cover',
+                }}
+                image={previewRoom?.hackathon?.icon}
+                alt={previewRoom?.hackathon?.hackathon_name}
+              />
+              <RoomRecordRightBox
+                hackathonName={previewRoom?.hackathon?.hackathon_name}
+                title={previewRoom?.rooms?.title}
+                member_limit={previewRoom?.rooms?.member_limit}
+                now_member={previewRoom?.now_member}
+                techs={previewRoom?.members_tech_tags}
+                frameworks={previewRoom?.members_frameworks}
+                expired={previewRoom?.hackathon?.expired}
+              />
+            </Paper>
+            <Box display={'flex'} justifyContent={'center'}  gap={10}>
+              <Button href={href} sx={{ fontSize: '1.7rem',px:4 }} variant='contained'>
+                はい
+              </Button>
+              <Button
+                onClick={handleClose}
+                sx={{  fontSize: '1.7rem', color:"#fff" }}
+                variant='contained'
+                color='inherit'
+              >
                 いいえ
               </Button>
             </Box>
