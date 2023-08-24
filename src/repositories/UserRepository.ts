@@ -29,7 +29,7 @@ export class UserRepository implements UserInterface {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
             'Content-Type': 'application/json',
-            dbauthorization: process.env.NEXT_PUBLIC_TEST_EMAIL_TOKEN,
+            dbauthorization: token,
           },
         }),
       )

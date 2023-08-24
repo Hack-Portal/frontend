@@ -40,7 +40,7 @@ export class FollowRepository implements FollowInterface {
       this.authorization = getAuthorizationHeader()
 
       const response = await client.accounts._from_accountId(id).follow.get({
-        query: { mode: true },
+        query: { mode: true, pagr_id: 1, page_size: 10 },
         headers: {
           dbAuthorization: process.env.NEXT_PUBLIC_TEST_EMAIL_TOKEN,
         },
@@ -71,7 +71,7 @@ export class FollowRepository implements FollowInterface {
       this.authorization = getAuthorizationHeader()
 
       const response = await client.accounts._from_account_id(id).follow.get({
-        query: { mode: false },
+        query: { mode: false, page_id: 1, page_size: 10 },
       })
 
       return response.body
