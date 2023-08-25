@@ -14,7 +14,7 @@ import { useRoom } from '../_hooks/useRoom'
 export const RoomList = () => {
   // const { hackathons } = props
 
-  const { rooms,handleSetPreview,previewRoom } = useRoom()
+  const { rooms,previewRoom,handleSetPreview,handleJoinRoom } = useRoom()
 
   return (
     <CenterArea>
@@ -23,6 +23,7 @@ export const RoomList = () => {
           key={room.rooms?.room_id}
           link={`/room/${room.rooms?.room_id}`}
           handleSetPreview={()=>handleSetPreview(room)}
+          handleJoinRoom={()=>handleJoinRoom(room.rooms?.room_id!)}
           previewRoom={previewRoom}
         >
           <CardMedia

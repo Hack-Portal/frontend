@@ -7,10 +7,15 @@ import { useTab } from '@/hooks/useTab'
 import { RoomLeft } from './_components/RoomLeft/Index'
 import { RoomRight } from './_components/RoomRight/Index'
 
-type Props = {}
+export const dynamic = 'force-static'
 
-const RoomDetail = (props: Props) => {
+type Props = {
+  id:string
+}
 
+const RoomDetail = (params: Props) => {
+  const { id } = params
+  
   return (
     <Box
       sx={{
@@ -20,7 +25,6 @@ const RoomDetail = (props: Props) => {
       }}
     >
       <Header />
-
       <Grid
         container
         justifyContent={'center'}
