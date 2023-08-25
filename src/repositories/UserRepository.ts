@@ -49,7 +49,6 @@ export class UserRepository implements UserInterface {
    */
   public async create(body: any, token: string) {
     // public async create(body: any, token: string) {
-
     for (let [key, value] of body.entries()) {
       console.log(`${key}: ${value}`)
     }

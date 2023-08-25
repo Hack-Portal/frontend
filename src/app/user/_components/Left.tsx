@@ -71,17 +71,6 @@ export const Left = (props: Props) => {
           )
         })}
       </Grid>
-      {/* 
-      <Typography sx={{ mt: 3, mb: 3 }}>受賞</Typography>
-      <Grid
-        width={'300px'}
-        margin={'auto'}
-        display={'flex'}
-        flexDirection={'column'}
-        sx={{ mt: 3 }}
-      >
-
-      </Grid> */}
     </Grid>
   )
 }
