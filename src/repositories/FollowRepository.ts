@@ -22,15 +22,13 @@ export class FollowRepository implements FollowInterface {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
             'Content-Type': 'application/json',
+            dbAuthorization: token,
           },
         }),
       )
 
       const response = await client.accounts._from_accountId(id).follow.get({
         query: { mode: true, pagr_id: 1, page_size: 10 },
-        headers: {
-          dbAuthorization: token,
-        },
       })
 
       return response.body

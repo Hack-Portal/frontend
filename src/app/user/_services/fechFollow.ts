@@ -10,12 +10,11 @@ export class FollowService {
   }
 
   public async followCount(id: string) {
-    const user = await this.firebaseRepository.getCurrentUser()
-    if (!user) throw new Error('ユーザーが存在しません')
     const token = await this.firebaseRepository.getToken()
 
     try {
       const followCount = await this.FollowRepository.fetchFollow(id, token)
+      console.log(token)
       return followCount.length
     } catch (error) {
       console.error('Serviceのエラー:', error)
@@ -23,9 +22,8 @@ export class FollowService {
     }
   }
   public async followerCount(id: string) {
-    const user = await this.firebaseRepository.getCurrentUser()
-    if (!user) throw new Error('ユーザーが存在しません')
     const token = await this.firebaseRepository.getToken()
+
     try {
       const followerCount = await this.FollowRepository.fetchFollower(id, token)
       return followerCount.length
