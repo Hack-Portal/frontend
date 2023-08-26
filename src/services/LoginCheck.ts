@@ -10,7 +10,7 @@ export class LoginCheck {
     this.userRepository = UserRepository.getInstance()
   }
 
-  public async check(callback: any) {
+  public async check(callback: (pathname: string) => void) {
     const user = await this.firebaseRepository.getCurrentUser()
     // loginしていない場合はfalseを返す
     if (!user) return false
@@ -18,7 +18,7 @@ export class LoginCheck {
     try {
       const response = await this.userRepository.fetchById(user.uid, token)
       if (response) {
-        callback()
+        callback("/user/"+ user.uid)
       }
       // loginしているが、DBにユーザー情報がない場合はアカウント削除する
     } catch (error) {

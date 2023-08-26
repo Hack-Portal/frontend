@@ -1,14 +1,9 @@
 import React from 'react'
-import { RoomInfo } from '../../../types/room'
 import { Grid } from '@/lib/mui/muiRendering'
 import { RoomInformation } from './RoomInformation'
 import { HackathonInformation } from './HackathonInformation'
 
-type Props = {
-  roomInfo: Omit<RoomInfo, 'users'>
-  tab: number
-}
-export const Information = (props: Props) => {
+export const Information = (props: any) => {
   const { tab } = props
   const { Hackathon, ...roomInfo } = props.roomInfo
   return (
@@ -16,7 +11,8 @@ export const Information = (props: Props) => {
       {tab === 0 ? (
         <RoomInformation roomInfo={roomInfo} />
       ) : (
-        <HackathonInformation hackathonInfo={Hackathon} />
+        // <HackathonInformation hackathonInfo={Hackathon} />
+        <></>
       )}
     </Grid>
   )

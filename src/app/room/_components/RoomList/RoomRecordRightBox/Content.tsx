@@ -1,12 +1,6 @@
 import {
-  Avatar,
-  Card,
-  CardContent,
   Grid,
   Typography,
-  Chip,
-  Box,
-  JoyBadge,
 } from '@/lib/mui/muiRendering'
 import React from 'react'
 

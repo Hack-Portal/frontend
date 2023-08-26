@@ -34,7 +34,7 @@ export const SignUpFormContainer = (props: Props) => {
   // 既にログインしている場合はリダイレクト
   useEffect(() => {
     const login = new LoginCheck()
-    login.check(()=>handlePushRouter('/user'))
+    login.check(handlePushRouter)
   }, [])
 
   return (

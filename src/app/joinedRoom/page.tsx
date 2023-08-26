@@ -3,10 +3,9 @@ import { CenterArea } from '@/components/layouts/CenterArea'
 import { Header } from '@/components/layouts/Header'
 import React from 'react'
 import { RoomList } from './_components/RoomList'
-import { RoomListThumb } from '../room/_types/roomList'
 
 const JoinedRoom = () => {
-  const rooms: RoomListThumb[] = [
+  const rooms: any[] = [
     {
       room_id: '1',
       title: 'test',

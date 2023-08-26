@@ -373,15 +373,17 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           members: {
             /**
              * Add Account In Rooms
+             * @param option.body - add account in room Request body
              * @returns success response
              */
-            post: (option?: { config?: T | undefined } | undefined) =>
+            post: (option: { body: Methods14['post']['reqBody'], config?: T | undefined }) =>
               fetch<Methods14['post']['resBody'], BasicHeaders, Methods14['post']['status']>(prefix, `${prefix1}${PATH9}`, POST, option).json(),
             /**
              * Add Account In Rooms
+             * @param option.body - add account in room Request body
              * @returns success response
              */
-            $post: (option?: { config?: T | undefined } | undefined) =>
+            $post: (option: { body: Methods14['post']['reqBody'], config?: T | undefined }) =>
               fetch<Methods14['post']['resBody'], BasicHeaders, Methods14['post']['status']>(prefix, `${prefix1}${PATH9}`, POST, option).json().then(r => r.body),
             /**
              * Remove Account In Rooms

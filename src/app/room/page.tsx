@@ -2,7 +2,7 @@ import { Header } from '@/components/layouts/Header'
 import { Avatar, Box, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import { PostModalWindow } from './_components/PostModalWindow'
 import StackList from '@/components/layouts/StackList'
-import { TechStack } from '@/types/techStack'
+
 import { Suspense } from 'react'
 import { RoomList } from './_components/RoomList'
 import { HackathonService } from './_services/Hackathon'
@@ -14,7 +14,7 @@ const Room = async () => {
   const Hackathon = new HackathonService()
   const hackathons = await Hackathon.fetchAll()
 
-  const techStacks: TechStack[] = [
+  const techStacks: any = [
     {
       id: '1',
       label: 'FrontendLang',

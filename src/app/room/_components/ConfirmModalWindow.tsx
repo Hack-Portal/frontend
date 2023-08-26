@@ -8,7 +8,6 @@ import {
 } from '@/lib/mui/muiRendering'
 import { Paper } from '@/lib/mui/muiRendering'
 import { Domain_ListRoomResponse } from '@/api/@types'
-import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
 import { RoomRecordRightBox } from './RoomList/RoomRecordRightBox'
 
 type Props = {
@@ -16,16 +15,20 @@ type Props = {
   children: React.ReactNode
   previewRoom?: Domain_ListRoomResponse
   handleSetPreview?: () => void
+  handleJoinRoom?: () => void
 }
 
 export function ConfirmModalWindow(props: Props) {
-  const { href, children, previewRoom, handleSetPreview } = props
+  const { href, children, previewRoom, handleSetPreview, handleJoinRoom } =
+    props
 
   const [open, setOpen] = React.useState(false)
+
   const handleOpen = () => {
     setOpen(true)
     handleSetPreview && handleSetPreview()
   }
+
   const handleClose = () => setOpen(false)
 
   return (
@@ -94,15 +97,19 @@ export function ConfirmModalWindow(props: Props) {
                 expired={previewRoom?.hackathon?.expired}
               />
             </Paper>
-            <Box display={'flex'} justifyContent={'center'}  gap={10}>
-              <Button href={href} sx={{ fontSize: '1.7rem',px:4 }} variant='contained'>
+            <Box display={'flex'} justifyContent={'center'} gap={10} mt={1}>
+              <Button
+                sx={{ fontSize: '1.7rem', px: 4 }}
+                variant="contained"
+                onClick={handleJoinRoom}
+              >
                 はい
               </Button>
               <Button
                 onClick={handleClose}
-                sx={{  fontSize: '1.7rem', color:"#fff" }}
-                variant='contained'
-                color='inherit'
+                sx={{ fontSize: '1.7rem', color: '#fff' }}
+                variant="contained"
+                color="inherit"
               >
                 いいえ
               </Button>

@@ -6,17 +6,25 @@ import { Domain_ListRoomResponse } from '@/api/@types'
 type Props = Partial<{
   link: string
   children: React.ReactNode
-  handleSetPreview?: () => void
-  previewRoom?: Domain_ListRoomResponse
+  handleSetPreview: () => void
+  previewRoom: Domain_ListRoomResponse
+  handleJoinRoom: () => void
 }>
 
 export const CenterRoomCard = (props: Props) => {
-  const { link="", children, previewRoom, handleSetPreview } = props
+  const {
+    link = '',
+    children,
+    previewRoom,
+    handleSetPreview,
+    handleJoinRoom,
+  } = props
   return (
     <ConfirmModalWindow
       href={link}
       previewRoom={previewRoom}
       handleSetPreview={handleSetPreview}
+      handleJoinRoom={handleJoinRoom}
     >
       <Card
         sx={{
