@@ -28,7 +28,7 @@ export class FollowRepository implements FollowInterface {
       )
 
       const response = await client.accounts
-        ._follow_account_id(followid)
+        .from_account_id(followid)
         .follow.get({
           //
           query: { mode: true, page_id: 1, page_size: 10 },
@@ -55,7 +55,7 @@ export class FollowRepository implements FollowInterface {
       )
 
       const response = await client.accounts
-        ._follow_account_id(followid)
+        .from_account_id(followid)
         .follow.get({
           query: { mode: false, page_id: 1, page_size: 10 },
         })
@@ -68,32 +68,3 @@ export class FollowRepository implements FollowInterface {
     }
   }
 }
-//sample
-// public async fetchAll() {
-//   const user = await this.firebaseRepository.getCurrentUser()
-//   if (!user) throw new Error('ユーザーが存在しません')
-//   const token = await user?.getIdToken()
-//   try {
-//     console.log(process.env.NEXT_PUBLIC_TEST_URL)
-//     console.log(process.env.NEXT_PUBLIC_TEST_EMAIL_TOKEN)
-//     const client = api(
-//       // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
-
-//       aspida(axios, {
-//         // baseURL: process.env.NEXT_PUBLIC_API_URL,
-//         baseURL: process.env.NEXT_PUBLIC_TEST_URL,
-//         headers: {
-//           'Content-Type': 'application/json',
-//           dbAuthorization: token,
-//         },
-//       }),
-//     )
-//     const response = await client.rooms.get()
-//     console.log(response)
-//     return response.body
-//   } catch (error) {
-//     // エラー処理
-//     console.error('APIリクエストエラー:', error)
-//     throw error
-//   }
-// }
