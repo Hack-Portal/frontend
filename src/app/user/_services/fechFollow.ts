@@ -11,21 +11,22 @@ export class FollowService {
 
   public async followCount(id: string) {
     const token = await this.firebaseRepository.getToken()
-
+    console.log(token)
     try {
       const followCount = await this.FollowRepository.fetchFollow(id, token)
-      console.log(token)
+
       return followCount.length
     } catch (error) {
-      console.error('Serviceのエラー:', error)
+      console.error('followServiceのエラー:', error)
       throw error
     }
   }
   public async followerCount(id: string) {
     const token = await this.firebaseRepository.getToken()
-
     try {
       const followerCount = await this.FollowRepository.fetchFollower(id, token)
+      console.log(id)
+
       return followerCount.length
     } catch (error) {
       console.error('Serviceのエラー:', error)

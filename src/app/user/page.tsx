@@ -1,6 +1,7 @@
+'use client'
 import { Header } from '@/components/layouts/Header'
 import { Paper } from '@/lib/mui/muiRendering'
-import React, { Suspense } from 'react'
+import React, { Suspense, use, useEffect } from 'react'
 import { Left } from './_components/Left'
 import { Center } from './_components/Center'
 import { Reight } from './_components/Reight'
@@ -21,6 +22,7 @@ const profile = async (props: {
   const user = await fetchProfile.UserInfo(id)
   const follow = await fetchFollow.followCount(id)
   const follower = await fetchFollow.followerCount(id)
+
   return (
     <>
       <Header />
