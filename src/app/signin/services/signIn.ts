@@ -39,7 +39,7 @@ export class SignIn {
         return user
       }
 
-      this.callback('/user')
+      this.callback('/user/' + firebaseUser.uid)
     } catch (error) {
       console.error('Serviceのエラー:', error)
       throw error
@@ -61,7 +61,7 @@ export class SignIn {
         await firebaseUser.getIdToken(),
       )
       if (typeof user !== 'string') {
-        this.callback('/user')
+        this.callback('/user/' + firebaseUser.uid)
       }
     } catch (error) {
       return 'posgresql not found error'
