@@ -1,4 +1,4 @@
-import { RoomListThumb } from '@/app/room/_types/roomList'
+
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 import { Avatar, Input, Typography, Grid, Box } from '@/lib/mui/muiRendering'
 import Link from 'next/link'
@@ -6,7 +6,7 @@ import React from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 
 type Props = {
-  rooms: RoomListThumb[]
+  rooms: any[]
 }
 
 export const RoomList = (props: Props) => {
