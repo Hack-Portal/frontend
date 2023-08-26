@@ -1,7 +1,6 @@
 
-import { Avatar, Box, Grid, Paper, Typography } from '@/lib/mui/muiRendering'
+import { Avatar, Box, Grid,  Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
-import Image from 'next/image'
 
 type Props = {
   chatMessage: string

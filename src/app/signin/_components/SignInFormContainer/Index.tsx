@@ -16,7 +16,7 @@ export const SignInFormContainer = () => {
   const { handlePushRouter } = useCustomRouter()
   useEffect(() => {
     const login = new LoginCheck()
-    login.check(()=>handlePushRouter('/user'))
+    login.check(handlePushRouter)
   }, [])
 
   return (

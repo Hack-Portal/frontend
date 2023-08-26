@@ -1,9 +1,8 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
-import { CardMedia, Grid } from '@/lib/mui/muiRendering'
-import { RoomThumb } from '@/app/room/_types/room'
+import { CardMedia } from '@/lib/mui/muiRendering'
 import { RoomRecordRightBox } from '@/app/room/_components/RoomList/RoomRecordRightBox'
 
 import { useRoom } from '../_hooks/useRoom'
@@ -14,7 +13,7 @@ import { useRoom } from '../_hooks/useRoom'
 export const RoomList = () => {
   // const { hackathons } = props
 
-  const { rooms,handleSetPreview,previewRoom } = useRoom()
+  const { rooms,previewRoom,handleSetPreview,handleJoinRoom } = useRoom()
 
   return (
     <CenterArea>
@@ -23,6 +22,7 @@ export const RoomList = () => {
           key={room.rooms?.room_id}
           link={`/room/${room.rooms?.room_id}`}
           handleSetPreview={()=>handleSetPreview(room)}
+          handleJoinRoom={()=>handleJoinRoom(room.rooms?.room_id!)}
           previewRoom={previewRoom}
         >
           <CardMedia

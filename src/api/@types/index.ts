@@ -29,6 +29,10 @@ export type Domain_AccountResponses = {
   username?: string | undefined
 }
 
+export type Domain_AddAccountInRoomRequestBody = {
+  account_id?: string | undefined
+}
+
 export type Domain_AddChatRequestBody = {
   account_id: string
   message: string

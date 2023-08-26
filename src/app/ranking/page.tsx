@@ -2,7 +2,6 @@ import { Header } from '@/components/layouts/Header'
 
 import { Box, Card, CardMedia, Grid } from '@/lib/mui/muiRendering'
 import useSWR from 'swr'
-import { TechStack } from '@/types/techStack'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -13,7 +12,7 @@ import { RoomRecordRightBox } from '../room/_components/RoomList/RoomRecordRight
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 const Ranking = () => {
-  const techStacks: TechStack[] = [
+  const techStacks: any[] = [
     {
       id: '1',
       label: 'FrontendLang',

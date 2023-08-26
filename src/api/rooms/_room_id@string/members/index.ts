@@ -7,6 +7,8 @@ export type Methods = {
     status: 200
     /** success response */
     resBody: Types.Controller_SuccessResponse
+    /** add account in room Request body */
+    reqBody: Types.Domain_AddAccountInRoomRequestBody
   }
 
   /** Remove Account In Rooms */

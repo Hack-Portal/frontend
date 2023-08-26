@@ -2,15 +2,15 @@ import { Header } from '@/components/layouts/Header'
 import React from 'react'
 import { Box, Grid } from '@/lib/mui/muiRendering'
 import { RoomCenter } from './_components/RoomCenter/Index'
-import { RoomInfo } from './types/room'
-import { useTab } from '@/hooks/useTab'
-import { RoomLeft } from './_components/RoomLeft/Index'
-import { RoomRight } from './_components/RoomRight/Index'
 
-type Props = {}
 
-const RoomDetail = (props: Props) => {
+export const dynamic = 'force-static'
 
+type Props = {
+  id: string
+}
+
+const RoomDetail = ({ params }: { params: { id: string } }) => {
   return (
     <Box
       sx={{
@@ -20,7 +20,6 @@ const RoomDetail = (props: Props) => {
       }}
     >
       <Header />
-
       <Grid
         container
         justifyContent={'center'}

@@ -1,13 +1,13 @@
-import { Hackathon } from '@/types/hackathon'
+
 import { Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { CustomAccordion } from './CustomAccordion'
 
-type Props = {
-  hackathonInfo: Hackathon
-}
-export const HackathonInformation = (props: Props) => {
-  const { hackathonInfo } = props
+// type Props = {
+//   hackathonInfo: Hackathon
+// }
+export const HackathonInformation = () => {
+  // const { hackathonInfo } = props
   return (
     <Grid
       container
@@ -15,7 +15,7 @@ export const HackathonInformation = (props: Props) => {
       direction={'column'}
       gap={1}
     >
-      <Grid item>
+      {/* <Grid item>
         <CustomAccordion title={'タイトル'}>
           {hackathonInfo.name}
         </CustomAccordion>
@@ -46,7 +46,7 @@ export const HackathonInformation = (props: Props) => {
             <Typography key={index}>{tag.status}</Typography>
           ))}
         </CustomAccordion>
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }

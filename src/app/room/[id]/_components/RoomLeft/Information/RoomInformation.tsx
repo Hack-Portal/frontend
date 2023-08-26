@@ -1,13 +1,8 @@
 import React from 'react'
-import { RoomInfo } from '../../../types/room'
 import { Grid, Typography } from '@/lib/mui/muiRendering'
 import { CustomAccordion } from './CustomAccordion'
 
-type Props = {
-  roomInfo: Omit<RoomInfo, 'users' | 'Hackathon'>
-}
-
-export const RoomInformation = (props: Props) => {
+export const RoomInformation = (props: any) => {
   const { roomInfo } = props
   return (
     <Grid container direction={'column'} gap={1}>
@@ -21,20 +16,21 @@ export const RoomInformation = (props: Props) => {
       </Grid>
       <Grid item>
         <CustomAccordion title={'使用言語'}>
-          {roomInfo.RoomsTechTags.map((tag, index) => (
+          {/* {roomInfo.RoomsTechTags.map((tag, index) => (
             <Grid sx={{ mt: 1.5 }} key={index}>
               {tag.tech_tag.language}
             </Grid>
-          ))}
+          ))} */}
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'使用フレームワーク'}>
-          {roomInfo.RoomsFrameworks.map((tag) => (
+          {/* {roomInfo.RoomsFrameworks.map((tag) => (
             <Typography sx={{ mt: 1.5 }} key={tag.framework.framework_id}>
               {tag.framework.framework}
             </Typography>
-          ))}
+          ))} */}
+          <></>
         </CustomAccordion>
       </Grid>
     </Grid>
