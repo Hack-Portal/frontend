@@ -2,11 +2,9 @@
 import { Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { MemberList } from './MemberList/Index'
-import { RoomUser } from '../../types/user'
 
-type Props = {
-  users: RoomUser[]
-}
+type Props = any
+
 export const RoomRight = (props: Props) => {
   return (
     <Grid

@@ -1,10 +1,9 @@
 import { Grid } from '@/lib/mui/muiRendering'
 import { Header } from './Header'
-import { RoomInfo } from '../../types/room'
 import { Information } from './Information/Index'
 
 type Props = {
-  roomInfo: Omit<RoomInfo, 'users'>
+  roomInfo: any
   tab: number
   handleSetTab: (tab: number) => void
 }

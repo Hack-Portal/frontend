@@ -1,13 +1,8 @@
 import React from 'react'
-import { RoomInfo } from '../../../types/room'
 import { Grid, Typography } from '@/lib/mui/muiRendering'
 import { CustomAccordion } from './CustomAccordion'
 
-type Props = {
-  roomInfo: Omit<RoomInfo, 'users' | 'Hackathon'>
-}
-
-export const RoomInformation = (props: Props) => {
+export const RoomInformation = (props: any) => {
   const { roomInfo } = props
   return (
     <Grid container direction={'column'} gap={1}>

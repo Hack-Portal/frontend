@@ -2,13 +2,13 @@ import React from 'react'
 import { Avatar, Grid } from '@/lib/mui/muiRendering'
 import { MemberNameArea } from './MemberNameArea'
 import { MemberTechArea } from './MemberTechArea'
-import { RoomInfo } from '../../../types/room'
-import { RoomUser } from '../../../types/user'
 
-type Props = {
-  users: RoomUser[]
-}
-const users: RoomUser[] = [
+
+// type Props = {
+//   users: RoomUser[]
+// }
+
+const users: any[] = [
   {
     id: 'user1',
     name: 'User 1',
@@ -71,7 +71,7 @@ const users: RoomUser[] = [
   },
 ]
 
-const RoomInfo: RoomInfo = {
+const RoomInfo: any= {
   room_id: '7b547df5-e692-46d2-aed3-04059775a2f8',
   title: '技育CAMP.vol7 初心者',
   description: 'わいわいしましょう！',
