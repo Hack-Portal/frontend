@@ -2,6 +2,7 @@ import { FirebaseRepository } from '@/repositories/FirebaseRepository'
 import { RoomRepository } from '@/repositories/RoomRepository'
 import { PostRoom } from '../_types/postroom'
 import { RoomAccountRepository } from '@/repositories/RoomAcount'
+import { Domain_ListRoomResponse } from '@/api/@types'
 
 export class RoomService {
   // このクラス内でRoomRepositoryを使うために、RoomRepositoryをインスタンス化しておく
@@ -43,9 +44,16 @@ export class RoomService {
     }
   }
 
-  public async join(roomId: string, callback: () => void) {
+  public async join(room: Domain_ListRoomResponse, callback: () => void) {
     const user = await this.firebaseRepository.getCurrentUser()
     if (!user) throw new Error('ユーザーが存在しません')
+    // 既に参加している場合
+    if (room.now_member?.some((member) => member.account_id === user.uid)) {
+      callback()
+      return room
+    }
+    
+    const roomId = room?.rooms?.room_id as string
 
     const token = await this.firebaseRepository.getToken()
 
@@ -55,7 +63,7 @@ export class RoomService {
         user.uid,
         token,
       )
-        callback()
+      callback()
       return rooms
     } catch (error) {
       console.error('Serviceのエラー:', error)
