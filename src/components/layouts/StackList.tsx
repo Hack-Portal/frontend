@@ -7,10 +7,9 @@ import {
   Card,
 } from '@/lib/mui/muiRendering'
 import React from 'react'
-import { TechStack } from '@/types/techStack'
 
 interface Props {
-  techStacks: TechStack[]
+  techStacks: any[]
 }
 
 const StackList = (props: Props) => {
