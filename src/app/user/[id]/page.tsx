@@ -2,26 +2,26 @@
 import { Header } from '@/components/layouts/Header'
 import { Paper } from '@/lib/mui/muiRendering'
 import React, { Suspense, use, useEffect } from 'react'
-import { Left } from './_components/Left'
-import { Center } from './_components/Center'
-import { Reight } from './_components/Reight'
-import { FetchProfile } from './_services/fetchProfile'
-import { FollowService } from './_services/fechFollow'
-import { FirebaseRepository } from '@/repositories/FirebaseRepository'
+import { Left } from '../_components/Left'
+import { Center } from '../_components/Center'
+import { Reight } from '../_components/Reight'
+import { FetchProfile } from '../_services/fetchProfile'
+import { FollowService } from '../_services/fechFollow'
 
 const profile = async (props: {
   params: {
     id: string
+    followid: string
   }
 }) => {
-  const { id } = props.params
+  const { id, followid } = props.params
 
   const fetchProfile = new FetchProfile()
   const fetchFollow = new FollowService()
 
   const user = await fetchProfile.UserInfo(id)
-  const follow = await fetchFollow.followCount(id)
-  const follower = await fetchFollow.followerCount(id)
+  const follow = await fetchFollow.followCount(followid)
+  const follower = await fetchFollow.followerCount(followid)
 
   return (
     <>

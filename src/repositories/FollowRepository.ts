@@ -15,7 +15,7 @@ export class FollowRepository implements FollowInterface {
     return FollowRepository.instance
   }
 
-  public async fetchFollow(id: string, token: string) {
+  public async fetchFollow(followid: string, token: string) {
     try {
       const client: any = api(
         aspida(axios, {
@@ -27,9 +27,12 @@ export class FollowRepository implements FollowInterface {
         }),
       )
 
-      const response = await client.accounts._from_accountId(id).follow.get({
-        query: { mode: true, pagr_id: 1, page_size: 10 },
-      })
+      const response = await client.accounts
+        ._follow_account_id(followid)
+        .follow.get({
+          //
+          query: { mode: true, page_id: 1, page_size: 10 },
+        })
 
       return response.body
     } catch (error) {
@@ -39,7 +42,7 @@ export class FollowRepository implements FollowInterface {
     }
   }
 
-  public async fetchFollower(id: string, token: string) {
+  public async fetchFollower(followid: string, token: string) {
     try {
       const client: any = api(
         aspida(axios, {
@@ -51,9 +54,11 @@ export class FollowRepository implements FollowInterface {
         }),
       )
 
-      const response = await client.accounts._from_account_id(id).follow.get({
-        query: { mode: false, page_id: 1, page_size: 10 },
-      })
+      const response = await client.accounts
+        ._follow_account_id(followid)
+        .follow.get({
+          query: { mode: false, page_id: 1, page_size: 10 },
+        })
 
       return response.body
     } catch (error) {

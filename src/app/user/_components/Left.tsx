@@ -15,7 +15,7 @@ type Props = {
   follower: number
 }
 export const Left = (props: Props) => {
-  const { data, techs, frameworks, follow, follower } = props
+  const { data, techs, follow, follower, frameworks } = props
   return (
     <Grid
       display={'row'}
