@@ -22,7 +22,7 @@ export const RoomList = () => {
           key={room.rooms?.room_id}
           link={`/room/${room.rooms?.room_id}`}
           handleSetPreview={()=>handleSetPreview(room)}
-          handleJoinRoom={()=>handleJoinRoom(room.rooms?.room_id!)}
+          handleJoinRoom={()=>handleJoinRoom(room)}
           previewRoom={previewRoom}
         >
           <CardMedia

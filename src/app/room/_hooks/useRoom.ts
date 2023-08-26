@@ -1,4 +1,4 @@
-import { Domain_ListRoomResponse } from '@/api/@types'
+import { Domain_ListRoomResponse, Domain_NowRoomAccounts } from '@/api/@types'
 import { useEffect, useState } from 'react'
 import { RoomService } from '../_services/Room'
 import { PostRoom } from '../_types/postroom'
@@ -31,11 +31,12 @@ export const useRoom = () => {
     }
   }
 
-  const handleJoinRoom = async (roomId: string) => {
+  const handleJoinRoom = async (room: Domain_ListRoomResponse) => {
     const Room = new RoomService()
+
     try {
-      await Room.join(roomId, () => {
-        handlePushRouter(`/room/${roomId}`)
+      await Room.join(room, () => {
+        handlePushRouter(`/room/${room.rooms?.room_id}`)
       })
     } catch (error) {
       console.error('APIリクエストエラー:', error)
@@ -45,7 +46,7 @@ export const useRoom = () => {
 
   useEffect(() => {
     fetchRooms()
-  },[])
+  }, [])
 
   return { rooms, createRoom, previewRoom, handleSetPreview, handleJoinRoom }
 }
