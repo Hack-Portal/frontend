@@ -2,7 +2,6 @@ import React from 'react'
 import { Avatar, Grid } from '@/lib/mui/muiRendering'
 import { MemberNameArea } from './MemberNameArea'
 import { MemberTechArea } from './MemberTechArea'
-import { User } from '@/types/user'
 import { RoomInfo } from '../../../types/room'
 import { RoomUser } from '../../../types/user'
 
@@ -211,7 +210,7 @@ export const MemberList = () => {
           <Avatar src={user.icon} />
           <Grid container direction={'column'}>
             <MemberNameArea name={user.name} isOwner={user.isOwner} />
-            <MemberTechArea techs={user.techs} frameworks={user.frameworks} />
+            {/* <MemberTechArea techs={user.techs} frameworks={user.frameworks} /> */}
           </Grid>
         </Grid>
       ))}

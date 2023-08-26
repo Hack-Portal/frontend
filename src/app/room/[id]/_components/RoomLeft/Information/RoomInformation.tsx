@@ -21,20 +21,21 @@ export const RoomInformation = (props: Props) => {
       </Grid>
       <Grid item>
         <CustomAccordion title={'使用言語'}>
-          {roomInfo.RoomsTechTags.map((tag, index) => (
+          {/* {roomInfo.RoomsTechTags.map((tag, index) => (
             <Grid sx={{ mt: 1.5 }} key={index}>
               {tag.tech_tag.language}
             </Grid>
-          ))}
+          ))} */}
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'使用フレームワーク'}>
-          {roomInfo.RoomsFrameworks.map((tag) => (
+          {/* {roomInfo.RoomsFrameworks.map((tag) => (
             <Typography sx={{ mt: 1.5 }} key={tag.framework.framework_id}>
               {tag.framework.framework}
             </Typography>
-          ))}
+          ))} */}
+          <></>
         </CustomAccordion>
       </Grid>
     </Grid>

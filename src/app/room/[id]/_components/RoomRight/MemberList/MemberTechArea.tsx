@@ -1,16 +1,15 @@
-import { Framework } from '@/types/framework'
-import { Tech } from '@/types/tech'
+
 import { Chip, Grid } from '@/lib/mui/muiRendering'
 import React from 'react'
 
-type Props = {
-  techs: Tech[] | null
-  frameworks: Framework[] | null
-}
+// type Props = {
+//   techs: null
+//   frameworks:  null
+// }
 
-export const MemberTechArea = (props: Props) => {
+export const MemberTechArea = () => {
   // Use the first user's techs and frameworks from the mock data
-  const { techs, frameworks } = props
+  // const { techs, frameworks } = props
 
   return (
     <Grid
@@ -20,7 +19,7 @@ export const MemberTechArea = (props: Props) => {
       direction={'row'}
       gap={1}
     >
-      {techs?.map((tech) => (
+      {/* {techs?.map((tech) => (
         <Chip
           label={tech.language}
           key={tech.tech_tag_id}
@@ -33,7 +32,7 @@ export const MemberTechArea = (props: Props) => {
           key={framework.framework_id}
           sx={{ fontSize: '0.6rem', fontWeight: 'bold', p: 0.1 }}
         />
-      ))}
+      ))} */}
     </Grid>
   )
 }

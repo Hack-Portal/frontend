@@ -16,7 +16,8 @@ export const Information = (props: Props) => {
       {tab === 0 ? (
         <RoomInformation roomInfo={roomInfo} />
       ) : (
-        <HackathonInformation hackathonInfo={Hackathon} />
+        // <HackathonInformation hackathonInfo={Hackathon} />
+        <></>
       )}
     </Grid>
   )
