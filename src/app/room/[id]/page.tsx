@@ -10,12 +10,10 @@ import { RoomRight } from './_components/RoomRight/Index'
 export const dynamic = 'force-static'
 
 type Props = {
-  id:string
+  id: string
 }
 
-const RoomDetail = (params: Props) => {
-  const { id } = params
-  
+const RoomDetail = ({ params }: { params: { id: string } }) => {
   return (
     <Box
       sx={{
