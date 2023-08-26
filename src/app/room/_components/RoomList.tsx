@@ -1,9 +1,8 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
-import { CardMedia, Grid } from '@/lib/mui/muiRendering'
-import { RoomThumb } from '@/app/room/_types/room'
+import { CardMedia } from '@/lib/mui/muiRendering'
 import { RoomRecordRightBox } from '@/app/room/_components/RoomList/RoomRecordRightBox'
 
 import { useRoom } from '../_hooks/useRoom'

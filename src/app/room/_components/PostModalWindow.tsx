@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   Box,
   Modal,
@@ -16,7 +16,6 @@ import { BorderColorRoundedIcon } from '@/lib/mui/muiRendering'
 import { useForm } from 'react-hook-form'
 import { Domain_HackathonResponses } from '@/api/@types'
 import { PostRoom } from '../_types/postroom'
-import { RoomService } from '../_services/Room'
 import { useRoom } from '../_hooks/useRoom'
 
 type Props = {

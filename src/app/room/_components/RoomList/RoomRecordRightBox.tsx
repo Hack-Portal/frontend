@@ -16,7 +16,6 @@ import {
   Domain_RoomTechTags,
 } from '@/api/@types'
 import { formatDate } from '@/utils/formatDate'
-import { Rotate90DegreesCcw } from '@mui/icons-material'
 import { Content } from './RoomRecordRightBox/Content'
 
 type Props = Partial<{
