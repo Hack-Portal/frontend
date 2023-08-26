@@ -4,7 +4,6 @@ import { UserRating } from '../components/layouts/UserRating'
 
 import { Grid } from '@/lib/mui/muiRendering'
 import StackList from '../components/layouts/StackList'
-import { TechStack } from '@/types/techStack'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -17,7 +16,7 @@ const Home = async () => {
   const fetchHackathons = new FetchHackathons()
   const hackathons = await fetchHackathons.fetchAllHackathons()
 
-  const techStacks: TechStack[] = [
+  const techStacks: any[] = [
     {
       id: '1',
       label: 'FrontendLang',
