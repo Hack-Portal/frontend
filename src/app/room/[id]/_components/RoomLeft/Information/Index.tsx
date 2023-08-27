@@ -2,17 +2,22 @@ import React from 'react'
 import { Grid } from '@/lib/mui/muiRendering'
 import { RoomInformation } from './RoomInformation'
 import { HackathonInformation } from './HackathonInformation'
+import { Domain_GetRoomResponse } from '@/api/@types'
 
-export const Information = (props: any) => {
+type Props = {
+  tab: number
+  room:Domain_GetRoomResponse
+}
+
+export const Information = (props:Props) => {
   const { tab } = props
-  const { Hackathon, ...roomInfo } = props.roomInfo
+  const { hackathon, ...roomInfo } = props.room
   return (
     <Grid container sx={{ height: '100vh' }} direction={'column'}>
       {tab === 0 ? (
         <RoomInformation roomInfo={roomInfo} />
       ) : (
-        // <HackathonInformation hackathonInfo={Hackathon} />
-        <></>
+        <HackathonInformation hackathon={hackathon} />
       )}
     </Grid>
   )

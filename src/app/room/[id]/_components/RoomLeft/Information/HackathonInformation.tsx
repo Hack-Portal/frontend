@@ -1,13 +1,15 @@
-
 import { Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { CustomAccordion } from './CustomAccordion'
+import { Domain_RoomHackathonInfo } from '@/api/@types'
+import { formatDate } from '@/utils/formatDate'
 
-// type Props = {
-//   hackathonInfo: Hackathon
-// }
-export const HackathonInformation = () => {
-  // const { hackathonInfo } = props
+type Props = {
+  hackathon?: Domain_RoomHackathonInfo
+}
+export const HackathonInformation = (props: Props) => {
+  const { hackathon } = props
+  if (!hackathon) return <></>
   return (
     <Grid
       container
@@ -15,38 +17,38 @@ export const HackathonInformation = () => {
       direction={'column'}
       gap={1}
     >
-      {/* <Grid item>
+      <Grid item>
         <CustomAccordion title={'タイトル'}>
-          {hackathonInfo.name}
+          {hackathon.name}
         </CustomAccordion>
       </Grid>
       <Grid item>
-        <CustomAccordion title={'説明'}>
-          {hackathonInfo.description}
+        <CustomAccordion title={'リンク'}>
+          {hackathon.link}
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'募集締め切り'}>
-          <Typography>{hackathonInfo.expired}</Typography>
+          <Typography>{formatDate(hackathon.expired!)}</Typography>
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'開催日'}>
-          <Typography>{hackathonInfo.start_date}</Typography>
+          <Typography>{formatDate(hackathon.start_date!)}</Typography>
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'期間'}>
-          <Typography>{hackathonInfo.term}日間</Typography>
+          <Typography>{hackathon.term}日間</Typography>
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'タグ'}>
-          {hackathonInfo.HackathonStatusTag.map((tag, index) => (
+          {hackathon.status_tag?.map((tag, index) => (
             <Typography key={index}>{tag.status}</Typography>
           ))}
         </CustomAccordion>
-      </Grid> */}
+      </Grid>
     </Grid>
   )
 }

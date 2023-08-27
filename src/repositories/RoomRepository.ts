@@ -50,8 +50,6 @@ export class RoomRepository implements RoomInterface {
         aspida(axios, {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
-            // authorization: this.authorization,
-            "Content-Type": "application/json",
             dbAuthorization: token,
           },
         }),

@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil'
 import { roomListState } from '@/store/atoms/roomsAtom'
 import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
 
-export const useRoom = () => {
+export const useRooms = () => {
   const [rooms, setRooms] =
     useRecoilState<Domain_ListRoomResponse[]>(roomListState)
   const [previewRoom, setPreviewRoom] = useState<Domain_ListRoomResponse>()
