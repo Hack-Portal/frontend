@@ -14,6 +14,7 @@ export class FetchProfile {
     console.log(token)
     try {
       const userInfo = await this.UserRepository.fetchById(id, token)
+      console.log(userInfo)
       return userInfo
     } catch (error) {
       console.error(' UserInfoServiceのエラー:', error)

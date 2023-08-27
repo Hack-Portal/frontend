@@ -82,39 +82,45 @@ export class FirebaseRepository {
     }
   }
 
-  public async emailSignIn(email:string,password:string ): Promise<User|string> {
+  public async emailSignIn(
+    email: string,
+    password: string,
+  ): Promise<User | string> {
     try {
       // メールアドレスとパスワードを使ってユーザーをログインさせます
-      const result = await signInWithEmailAndPassword(auth, email, password);
-  
+      const result = await signInWithEmailAndPassword(auth, email, password)
+
       // ログインしたユーザー情報を返します
-      return result.user;
+      return result.user
     } catch (error) {
-      if (error instanceof Error) { // エラーの型チェック
-        const errorCode = (error as FirebaseError).code; // FirebaseErrorとして扱う
-        return errorCode;
+      if (error instanceof Error) {
+        // エラーの型チェック
+        const errorCode = (error as FirebaseError).code // FirebaseErrorとして扱う
+        return errorCode
       }
-      throw error;
+      throw error
     }
   }
 
-  public async emailSignUp(email: string, password: string): Promise<User | string> {
+  public async emailSignUp(
+    email: string,
+    password: string,
+  ): Promise<User | string> {
     try {
       // メールアドレスとパスワードを使ってユーザーを登録します
-      const result = await createUserWithEmailAndPassword(auth, email, password);
-  
+      const result = await createUserWithEmailAndPassword(auth, email, password)
+
       // 登録したユーザー情報を返します
-      return result.user;
+      return result.user
     } catch (error) {
-      if (error instanceof Error) { // エラーの型チェック
-        const errorCode = (error as FirebaseError).code; // FirebaseErrorとして扱う
-       return errorCode
+      if (error instanceof Error) {
+        // エラーの型チェック
+        const errorCode = (error as FirebaseError).code // FirebaseErrorとして扱う
+        return errorCode
       }
       throw error
+    }
   }
-}
-   
-
 
   public async signOut(): Promise<void> {
     try {
@@ -190,7 +196,7 @@ export class FirebaseRepository {
       )
       const response = await client.rooms
         ._room_id(roomId)
-        .addchat.post({ body: { message: message ,account_id:user.uid} })
+        .addchat.post({ body: { message: message, account_id: user.uid } })
       return response.body
     } catch (error) {
       // エラー処理
@@ -198,5 +204,4 @@ export class FirebaseRepository {
       throw error
     }
   }
-
 }

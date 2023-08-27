@@ -9,32 +9,33 @@ export class FollowService {
     this.firebaseRepository = FirebaseRepository.getInstance()
   }
 
-  public async followCount(followid: string) {
+  public async followCount(id: string) {
     const token = await this.firebaseRepository.getToken()
     console.log(token)
     try {
-      const followCount = await this.FollowRepository.fetchFollow(
-        followid,
-        token,
-      )
-      return followCount.length
+      const follow = await this.FollowRepository.fetchFollow(id, token)
+      if (follow === null || follow === undefined) {
+        console.error('followCountがnullまたはundefinedです。')
+        return 0
+      }
+      return follow.length
     } catch (error) {
       console.error('followServiceのエラー:', error)
       throw error
     }
   }
-  public async followerCount(followid: string) {
+  public async followerCount(id: string) {
     const token = await this.firebaseRepository.getToken()
+    console.log(token)
     try {
-      const followerCount = await this.FollowRepository.fetchFollower(
-        followid,
-        token,
-      )
-      console.log(followid)
-
-      return followerCount.length
+      const follower = await this.FollowRepository.fetchFollower(id, token)
+      if (follower === null || follower === undefined) {
+        console.error('followCountがnullまたはundefinedです。')
+        return 0
+      }
+      return follower.length
     } catch (error) {
-      console.error('Serviceのエラー:', error)
+      console.error('followServiceのエラー:', error)
       throw error
     }
   }

@@ -15,9 +15,9 @@ export class FollowRepository implements FollowInterface {
     return FollowRepository.instance
   }
 
-  public async fetchFollow(followid: string, token: string) {
+  public async fetchFollow(id: string, token: string) {
     try {
-      const client: any = api(
+      const client = api(
         aspida(axios, {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
@@ -27,12 +27,10 @@ export class FollowRepository implements FollowInterface {
         }),
       )
 
-      const response = await client.accounts
-        .from_account_id(followid)
-        .follow.get({
-          //
-          query: { mode: true, page_id: 1, page_size: 10 },
-        })
+      const response = await client.accounts._from_account_id(id).follow.get({
+        //
+        query: { page_id: '1', page_size: '10', mode: true },
+      })
 
       return response.body
     } catch (error) {
@@ -42,9 +40,9 @@ export class FollowRepository implements FollowInterface {
     }
   }
 
-  public async fetchFollower(followid: string, token: string) {
+  public async fetchFollower(id: string, token: string) {
     try {
-      const client: any = api(
+      const client = api(
         aspida(axios, {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
@@ -54,11 +52,9 @@ export class FollowRepository implements FollowInterface {
         }),
       )
 
-      const response = await client.accounts
-        .from_account_id(followid)
-        .follow.get({
-          query: { mode: false, page_id: 1, page_size: 10 },
-        })
+      const response = await client.accounts._from_account_id(id).follow.get({
+        query: { page_id: '1', page_size: '10', mode: false },
+      })
 
       return response.body
     } catch (error) {

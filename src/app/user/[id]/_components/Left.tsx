@@ -3,19 +3,21 @@ import { Avatar, Grid, Typography, Chip } from '@/lib/mui/muiRendering'
 import React from 'react'
 import {
   Domain_AccountResponses,
+  Domain_FollowResponse,
   Repository_Framework,
   Repository_TechTag,
 } from '@/api/@types'
 
 type Props = {
-  data: Domain_AccountResponses
+  user: Domain_AccountResponses
   techs: Repository_TechTag[] | undefined
   frameworks: Repository_Framework[] | undefined
-  follow: number
-  follower: number
+  follow: number | undefined
+  follower: number | undefined
 }
 export const Left = (props: Props) => {
-  const { data, techs, follow, follower, frameworks } = props
+  const { user, techs, follow, follower, frameworks } = props
+
   return (
     <Grid
       display={'row'}
@@ -25,17 +27,14 @@ export const Left = (props: Props) => {
         <Typography sx={{ mt: 2, mb: 3, fontSize: '30px' }}>Profile</Typography>
         <Avatar
           sx={{ width: 150, height: 150, margin: 'auto' }}
-          src={data.icon}
+          src={user.icon}
           alt="Remy Sharp"
         />
         <Typography sx={{ mt: 4, fontSize: '25px' }}>Name</Typography>
       </Grid>
 
       <Grid display={'flex'} justifyContent={'space-around'} sx={{ mt: 5 }}>
-        <Grid alignItems={'center'}>
-          <Typography>rating</Typography>
-          <Typography>{data.show_rate}</Typography>
-        </Grid>
+        <Grid alignItems={'center'}></Grid>
         <Grid textAlign={'center'}>
           <Typography>follow</Typography>
           <Typography>{follow}</Typography>
@@ -50,7 +49,7 @@ export const Left = (props: Props) => {
         <Typography sx={{ mt: 2 }} color={'#999'}>
           introduction
         </Typography>
-        <Typography sx={{ mt: 2 }}>{data.explanatory_text}</Typography>
+        <Typography sx={{ mt: 2 }}>{user.explanatory_text}</Typography>
       </Grid>
       <Typography sx={{ mt: 3, mb: 3 }}>Techs & Frameworks</Typography>
       <Grid
