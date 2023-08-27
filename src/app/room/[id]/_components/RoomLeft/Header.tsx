@@ -9,8 +9,8 @@ import {
 import React from 'react'
 
 type Props = {
-  icon: string
-  title: string
+  icon?: string
+  title?: string
   handleSetTab: (tab: number) => void
   tab: number
 }

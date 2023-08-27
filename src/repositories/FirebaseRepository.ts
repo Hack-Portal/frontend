@@ -11,15 +11,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  Unsubscribe,
-  QuerySnapshot,
-  DocumentData,
-} from 'firebase/firestore'
+import { onSnapshot, doc, collection } from 'firebase/firestore'
 import { Chat } from '@/types/chat'
 import api from '@/api/$api'
 import aspida from '@aspida/axios'
@@ -30,8 +22,6 @@ import { EmailSignInFormData } from '@/app/signin/types/formData'
 export class FirebaseRepository {
   private static instance: FirebaseRepository | null = null
 
-  private constructor() {}
-
   public static getInstance(): FirebaseRepository {
     if (!this.instance) {
       this.instance = new FirebaseRepository()
@@ -39,7 +29,7 @@ export class FirebaseRepository {
     return this.instance
   }
 
-  public async getCurrentUser(): Promise<User | null> {
+  public getCurrentUser = async (): Promise<User | null> => {
     try {
       return new Promise((resolve) => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -49,6 +39,17 @@ export class FirebaseRepository {
       })
     } catch (error) {
       console.error('ユーザー取得エラー:', error)
+      throw error // エラーを呼び出し元に伝播させる
+    }
+  }
+
+  public getUId = async (): Promise<string> => {
+    try {
+      const user = await this.getCurrentUser()
+      if (!user) throw new Error('ユーザーが存在しません')
+      return user.uid
+    } catch (error) {
+      console.error('ユーザーID取得エラー:', error)
       throw error // エラーを呼び出し元に伝播させる
     }
   }
@@ -82,39 +83,45 @@ export class FirebaseRepository {
     }
   }
 
-  public async emailSignIn(email:string,password:string ): Promise<User|string> {
+  public async emailSignIn(
+    email: string,
+    password: string,
+  ): Promise<User | string> {
     try {
       // メールアドレスとパスワードを使ってユーザーをログインさせます
-      const result = await signInWithEmailAndPassword(auth, email, password);
-  
+      const result = await signInWithEmailAndPassword(auth, email, password)
+
       // ログインしたユーザー情報を返します
-      return result.user;
+      return result.user
     } catch (error) {
-      if (error instanceof Error) { // エラーの型チェック
-        const errorCode = (error as FirebaseError).code; // FirebaseErrorとして扱う
-        return errorCode;
+      if (error instanceof Error) {
+        // エラーの型チェック
+        const errorCode = (error as FirebaseError).code // FirebaseErrorとして扱う
+        return errorCode
       }
-      throw error;
+      throw error
     }
   }
 
-  public async emailSignUp(email: string, password: string): Promise<User | string> {
+  public async emailSignUp(
+    email: string,
+    password: string,
+  ): Promise<User | string> {
     try {
       // メールアドレスとパスワードを使ってユーザーを登録します
-      const result = await createUserWithEmailAndPassword(auth, email, password);
-  
+      const result = await createUserWithEmailAndPassword(auth, email, password)
+
       // 登録したユーザー情報を返します
-      return result.user;
+      return result.user
     } catch (error) {
-      if (error instanceof Error) { // エラーの型チェック
-        const errorCode = (error as FirebaseError).code; // FirebaseErrorとして扱う
-       return errorCode
+      if (error instanceof Error) {
+        // エラーの型チェック
+        const errorCode = (error as FirebaseError).code // FirebaseErrorとして扱う
+        return errorCode
       }
       throw error
+    }
   }
-}
-   
-
 
   public async signOut(): Promise<void> {
     try {
@@ -142,55 +149,52 @@ export class FirebaseRepository {
 
   public fetchChatMessages(
     roomId: string,
-    callback: (chats: string[]) => void,
+    callback: (chats: Chat[]) => void,
   ): (() => void) | undefined {
     try {
-      const _query = query(
-        collection(db, 'chatrooms'),
-        where('UID', '==', roomId),
-      )
+      const chatsRef = collection(db, 'chatrooms', roomId, 'chats') // roomIdを指定してサブコレクションを指定
+
       const unsubscribe = onSnapshot(
-        _query,
-        (querySnapshot: QuerySnapshot<DocumentData>) => {
-          const chats: string[] = []
-          // ドキュメントの変更を監視します,差分を取得します
-          querySnapshot.docChanges().forEach((change) => {
-            if (change.type === 'added' || change.type === 'modified') {
-              const data = change.doc.data() as Chat // ドキュメントデータをChat型として扱います
-              chats.push(data.Message)
-            }
+        chatsRef,
+        (querySnapshot) => {
+          const chats: Chat[] = []
+          querySnapshot.forEach((doc) => {
+            const data = doc.data() as Chat
+            chats.push(data)
           })
           callback(chats) // コールバックで結果を返します
         },
+        (error) => {
+          console.log('Fetch chat messages failed: ', error)
+        },
       )
+
       return unsubscribe // サブスクリプションの解除に使用できる関数を返します
     } catch (e) {
-      if (e instanceof FirebaseError) {
-        console.log(e)
-        throw e
-      }
+      console.log('Error fetching chat messages: ', e)
+      return undefined // エラーが発生した場合はundefinedを返します
     }
   }
 
-  public async addChatMessage(
+  public addChatMessage = async (
     roomId: string,
     message: string,
-  ): Promise<Domain_GetRoomResponse> {
+  ): Promise<Domain_GetRoomResponse> => {
     const user = await this.getCurrentUser()
     if (!user) throw new Error('ユーザーが存在しません')
     const token = await user?.getIdToken()
     try {
       const client = api(
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_API_URL,
+          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
           headers: {
-            authorization: token,
+            dbauthorization: token,
           },
         }),
       )
       const response = await client.rooms
         ._room_id(roomId)
-        .addchat.post({ body: { message: message ,account_id:user.uid} })
+        .addchat.post({ body: { message: message, account_id: user.uid } })
       return response.body
     } catch (error) {
       // エラー処理
@@ -198,5 +202,4 @@ export class FirebaseRepository {
       throw error
     }
   }
-
 }

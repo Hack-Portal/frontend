@@ -1,14 +1,20 @@
-"use client"
+'use client'
 import { SendInputArea } from './SendInputArea'
 import { Grid } from '@/lib/mui/muiRendering'
-import { useChatMessage } from '../../hooks/useChat'
+import { useChatMessage } from '../../_hooks/useChat'
 import { useForm } from 'react-hook-form'
-import { ChatFormData } from '../../types/ChatFormData'
+import { ChatFormData } from '../../_types/ChatFormData'
 import { ChatList } from './ChatList/Index'
+import { Domain_NowRoomAccounts } from '@/api/@types'
 
-export const RoomCenter = () => {
-  const { chatMessages, handleSendChatMessage } = useChatMessage()
-  const { control, handleSubmit,reset } = useForm<ChatFormData>()
+type Props = {
+  roomId: string
+  members?:Domain_NowRoomAccounts[]
+}
+export const RoomCenter = (props: Props) => {
+  const { roomId,members } = props
+  const { chatMessages, handleSendChatMessage } = useChatMessage(roomId,members)
+  const { control, handleSubmit, reset } = useForm<ChatFormData>()
 
   // カスタムフックに移動しようとすると、挙動がおかしくなる
   const onSubmit = (data: ChatFormData) => {
@@ -34,7 +40,7 @@ export const RoomCenter = () => {
           },
         }}
       >
-       <ChatList chatMessages={chatMessages}/>
+        <ChatList chatMessages={chatMessages} />
         <SendInputArea
           handleSubmit={handleSubmit(onSubmit)}
           control={control}

@@ -16,7 +16,7 @@ import { BorderColorRoundedIcon } from '@/lib/mui/muiRendering'
 import { useForm } from 'react-hook-form'
 import { Domain_HackathonResponses } from '@/api/@types'
 import { PostRoom } from '../_types/postroom'
-import { useRoom } from '../_hooks/useRoom'
+import { useRooms } from '../_hooks/useRooms'
 
 type Props = {
   hackathons: Domain_HackathonResponses[]
@@ -24,7 +24,7 @@ type Props = {
 
 export const PostModalWindow = (props: Props) => {
   const { hackathons } = props
-  const { createRoom } = useRoom()
+  const { createRoom } = useRooms()
   const [open, setOpen] = useState(false)
 
   // todo:logicを分離する

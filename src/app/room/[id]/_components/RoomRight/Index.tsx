@@ -2,10 +2,15 @@
 import { Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { MemberList } from './MemberList/Index'
+import { Domain_NowRoomAccounts } from '@/api/@types'
 
-type Props = any
+type Props ={
+  users:Domain_NowRoomAccounts[]
+}
 
 export const RoomRight = (props: Props) => {
+  const { users } = props
+
   return (
     <Grid
       container
@@ -39,7 +44,7 @@ export const RoomRight = (props: Props) => {
         </Typography>
       </Grid>
       <Grid item bgcolor={'#fff'}>
-        <MemberList />
+        <MemberList users={users}/>
       </Grid>
     </Grid>
   )
