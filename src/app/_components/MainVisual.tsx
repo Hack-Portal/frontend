@@ -11,7 +11,16 @@ import React from 'react'
 
 export const MainVisual = () => {
   return (
-    <Card sx={{ display: 'flex', p: 5, gap: 5 }}>
+    <Card
+      sx={{
+        display: 'flex',
+        p: 5,
+        gap: 5,
+        borderRadius: '0px',
+        boxShadow: 'none',
+        mb: 5,
+      }}
+    >
       <CardContent
         sx={{
           width: '100%',
@@ -43,9 +52,9 @@ export const MainVisual = () => {
                 fontWeight: 'bold',
                 backgroundColor: '#2A98FD',
                 color: '#eee',
-                "&:hover":{ 
+                '&:hover': {
                   color: '#2A98FD',
-                }
+                },
               }}
             >
               ログイン
@@ -60,9 +69,9 @@ export const MainVisual = () => {
               fontWeight: 'bold',
               backgroundColor: '#333',
               color: '#eee',
-              "&:hover":{ 
+              '&:hover': {
                 color: '#333',
-              }
+              },
             }}
           >
             新規登録
