@@ -19,7 +19,9 @@ const profile = async ({ params }: { params: { id: string } }) => {
   // const follow = await fetchFollow.followCount(id)
   // const follower = await fetchFollow.followerCount(id)
 
-  const [user, setUser] = useState<Domain_AccountResponses>()
+  const [user, setUser] = useState<Domain_AccountResponses | undefined>(
+    undefined,
+  )
   const [follow, followCount] = useState<number>(0)
   const [follower, setFollower] = useState<number>(0)
 
@@ -33,9 +35,9 @@ const profile = async ({ params }: { params: { id: string } }) => {
       console.log(follow)
       console.log(follower)
     })()
-  }, [user, follow, follower])
+  }, [])
 
-  if (user === null || undefined) {
+  if (user === undefined) {
     return <div>loading...</div>
   }
   return (
