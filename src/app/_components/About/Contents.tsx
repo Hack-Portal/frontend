@@ -15,8 +15,8 @@ export const Contents = () => {
       image: '/image/searchPeople.svg',
     },
     {
-      title: 'メンバーを募集する',
-      text: '同士を集めて、ハッカソンに挑戦しよう',
+      title: '仲間を見つける',
+      text: '仲間を集めて、ハッカソンに挑戦しよう',
       image: '/image/member.svg',
     },
     {
