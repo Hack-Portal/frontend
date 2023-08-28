@@ -9,14 +9,21 @@ import {
 } from '@/api/@types'
 
 type Props = {
-  user: Domain_AccountResponses
-  techs: Repository_TechTag[] | undefined
-  frameworks: Repository_Framework[] | undefined
+  user: Domain_AccountResponses | undefined
   follow: number | undefined
   follower: number | undefined
 }
 export const Left = (props: Props) => {
-  const { user, techs, follow, follower, frameworks } = props
+  const { user, follow, follower } = props
+
+  const techs = user?.tech_tags
+  const frameworks = user?.frameworks
+
+  console.log(user)
+  console.log(follow)
+  console.log(follower)
+  console.log(techs)
+  console.log(frameworks)
 
   return (
     <Grid
@@ -27,11 +34,11 @@ export const Left = (props: Props) => {
         <Typography sx={{ mt: 2, mb: 3, fontSize: '30px' }}>Profile</Typography>
         <Avatar
           sx={{ width: 150, height: 150, margin: 'auto' }}
-          src={user.icon}
+          src={user?.icon}
           alt="Remy Sharp"
         />
         <Typography sx={{ mt: 4, fontSize: '25px' }}>
-          {user.username}
+          {user?.username}
         </Typography>
       </Grid>
 
@@ -51,7 +58,7 @@ export const Left = (props: Props) => {
         <Typography sx={{ mt: 2 }} color={'#999'}>
           introduction
         </Typography>
-        <Typography sx={{ mt: 2 }}>{user.explanatory_text}</Typography>
+        <Typography sx={{ mt: 2 }}>{user?.explanatory_text}</Typography>
       </Grid>
       <Typography sx={{ mt: 3, mb: 3 }}>Techs & Frameworks</Typography>
       <Grid
@@ -63,12 +70,16 @@ export const Left = (props: Props) => {
       >
         {techs?.map((tech) => {
           return (
-            <Chip sx={{ mt: 2 }} key={tech.tech_tag_id} label={tech.language} />
+            <Chip
+              sx={{ mt: 2 }}
+              key={tech?.tech_tag_id}
+              label={tech?.language}
+            />
           )
         })}
         {frameworks?.map((framework) => {
           return (
-            <Chip key={framework.framework_id} label={framework.framework} />
+            <Chip key={framework?.framework_id} label={framework?.framework} />
           )
         })}
       </Grid>

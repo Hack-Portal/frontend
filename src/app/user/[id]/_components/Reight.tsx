@@ -28,27 +28,11 @@ export const Reight = (props: Props) => {
       <Grid sx={{ textAlign: 'center', mb: 2 }}>
         <MailIcon />
         <Typography>Email</Typography>
-        <Typography sx={{ mt: 0.5, fontSize: '20px' }}>{data.email}</Typography>
-      </Grid>
-      <Grid sx={{ textAlign: 'center', mb: 2 }}>
-        <MailIcon />
-        <Typography>Email</Typography>
         <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-          {/* {data.GithubLink} */}
-        </Typography>
-      </Grid>{' '}
-      <Grid sx={{ textAlign: 'center', mb: 2 }}>
-        <MailIcon />
-        <Typography>Email</Typography>
-        <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-          {/* {data.DiscordLink} */}
+          {data?.email}
         </Typography>
       </Grid>
-      {/* <Grid display={'row'} sx={{ textAlign: 'center', mb: 2 }}>
-        <GitHubIcon />
-        <Typography>GitHub URL</Typography>
-        <Typography sx={{ fontSize: '20px', mt: 0.5 }}>GitHubUser</Typography>
-      </Grid> */}
+
       <Link href="/usersetting">
         <Button sx={{ mt: 3 }} variant="contained">
           Setting

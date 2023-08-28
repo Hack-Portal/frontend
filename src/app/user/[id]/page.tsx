@@ -14,19 +14,18 @@ const profile = async ({ params }: { params: { id: string } }) => {
 
   const fetchProfile = new FetchProfile()
   const fetchFollow = new FollowService()
-  console.log(id)
 
   // const user = await fetchProfile.UserInfo(id)
   // const follow = await fetchFollow.followCount(id)
   // const follower = await fetchFollow.followerCount(id)
 
   const [user, setUser] = useState<Domain_AccountResponses>()
-  const [follow, followCount] = useState<number>()
-  const [follower, setFollower] = useState<number>()
+  const [follow, followCount] = useState<number>(0)
+  const [follower, setFollower] = useState<number>(0)
 
   useEffect(() => {
     ;(async () => {
-      const user = await fetchProfile.UserInfo(id)
+      const user = await fetchProfile.UserInfo()
       const follow = await fetchFollow.followCount(id)
       const follower = await fetchFollow.followerCount(id)
       //ここは正しく出てくる
@@ -34,9 +33,9 @@ const profile = async ({ params }: { params: { id: string } }) => {
       console.log(follow)
       console.log(follower)
     })()
-  }, [])
+  }, [user, follow, follower])
 
-  if (user == null || undefined) {
+  if (user === null || undefined) {
     return <div>loading...</div>
   }
   return (
@@ -53,13 +52,7 @@ const profile = async ({ params }: { params: { id: string } }) => {
           mb: 10,
         }}
       >
-        <Left
-          user={user}
-          techs={user.tech_tags}
-          frameworks={user.frameworks}
-          follow={follow}
-          follower={follower}
-        />
+        <Left user={user} follow={follow} follower={follower} />
         {/* <Center /> */}
 
         <Reight data={user} />

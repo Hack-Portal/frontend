@@ -9,7 +9,7 @@ export class FetchProfile {
     this.firebaseRepository = FirebaseRepository.getInstance()
   }
 
-  public async UserInfo(uid: string) {
+  public async UserInfo() {
     const user = await this.firebaseRepository.getCurrentUser()
     if (!user) throw new Error('ユーザーが存在しません')
     const token = await this.firebaseRepository.getToken()
