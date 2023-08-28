@@ -1,16 +1,16 @@
-import { IconButton,Box, TextField } from '@/lib/mui/muiRendering'
+import { IconButton, Box, TextField } from '@/lib/mui/muiRendering'
 import React, { FormEventHandler } from 'react'
 import SendIcon from '@mui/icons-material/Send'
 import { Control, Controller } from 'react-hook-form'
-import { ChatFormData } from '../../types/ChatFormData'
+import { ChatFormData } from '../../_types/ChatFormData'
 
-type Props ={
-  control:Control<ChatFormData, any>
+type Props = {
+  control: Control<ChatFormData, any>
   handleSubmit: FormEventHandler<HTMLFormElement>
 }
 
-export const SendInputArea= (props:Props) => {
-  const {handleSubmit,control} = props
+export const SendInputArea = (props: Props) => {
+  const { handleSubmit, control } = props
 
   return (
     <Box
@@ -26,26 +26,22 @@ export const SendInputArea= (props:Props) => {
       component={'form'}
       onSubmit={handleSubmit}
     >
-        <Controller
-          name="message"
-          control={control}
-          defaultValue=""
-          render={({ field }) => (
-              <TextField
-                {...field}
-                placeholder="Type in here…"
-                sx={{
-                  width: '90%',
-                  fontSize: '1rem',
-                }}
-              />
-          )}
-        />
-      <IconButton
-        type="submit"
-        sx={{ p: '10px' }}
-        aria-label="search"
-      >
+      <Controller
+        name="message"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <TextField
+            {...field}
+            placeholder="Type in here…"
+            sx={{
+              width: '90%',
+              fontSize: '1rem',
+            }}
+          />
+        )}
+      />
+      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
         <SendIcon color="primary" />
       </IconButton>
     </Box>
