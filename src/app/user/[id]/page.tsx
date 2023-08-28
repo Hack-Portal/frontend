@@ -9,15 +9,12 @@ import { FetchProfile } from './_services/fetchProfile'
 import { FollowService } from './_services/fechFollow'
 import { Domain_AccountResponses } from '@/api/@types'
 
-const profile = async (props: {
-  params: {
-    id: string
-  }
-}) => {
-  const { id } = props.params
+const profile = async ({ params }: { params: { id: string } }) => {
+  const { id } = params
 
   const fetchProfile = new FetchProfile()
   const fetchFollow = new FollowService()
+  console.log(id)
 
   // const user = await fetchProfile.UserInfo(id)
   // const follow = await fetchFollow.followCount(id)
@@ -32,13 +29,16 @@ const profile = async (props: {
       const user = await fetchProfile.UserInfo(id)
       const follow = await fetchFollow.followCount(id)
       const follower = await fetchFollow.followerCount(id)
+      //ここは正しく出てくる
+      console.log(user)
+      console.log(follow)
+      console.log(follower)
     })()
   }, [])
 
-  if (!user || !follow || !follower) {
+  if (user == null || undefined) {
     return <div>loading...</div>
   }
-
   return (
     <>
       <Header />
@@ -61,6 +61,7 @@ const profile = async (props: {
           follower={follower}
         />
         {/* <Center /> */}
+
         <Reight data={user} />
       </Paper>
     </>

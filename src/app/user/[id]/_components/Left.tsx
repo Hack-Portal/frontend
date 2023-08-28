@@ -30,7 +30,9 @@ export const Left = (props: Props) => {
           src={user.icon}
           alt="Remy Sharp"
         />
-        <Typography sx={{ mt: 4, fontSize: '25px' }}>Name</Typography>
+        <Typography sx={{ mt: 4, fontSize: '25px' }}>
+          {user.username}
+        </Typography>
       </Grid>
 
       <Grid display={'flex'} justifyContent={'space-around'} sx={{ mt: 5 }}>

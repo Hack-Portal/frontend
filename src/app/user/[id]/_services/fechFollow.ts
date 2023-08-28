@@ -11,7 +11,6 @@ export class FollowService {
 
   public async followCount(id: string) {
     const token = await this.firebaseRepository.getToken()
-    console.log(token)
     try {
       const follow = await this.FollowRepository.fetchFollow(id, token)
       if (follow === null || follow === undefined) {
@@ -26,7 +25,6 @@ export class FollowService {
   }
   public async followerCount(id: string) {
     const token = await this.firebaseRepository.getToken()
-    console.log(token)
     try {
       const follower = await this.FollowRepository.fetchFollower(id, token)
       if (follower === null || follower === undefined) {

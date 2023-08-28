@@ -9,12 +9,16 @@ export class FetchProfile {
     this.firebaseRepository = FirebaseRepository.getInstance()
   }
 
-  public async UserInfo(id: string) {
+  public async UserInfo(uid: string) {
+    const user = await this.firebaseRepository.getCurrentUser()
+    if (!user) throw new Error('ユーザーが存在しません')
     const token = await this.firebaseRepository.getToken()
-    console.log(token)
     try {
-      const userInfo = await this.UserRepository.fetchById(id, token)
-      console.log(userInfo)
+      const userInfo = await this.UserRepository.fetchById(user.uid, token)
+      if (userInfo === null || userInfo === undefined) {
+        console.error('userInfoがnullまたはundefinedです。')
+        return null
+      }
       return userInfo
     } catch (error) {
       console.error(' UserInfoServiceのエラー:', error)
