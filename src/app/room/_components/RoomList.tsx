@@ -5,7 +5,7 @@ import { CenterRoomCard } from '@/components/layouts/CenterRoomCard'
 import { CardMedia } from '@/lib/mui/muiRendering'
 import { RoomRecordRightBox } from '@/app/room/_components/RoomList/RoomRecordRightBox'
 
-import { useRoom } from '../_hooks/useRoom'
+import { useRooms } from '../_hooks/useRooms'
 
 // type Props = {
 //   hackathons:Domain_HackathonResponses[]
@@ -13,7 +13,7 @@ import { useRoom } from '../_hooks/useRoom'
 export const RoomList = () => {
   // const { hackathons } = props
 
-  const { rooms,previewRoom,handleSetPreview,handleJoinRoom } = useRoom()
+  const { rooms, previewRoom, handleSetPreview, handleJoinRoom } = useRooms()
 
   return (
     <CenterArea>
@@ -21,8 +21,8 @@ export const RoomList = () => {
         <CenterRoomCard
           key={room.rooms?.room_id}
           link={`/room/${room.rooms?.room_id}`}
-          handleSetPreview={()=>handleSetPreview(room)}
-          handleJoinRoom={()=>handleJoinRoom(room.rooms?.room_id!)}
+          handleSetPreview={() => handleSetPreview(room)}
+          handleJoinRoom={() => handleJoinRoom(room)}
           previewRoom={previewRoom}
         >
           <CardMedia

@@ -1,15 +1,19 @@
+'use client'
 import { Grid } from '@/lib/mui/muiRendering'
 import { Header } from './Header'
 import { Information } from './Information/Index'
+import { Domain_GetRoomResponse } from '@/api/@types'
+
 
 type Props = {
-  roomInfo: any
+  room: Domain_GetRoomResponse
   tab: number
   handleSetTab: (tab: number) => void
 }
 
 export const RoomLeft = (props: Props) => {
-  const { roomInfo, tab, handleSetTab } = props
+  const { room,tab,handleSetTab } = props
+  
   return (
     <Grid
       container
@@ -27,14 +31,17 @@ export const RoomLeft = (props: Props) => {
       }}
       wrap="nowrap"
     >
-      <Header
-        icon={roomInfo.Hackathon.icon}
-        title={roomInfo.title}
-        handleSetTab={handleSetTab}
-        tab={tab}
-      />
-
-      <Information roomInfo={roomInfo} tab={tab} />
+      {room && (
+        <>
+          <Header
+            icon={room.hackathon?.icon}
+            title={room.title}
+            handleSetTab={handleSetTab}
+            tab={tab}
+          />
+          <Information room={room} tab={tab} />
+        </>
+      )}
     </Grid>
   )
 }

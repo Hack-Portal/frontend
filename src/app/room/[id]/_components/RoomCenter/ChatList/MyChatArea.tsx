@@ -1,9 +1,10 @@
 
 import { Avatar, Box, Grid,  Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
+import { ChatList } from '../../../_types/ChatList'
 
 type Props = {
-  chatMessage: string
+  chatMessage: ChatList
 }
 
 export const MyChatArea= (props:Props) => {
@@ -27,9 +28,9 @@ export const MyChatArea= (props:Props) => {
           wordBreak: 'break-word',
         }}
       >
-        <Typography color={'#fff'}>{chatMessage}</Typography>
+        <Typography color={'#fff'}>{chatMessage.Message}</Typography>
       </Box>
-      <Avatar src={'/image/user1.png'} variant="rounded" />
+      <Avatar src={chatMessage.icon} variant="rounded" />
     </Grid>
   )
 }
