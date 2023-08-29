@@ -83,4 +83,33 @@ export class UserRepository implements UserInterface {
       throw error
     }
   }
+  /**
+   * ユーザー情報を更新する
+   * @param id ユーザーID
+   * @param body 更新する情報
+   * @param token 認証トークン
+   * @returns 更新されたユーザー
+   * @throws エラー
+   */
+  public async update(id: string, body: any, token: string) {
+    try {
+      const client = api(
+        aspida(axios, {
+          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          headers: {
+            'Content-Type': 'application/json',
+            dbauthorization: token,
+          },
+        }),
+      )
+
+      const response = await client.accounts
+        ._account_id_string(id)
+        .put({ body })
+      return response.body
+    } catch (error) {
+      console.error('APIリクエストエラー:', error)
+      throw error
+    }
+  }
 }

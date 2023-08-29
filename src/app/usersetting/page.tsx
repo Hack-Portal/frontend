@@ -22,7 +22,7 @@ const profileStting = () => {
         }}
       >
         <Left />
-        <Center />
+        {/* <Center /> */}
         <Right />
       </Paper>
     </>
