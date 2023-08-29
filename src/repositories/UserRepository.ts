@@ -33,7 +33,7 @@ export class UserRepository implements UserInterface {
         }),
       )
 
-      const response = await client.accounts._account_id(id).get()
+      const response = await client.accounts._account_id_string(id).get()
       return response.body
     } catch (error) {
       console.error('APIリクエストエラー:', error)
@@ -75,8 +75,8 @@ export class UserRepository implements UserInterface {
           body: body,
         },
       )
-      const data = await response.json();
-      
+      const data = await response.json()
+
       return data.body
     } catch (error) {
       console.error('APIリクエストエラー:', error)

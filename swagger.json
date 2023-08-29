@@ -287,6 +287,41 @@
                 }
             }
         },
+        "/accounts/{account_id}/rooms": {
+            "get": {
+                "description": "Get Join Room",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "Get Join Room",
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.GetJoinRoomResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/accounts/{from_account_id}/follow": {
             "get": {
                 "description": "Get follow account",
@@ -378,7 +413,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/repository.Follow"
+                                "$ref": "#/definitions/domain.FollowResponse"
                             }
                         }
                     },
@@ -1351,7 +1386,7 @@
                 "account_id": {
                     "type": "string"
                 },
-                "created_at": {
+                "discord_link": {
                     "type": "string"
                 },
                 "email": {
@@ -1365,6 +1400,9 @@
                     "items": {
                         "$ref": "#/definitions/repository.Framework"
                     }
+                },
+                "github_link": {
+                    "type": "string"
                 },
                 "icon": {
                     "type": "string"
@@ -1386,6 +1424,9 @@
                     "items": {
                         "$ref": "#/definitions/repository.TechTag"
                     }
+                },
+                "twitter_link": {
+                    "type": "string"
                 },
                 "username": {
                     "type": "string"
@@ -1538,6 +1579,17 @@
                 }
             }
         },
+        "domain.GetJoinRoomResponse": {
+            "type": "object",
+            "properties": {
+                "room_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
         "domain.GetRoomResponse": {
             "type": "object",
             "properties": {
@@ -1552,18 +1604,6 @@
                 },
                 "member_limit": {
                     "type": "integer"
-                },
-                "members_frameworks": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/domain.RoomFramework"
-                    }
-                },
-                "members_tech_tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/domain.RoomTechTags"
-                    }
                 },
                 "now_member": {
                     "type": "array",
@@ -1715,11 +1755,26 @@
                 "account_id": {
                     "type": "string"
                 },
+                "frameworks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repository.Framework"
+                    }
+                },
                 "icon": {
                     "type": "string"
                 },
                 "is_owner": {
                     "type": "boolean"
+                },
+                "tech_tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repository.TechTag"
+                    }
+                },
+                "username": {
+                    "type": "string"
                 }
             }
         },
@@ -1861,10 +1916,16 @@
         "domain.UpdateAccountRequest": {
             "type": "object",
             "properties": {
+                "discord_link": {
+                    "type": "string"
+                },
                 "explanatory_text": {
                     "type": "string"
                 },
                 "frameworks": {
+                    "type": "string"
+                },
+                "github_link": {
                     "type": "string"
                 },
                 "locate_id": {
@@ -1877,6 +1938,9 @@
                     "type": "boolean"
                 },
                 "tech_tags": {
+                    "type": "string"
+                },
+                "twitter_link": {
                     "type": "string"
                 },
                 "username": {
@@ -1897,20 +1961,6 @@
                     "type": "integer"
                 },
                 "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "repository.Follow": {
-            "type": "object",
-            "properties": {
-                "create_at": {
-                    "type": "string"
-                },
-                "from_account_id": {
-                    "type": "string"
-                },
-                "to_account_id": {
                     "type": "string"
                 }
             }

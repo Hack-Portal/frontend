@@ -13,12 +13,14 @@ export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|un
   useEffect(() => {
     // チャットメッセージの変更を監視
     // const unsubscribe = fetchChatMessages(roomId, (chats) => {
+
     //   handleSetChatMessages(chats)
     //  })
     // console.log(chatMessages);
     
 
     // コンポーネントのアンマウント時に監視を解除
+
     // return () => {
     //   unsubscribe && unsubscribe()
     // }
@@ -37,6 +39,7 @@ export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|un
       }
     }
     )
+
     setChatMessages(chatList)
   }
 
