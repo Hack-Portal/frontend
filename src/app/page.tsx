@@ -3,6 +3,7 @@ import { MainVisual } from './_components/MainVisual'
 import { About } from './_components/About'
 import { Tutorial } from './_components/Tutorial'
 import { Box } from '@/lib/mui/muiRendering'
+import { Footer } from './_components/Footer'
 
 const Home = async () => {
   
@@ -12,7 +13,7 @@ const Home = async () => {
       <MainVisual/>
       <About/>
       <Tutorial/>
-      {/* <Footer/> */}
+      <Footer/>
     </Box>
   )
 }
