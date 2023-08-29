@@ -29,13 +29,6 @@ export const SignUpFormContainer = (props: Props) => {
     handleSetIcon,
     preview,
   } = useSignUp()
-  const { handlePushRouter } = useCustomRouter()
-
-  // 既にログインしている場合はリダイレクト
-  useEffect(() => {
-    const login = new LoginCheck()
-    login.check(handlePushRouter)
-  }, [])
 
   return (
     <Grid
