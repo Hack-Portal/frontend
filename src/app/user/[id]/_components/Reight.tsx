@@ -12,7 +12,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import MailIcon from '@mui/icons-material/Mail'
 
 type Props = {
-  data: Domain_AccountResponses
+  data?: Domain_AccountResponses | null
 }
 
 import React from 'react'

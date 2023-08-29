@@ -9,7 +9,7 @@ import { FetchProfile } from './_services/fetchProfile'
 import { FollowService } from './_services/fechFollow'
 import { Domain_AccountResponses } from '@/api/@types'
 
-const profile = async ({ params }: { params: { id: string } }) => {
+const profile = ({ params }: { params: { id: string } }) => {
   const { id } = params
 
   const fetchProfile = new FetchProfile()
@@ -19,27 +19,23 @@ const profile = async ({ params }: { params: { id: string } }) => {
   // const follow = await fetchFollow.followCount(id)
   // const follower = await fetchFollow.followerCount(id)
 
-  const [user, setUser] = useState<Domain_AccountResponses | undefined>(
+  const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
   )
-  const [follow, followCount] = useState<number>(0)
-  const [follower, setFollower] = useState<number>(0)
+  const [followState, setFollow] = useState<number>(0)
+  const [followerState, setFollower] = useState<number>(0)
 
   useEffect(() => {
     ;(async () => {
-      const user = await fetchProfile.UserInfo()
-      const follow = await fetchFollow.followCount(id)
-      const follower = await fetchFollow.followerCount(id)
-      //ここは正しく出てくる
-      console.log(user)
-      console.log(follow)
-      console.log(follower)
+      const userState = await fetchProfile.UserInfo()
+      const followState = await fetchFollow.followCount(id)
+      const followerState = await fetchFollow.followerCount(id)
+      setUser(userState!)
+      setFollow(followState)
+      setFollower(followerState)
     })()
   }, [])
 
-  if (user === undefined) {
-    return <div>loading...</div>
-  }
   return (
     <>
       <Header />
@@ -54,10 +50,10 @@ const profile = async ({ params }: { params: { id: string } }) => {
           mb: 10,
         }}
       >
-        <Left user={user} follow={follow} follower={follower} />
+        <Left user={userState} follow={followState} follower={followerState} />
         {/* <Center /> */}
 
-        <Reight data={user} />
+        <Reight data={userState} />
       </Paper>
     </>
   )

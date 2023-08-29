@@ -1,12 +1,7 @@
 'use client'
 import { Avatar, Grid, Typography, Chip } from '@/lib/mui/muiRendering'
 import React from 'react'
-import {
-  Domain_AccountResponses,
-  Domain_FollowResponse,
-  Repository_Framework,
-  Repository_TechTag,
-} from '@/api/@types'
+import { Domain_AccountResponses } from '@/api/@types'
 
 type Props = {
   user: Domain_AccountResponses | undefined
@@ -19,11 +14,7 @@ export const Left = (props: Props) => {
   const techs = user?.tech_tags
   const frameworks = user?.frameworks
 
-  console.log(user)
-  console.log(follow)
-  console.log(follower)
-  console.log(techs)
-  console.log(frameworks)
+  console.log(`componentLog : ${user?.username}`)
 
   return (
     <Grid
@@ -42,8 +33,12 @@ export const Left = (props: Props) => {
         </Typography>
       </Grid>
 
-      <Grid display={'flex'} justifyContent={'space-around'} sx={{ mt: 5 }}>
-        <Grid alignItems={'center'}></Grid>
+      <Grid
+        display={'flex'}
+        justifyContent={'space-between'}
+        width={200}
+        sx={{ m: 'auto', mt: 5 }}
+      >
         <Grid textAlign={'center'}>
           <Typography>follow</Typography>
           <Typography>{follow}</Typography>
