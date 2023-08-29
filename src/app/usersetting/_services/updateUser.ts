@@ -1,11 +1,11 @@
 import { SignUpFormData } from '@/app/signup/types/formData'
 import { FirebaseRepository } from '@/repositories/FirebaseRepository'
-import { UserRepository } from '@/repositories/UserRepository'
-import { UserInterface } from '@/types/UserInterface'
 import { SubmitHandler } from 'react-hook-form'
 import { ProfileFormData } from '../types/formData'
+import { UpdateUserInterface } from '../types/UpdateUserInterface'
+import { UserRepository } from '@/repositories/UserRepository'
 
-export class UpdateUser implements UserInterface {
+export class UpdateUser implements UpdateUserInterface {
   private userRepository: UserRepository
   private firebaseRepository: FirebaseRepository
 
@@ -14,7 +14,7 @@ export class UpdateUser implements UserInterface {
     this.firebaseRepository = FirebaseRepository.getInstance()
   }
 
-  // UpdateUser クラス内に追加
+  // UpdateUserクラスのupdateメソッド
   public update: SubmitHandler<ProfileFormData> = async (formData) => {
     const user = await this.firebaseRepository.getCurrentUser()
 
@@ -28,9 +28,15 @@ export class UpdateUser implements UserInterface {
 
     // テキストデータを更新
     body.append('username', formData.username)
+    body.append('explantory_text', formData.explantory_text)
+    body.append('locate_id', formData.show_locate.toString())
+    body.append('tech_tags', formData.tech_tags)
+    body.append('frameworks', formData.frameworks)
 
-    body.append('introduction', formData.introduction)
-
+    body.append('email', formData.email)
+    body.append('twitter', formData.discord_link)
+    body.append('github', formData.github_link)
+    body.append('discord', formData.discord_link)
     // アイコン画像を更新
     if (formData.icon) {
       body.append('icon', formData.icon)

@@ -2,7 +2,14 @@ import { Grid, Input } from '@mui/joy'
 import { Typography, TextField, MenuItem } from '@/lib/mui/muiRendering'
 
 import React from 'react'
-export const Center = () => {
+import { type } from 'os'
+import { Domain_AccountResponses } from '@/api/@types'
+
+type Props = {
+  Userinfo: Domain_AccountResponses | undefined
+}
+export const Center = (props: Props) => {
+  const { Userinfo } = props
   //都道府県
   const Locate = [
     {
@@ -194,15 +201,76 @@ export const Center = () => {
       label: '沖縄県',
     },
   ]
-  const Tech = [
-    {
-      id: 1,
-      label: 'HTML',
-    },
-    {
-      id: 2,
-      label: 'CSS',
-    },
+  const TechList = [
+    { tech_tag_id: 1, language: 'Python' },
+    { tech_tag_id: 2, language: 'JavaScript' },
+    { tech_tag_id: 3, language: 'Java' },
+    { tech_tag_id: 4, language: 'Go' },
+    { tech_tag_id: 5, language: 'C' },
+    { tech_tag_id: 6, language: 'Csharp' },
+    { tech_tag_id: 7, language: 'Cpp' },
+    { tech_tag_id: 8, language: 'Kotlin' },
+    { tech_tag_id: 9, language: 'PHP' },
+    { tech_tag_id: 10, language: 'Rust' },
+    { tech_tag_id: 11, language: 'Ruby' },
+    { tech_tag_id: 12, language: 'R' },
+    { tech_tag_id: 13, language: 'DataBase' },
+    { tech_tag_id: 14, language: 'Cloud' },
+  ]
+
+  const frameworkList = [
+    { framework_id: 1, tech_tag_id: 1, framework: 'Django' },
+    { framework_id: 2, tech_tag_id: 1, framework: 'Flask' },
+    { framework_id: 3, tech_tag_id: 1, framework: 'FastAPI' },
+    { framework_id: 4, tech_tag_id: 2, framework: 'React.js' },
+    { framework_id: 5, tech_tag_id: 2, framework: 'Vue.js' },
+    { framework_id: 6, tech_tag_id: 2, framework: 'Three.js' },
+    { framework_id: 7, tech_tag_id: 2, framework: 'Next.js' },
+    { framework_id: 8, tech_tag_id: 2, framework: 'Node.js' },
+    { framework_id: 9, tech_tag_id: 2, framework: 'Angular' },
+    { framework_id: 10, tech_tag_id: 3, framework: 'JavaPlayFramework' },
+    { framework_id: 11, tech_tag_id: 3, framework: 'Spring' },
+    { framework_id: 12, tech_tag_id: 3, framework: 'ApacheStruts' },
+    { framework_id: 13, tech_tag_id: 3, framework: 'JSF' },
+    { framework_id: 14, tech_tag_id: 3, framework: 'Wicket' },
+    { framework_id: 15, tech_tag_id: 4, framework: 'Gin' },
+    { framework_id: 16, tech_tag_id: 4, framework: 'Beego' },
+    { framework_id: 17, tech_tag_id: 4, framework: 'Revel' },
+    { framework_id: 18, tech_tag_id: 4, framework: 'Echo' },
+    { framework_id: 19, tech_tag_id: 5, framework: '.NET' },
+    { framework_id: 20, tech_tag_id: 5, framework: 'ASP.NET' },
+    { framework_id: 21, tech_tag_id: 5, framework: 'ASP.NET MVC' },
+    { framework_id: 22, tech_tag_id: 6, framework: '.NET' },
+    { framework_id: 23, tech_tag_id: 6, framework: 'ASP.NET' },
+    { framework_id: 24, tech_tag_id: 6, framework: 'ASP.NET MVC' },
+    { framework_id: 25, tech_tag_id: 7, framework: 'Qt' },
+    { framework_id: 26, tech_tag_id: 8, framework: 'Spring' },
+    { framework_id: 27, tech_tag_id: 8, framework: 'Ktor' },
+    { framework_id: 28, tech_tag_id: 9, framework: 'Laravel' },
+    { framework_id: 29, tech_tag_id: 9, framework: 'Symfony' },
+    { framework_id: 30, tech_tag_id: 9, framework: 'CodeIgniter' },
+    { framework_id: 31, tech_tag_id: 10, framework: 'Rocket' },
+    { framework_id: 32, tech_tag_id: 10, framework: 'Actix-web' },
+    { framework_id: 33, tech_tag_id: 10, framework: 'Tide' },
+    { framework_id: 34, tech_tag_id: 11, framework: 'Ruby on Rails' },
+    { framework_id: 35, tech_tag_id: 11, framework: 'Sinatra' },
+    { framework_id: 36, tech_tag_id: 11, framework: 'Hanami' },
+    { framework_id: 37, tech_tag_id: 11, framework: 'Padrino' },
+    { framework_id: 38, tech_tag_id: 12, framework: 'Mojolicious' },
+    { framework_id: 39, tech_tag_id: 12, framework: 'Dancer' },
+    { framework_id: 40, tech_tag_id: 13, framework: 'MySQL' },
+    { framework_id: 41, tech_tag_id: 13, framework: 'PostgreSQL' },
+    { framework_id: 42, tech_tag_id: 13, framework: 'MongoDB' },
+    { framework_id: 43, tech_tag_id: 13, framework: 'Oracle' },
+    { framework_id: 44, tech_tag_id: 13, framework: 'Couchbase' },
+    { framework_id: 45, tech_tag_id: 13, framework: 'SQLServer' },
+    { framework_id: 46, tech_tag_id: 13, framework: 'Redis' },
+    { framework_id: 47, tech_tag_id: 13, framework: 'AlibabaCloud' },
+    { framework_id: 48, tech_tag_id: 13, framework: 'OracleCloud' },
+    { framework_id: 49, tech_tag_id: 14, framework: 'AWS' },
+    { framework_id: 50, tech_tag_id: 14, framework: 'Microsoft Azure' },
+    { framework_id: 51, tech_tag_id: 14, framework: 'GCP' },
+    { framework_id: 52, tech_tag_id: 14, framework: 'IBM Cloud' },
   ]
 
   return (
@@ -224,7 +292,7 @@ export const Center = () => {
         <TextField
           select
           label="locate"
-          defaultValue="1"
+          defaultValue={Userinfo?.locate}
           sx={{ height: '20px', width: '180px' }}
         >
           {Locate.map((option) => (
@@ -243,9 +311,9 @@ export const Center = () => {
           defaultValue="1"
           sx={{ height: '20px', width: '300px' }}
         >
-          {Tech.map((option) => (
-            <MenuItem key={option.id} value={option.label}>
-              {option.label}
+          {TechList.map((option) => (
+            <MenuItem key={option.tech_tag_id} value={option.language}>
+              {option.language}
             </MenuItem>
           ))}
         </TextField>
@@ -259,9 +327,9 @@ export const Center = () => {
           defaultValue="1"
           sx={{ height: '20px', width: '300px' }}
         >
-          {Tech.map((option) => (
-            <MenuItem key={option.id} value={option.label}>
-              {option.label}
+          {frameworkList.map((option) => (
+            <MenuItem key={option.framework_id} value={option.framework}>
+              {option.framework}
             </MenuItem>
           ))}
         </TextField>

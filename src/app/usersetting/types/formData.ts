@@ -1,15 +1,14 @@
 export type ProfileFormData = {
   username: string
   icon: File | null
-  locate_id: number
-  introduction: string
-}
-
-export type ProfileContact = {
+  show_locate: number // number
+  explantory_text: string
+  tech_tags: string
+  frameworks: string
   email: string
-  twitter_url: string
-  github_url: string
-  discord_id: string
+  twitter_link: string
+  discord_link: string
+  github_link: string
 }
 
 export type ProfileFormErrors = {
