@@ -82,6 +82,7 @@ export const Footer = () => {
             sx={{ width: 'auto' }}
             justifyContent={'center'}
             alignItems={'center'}
+            key={link.title}
           >
             <Link href={link.href} key={link.title}>
               <Typography
