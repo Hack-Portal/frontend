@@ -19,7 +19,7 @@ export type Methods = {
   post: {
     status: 200
     /** success response */
-    resBody: Types.Repository_Follow[]
+    resBody: Types.Domain_FollowResponse[]
     /** create Follow Request Body */
     reqBody: Types.Domain_CreateFollowRequestBody
   }
