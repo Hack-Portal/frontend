@@ -9,7 +9,7 @@ import { FetchProfile } from './_services/fetchProfile'
 import { FollowService } from './_services/fechFollow'
 import { Domain_AccountResponses } from '@/api/@types'
 
-const profile = ({ params }: { params: { id: string } }) => {
+const Profile = ({ params }: { params: { id: string } }) => {
   const { id } = params
 
   const fetchProfile = new FetchProfile()
@@ -29,7 +29,7 @@ const profile = ({ params }: { params: { id: string } }) => {
       setFollow(followState)
       setFollower(followerState)
     })()
-  }, [])
+  }, [fetchProfile, fetchFollow])
 
   return (
     <>
@@ -53,4 +53,4 @@ const profile = ({ params }: { params: { id: string } }) => {
     </>
   )
 }
-export default profile
+export default Profile
