@@ -14,8 +14,6 @@ export const Left = (props: Props) => {
   const techs = user?.tech_tags
   const frameworks = user?.frameworks
 
-  console.log(`componentLog : ${user?.username}`)
-
   return (
     <Grid
       display={'row'}
@@ -40,22 +38,28 @@ export const Left = (props: Props) => {
         sx={{ m: 'auto', mt: 5 }}
       >
         <Grid textAlign={'center'}>
-          <Typography>follow</Typography>
+          <Typography>フォロー</Typography>
           <Typography>{follow}</Typography>
         </Grid>
         <Grid textAlign={'center'}>
-          <Typography>follower</Typography>
+          <Typography>フォロワー</Typography>
           <Typography>{follower}</Typography>
         </Grid>
       </Grid>
 
       <Grid display={'row'} textAlign={'center'} sx={{ mt: 4 }}>
         <Typography sx={{ mt: 2 }} color={'#999'}>
-          introduction
+          自己紹介
         </Typography>
         <Typography sx={{ mt: 2 }}>{user?.explanatory_text}</Typography>
       </Grid>
-      <Typography sx={{ mt: 3, mb: 3 }}>Techs & Frameworks</Typography>
+      <Grid display={'row'} textAlign={'center'} sx={{ mt: 4 }}>
+        <Typography sx={{ mt: 2 }} color={'#999'}>
+          主審地
+        </Typography>
+        <Typography sx={{ mt: 2 }}>{user?.locate}</Typography>
+      </Grid>
+      <Typography sx={{ mt: 3, mb: 3 }}>技術スタック</Typography>
       <Grid
         alignContent={'space-around'}
         margin={'auto'}

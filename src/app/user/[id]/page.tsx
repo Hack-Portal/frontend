@@ -14,11 +14,6 @@ const profile = ({ params }: { params: { id: string } }) => {
 
   const fetchProfile = new FetchProfile()
   const fetchFollow = new FollowService()
-
-  // const user = await fetchProfile.UserInfo(id)
-  // const follow = await fetchFollow.followCount(id)
-  // const follower = await fetchFollow.followerCount(id)
-
   const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
   )
