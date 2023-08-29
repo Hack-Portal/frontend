@@ -17,7 +17,7 @@ export const Header = () => {
   const NAV_ITEMS = [
     {
       label: 'ハッカソン',
-      href: '/',
+      href: '/hackathon',
     },
     {
       label: 'ランキング',
