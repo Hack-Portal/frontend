@@ -1,2 +1,2 @@
-import { Api_GetAccountResponses } from '@/api/@types'
-export type RightCard = Pick<Api_GetAccountResponses, 'user_id' | 'email'>
+import { Domain_AccountResponses } from '@/api/@types'
+export type RightCard = Pick<Domain_AccountResponses, 'account_id' | 'email'>
