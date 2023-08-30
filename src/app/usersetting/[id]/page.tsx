@@ -5,29 +5,22 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Left } from './_components/Left'
 import { Center } from './_components/Center'
-import { Right } from './_components/Right'
-import { FetchProfile } from '../user/[id]/_services/fetchProfile'
-import { FollowService } from '../user/[id]/_services/fechFollow'
+
 import { Domain_AccountResponses } from '@/api/@types'
+import { FetchProfile } from '@/app/user/[id]/_services/fetchProfile'
 
 const profileStting = ({ params }: { params: { id: string } }) => {
   const { id } = params
   const fetchProfile = new FetchProfile()
-  const fetchFollow = new FollowService()
+
   const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
   )
-  const [followState, setFollow] = useState<number>(0)
-  const [followerState, setFollower] = useState<number>(0)
 
   useEffect(() => {
     ;(async () => {
       const userState = await fetchProfile.UserInfo()
-      const followState = await fetchFollow.followCount(id)
-      const followerState = await fetchFollow.followerCount(id)
       setUser(userState!)
-      setFollow(followState)
-      setFollower(followerState)
     })()
   }, [])
 
@@ -45,9 +38,8 @@ const profileStting = ({ params }: { params: { id: string } }) => {
           mb: 10,
         }}
       >
-        <Left />
+        <Left Userinfo={userState} />
         <Center Userinfo={userState} />
-        <Right />
       </Paper>
     </>
   )
