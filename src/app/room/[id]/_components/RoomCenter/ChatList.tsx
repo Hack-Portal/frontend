@@ -1,19 +1,18 @@
 import { Grid } from '@/lib/mui/muiRendering'
 import React from 'react'
-import { MyChatArea } from './MyChatArea'
-import { OtherChatArea } from './OtherChatArea'
-import { ChatList as ChatListType } from '../../../_types/ChatList'
+import { MyChatArea } from './ChatList/MyChatArea'
+import { OtherChatArea } from './ChatList/OtherChatArea'
+import { ChatList as ChatListType } from '../../_types/ChatList'
 import { Domain_NowRoomAccounts } from '@/api/@types'
 
 type Props = {
-  chatMessages: ChatListType[]| null
-  members?:Domain_NowRoomAccounts[]
+  chatMessages: ChatListType[] | null
+  members?: Domain_NowRoomAccounts[]
 }
 
 export const ChatList = (props: Props) => {
   const { chatMessages } = props
 
-  console.log(chatMessages)
   return (
     <Grid
       container
@@ -35,12 +34,13 @@ export const ChatList = (props: Props) => {
       }}
       wrap="nowrap"
     >
-      {chatMessages?.map((chatMessage, index) => (
-        chatMessage.isMine ?
-        <MyChatArea chatMessage={chatMessage} key={index + 1} />
-        :
-        <OtherChatArea chatMessage={chatMessage} key={index + 1} />
-      ))}
+      {chatMessages?.map((chatMessage, index) =>
+        chatMessage.isMine ? (
+          <MyChatArea chatMessage={chatMessage} key={index + 1} />
+        ) : (
+          <OtherChatArea chatMessage={chatMessage} key={index + 1} />
+        ),
+      )}
     </Grid>
   )
 }

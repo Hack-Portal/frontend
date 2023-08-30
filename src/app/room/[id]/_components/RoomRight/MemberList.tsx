@@ -1,15 +1,14 @@
 import React from 'react'
 import { Avatar, Grid } from '@/lib/mui/muiRendering'
-import { MemberNameArea } from './MemberNameArea'
-import { MemberTechArea } from './MemberTechArea'
+import { MemberNameArea } from './MemberList/MemberNameArea'
+import { MemberTechArea } from './MemberList/MemberTechArea'
 import { Domain_NowRoomAccounts } from '@/api/@types'
-
 
 type Props = {
   users: Domain_NowRoomAccounts[]
 }
 
-export const MemberList = (props:Props) => {
+export const MemberList = (props: Props) => {
   const { users } = props
   return (
     <Grid
@@ -31,11 +30,12 @@ export const MemberList = (props:Props) => {
           direction={'row'}
           wrap="nowrap"
           justifyContent={'center'}
+          gap={1.5}
         >
           <Avatar src={user.icon} />
-          <Grid container direction={'column'}>
-            <MemberNameArea name={"a"} isOwner={user.is_owner!} />
-            {/* <MemberTechArea techs={user.} frameworks={user.frameworks} /> */}
+          <Grid container direction={'column'} justifyContent={"center"} wrap='nowrap'>
+            <MemberNameArea name={user.username} isOwner={user.is_owner!} />
+            <MemberTechArea techs={user.tech_tags} frameworks={user.frameworks} />
           </Grid>
         </Grid>
       ))}
