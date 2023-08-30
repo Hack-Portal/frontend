@@ -3,6 +3,7 @@ import { Avatar, Grid } from '@/lib/mui/muiRendering'
 import { MemberNameArea } from './MemberList/MemberNameArea'
 import { MemberTechArea } from './MemberList/MemberTechArea'
 import { Domain_NowRoomAccounts } from '@/api/@types'
+import Link from 'next/link'
 
 type Props = {
   users: Domain_NowRoomAccounts[]
@@ -18,6 +19,7 @@ export const MemberList = (props: Props) => {
       wrap="nowrap"
     >
       {users.map((user) => (
+        <Link href={`/user/${user.account_id}`} >
         <Grid
           sx={{
             py: 3,
@@ -38,6 +40,7 @@ export const MemberList = (props: Props) => {
             <MemberTechArea techs={user.tech_tags} frameworks={user.frameworks} />
           </Grid>
         </Grid>
+        </Link>
       ))}
     </Grid>
   )

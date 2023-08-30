@@ -36,9 +36,9 @@ export const ChatList = (props: Props) => {
     >
       {chatMessages?.map((chatMessage, index) =>
         chatMessage.isMine ? (
-          <MyChatArea chatMessage={chatMessage} key={index + 1} />
+          <MyChatArea chatMessage={chatMessage} key={index + 1} link={`/user/${chatMessage.UID}`}/>
         ) : (
-          <OtherChatArea chatMessage={chatMessage} key={index + 1} />
+          <OtherChatArea chatMessage={chatMessage} key={index + 1} link={`/user/${chatMessage.UID}`}/>
         ),
       )}
     </Grid>

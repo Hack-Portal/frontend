@@ -1,14 +1,15 @@
-
-import { Avatar, Box, Grid,  Typography } from '@/lib/mui/muiRendering'
+import { Avatar, Box, Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { ChatList } from '../../../_types/ChatList'
+import Link from 'next/link'
 
 type Props = {
   chatMessage: ChatList
+  link: string
 }
 
-export const MyChatArea= (props:Props) => {
-  const {chatMessage} = props
+export const MyChatArea = (props: Props) => {
+  const { chatMessage, link } = props
   return (
     <Grid
       container
@@ -30,7 +31,9 @@ export const MyChatArea= (props:Props) => {
       >
         <Typography color={'#fff'}>{chatMessage.Message}</Typography>
       </Box>
-      <Avatar src={chatMessage.icon} variant="rounded" />
+      <Link href={link}>
+        <Avatar src={chatMessage.icon} variant="rounded" />
+      </Link>
     </Grid>
   )
 }

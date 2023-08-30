@@ -6,7 +6,7 @@ import { RoomCenter } from './_components/RoomCenter'
 import { RoomLeft } from './_components/RoomLeft'
 import { useTab } from '@/hooks/useTab'
 import { useRoom } from './_hooks/useRoom'
-import { RoomRight } from './_components/RoomRigth'
+import { RoomRight } from './_components/RoomRight'
 import { RoomHeader } from './_components/RoomHeader'
 
 export const dynamic = 'force-static'
