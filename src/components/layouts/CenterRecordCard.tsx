@@ -9,7 +9,7 @@ type Props = {
 export const CenterRecordCard = (props: Props) => {
   const { href, children } = props
   return (
-    <Link href={href} style={{width:"100%"}} >
+    <a href={href} style={{width:"100%"}} target='_blank' rel="noopener noreferrer">
       <Card
         sx={{
           minHeight: 250,
@@ -26,6 +26,6 @@ export const CenterRecordCard = (props: Props) => {
       >
         {children}
       </Card>
-    </Link>
+    </a>
   )
 }
