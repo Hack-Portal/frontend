@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import * as React from 'react'
 import Box from '@mui/joy/Box'
 import ListItem from '@mui/joy/ListItem'
@@ -10,10 +10,13 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined'
 import Image from 'next/image'
-import { Typography } from '@mui/material'
-import { useCustomRouter } from './hooks/CustomRouter'
+import { Button, Typography } from '@mui/material'
+import { useCustomRouter } from '../../hooks/useCustomRouter'
+import { useHeader } from '../hooks/useHeader'
 
 export const Header = () => {
+  const { IsActive, user } = useHeader()
+
   const NAV_ITEMS = [
     {
       label: 'ハッカソン',
@@ -28,8 +31,6 @@ export const Header = () => {
       href: '/room',
     },
   ]
-
-  const { IsActive } = useCustomRouter()
 
   return (
     <Box
@@ -126,15 +127,21 @@ export const Header = () => {
             {/* </Badge> */}
           </Link>
 
-          <Link href="/user">
-            <PermIdentityIcon
-              sx={{
-                width: 30,
-                height: 30,
-              }}
-              color="info"
-            />
-          </Link>
+          {user ? (
+            <Link href={`/user/${user.uid}`}>
+              <PermIdentityIcon
+                sx={{
+                  width: 30,
+                  height: 30,
+                }}
+                color="info"
+              />
+            </Link>
+          ) : (
+            <Link href={'/signin'}>
+              <Button variant='outlined' >ログイン</Button>
+            </Link>
+          )}
         </Box>
       </Sheet>
     </Box>

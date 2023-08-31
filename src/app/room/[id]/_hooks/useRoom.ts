@@ -2,7 +2,7 @@ import { Domain_GetRoomResponse } from '@/api/@types'
 import { useEffect, useState } from 'react'
 import { RoomService } from '../_services/Rooms'
 import { useLoginCheck } from '@/hooks/useLoginCheck'
-import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
 import { useTab } from '@/hooks/useTab'
 import { useMenu } from '@/hooks/useMenu'
 import { FirebaseRepository } from '@/repositories/FirebaseRepository'
@@ -16,30 +16,26 @@ export const useRoom = (roomId: string) => {
   const { tab, handleSetTab } = useTab()
   const { isMenuOpened, anchorEl, handleOpenMenu, handleCloseMenu } = useMenu()
   const firebase = new FirebaseRepository()
-  const handleCheckOwner = async (data:Domain_GetRoomResponse) => {
+  const handleCheckOwner = async (data: Domain_GetRoomResponse) => {
     const result =
       data?.now_member?.find((member) => member.is_owner)?.account_id ===
       (await firebase.getUId())
     setIsOwner(result)
   }
-  const handleCheckedMenu = () => {
-  }
+  const handleCheckedMenu = () => {}
   const room = useRecoilValue(roomStateFamily(roomId))
   const setRoomMembers = useSetRecoilState(roomMembersState)
 
   useEffect(() => {
     if (room) {
-      const members = room.now_member;
-      setRoomMembers(members!);
+      const members = room.now_member
+      setRoomMembers(members!)
     }
     handleCheckOwner(room)
     console.log(room)
-  }, [room, setRoomMembers]);
+  }, [room, setRoomMembers])
 
-
- 
-
-  useLoginCheck(()=>console.log("check"))
+  useLoginCheck(() => console.log('check'))
 
   return {
     anchorEl,

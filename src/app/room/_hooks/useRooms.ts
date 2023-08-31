@@ -4,7 +4,7 @@ import { RoomService } from '../_services/Room'
 import { PostRoom } from '../_types/postroom'
 import { useRecoilState } from 'recoil'
 import { roomListState } from '@/store/atoms/roomsAtom'
-import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
 import { useLoginCheck } from '@/hooks/useLoginCheck'
 import { useError } from '@/hooks/useError'
 
@@ -16,21 +16,22 @@ export const useRooms = () => {
   const handleSetPreview = (room: Domain_ListRoomResponse) => {
     setPreviewRoom(room)
   }
-  const {handleError}=useError()
+  const { handleError } = useError()
 
   const fetchRooms = async () => {
-    console.log('fetchRooms');
-    
+    console.log('fetchRooms')
+
     const Room = new RoomService()
     try {
       const response = await Room.fetchAll()
       setRooms(response)
     } catch (error: unknown) {
-      if (error instanceof Error) { // 型ガード
-        console.error('APIリクエストエラー:', error.message);
-        handleError(error);
+      if (error instanceof Error) {
+        // 型ガード
+        console.error('APIリクエストエラー:', error.message)
+        handleError(error)
       } else {
-        console.error('未知のエラー:', error);
+        console.error('未知のエラー:', error)
       }
     }
   }
