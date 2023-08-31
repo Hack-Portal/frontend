@@ -9,9 +9,11 @@ import { Center } from './_components/Center'
 import { Domain_AccountResponses } from '@/api/@types'
 import { FetchProfile } from '@/app/user/[id]/_services/fetchProfile'
 import { UpdateUser } from './_services/updateUser'
+import { useIcon } from '@/hooks/useIcon'
 const profileStting = () => {
   const fetchProfile = new FetchProfile()
   const updateUser = new UpdateUser()
+  const { icon, handleSetIcon, preview } = useIcon()
 
   const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
@@ -32,14 +34,23 @@ const profileStting = () => {
         elevation={5}
         sx={{
           margin: 'auto',
-          width: '1600px',
-          height: '800px',
-          display: 'flex',
+          width: '1200px',
+          height: '700px',
+          mt: 4,
           mb: 10,
         }}
       >
+        <Typography textAlign={'center'} sx={{ fontSize: '24px', pt: 3 }}>
+          プロフィール編集
+        </Typography>
+
         {/* <Left Userinfo={userState} /> */}
-        <Center Userinfo={userState} updateUser={updateUser} />
+        <Center
+          Userinfo={userState}
+          updateUser={updateUser}
+          handleSetIcon={handleSetIcon}
+          preview={preview}
+        />
       </Paper>
     </>
   )

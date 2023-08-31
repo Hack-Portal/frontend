@@ -14,14 +14,15 @@ export const useIconUpdate = () => {
 
   const updateUser = async (formData: ProfileFormData) => {
     const requestData = {
+      ...formData,
       icon: icon,
     }
-    const u = await requestData
   }
 
   return {
     user,
     error,
+    updateUser,
     handleSetIcon,
     preview,
   }

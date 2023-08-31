@@ -32,26 +32,26 @@ export class UpdateUser implements UpdateUserInterface {
     if (formData.explantory_text) {
       body.append('explantory_text', formData.explantory_text)
     }
-    if (Array.isArray(formData.frameworks)) {
-      formData.frameworks.forEach((tag) => body.append('frameworks[]', tag))
-    }
     if (Array.isArray(formData.tech_tags)) {
       formData.tech_tags.forEach((tag) => body.append('tech_tags[]', tag))
     }
-    if (formData.frameworks) {
-      body.append('frameworks', formData.frameworks)
+    if (Array.isArray(formData.tech_tags)) {
+      formData.frameworks.forEach((framework) =>
+        body.append('frameworks[]', framework),
+      )
     }
+
     if (formData.email) {
       body.append('email', formData.email)
     }
     if (formData.discord_link) {
-      body.append('Twitter', formData.discord_link)
+      body.append('twitter', formData.discord_link)
     }
     if (formData.github_link) {
-      body.append('Github', formData.github_link)
+      body.append('github', formData.github_link)
     }
     if (formData.twitter_link) {
-      body.append('Discord', formData.discord_link)
+      body.append('discord', formData.discord_link)
     }
     if (formData.icon) {
       body.append('icon', formData.icon)
