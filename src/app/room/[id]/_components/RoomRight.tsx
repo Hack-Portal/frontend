@@ -1,14 +1,10 @@
+
 import { Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { MemberList } from './RoomRight/MemberList'
-import { Domain_NowRoomAccounts } from '@/api/@types'
 
-type Props = {
-  users: Domain_NowRoomAccounts[]
-}
-
-export const RoomRight = (props: Props) => {
-  const { users } = props
+export const RoomRight = () => {
+  
 
   return (
     <Grid
@@ -28,7 +24,7 @@ export const RoomRight = (props: Props) => {
       wrap="nowrap"
       width={'auto'}
     >
-      <MemberList users={users} />
+      <MemberList />
     </Grid>
   )
 }

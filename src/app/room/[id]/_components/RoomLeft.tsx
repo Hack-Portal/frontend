@@ -3,15 +3,14 @@ import { Grid } from '@/lib/mui/muiRendering'
 import { Header } from './RoomLeft/Header'
 import { Domain_GetRoomResponse } from '@/api/@types'
 import { Information } from './RoomLeft/Information'
+import { useRoom } from '../_hooks/useRoom'
 
 type Props = {
-  room: Domain_GetRoomResponse
-  tab: number
-  handleSetTab: (tab: number) => void
+  roomId:string
 }
-
-export const RoomLeft = (props: Props) => {
-  const { room, tab, handleSetTab } = props
+export const RoomLeft = (props:Props) => {
+  const {roomId}=props
+  const {room,handleSetTab,tab} = useRoom(roomId)
 
   return (
     <Grid

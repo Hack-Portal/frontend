@@ -16,7 +16,6 @@ export const MemberTechArea = (props:Props) => {
     <Grid
       container
       sx={{ pl: 1, pt: 1, minWidth: '100%' }}
-      xs={6}
       direction={'row'}
       gap={1}
     >

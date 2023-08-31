@@ -5,14 +5,16 @@ import { useChatMessage } from '../_hooks/useChat'
 import { useForm } from 'react-hook-form'
 import { ChatFormData } from '../_types/ChatFormData'
 import { ChatList } from './RoomCenter/ChatList'
-import { Domain_NowRoomAccounts } from '@/api/@types'
+
+import { roomMembersState } from '@/store/atoms/roomMembers'
+import { useRecoilValue } from 'recoil'
 
 type Props = {
   roomId: string
-  members?: Domain_NowRoomAccounts[]
 }
 export const RoomCenter = (props: Props) => {
-  const { roomId, members } = props
+  const { roomId} = props
+  const members = useRecoilValue(roomMembersState) 
   const { chatMessages, handleSendChatMessage,scrollRef } = useChatMessage(
     roomId,
     members,

@@ -29,7 +29,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
       setFollow(followState)
       setFollower(followerState)
     })()
-  }, [fetchProfile, fetchFollow])
+  }, [])
 
   return (
     <>

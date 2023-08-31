@@ -16,7 +16,6 @@ export class LoginCheck {
     if (!user) {
       return false
     }
-    console.log(user);
     
 
     const token = await user?.getIdToken()
