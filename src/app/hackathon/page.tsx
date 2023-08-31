@@ -15,6 +15,7 @@ const Home = async () => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())
   const fetchHackathons = new FetchHackathons()
   const hackathons = await fetchHackathons.fetchAllHackathons()
+  console.log(hackathons)
   const techStacks: any[] = [
     {
       id: '1',

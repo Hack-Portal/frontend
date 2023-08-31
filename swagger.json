@@ -96,6 +96,12 @@
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
+                    "403": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
                     "500": {
                         "description": "server error response",
                         "schema": {
@@ -144,6 +150,12 @@
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
+                    "403": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
                     "500": {
                         "description": "server error response",
                         "schema": {
@@ -179,6 +191,12 @@
                     },
                     "400": {
                         "description": "bad request response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "error response",
                         "schema": {
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
@@ -232,6 +250,12 @@
                         }
                     },
                     "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "403": {
                         "description": "error response",
                         "schema": {
                             "$ref": "#/definitions/controller.ErrorResponse"
@@ -313,6 +337,12 @@
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
+                    "403": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
                     "500": {
                         "description": "error response",
                         "schema": {
@@ -372,6 +402,12 @@
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
+                    "403": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
                     "500": {
                         "description": "error response",
                         "schema": {
@@ -418,6 +454,12 @@
                         }
                     },
                     "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "403": {
                         "description": "error response",
                         "schema": {
                             "$ref": "#/definitions/controller.ErrorResponse"
@@ -626,6 +668,12 @@
                         }
                     },
                     "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "403": {
                         "description": "error response",
                         "schema": {
                             "$ref": "#/definitions/controller.ErrorResponse"
@@ -1011,6 +1059,12 @@
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
+                    "403": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
                     "500": {
                         "description": "error response",
                         "schema": {
@@ -1047,6 +1101,12 @@
                         }
                     },
                     "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "403": {
                         "description": "error response",
                         "schema": {
                             "$ref": "#/definitions/controller.ErrorResponse"
@@ -1100,6 +1160,12 @@
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
+                    "403": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
                     "500": {
                         "description": "error response",
                         "schema": {
@@ -1134,6 +1200,12 @@
                         }
                     },
                     "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "403": {
                         "description": "error response",
                         "schema": {
                             "$ref": "#/definitions/controller.ErrorResponse"
@@ -1189,6 +1261,12 @@
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
+                    "403": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
                     "500": {
                         "description": "error response",
                         "schema": {
@@ -1239,6 +1317,12 @@
                             "$ref": "#/definitions/controller.ErrorResponse"
                         }
                     },
+                    "403": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
                     "500": {
                         "description": "error response",
                         "schema": {
@@ -1273,6 +1357,12 @@
                         }
                     },
                     "400": {
+                        "description": "error response",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "403": {
                         "description": "error response",
                         "schema": {
                             "$ref": "#/definitions/controller.ErrorResponse"
@@ -1599,6 +1689,9 @@
                 "hackathon": {
                     "$ref": "#/definitions/domain.RoomHackathonInfo"
                 },
+                "is_closing": {
+                    "type": "boolean"
+                },
                 "is_status": {
                     "type": "boolean"
                 },
@@ -1738,6 +1831,9 @@
                 "created_at": {
                     "type": "string"
                 },
+                "is_closing": {
+                    "type": "boolean"
+                },
                 "member_limit": {
                     "type": "integer"
                 },
@@ -1766,6 +1862,12 @@
                 },
                 "is_owner": {
                     "type": "boolean"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repository.Role"
+                    }
                 },
                 "tech_tags": {
                     "type": "array",
@@ -1957,6 +2059,9 @@
                 "hackathonID": {
                     "type": "integer"
                 },
+                "is_closing": {
+                    "type": "boolean"
+                },
                 "member_limit": {
                     "type": "integer"
                 },
@@ -1987,6 +2092,17 @@
                 },
                 "name": {
                     "type": "string"
+                }
+            }
+        },
+        "repository.Role": {
+            "type": "object",
+            "properties": {
+                "role": {
+                    "type": "string"
+                },
+                "role_id": {
+                    "type": "integer"
                 }
             }
         },
