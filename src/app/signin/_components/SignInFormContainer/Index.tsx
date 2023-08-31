@@ -12,12 +12,7 @@ import { LoginCheck } from '@/services/LoginCheck'
 import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
 
 export const SignInFormContainer = () => {
-  const { error,handleEmailLogin,handleGoogleLogin} = useSignIn()
-  const { handlePushRouter } = useCustomRouter()
-  useEffect(() => {
-    const login = new LoginCheck()
-    login.check(handlePushRouter)
-  }, [])
+  const { error,handleEmailLogin,handleGoogleLogin} = useSignIn() 
 
   return (
     <Grid

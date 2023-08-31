@@ -19,6 +19,10 @@ import SensorDoorOutlinedIcon from '@mui/icons-material/SensorDoorOutlined'
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined'
 import HourglassEmptyOutlinedIcon from '@mui/icons-material/HourglassEmptyOutlined'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 export { default as Textarea } from '@mui/joy/Textarea'
 export { default as JoyBadge } from '@mui/joy/Badge'
@@ -32,4 +36,8 @@ export {
   SensorDoorOutlinedIcon,
   FlagOutlinedIcon,
   HourglassEmptyOutlinedIcon,
+  MoreHorizOutlinedIcon,
+  EditOutlinedIcon,
+  PersonAddOutlinedIcon,
+  DeleteOutlineOutlinedIcon
 }

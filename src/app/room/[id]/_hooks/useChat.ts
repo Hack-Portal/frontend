@@ -1,15 +1,17 @@
 import { FirebaseRepository } from '@/repositories/FirebaseRepository'
 import { Chat } from '@/types/chat'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ChatList } from '../_types/ChatList'
 import { Domain_NowRoomAccounts } from '@/api/@types'
 
 export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|undefined) => {
   const [chatMessages, setChatMessages] = useState<ChatList[] | null>(null)
   const firebaseRepository = FirebaseRepository.getInstance()
-  
+  const scrollRef = useRef<HTMLDivElement>(null)
   const { fetchChatMessages, addChatMessage,getUId } = firebaseRepository
+
+
   useEffect(() => {
     // チャットメッセージの変更を監視
     // const unsubscribe = fetchChatMessages(roomId, (chats) => {
@@ -26,6 +28,16 @@ export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|un
     // }
   }, [roomId])
 
+  useEffect(() => {
+    let isMounted = true // マウント状態をトラッキング
+    if (scrollRef.current && isMounted) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+    return () => {
+      isMounted = false // アンマウントを検出
+    }
+  }, [chatMessages]);
+
   const handleSetChatMessages = async(chats: Chat[]) => {
     const uid = await getUId()
 
@@ -40,7 +52,8 @@ export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|un
     }
     )
 
-    setChatMessages(chatList)
+    setChatMessages((prevState)=>prevState?[...prevState,...chatList]:chatList)
+    // setChatMessages(chatList)
   }
 
   const handleSendChatMessage = async (message: string) => {
@@ -61,5 +74,5 @@ export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|un
   }
 
 
-  return { chatMessages, handleSendChatMessage}
+  return { chatMessages, handleSendChatMessage, scrollRef}
 }

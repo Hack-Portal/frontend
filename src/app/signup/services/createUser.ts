@@ -72,7 +72,10 @@ export class CreateUser implements CreateUserInterface {
         new GoogleAuthProvider(),
       )
       if (user) {
-        callback()
+        const dbUser = await this.userRepository.fetchById(user.uid, await user.getIdToken())
+        if (!dbUser) {
+          callback()
+        }
       }
       return user
     } catch (error) {
