@@ -37,7 +37,7 @@ export const Left = (props: Props) => {
           <Typography sx={{ mt: 2 }} color={'#999'}>
             introduction
           </Typography>
-          <Typography sx={{ mt: 2 }}>{UserInfo?.introduction}</Typography>
+          <Typography sx={{ mt: 2 }}>{UserInfo?.explanatory_text}</Typography>
         </Grid>
       </Grid>
     </Grid>

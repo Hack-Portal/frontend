@@ -8,10 +8,10 @@ import { Center } from './_components/Center'
 
 import { Domain_AccountResponses } from '@/api/@types'
 import { FetchProfile } from '@/app/user/[id]/_services/fetchProfile'
-
-const profileStting = ({ params }: { params: { id: string } }) => {
-  const { id } = params
+import { UpdateUser } from './_services/updateUser'
+const profileStting = () => {
   const fetchProfile = new FetchProfile()
+  const updateUser = new UpdateUser()
 
   const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
@@ -38,8 +38,8 @@ const profileStting = ({ params }: { params: { id: string } }) => {
           mb: 10,
         }}
       >
-        <Left Userinfo={userState} />
-        <Center Userinfo={userState} />
+        {/* <Left Userinfo={userState} /> */}
+        <Center Userinfo={userState} updateUser={updateUser} />
       </Paper>
     </>
   )

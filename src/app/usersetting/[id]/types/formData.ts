@@ -1,7 +1,7 @@
 export type ProfileFormData = {
   username: string
   icon: File | null
-  show_locate: number // number
+  show_locate: any // number
   explantory_text: string
   tech_tags: string
   frameworks: string
