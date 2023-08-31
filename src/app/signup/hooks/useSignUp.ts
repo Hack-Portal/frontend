@@ -58,7 +58,7 @@ export const useSignUp = () => {
 
   // 要チェック
   const createUser = async (formData: SignUpFormData) => {
-    const requestData = { ...formData, icon: icon }
+    const requestData = { ...formData, icons: icon }
     await User.create(requestData)
 
     handlePushRouter('/signin')
