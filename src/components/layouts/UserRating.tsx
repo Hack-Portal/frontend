@@ -20,7 +20,7 @@ export const UserRating = async () => {
         height: '100%',
       }}
     >
-      <Typography>レーティング</Typography>
+      <Typography>お知らせ</Typography>
       {rating.map((data: Domain_AccountRateResponse, index: number) => (
         <Grid
           item
