@@ -1,16 +1,12 @@
 'use client'
 
-import React, {useEffect } from 'react'
-import {
-  Box,
-  Grid,
-  Typography,
-} from '@/lib/mui/muiRendering'
+import React, { useEffect } from 'react'
+import { Box, Grid, Typography } from '@/lib/mui/muiRendering'
 import { SignUpDetailForm } from './SignUpDetailForm'
 import { Repository_Locate } from '@/api/@types'
 import { useSignUp } from '../../hooks/useSignUp'
 import { SignUpSelectForm } from './SignUpSelectForm'
-import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
 import { LoginCheck } from '@/services/LoginCheck'
 
 type Props = {

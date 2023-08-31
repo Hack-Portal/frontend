@@ -18,7 +18,7 @@ export const MemberList = () => {
       direction={'column'}
       wrap="nowrap"
     >
-      {users.map((user) => (
+      {users?.map((user) => (
         <Link href={`/user/${user.account_id}`} key={user.account_id}>
           <Grid
             sx={{

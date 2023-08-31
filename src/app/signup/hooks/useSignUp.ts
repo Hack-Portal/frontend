@@ -3,7 +3,7 @@ import { User, onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
 import { CreateUser } from '../services/createUser'
 import { EmailSignUpFormData, SignUpFormData } from '../types/formData'
-import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
 import { useIcon } from '@/hooks/useIcon'
 import { useLoginCheck } from '@/hooks/useLoginCheck'
 
