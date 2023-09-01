@@ -9,7 +9,6 @@ import { FetchProfile } from './_services/fetchProfile'
 import { FollowService } from './_services/fechFollow'
 import { Domain_AccountResponses } from '@/api/@types'
 import { Transition } from './_services/Transition'
-import { useRouter } from 'next/router'
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { id } = params
@@ -17,8 +16,6 @@ const Profile = ({ params }: { params: { id: string } }) => {
   const fetchProfile = new FetchProfile()
   const fetchFollow = new FollowService()
   const transition = new Transition()
-
-  const router = useRouter()
 
   const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
@@ -42,7 +39,6 @@ const Profile = ({ params }: { params: { id: string } }) => {
   }, [])
   const handleSetting = () => {
     if (settingPath) {
-      router.push(settingPath)
     }
   }
   return (
