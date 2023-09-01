@@ -22,7 +22,6 @@ const Profile = ({ params }: { params: { id: string } }) => {
   )
   const [followState, setFollow] = useState<number>(0)
   const [followerState, setFollower] = useState<number>(0)
-  const [settingPath, setSettingPath] = useState<string>('')
 
   useEffect(() => {
     ;(async () => {
@@ -32,15 +31,9 @@ const Profile = ({ params }: { params: { id: string } }) => {
       setUser(userState!)
       setFollow(followState!)
       setFollower(followerState!)
-
-      const newPath = await transition.settingService()
-      setSettingPath(newPath)
     })()
   }, [])
-  const handleSetting = () => {
-    if (settingPath) {
-    }
-  }
+
   return (
     <>
       <Header />
@@ -63,7 +56,6 @@ const Profile = ({ params }: { params: { id: string } }) => {
           signout={() => {
             transition.signOutService()
           }}
-          setting={handleSetting}
         />
       </Paper>
     </>

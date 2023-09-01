@@ -1,18 +1,16 @@
 import { Typography, Button, Grid, Link } from '@/lib/mui/muiRendering'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import MailIcon from '@mui/icons-material/Mail'
-import TwitterIcon from '@mui/icons-material/Twitter'
 import React from 'react'
 import { Domain_AccountResponses } from '@/api/@types'
 import Image from 'next/image'
 type Props = {
   data?: Domain_AccountResponses | null
   signout: () => void
-  setting: () => void
 }
 
 export const Reight = (props: Props) => {
-  const { data, signout, setting } = props
+  const { data, signout } = props
   return (
     <>
       <Typography
@@ -63,9 +61,9 @@ export const Reight = (props: Props) => {
           </Typography>
         </Grid>
         <Grid sx={{ textAlign: 'right', mr: 3 }}>
-          <Link onClick={setting}>
+          {/* <Link onClick={setting}>
             <Button variant="contained"> 編集画面へ</Button>
-          </Link>
+          </Link> */}
           <Link onClick={signout} href={'/signin'}>
             <Button variant="contained"> サインアウト</Button>
           </Link>

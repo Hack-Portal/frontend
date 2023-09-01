@@ -35,13 +35,13 @@ export class UpdateUser implements UpdateUserInterface {
 
     if (Array.isArray(formData.tech_tags)) {
       formData.tech_tags.forEach((tech_tag, index) =>
-        body.append(`tech_tags[${index}]`, tech_tag.language),
+        body.append(`tech_tags[${index}]`, tech_tag.tech_tag_id as any),
       )
     }
 
     if (Array.isArray(formData.frameworks)) {
       formData.frameworks.forEach((frameworks, index) =>
-        body.append(`frameworks[${index}]`, frameworks.framework),
+        body.append(`frameworks[${index}]`, frameworks.framework_id as any),
       )
     }
     if (formData.email) {

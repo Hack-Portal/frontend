@@ -58,7 +58,6 @@ export const Center = (props: Props) => {
   const changeTech = (event: SelectChangeEvent<string[]>) => {
     const { value } = event.target
     setValue('tech_tags', typeof value === 'string' ? value.split(',') : value)
-    console.log(value)
   }
 
   const changeFramework = (event: SelectChangeEvent<string[]>) => {
@@ -75,6 +74,7 @@ export const Center = (props: Props) => {
     try {
       const updatedUser = await updateUser.update(data)
       console.log('ユーザーが更新されました:', updatedUser)
+      console.log(data)
     } catch (error) {
       console.log(data)
       console.error('ユーザーの更新に失敗しました:', error)
@@ -147,72 +147,58 @@ export const Center = (props: Props) => {
     {
       tech_tag_id: 1,
       language: 'Python',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_python.png?alt=media\u0026token=49c12d37-1de4-4f45-a09b-a7941b88a056',
     },
     {
       tech_tag_id: 2,
       language: 'JavaScript',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_js.png?alt=media\u0026token=0d9383a9-9543-4065-a3b8-542705ec5dd2',
     },
     {
       tech_tag_id: 3,
       language: 'Java',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_java.png?alt=media\u0026token=eb5b8782-8b37-4b74-a7f8-e27a3bec46dd',
     },
     {
       tech_tag_id: 4,
       language: 'Go',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_go.png?alt=media\u0026token=f353e349-6ef8-4475-ae17-ad55a2a583a1',
     },
     {
       tech_tag_id: 5,
       language: 'C',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_c.png?alt=media\u0026token=1ace1611-202c-46a4-9591-77795f07457d',
     },
     {
       tech_tag_id: 6,
       language: 'Csharp',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_csharp.png?alt=media\u0026token=8af18c6f-03c3-4e28-adfe-ce020020e9fe',
     },
     {
       tech_tag_id: 7,
       language: 'Cpp',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_cpp.png?alt=media\u0026token=556d045f-072a-4dc0-8594-9e1872492035',
     },
     {
       tech_tag_id: 8,
       language: 'kotlin',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_kotlin.png?alt=media\u0026token=0a8d5d5f-21a8-4812-a50d-e1de99fdf110',
     },
     {
       tech_tag_id: 9,
       language: 'PHP',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_php.png?alt=media\u0026token=1f38c3ad-dd5b-4dbb-9122-7ce4f4e9c348',
     },
     {
       tech_tag_id: 10,
       language: 'Rust',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_rust.png?alt=media\u0026token=1f3e0982-a3ff-41c6-981f-1c97bfcd1f90',
     },
     {
       tech_tag_id: 11,
       language: 'Ruby',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_ruby.png?alt=media\u0026token=7611b57f-f525-44e0-bd8d-7e3bc2deedb7',
     },
     {
       tech_tag_id: 12,
       language: 'R',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_r.png?alt=media\u0026token=8e7be7d6-68a7-43dd-924b-e16fc72462b7',
     },
     {
       tech_tag_id: 13,
       language: 'DataBase',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_database.png?alt=media\u0026token=0a1babad-5684-40ff-9922-953b57836fc0',
     },
     {
       tech_tag_id: 14,
       language: 'Cloud',
-      icon: 'https://firebasestorage.googleapis.com/v0/b/hackthon-geek-v6.appspot.com/o/tech_tag_cloud.png?alt=media\u0026token=6ed766e8-bb04-42d4-b2c2-c7418f75a067',
     },
   ]
 
@@ -272,6 +258,7 @@ export const Center = (props: Props) => {
   ]
   return (
     <Grid
+      container
       display="flex"
       sx={{ width: '500px', mt: 12, ml: 2 }}
       component="form"
@@ -531,7 +518,9 @@ export const Center = (props: Props) => {
           />
         </Grid>
       </Grid>
-      <Button type="submit">更新</Button>
+      <Button variant="contained" sx={{ m: 'auto', width: 200 }}>
+        更新
+      </Button>
     </Grid>
   )
 }
