@@ -2,6 +2,7 @@ import { Avatar, Box, Grid, Typography } from '@/lib/mui/muiRendering'
 import React from 'react'
 import { ChatList } from '../../../_types/ChatList'
 import Link from 'next/link'
+import { userAgent } from 'next/server'
 
 type Props = {
   chatMessage: ChatList
@@ -10,6 +11,7 @@ type Props = {
 export const OtherChatArea = (props: Props) => {
   const { chatMessage, link } = props
 
+  console.log(chatMessage)
   return (
     <Grid
       container
@@ -22,17 +24,26 @@ export const OtherChatArea = (props: Props) => {
       <Link href={link}>
         <Avatar src={chatMessage.icon} variant="rounded" />
       </Link>
-      <Box
-        sx={{
-          bgcolor: '#eee',
-          borderRadius: '0 10px 10px 10px',
-          p: 1,
-          maxWidth: '70%',
-          wordBreak: 'break-word',
-        }}
+      <Grid
+        container
+        direction={'column'}
+        gap={0.5}
+        sx={{ width: 'auto' }}
+        alignItems={'flex-start'}
       >
-        <Typography color={'#333'}>{chatMessage.Message}</Typography>
-      </Box>
+        <Typography color={'#333'}>{chatMessage.name}</Typography>
+        <Box
+          sx={{
+            bgcolor: '#eee',
+            borderRadius: '0 10px 10px 10px',
+            p: 1,
+            maxWidth: '70%',
+            wordBreak: 'break-word',
+          }}
+        >
+          <Typography color={'#333'}>{chatMessage.Message}</Typography>
+        </Box>
+      </Grid>
     </Grid>
   )
 }

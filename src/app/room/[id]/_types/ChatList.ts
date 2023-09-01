@@ -1,6 +1,7 @@
-import { Chat } from "@/types/chat"
+import { Chat } from '@/types/chat'
 
-export type ChatList ={
-    isMine:boolean
-    icon?:string
-}& Chat
+export type ChatList = {
+  isMine: boolean
+  icon?: string
+  name?: string
+} & Chat
