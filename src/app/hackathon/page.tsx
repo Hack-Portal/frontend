@@ -48,7 +48,7 @@ const Home = async () => {
     {
       id: '5',
       label: 'BackendFramework',
-      name: 'Jin',
+      name: 'Gin',
       icon: 'image/jin.png',
     },
     {
@@ -65,8 +65,8 @@ const Home = async () => {
     },
     {
       id: '8',
-      label: 'other',
-      name: 'vercel',
+      label: 'Other',
+      name: 'Vercel',
       icon: 'image/vercel.png',
     },
   ]

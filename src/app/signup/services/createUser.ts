@@ -5,6 +5,7 @@ import { EmailSignUpFormData, SignUpFormData } from '../types/formData'
 import { FirebaseRepository } from '@/repositories/FirebaseRepository'
 import { GoogleAuthProvider } from 'firebase/auth'
 import { CreateUserInterface } from '../types/CreateUserInterface'
+import { AxiosError } from 'axios'
 
 export class CreateUser implements CreateUserInterface {
   private userRepository: UserRepository
@@ -29,8 +30,8 @@ export class CreateUser implements CreateUserInterface {
     // テキストデータを追加
     body.append('locate_id', String(formData.locate_id))
     body.append('username', formData.username)
-    body.append('show_locate', "false")
-    body.append('show_rate', "false")
+    body.append('show_locate', 'false')
+    body.append('show_rate', 'false')
     body.append('account_id', user.uid)
 
     // アイコン（ファイル）を追加
@@ -72,14 +73,23 @@ export class CreateUser implements CreateUserInterface {
         new GoogleAuthProvider(),
       )
       if (user) {
-        const dbUser = await this.userRepository.fetchById(user.uid, await user.getIdToken())
-        if (!dbUser) {
-          callback()
-        }
+        const dbUser = await this.userRepository.fetchById(
+          user.uid,
+          await user.getIdToken(),
+        )
       }
       return user
-    } catch (error) {
-      throw error
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        const axiosError = error as AxiosError
+        if (axiosError.response && axiosError.response.status === 403) {
+          // 403エラー時の処理
+          callback()
+        } else {
+          // それ以外のエラー
+          throw error
+        }
+      }
     }
   }
 }
