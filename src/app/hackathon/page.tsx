@@ -48,7 +48,7 @@ const Home = async () => {
     {
       id: '5',
       label: 'BackendFramework',
-      name: 'Jin',
+      name: 'Gin',
       icon: 'image/jin.png',
     },
     {
