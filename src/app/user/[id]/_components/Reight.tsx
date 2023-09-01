@@ -1,17 +1,10 @@
-import {
-  Typography,
-  TextField,
-  MenuItem,
-  Button,
-  Grid,
-  Link,
-} from '@/lib/mui/muiRendering'
-import FacebookIcon from '@mui/icons-material/Facebook'
+import { Typography, Button, Grid, Link } from '@/lib/mui/muiRendering'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import MailIcon from '@mui/icons-material/Mail'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import React from 'react'
 import { Domain_AccountResponses } from '@/api/@types'
+import Image from 'next/image'
 type Props = {
   data?: Domain_AccountResponses | null
   signout: () => void
@@ -43,7 +36,8 @@ export const Reight = (props: Props) => {
           </Typography>
         </Grid>
         <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
-          <TwitterIcon />
+          <Image src={'/image/X_icon.svg'} alt="" width={20} height={20} />
+
           <Typography sx={{ ml: 2, fontSize: '20px' }}>
             {data?.twitter_link ? data?.twitter_link : '未設定'}
           </Typography>
@@ -57,7 +51,12 @@ export const Reight = (props: Props) => {
         </Grid>
 
         <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
-          <MailIcon />
+          <Image
+            src={'/image/Discord_icon.svg'}
+            alt={'discord'}
+            width={25}
+            height={25}
+          />
           <Typography sx={{ ml: 2, fontSize: '20px' }}>
             {data?.discord_link ? data?.discord_link : '未設定'}
           </Typography>
