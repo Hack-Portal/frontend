@@ -226,6 +226,7 @@ export type Domain_UpdateRoomRequestBody = {
 export type Repository_Framework = {
   framework?: string | undefined
   framework_id?: number | undefined
+  icon?: string | undefined
   tech_tag_id?: number | undefined
 }
 
