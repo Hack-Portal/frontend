@@ -8,12 +8,14 @@ import { Reight } from './_components/Reight'
 import { FetchProfile } from './_services/fetchProfile'
 import { FollowService } from './_services/fechFollow'
 import { Domain_AccountResponses } from '@/api/@types'
+import { SignOut } from './_services/signout'
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { id } = params
 
   const fetchProfile = new FetchProfile()
   const fetchFollow = new FollowService()
+  const signOut = new SignOut()
   const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
   )
@@ -26,8 +28,8 @@ const Profile = ({ params }: { params: { id: string } }) => {
       const followState = await fetchFollow.followCount(id)
       const followerState = await fetchFollow.followerCount(id)
       setUser(userState!)
-      setFollow(followState)
-      setFollower(followerState)
+      setFollow(followState!)
+      setFollower(followerState!)
     })()
   }, [])
 
@@ -38,17 +40,22 @@ const Profile = ({ params }: { params: { id: string } }) => {
       <Paper
         elevation={5}
         sx={{
-          margin: 'auto',
-          width: '1600px',
           height: '1000px',
+          width: '900px',
           display: 'flex',
-          mb: 10,
+          flexDirection: 'column',
+          margin: 'auto',
+          pt: 2,
         }}
       >
         <Left user={userState} follow={followState} follower={followerState} />
-        {/* <Center /> */}
 
-        <Reight data={userState} />
+        <Reight
+          data={userState}
+          signout={() => {
+            signOut
+          }}
+        />
       </Paper>
     </>
   )

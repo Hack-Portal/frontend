@@ -1,4 +1,3 @@
-'use client'
 import {
   Typography,
   TextField,
@@ -11,57 +10,64 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import MailIcon from '@mui/icons-material/Mail'
 import TwitterIcon from '@mui/icons-material/Twitter'
-
+import React from 'react'
+import { Domain_AccountResponses } from '@/api/@types'
 type Props = {
   data?: Domain_AccountResponses | null
+  signout: () => void
 }
 
-import React from 'react'
-import { RightCard } from './types/RightCard'
-import { Domain_AccountResponses } from '@/api/@types'
 export const Reight = (props: Props) => {
-  const { data } = props
+  const { data, signout } = props
   return (
-    <Grid
-      display={'row'}
-      sx={{ width: '400px', textAlign: 'center', mr: 1, ml: 1, mt: 16 }}
-    >
-      <Grid sx={{ textAlign: 'center', mb: 2 }}>
-        <MailIcon />
-        <Typography>メールアドレス</Typography>
-        <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-          {data?.email}
-        </Typography>
-      </Grid>
-      <Grid sx={{ textAlign: 'center', mb: 2 }}>
-        <TwitterIcon />
-        <Typography>X</Typography>
-        <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-          {data?.twitter_link}
-        </Typography>
-      </Grid>
+    <>
+      <Typography
+        sx={{
+          textAlign: 'left',
+          width: '750px',
+          margin: 'auto',
+          mb: 2,
 
-      <Grid sx={{ textAlign: 'center', mb: 2 }}>
-        <GitHubIcon />
-        <Typography>GitHub</Typography>
-        <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-          {data?.github_link}
-        </Typography>
-      </Grid>
+          fontSize: '25px',
+          borderBottom: '2px solid #ccc',
+          mt: 5,
+        }}
+      >
+        各種情報
+      </Typography>
+      <Grid sx={{ mt: 2, ml: 10 }}>
+        <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
+          <MailIcon />
+          <Typography sx={{ ml: 2, fontSize: '20px' }}>
+            {data?.email ? data?.email : '未設定'}
+          </Typography>
+        </Grid>
+        <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
+          <TwitterIcon />
+          <Typography sx={{ ml: 2, fontSize: '20px' }}>
+            {data?.twitter_link ? data?.twitter_link : '未設定'}
+          </Typography>
+        </Grid>
 
-      <Grid sx={{ textAlign: 'center', mb: 2 }}>
-        <MailIcon />
-        <Typography>Discord</Typography>
-        <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-          {data?.discord_link}
-        </Typography>
-      </Grid>
+        <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
+          <GitHubIcon />
+          <Typography sx={{ ml: 2, fontSize: '20px' }}>
+            {data?.github_link ? data?.github_link : '未設定'}
+          </Typography>
+        </Grid>
 
-      <Link href="/usersetting">
-        <Button sx={{ mt: 3 }} variant="contained">
-          設定画面へ
-        </Button>
-      </Link>
-    </Grid>
+        <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
+          <MailIcon />
+          <Typography sx={{ ml: 2, fontSize: '20px' }}>
+            {data?.discord_link ? data?.discord_link : '未設定'}
+          </Typography>
+        </Grid>
+        <Grid sx={{ textAlign: 'right', mr: 3 }}>
+          <Link onClick={signout} href={'/signin'}>
+            <Button variant="contained"> サインアウト</Button>
+          </Link>
+        </Grid>
+      </Grid>
+    </>
   )
 }
