@@ -65,8 +65,8 @@ const Home = async () => {
     },
     {
       id: '8',
-      label: 'other',
-      name: 'vercel',
+      label: 'Other',
+      name: 'Vercel',
       icon: 'image/vercel.png',
     },
   ]
