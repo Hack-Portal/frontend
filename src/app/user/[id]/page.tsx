@@ -29,7 +29,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
       setFollow(followState)
       setFollower(followerState)
     })()
-  }, [])
+  }, [fetchProfile])
 
   return (
     <>
@@ -38,15 +38,15 @@ const Profile = ({ params }: { params: { id: string } }) => {
       <Paper
         elevation={5}
         sx={{
-          margin: 'auto',
-          width: '1600px',
           height: '1000px',
+          width: '900px',
           display: 'flex',
-          mb: 10,
+          flexDirection: 'column',
+          margin: 'auto',
+          pt: 2,
         }}
       >
         <Left user={userState} follow={followState} follower={followerState} />
-        {/* <Center /> */}
 
         <Reight data={userState} />
       </Paper>
