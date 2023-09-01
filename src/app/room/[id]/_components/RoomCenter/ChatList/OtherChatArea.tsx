@@ -20,17 +20,12 @@ export const OtherChatArea = (props: Props) => {
       direction={'row'}
       gap={1}
       justifyContent={'flex-start'}
+      flexWrap={'nowrap'}
     >
       <Link href={link}>
         <Avatar src={chatMessage.icon} variant="rounded" />
       </Link>
-      <Grid
-        container
-        direction={'column'}
-        gap={0.5}
-        sx={{ width: 'auto' }}
-        alignItems={'flex-start'}
-      >
+      <Grid container direction={'column'} gap={0.5} alignItems={'flex-start'}>
         <Typography color={'#333'}>{chatMessage.name}</Typography>
         <Box
           sx={{
