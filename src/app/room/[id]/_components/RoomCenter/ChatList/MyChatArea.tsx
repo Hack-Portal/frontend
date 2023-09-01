@@ -31,9 +31,6 @@ export const MyChatArea = (props: Props) => {
       >
         <Typography color={'#fff'}>{chatMessage.Message}</Typography>
       </Box>
-      <Link href={link}>
-        <Avatar src={chatMessage.icon} variant="rounded" />
-      </Link>
     </Grid>
   )
 }
