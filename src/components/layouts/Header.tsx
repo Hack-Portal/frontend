@@ -22,10 +22,10 @@ export const Header = () => {
       label: 'ハッカソン',
       href: '/hackathon',
     },
-    {
-      label: 'ランキング',
-      href: '/ranking',
-    },
+    // {
+    //   label: 'ランキング',
+    //   href: '/ranking',
+    // },
     {
       label: 'メンバー募集',
       href: '/room',
