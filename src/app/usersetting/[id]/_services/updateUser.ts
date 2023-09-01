@@ -29,29 +29,32 @@ export class UpdateUser implements UpdateUserInterface {
     if (formData.username) {
       body.append('username', formData.username)
     }
-    if (formData.explantory_text) {
-      body.append('explantory_text', formData.explantory_text)
+    if (formData.explanatory_text) {
+      body.append('explantory_text', formData.explanatory_text)
     }
+
     if (Array.isArray(formData.tech_tags)) {
-      formData.tech_tags.forEach((tag) => body.append('tech_tags[]', tag))
-    }
-    if (Array.isArray(formData.tech_tags)) {
-      formData.frameworks.forEach((framework) =>
-        body.append('frameworks[]', framework),
+      formData.tech_tags.forEach((tech_tag, index) =>
+        body.append(`tech_tags[${index}]`, tech_tag.language),
       )
     }
 
+    if (Array.isArray(formData.frameworks)) {
+      formData.frameworks.forEach((frameworks, index) =>
+        body.append(`frameworks[${index}]`, frameworks.framework),
+      )
+    }
     if (formData.email) {
       body.append('email', formData.email)
     }
-    if (formData.discord_link) {
-      body.append('twitter', formData.discord_link)
+    if (formData.twitter_link) {
+      body.append('twitter', formData.twitter_link)
     }
     if (formData.github_link) {
-      body.append('github', formData.github_link)
+      body.append('github_link', formData.github_link)
     }
     if (formData.twitter_link) {
-      body.append('discord', formData.discord_link)
+      body.append('discord_link', formData.discord_link)
     }
     if (formData.icon) {
       body.append('icon', formData.icon)

@@ -10,6 +10,7 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
+  Typography,
   Button,
   Select,
   MenuItem,
@@ -41,11 +42,11 @@ export const Center = (props: Props) => {
   const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
       username: Userinfo?.username,
-      icon: Userinfo?.icon || '',
-      explantory_text: Userinfo?.explantory_text,
+      icon: Userinfo?.icon,
       locate: Userinfo?.locate.id,
-      tech_tags: Userinfo?.tech_tags || [],
-      frameworks: Userinfo?.frameworks || [],
+      explanatory_text: Userinfo?.loclantory_text,
+      tech_tags: Userinfo?.tech_tag_id || [],
+      frameworks: Userinfo?.framework_id || [],
       email: Userinfo?.email,
       twitter_link: Userinfo?.twitter_link,
       github_link: Userinfo?.github_link,
@@ -57,6 +58,7 @@ export const Center = (props: Props) => {
   const changeTech = (event: SelectChangeEvent<string[]>) => {
     const { value } = event.target
     setValue('tech_tags', typeof value === 'string' ? value.split(',') : value)
+    console.log(value)
   }
 
   const changeFramework = (event: SelectChangeEvent<string[]>) => {
@@ -69,13 +71,12 @@ export const Center = (props: Props) => {
     }
   }, [setLocate, Userinfo?.locate])
 
-  const onSubmit = async (data: ProfileFormData) => {
+  const onSubmit = async (data: any) => {
     try {
       const updatedUser = await updateUser.update(data)
       console.log('ユーザーが更新されました:', updatedUser)
     } catch (error) {
       console.log(data)
-
       console.error('ユーザーの更新に失敗しました:', error)
     }
   }
@@ -269,202 +270,220 @@ export const Center = (props: Props) => {
     { framework_id: 51, tech_tag_id: 14, framework: 'GCP' },
     { framework_id: 52, tech_tag_id: 14, framework: 'IBM Cloud' },
   ]
-  console.log('Preview:', preview)
   return (
     <Grid
       display="flex"
-      flexDirection={'row'}
-      justifyContent={'center'}
-      alignItems={'flex-start'}
-      sx={{ width: '90%', mt: 12, ml: 2 }}
+      sx={{ width: '500px', mt: 12, ml: 2 }}
       component="form"
       onSubmit={handleSubmit((data) => onSubmit(data))}
+      direction={'column'}
     >
-      <Grid
-        display={'flex'}
-        flexDirection={'column'}
-        alignItems={'center'}
-        sx={{ width: '33%' }}
-      >
-        {/* 名前 */}
-        <Controller
-          name="username"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              defaultValue={field.value ? field.value : Userinfo?.username}
-              {...field}
-              fullWidth
-              sx={{ width: '70%', mb: 4 }}
-            />
-          )}
-        />
-        <Controller
-          name="explantory_text"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              defaultValue={
-                field.value
-                  ? Userinfo?.explantory_text
-                  : 'よろしくお願いいたします'
-              }
-              {...field}
-              fullWidth
-              sx={{ width: '70%', mb: 4 }}
-            />
-          )}
-        />
-        {/* 都道府県 */}
-        <Controller
-          defaultValue={Userinfo?.locate}
-          name="locate"
-          control={control}
-          render={({ field: { onChange, value } }) => {
-            const handleChange: (event: any) => void = (event) => {
-              onChange(event)
-              setLocate(null)
-              console.log(event.target.value)
+      {/* 一段目 */}
+      <Grid display={'flex'}>
+        <Grid>
+          <Controller
+            name="icon"
+            control={control}
+            render={({ field }) => (
+              <InputLabel>
+                <TextField
+                  {...field}
+                  type="file"
+                  onChange={(e: any) => {
+                    handleSetIcon(e.currentTarget.files![0])
+                  }}
+                  sx={{ display: 'none' }}
+                />
+                <Avatar
+                  src={preview!}
+                  sx={{ width: '60px', height: '60px', mb: 5 }}
+                />
+              </InputLabel>
+            )}
+          />
+        </Grid>
+        <Grid>
+          <Grid display={'flex'}>
+            <Grid sx={{ textAlign: 'center', mb: 2 }}>
+              <Typography>名前</Typography>
+              {/* 名前 */}
+              <Controller
+                name="username"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    defaultValue={
+                      field.value ? field.value : Userinfo?.username
+                    }
+                    {...field}
+                    fullWidth
+                    sx={{ width: '200px', mb: 4 }}
+                  />
+                )}
+              />
+            </Grid>
+            {/* 都道府県 */}
+            <Grid>
+              <Typography>出身地</Typography>
+              <Controller
+                defaultValue={Userinfo?.locate}
+                name="locate"
+                control={control}
+                render={({ field: { onChange, value } }) => {
+                  const handleChange: (event: any) => void = (event) => {
+                    onChange(event)
+                    setLocate(null)
+                  }
+                  return (
+                    <FormControl sx={{ width: 200 }}>
+                      <InputLabel shrink={false}>
+                        {locate ? locate : null}
+                      </InputLabel>
+                      <Select
+                        id="select"
+                        onChange={handleChange} // 修正されたハンドラを使用
+                        sx={{ width: '100%', mb: 4 }}
+                      >
+                        {Locate &&
+                          Locate.map((locate) => (
+                            <MenuItem value={locate.id} key={locate.label}>
+                              {locate.label}
+                            </MenuItem>
+                          ))}
+                      </Select>
+                    </FormControl>
+                  )
+                }}
+              />
+            </Grid>
+          </Grid>
+          {/*  */}
 
-              // react-hook-formのonChangeハンドラにイベントを渡す
-            }
-            return (
-              <FormControl sx={{ width: 200 }}>
-                <InputLabel shrink={false}>{locate ? locate : null}</InputLabel>
+          <Grid sx={{ textAlign: 'center', mb: 2 }}>
+            <Typography>自己紹介文</Typography>
+            {/* 名前 */}
+            <Controller
+              name="explanatory_text"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  defaultValue={
+                    field.value ? field.value : Userinfo?.explanatory_text
+                  }
+                  {...field}
+                  fullWidth
+                  sx={{ width: '80%', mb: 4 }}
+                />
+              )}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid>
+        {/* 技術スタック */}
+        <Grid display={'flex'}>
+          <Controller
+            name="tech_tags"
+            control={control}
+            render={({ field }) => (
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-chip-label">言語</InputLabel>
                 <Select
-                  id="select"
-                  onChange={handleChange} // 修正されたハンドラを使用
-                  sx={{ width: '70%', mb: 4 }}
+                  multiple
+                  {...field}
+                  labelId="demo-multiple-chip-label"
+                  id="demo-multiple-chip"
+                  onChange={changeTech}
+                  input={
+                    <OutlinedInput id="select-multiple-chip" label="言語" />
+                  }
+                  MenuProps={MenuProps}
+                  renderValue={(selected) => (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      {Array.isArray(selected)
+                        ? selected.map((value) => (
+                            <Chip key={value} label={value} />
+                          ))
+                        : Userinfo.tech_tag.map((value: any) => (
+                            <Chip
+                              key={value.tech_tag_id}
+                              label={value.language}
+                            />
+                          ))}
+                    </Box>
+                  )}
                 >
-                  {Locate &&
-                    Locate.map((locate) => (
-                      <MenuItem value={locate.id} key={locate.label}>
-                        {locate.label}
-                      </MenuItem>
-                    ))}
+                  {TechList.map((tech) => (
+                    <MenuItem key={tech.tech_tag_id} value={tech.language}>
+                      {tech.language}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
-            )
-          }}
-        />
-      </Grid>
-      <Grid
-        display={'flex'}
-        flexDirection={'column'}
-        justifyContent={'center'}
-        alignItems={'center'}
-        textAlign={'center'}
-        sx={{ width: '33%' }}
-      >
-        <Controller
-          name="tech_tags"
-          control={control}
-          render={({ field }) => (
-            <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="demo-multiple-chip-label">言語</InputLabel>
-              <Select
-                multiple
-                {...field}
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                onChange={changeTech}
-                input={<OutlinedInput id="select-multiple-chip" label="言語" />}
-                MenuProps={MenuProps}
-                renderValue={(selected) => (
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {Array.isArray(selected)
-                      ? selected.map((value) => (
-                          <Chip key={value} label={value} />
-                        ))
-                      : Userinfo.tech_tag.map((value: any) => (
-                          <Chip
-                            key={value.tech_tag_id}
-                            label={value.language}
-                          />
-                        ))}
-                  </Box>
-                )}
-              >
-                {TechList.map((tech) => (
-                  <MenuItem key={tech.tech_tag_id} value={tech.language}>
-                    {tech.language}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          )}
-        />
-
-        <Controller
-          name="frameworks"
-          control={control}
-          render={({ field }) => (
-            <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="demo-multiple-chip-label">
-                フレームワーク
-              </InputLabel>
-              <Select
-                {...field}
-                multiple
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                onChange={changeFramework}
-                input={
-                  <OutlinedInput
-                    id="select-multiple-chip"
-                    label="フレームワーク"
-                  />
-                }
-                MenuProps={MenuProps}
-                renderValue={(selected) => (
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {Array.isArray(selected)
-                      ? selected.map((value) => (
-                          <Chip key={value} label={value} />
-                        ))
-                      : Userinfo.tech_tag.map((value: any) => (
-                          <Chip key={value.id} label={value.framework} />
-                        ))}
-                  </Box>
-                )}
-              >
-                {frameworkList.map((framework) => (
-                  <MenuItem
-                    key={framework.framework_id}
-                    value={framework.framework}
-                  >
-                    {framework.framework}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          )}
-        />
-        <Button sx={{ m: 'auto', mt: 4 }} variant="contained" type="submit">
-          更新
-        </Button>
+            )}
+          />
+          <Controller
+            name="frameworks"
+            control={control}
+            render={({ field }) => (
+              <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-chip-label">
+                  フレームワーク
+                </InputLabel>
+                <Select
+                  {...field}
+                  multiple
+                  labelId="demo-multiple-chip-label"
+                  id="demo-multiple-chip"
+                  onChange={changeFramework}
+                  input={
+                    <OutlinedInput
+                      id="select-multiple-chip"
+                      label="フレームワーク"
+                    />
+                  }
+                  MenuProps={MenuProps}
+                  renderValue={(selected) => (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      {Array.isArray(selected)
+                        ? selected.map((value) => (
+                            <Chip key={value} label={value} />
+                          ))
+                        : Userinfo.frameworks.map((value: any) => (
+                            <Chip key={value.id} label={value.framework} />
+                          ))}
+                    </Box>
+                  )}
+                >
+                  {frameworkList.map((framework) => (
+                    <MenuItem
+                      key={framework.framework_id}
+                      value={framework.framework}
+                    >
+                      {framework.framework}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+          />
+        </Grid>
       </Grid>
 
-      <Grid
-        sx={{ width: '33%' }}
-        display={'flex'}
-        flexDirection={'column'}
-        justifyContent={'space-around'}
-        alignItems={'center'}
-        textAlign={'center'}
-      >
-        {/* address */}
-        <Grid>
+      {/* address */}
+      <Grid>
+        <Grid sx={{ textAlign: 'center', mb: 2 }} display={'flex'}>
           <Controller
             name="email"
             control={control}
             render={({ field }) => (
               <TextField
-                sx={{ width: '50%', mb: 4 }}
                 defaultValue={Userinfo?.email || ''}
                 {...field}
                 fullWidth
                 label="メールアドレス"
+                sx={{ width: '70%', mb: 4 }}
               />
             )}
           />
@@ -478,12 +497,12 @@ export const Center = (props: Props) => {
                 {...field}
                 fullWidth
                 label="Twitter"
-                sx={{ width: '50%', mb: 4 }}
+                sx={{ width: '70%', mb: 4 }}
               />
             )}
           />
         </Grid>
-        <Grid>
+        <Grid sx={{ textAlign: 'center', mb: 2 }} display={'flex'}>
           <Controller
             name="github_link"
             control={control}
@@ -492,7 +511,7 @@ export const Center = (props: Props) => {
                 {...field}
                 fullWidth
                 label="Github"
-                sx={{ width: '50%', mb: 4 }}
+                sx={{ width: '70%', mb: 4 }}
               />
             )}
           />
@@ -506,12 +525,13 @@ export const Center = (props: Props) => {
                 {...field}
                 fullWidth
                 label="Discord"
-                sx={{ width: '50%', mb: 4 }}
+                sx={{ width: '70%', mb: 4 }}
               />
             )}
           />
         </Grid>
       </Grid>
+      <Button type="submit">更新</Button>
     </Grid>
   )
 }

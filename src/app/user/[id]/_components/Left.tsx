@@ -1,4 +1,4 @@
-import { Avatar, Grid, Typography, Chip } from '@/lib/mui/muiRendering'
+import { Avatar, Grid, Typography, Chip, Button } from '@/lib/mui/muiRendering'
 import React, { useEffect } from 'react'
 import { Domain_AccountResponses } from '@/api/@types'
 import { Center } from './Center'
@@ -15,23 +15,28 @@ export const Left = (props: Props) => {
   const frameworks = user?.frameworks
 
   return (
-    <Grid sx={{ textAlign: 'center' }}>
-      <Typography sx={{ fontSize: '25px' }}>Profile</Typography>
+    <Grid sx={{ textAlign: 'center' }} width={'900px'}>
+      <Typography
+        sx={{
+          textAlign: 'left',
+          width: '750px',
+          margin: 'auto',
+          mb: 2,
+
+          fontSize: '25px',
+          borderBottom: '2px solid #ccc',
+        }}
+      >
+        Profile
+      </Typography>
 
       <Grid display={'flex'} textAlign={'center'}>
         {/* 1段目 */}
-        <Grid display={'flex'}>
+        <Grid display={'flex'} margin={'auto'}>
           {/* アイコンとfollw */}
-          <Grid
-            display={'flex'}
-            flexDirection={'column'}
-            sx={{
-              backgroundColor: '#ccc',
-              margin: 'auto',
-            }}
-          >
+          <Grid display={'flex'} flexDirection={'column'}>
             <Avatar
-              sx={{ width: 200, height: 200, margin: 'auto' }}
+              sx={{ width: 200, height: 200 }}
               src={user?.icon}
               alt="Remy Sharp"
             />
@@ -42,34 +47,28 @@ export const Left = (props: Props) => {
               justifyContent={'space-between'}
               margin={'auto'}
             >
-              <Grid textAlign={'center'}>
-                <Typography>フォロー</Typography>
+              <Grid textAlign={'center'} sx={{ mr: 1 }}>
+                <Typography color={'#999'}>フォロー</Typography>
                 <Typography>{follow}</Typography>
               </Grid>
-              <Grid textAlign={'center'}>
-                <Typography>フォロワー</Typography>
+              <Grid textAlign={'center'} sx={{ ml: 1 }}>
+                <Typography color={'#999'}>フォロワー</Typography>
                 <Typography>{follower}</Typography>
               </Grid>
             </Grid>
           </Grid>
           {/* 1-2まとめ */}
           <Grid textAlign={'center'} sx={{ width: '400px' }}>
-            <Grid
-              display={'flex'}
-              justifyContent={'space-around'}
-              sx={{ backgroundColor: '#ddd' }}
-            >
+            <Grid display={'flex'} justifyContent={'space-around'}>
               {/* name */}
               <Grid textAlign={'center'} alignItems={'center'}>
-                <Typography>名前</Typography>
                 <Typography sx={{ mt: 1, fontSize: '20px' }}>
                   {user?.username}
                 </Typography>
               </Grid>
               {/*  */}
               {/* locate */}
-              <Grid sx={{ backgroundColor: '#ddd' }}>
-                <Typography>居住地</Typography>
+              <Grid>
                 <Typography sx={{ mt: 1, fontSize: '20px' }}>
                   {user?.locate}
                 </Typography>
@@ -77,8 +76,10 @@ export const Left = (props: Props) => {
               {/*  */}
             </Grid>
 
-            <Grid textAlign={'center'} sx={{ backgroundColor: '#111' }}>
-              <Typography color={'#999'}>自己紹介</Typography>
+            <Grid textAlign={'center'}>
+              <Typography sx={{ mt: 2 }} color={'#999'}>
+                自己紹介
+              </Typography>
               <Typography sx={{ mt: 2 }}>
                 {/* {user?.explanatory_text} */}
               </Typography>
@@ -88,25 +89,37 @@ export const Left = (props: Props) => {
         </Grid>
         {/* 2段目 */}
       </Grid>
-      <Typography sx={{ mt: 3, mb: 3, fontSize: '25px' }}>
+      <Typography
+        sx={{
+          textAlign: 'left',
+          width: '750px',
+          margin: 'auto',
+          mb: 2,
+          mt: 3,
+          fontSize: '25px',
+          borderBottom: '2px solid #ccc',
+        }}
+      >
         技術スタック
       </Typography>
 
       <Grid
         alignContent={'space-around'}
-        margin={'auto'}
+        textAlign={'left'}
         display={'flex'}
-        justifyContent={'space-around'}
-        sx={{ mt: 3, width: '200px' }}
+        sx={{ mt: 3, pl: 9, width: '600px' }}
       >
-        <Chip label="ea" />
-        <Chip label="ea" />
-        <Chip label="ea" />
+        <Chip label="JavaScript" sx={{ ml: 1, mr: 1 }} />
+        <Chip label="React" sx={{ ml: 1, mr: 1 }} />
+        <Chip label="Vue" sx={{ ml: 1, mr: 1 }} />
 
         {/* {techs?.map((tech) => {
           return (
             <Chip
-              sx={{ mt: 2 }}
+              sx={{ mt: 2 
+               ml: 1, mr: 1 
+              
+              }}
               key={tech?.tech_tag_id}
               label={tech?.language}
             />
@@ -114,7 +127,11 @@ export const Left = (props: Props) => {
         })}
         {frameworks?.map((framework) => {
           return (
-            <Chip key={framework?.framework_id} label={framework?.framework} />
+            <Chip key={framework?.framework_id} label={framework?.framework}
+            sx={{
+              mt:2
+               ml: 1, mr: 1 }}
+            />
           )
         })} */}
       </Grid>

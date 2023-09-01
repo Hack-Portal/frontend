@@ -1,4 +1,3 @@
-'use client'
 import {
   Typography,
   TextField,
@@ -23,43 +22,56 @@ export const Reight = (props: Props) => {
   const { data } = props
   return (
     <>
-      <Typography sx={{ textAlign: 'center', fontSize: '25px', mt: 5 }}>
+      <Typography
+        sx={{
+          textAlign: 'left',
+          width: '750px',
+          margin: 'auto',
+          mb: 2,
+
+          fontSize: '25px',
+          borderBottom: '2px solid #ccc',
+          mt: 5,
+        }}
+      >
         各種情報
       </Typography>
-      <Grid display={'flex'} justifyContent={'space-around'} sx={{ mt: 5 }}>
-        <Grid>
-          <Grid sx={{ textAlign: 'center', mb: 2 }}>
-            <MailIcon />
-            <Typography>メールアドレス</Typography>
-            <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-              {data?.email}
-            </Typography>
-          </Grid>
-          <Grid sx={{ textAlign: 'center', mb: 2 }}>
-            <TwitterIcon />
-            <Typography>X</Typography>
-            <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-              {data?.twitter_link}
-            </Typography>
-          </Grid>
+      <Grid sx={{ mt: 2, ml: 10 }}>
+        <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
+          <MailIcon />
+          <Typography sx={{ ml: 2, fontSize: '20px' }}>
+            taku1010101010110101011@
+            {/* {data?.email} */}
+          </Typography>
+        </Grid>
+        <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
+          <TwitterIcon />
+          <Typography sx={{ ml: 2, fontSize: '20px' }}>
+            taku1010101010110101011@
+            {/* {data?.twitter_link} */}
+          </Typography>
         </Grid>
 
-        <Grid sx={{ textAlign: 'center', mb: 2 }}>
-          <Grid sx={{ textAlign: 'center', mb: 2 }}>
-            <GitHubIcon />
-            <Typography>GitHub</Typography>
-            <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-              {data?.github_link}
-            </Typography>
-          </Grid>
+        <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
+          <GitHubIcon />
+          <Typography sx={{ ml: 2, fontSize: '20px' }}>
+            taku1010101010110101011@
+            {/* {data?.github_link} */}
+          </Typography>
+        </Grid>
 
-          <Grid sx={{ textAlign: 'center', mb: 2 }}>
-            <MailIcon />
-            <Typography>Discord</Typography>
-            <Typography sx={{ mt: 0.5, fontSize: '20px' }}>
-              {data?.discord_link}
-            </Typography>
-          </Grid>
+        <Grid sx={{ textAlign: 'left', display: 'flex', mb: 2 }}>
+          <MailIcon />
+          <Typography sx={{ ml: 2, fontSize: '20px' }}>
+            taku1010101010110101011@
+            {/* {data?.discord_link} */}
+          </Typography>
+        </Grid>
+        <Grid sx={{ textAlign: 'right', mr: 3 }}>
+          <Button sx={{ mr: 2 }} variant="contained">
+            編集
+          </Button>
+          <Button variant="contained"> サインアウト</Button>
         </Grid>
       </Grid>
     </>
