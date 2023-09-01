@@ -18,10 +18,10 @@ export const SendInputArea = (props: Props) => {
         position: 'absolute',
         bottom: '0px',
         padding: '10px 0 10px 0',
-        width: 796,
+        width: "62%",
         display: 'flex',
         background: '#fff',
-        justifyContent: 'center',
+        justifyContent: "space-evenly"
       }}
       component={'form'}
       onSubmit={handleSubmit}
@@ -41,8 +41,8 @@ export const SendInputArea = (props: Props) => {
           />
         )}
       />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-        <SendIcon color="primary" />
+      <IconButton type="submit" sx={{ p: '10px 0 ' }} aria-label="search">
+        <SendIcon color="primary" sx={{width:"30px",height:"30px"}}/>
       </IconButton>
     </Box>
   )

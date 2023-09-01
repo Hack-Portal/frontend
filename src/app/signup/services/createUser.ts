@@ -34,8 +34,8 @@ export class CreateUser implements CreateUserInterface {
     body.append('account_id', user.uid)
 
     // アイコン（ファイル）を追加
-    if (formData.icon) {
-      body.append('icon', formData.icon)
+    if (formData.icons) {
+      body.append('icons', formData.icons)
     }
     try {
       const user = await this.userRepository.create(body, token)
@@ -72,7 +72,10 @@ export class CreateUser implements CreateUserInterface {
         new GoogleAuthProvider(),
       )
       if (user) {
-        callback()
+        const dbUser = await this.userRepository.fetchById(user.uid, await user.getIdToken())
+        if (!dbUser) {
+          callback()
+        }
       }
       return user
     } catch (error) {

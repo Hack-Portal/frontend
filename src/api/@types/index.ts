@@ -91,6 +91,7 @@ export type Domain_GetJoinRoomResponse = {
 export type Domain_GetRoomResponse = {
   description?: string | undefined
   hackathon?: Domain_RoomHackathonInfo | undefined
+  is_closing?: boolean | undefined
   is_status?: boolean | undefined
   member_limit?: number | undefined
   now_member?: Domain_NowRoomAccounts[] | undefined
@@ -136,6 +137,7 @@ export type Domain_ListRoomResponse = {
 
 export type Domain_ListRoomRoomInfo = {
   created_at?: string | undefined
+  is_closing?: boolean | undefined
   member_limit?: number | undefined
   room_id?: string | undefined
   title?: string | undefined
@@ -146,6 +148,7 @@ export type Domain_NowRoomAccounts = {
   frameworks?: Repository_Framework[] | undefined
   icon?: string | undefined
   is_owner?: boolean | undefined
+  roles?: Repository_Role[] | undefined
   tech_tags?: Repository_TechTag[] | undefined
   username?: string | undefined
 }
@@ -215,6 +218,7 @@ export type Domain_UpdateAccountRequest = {
 export type Domain_UpdateRoomRequestBody = {
   description?: string | undefined
   hackathonID?: number | undefined
+  is_closing?: boolean | undefined
   member_limit?: number | undefined
   title?: string | undefined
 }
@@ -228,6 +232,11 @@ export type Repository_Framework = {
 export type Repository_Locate = {
   locate_id?: number | undefined
   name?: string | undefined
+}
+
+export type Repository_Role = {
+  role?: string | undefined
+  role_id?: number | undefined
 }
 
 export type Repository_StatusTag = {

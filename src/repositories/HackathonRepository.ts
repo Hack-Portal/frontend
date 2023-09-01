@@ -24,15 +24,17 @@ export class HackathonRepository implements HackathonInterface {
     try {
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL , headers: { authorization: this.authorization }}),
+        aspida(axios, {
+          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          headers: { authorization: this.authorization },
+        }),
       )
 
       this.authorization = getAuthorizationHeader()
 
       const response = await client.hackathons.get({
         query: { page_size: 10, page_id: 1, expired: false },
-       
-      }) 
+      })
 
       return response.body as Domain_HackathonResponses[]
     } catch (error) {
@@ -41,8 +43,6 @@ export class HackathonRepository implements HackathonInterface {
       throw error
     }
   }
-  
- 
 }
 
 // シングルトンインスタンスとは、特定のクラスから生成されるオブジェクト（インスタンス）がプログラム全体で1つだけ存在することを保証するデザインパターン（設計原則）のことを指します。このパターンは「シングルトンパターン」と呼ばれます。
