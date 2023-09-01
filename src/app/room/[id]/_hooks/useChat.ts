@@ -13,19 +13,17 @@ export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|un
 
 
   useEffect(() => {
+
+    if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'local') return
     // チャットメッセージの変更を監視
-    // const unsubscribe = fetchChatMessages(roomId, (chats) => {
-
-    //   handleSetChatMessages(chats)
-    //  })
-    // console.log(chatMessages);
-    
-
+    const unsubscribe = fetchChatMessages(roomId, (chats) => {
+      handleSetChatMessages(chats)
+     })
     // コンポーネントのアンマウント時に監視を解除
 
-    // return () => {
-    //   unsubscribe && unsubscribe()
-    // }
+    return () => {
+      unsubscribe && unsubscribe()
+    }
   }, [roomId])
 
   useEffect(() => {
@@ -52,27 +50,32 @@ export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|un
     }
     )
 
-    setChatMessages((prevState)=>prevState?[...prevState,...chatList]:chatList)
-    // setChatMessages(chatList)
+    if(process.env.NEXT_PUBLIC_ENVIRONMENT === 'local') {
+      setChatMessages((prevState)=>prevState?[...prevState,...chatList]:chatList)
+    }else{
+      setChatMessages(chatList)
+    }
   }
 
   const handleSendChatMessage = async (message: string) => {
-    const uid = await getUId()
-    const mychat = {
-      Message: message,
-      CreatedAt: "2021-09-01T00:00:00.000Z",
-      UID: uid,
+    if(process.env.NEXT_PUBLIC_ENVIRONMENT === 'local') {
+      const uid = await getUId()
+      const mychat = {
+        Message: message,
+        CreatedAt: "2021-09-01T00:00:00.000Z",
+        UID: uid,
+      }
+      const otherchat = {
+        Message: message,
+        CreatedAt: "2021-09-01T00:00:00.000Z",
+        UID:"sample",
+      }
+      handleSetChatMessages([mychat,otherchat])
+    }else{
+    const result = await addChatMessage(roomId, message)
+    return result 
     }
-    const otherchat = {
-      Message: message,
-      CreatedAt: "2021-09-01T00:00:00.000Z",
-      UID:"sample",
-    }
-    handleSetChatMessages([mychat,otherchat])
-    // const result = await addChatMessage(roomId, message)
-    // return result
   }
-
 
   return { chatMessages, handleSendChatMessage, scrollRef}
 }
