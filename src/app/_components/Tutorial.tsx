@@ -34,6 +34,7 @@ export const Tutorial = () => {
           ),
           description:
             'ヘッダーのハッカソンを選択すると募集中のハッカソンを一覧で見ることができます。期間やタグを基準に参加するハッカソンを選びましょう。クリックするとハッカソンの外部ページを開きます。',
+          image: 'hackathoninfo_lite2',
         },
       ],
     },
@@ -55,6 +56,7 @@ export const Tutorial = () => {
           ),
           description:
             'ルーム一覧にはメンバーの総合的な使用技術が表示されます。これらの情報を参考に参加しましょう。チームの技術バランスが均一、または自分と一致する技術を持つ仲間を探すことが理想です。ルームではメンバーとチャットをすることができます。チャットはチーム決めを想定しており、その先の相談はDiscordやSlackなどの外部ツールを推奨しております。',
+          image: 'hackathonchat.gif',
         },
         {
           title: (
@@ -71,6 +73,7 @@ export const Tutorial = () => {
           ),
           description:
             'あなたがリーダーとなって仲間を集めます。参加したいハッカソン、メンバーの募集定員を設定し仲間を集めましょう。',
+          image: 'hackathonroom.gif',
         },
         {
           title: (
@@ -87,6 +90,7 @@ export const Tutorial = () => {
           ),
           description:
             'メンバーと話し合い、チームを確定させましょう。チームが確定すると他のユーザーからルームが閲覧できなくなります。外部SNSを利用して今後の方針を固めましょう。またハッカソンの外部ページから参加登録を忘れずに行いましょう。',
+          image: 'hackathonroom.gif',
         },
       ],
     },
@@ -106,8 +110,8 @@ export const Tutorial = () => {
               しよう
             </Typography>
           ),
-          description:
-            'こちらは現在準備中です',
+          description: 'こちらは現在準備中です',
+          image: 'cheat.svg',
         },
       ],
     },
