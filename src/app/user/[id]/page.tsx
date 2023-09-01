@@ -8,19 +8,24 @@ import { Reight } from './_components/Reight'
 import { FetchProfile } from './_services/fetchProfile'
 import { FollowService } from './_services/fechFollow'
 import { Domain_AccountResponses } from '@/api/@types'
-import { SignOut } from './_services/signout'
+import { Transition } from './_services/Transition'
+import { useRouter } from 'next/router'
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { id } = params
 
   const fetchProfile = new FetchProfile()
   const fetchFollow = new FollowService()
-  const signOut = new SignOut()
+  const transition = new Transition()
+
+  const router = useRouter()
+
   const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
   )
   const [followState, setFollow] = useState<number>(0)
   const [followerState, setFollower] = useState<number>(0)
+  const [settingPath, setSettingPath] = useState<string>('')
 
   useEffect(() => {
     ;(async () => {
@@ -30,9 +35,16 @@ const Profile = ({ params }: { params: { id: string } }) => {
       setUser(userState!)
       setFollow(followState!)
       setFollower(followerState!)
+
+      const newPath = await transition.settingService()
+      setSettingPath(newPath)
     })()
   }, [])
-
+  const handleSetting = () => {
+    if (settingPath) {
+      router.push(settingPath)
+    }
+  }
   return (
     <>
       <Header />
@@ -53,8 +65,9 @@ const Profile = ({ params }: { params: { id: string } }) => {
         <Reight
           data={userState}
           signout={() => {
-            signOut
+            transition.signOutService()
           }}
+          setting={handleSetting}
         />
       </Paper>
     </>

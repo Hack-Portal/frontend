@@ -15,10 +15,11 @@ import { Domain_AccountResponses } from '@/api/@types'
 type Props = {
   data?: Domain_AccountResponses | null
   signout: () => void
+  setting: () => void
 }
 
 export const Reight = (props: Props) => {
-  const { data, signout } = props
+  const { data, signout, setting } = props
   return (
     <>
       <Typography
@@ -63,6 +64,9 @@ export const Reight = (props: Props) => {
           </Typography>
         </Grid>
         <Grid sx={{ textAlign: 'right', mr: 3 }}>
+          <Link onClick={setting}>
+            <Button variant="contained"> 編集画面へ</Button>
+          </Link>
           <Link onClick={signout} href={'/signin'}>
             <Button variant="contained"> サインアウト</Button>
           </Link>
