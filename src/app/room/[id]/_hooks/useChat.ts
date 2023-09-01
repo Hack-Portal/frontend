@@ -1,28 +1,40 @@
 import { FirebaseRepository } from '@/repositories/FirebaseRepository'
 import { Chat } from '@/types/chat'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ChatList } from '../_types/ChatList'
 import { Domain_NowRoomAccounts } from '@/api/@types'
 
 export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|undefined) => {
   const [chatMessages, setChatMessages] = useState<ChatList[] | null>(null)
   const firebaseRepository = FirebaseRepository.getInstance()
-  
+  const scrollRef = useRef<HTMLDivElement>(null)
   const { fetchChatMessages, addChatMessage,getUId } = firebaseRepository
-  useEffect(() => {
-    // チャットメッセージの変更を監視
-    // const unsubscribe = fetchChatMessages(roomId, (chats) => {
-    //   handleSetChatMessages(chats)
-    //  })
-    // console.log(chatMessages);
-    
 
+
+  useEffect(() => {
+
+    if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'local') return
+    // チャットメッセージの変更を監視
+    const unsubscribe = fetchChatMessages(roomId, (chats) => {
+      handleSetChatMessages(chats)
+     })
     // コンポーネントのアンマウント時に監視を解除
-    // return () => {
-    //   unsubscribe && unsubscribe()
-    // }
+
+    return () => {
+      unsubscribe && unsubscribe()
+    }
   }, [roomId])
+
+  useEffect(() => {
+    let isMounted = true // マウント状態をトラッキング
+    if (scrollRef.current && isMounted) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+    return () => {
+      isMounted = false // アンマウントを検出
+    }
+  }, [chatMessages]);
 
   const handleSetChatMessages = async(chats: Chat[]) => {
     const uid = await getUId()
@@ -37,26 +49,33 @@ export const useChatMessage = (roomId:string,members:Domain_NowRoomAccounts[]|un
       }
     }
     )
-    setChatMessages(chatList)
+
+    if(process.env.NEXT_PUBLIC_ENVIRONMENT === 'local') {
+      setChatMessages((prevState)=>prevState?[...prevState,...chatList]:chatList)
+    }else{
+      setChatMessages(chatList)
+    }
   }
 
   const handleSendChatMessage = async (message: string) => {
-    const uid = await getUId()
-    const mychat = {
-      Message: message,
-      CreatedAt: "2021-09-01T00:00:00.000Z",
-      UID: uid,
+    if(process.env.NEXT_PUBLIC_ENVIRONMENT === 'local') {
+      const uid = await getUId()
+      const mychat = {
+        Message: message,
+        CreatedAt: "2021-09-01T00:00:00.000Z",
+        UID: uid,
+      }
+      const otherchat = {
+        Message: message,
+        CreatedAt: "2021-09-01T00:00:00.000Z",
+        UID:"sample",
+      }
+      handleSetChatMessages([mychat,otherchat])
+    }else{
+    const result = await addChatMessage(roomId, message)
+    return result 
     }
-    const otherchat = {
-      Message: message,
-      CreatedAt: "2021-09-01T00:00:00.000Z",
-      UID:"sample",
-    }
-    handleSetChatMessages([mychat,otherchat])
-    // const result = await addChatMessage(roomId, message)
-    // return result
   }
 
-
-  return { chatMessages, handleSendChatMessage}
+  return { chatMessages, handleSendChatMessage, scrollRef}
 }

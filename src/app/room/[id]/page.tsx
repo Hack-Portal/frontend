@@ -1,54 +1,76 @@
-'use client'
 import { Header } from '@/components/layouts/Header'
 import React from 'react'
 import { Box, Grid } from '@/lib/mui/muiRendering'
-import { RoomCenter } from './_components/RoomCenter/Index'
-import { RoomLeft } from './_components/RoomLeft/Index'
-import { useTab } from '@/hooks/useTab'
-import { useRoom } from './_hooks/useRoom'
-import { RoomRight } from './_components/RoomRight/Index'
+import { RoomCenter } from './_components/RoomCenter'
+import { RoomLeft } from './_components/RoomLeft'
+import { RoomRight } from './_components/RoomRight'
+import { RoomHeader } from './_components/RoomHeader'
+import { HackathonService } from './_services/Hackathon'
 
 export const dynamic = 'force-static'
 
-const RoomDetail = ({ params }: { params: { id: string } }) => {
+const RoomDetail = async ({ params }: { params: { id: string } }) => {
   const roomId = params.id
-  const { room } = useRoom(roomId)
-  const { tab, handleSetTab } = useTab()
+  const Hackathon = new HackathonService()
+  const hackathons = await Hackathon.fetchAll()
+
   return (
-    <Box
-      sx={{
-        bgcolor: '#fff',
-        maxHeight: '100vh',
-        overflowY: 'hidden',
-      }}
-    >
-      {room && (
-        <>
-          <Header />
-          <Grid
-            container
-            justifyContent={'center'}
-            sx={{
-              maxHeight: '90vh',
-              marginTop: '-16px',
-            }}
-          >
-            {/* member */}
+    <>
+      <Header />
 
-            <Grid item xs>
-              <RoomLeft room={room} tab={tab} handleSetTab={handleSetTab} />
-            </Grid>
-
-            {/* chat */}
-            <RoomCenter roomId={roomId} members={room.now_member}/>
-            {/* chat info */}
-            <Grid item xs>
-              <RoomRight users={room.now_member!} />
-            </Grid>
+      <Box
+        sx={{
+          bgcolor: '#fff',
+          overflowY: 'hidden',
+          height: 'calc(100vh - 56px)',
+        }}
+      >
+        {/* container */}
+        <Grid container direction={'row'} height={'100%'}>
+          {/* info */}
+          <Grid item xs={2.5}>
+            <RoomLeft roomId={roomId}/>
           </Grid>
-        </>
-      )}
-    </Box>
+          {/* info */}
+
+          {/* right area with header*/}
+          <Grid
+            item
+            xs={9.5}
+            sx={{
+              borderRight: '2px solid #eee',
+              borderLeft: '2px solid #eee',
+            }}
+            height={'100%'}
+          >
+            <Grid
+              container
+              justifyContent={'center'}
+              bgcolor={'#fff'}
+              direction={'column'}
+            >
+              <Grid item xs={2}>
+                <RoomHeader roomId={roomId} hackathons={hackathons}/>
+              </Grid>
+              {/* right area */}
+              <Grid item xs={10} height={'100%'}>
+                <Grid container direction={'row'} height={'100%'}>
+                  <Grid item xs={9.5}>
+                    <RoomCenter roomId={roomId} />
+                  </Grid>
+                  <Grid item xs={2.5}>
+                    <RoomRight />
+                  </Grid>
+                </Grid>
+              </Grid>
+              {/* right area*/}
+            </Grid>
+            {/* right area with header*/}
+          </Grid>
+        </Grid>
+        {/* container */}
+      </Box>
+    </>
   )
 }
 

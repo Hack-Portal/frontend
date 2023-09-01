@@ -42,7 +42,7 @@ export const SignUpDetailForm = (props: Props) => {
       direction={'column'}
     >
       <Controller
-        name="icon"
+        name="icons"
         control={control}
         render={({ field }) => (
           <InputLabel>

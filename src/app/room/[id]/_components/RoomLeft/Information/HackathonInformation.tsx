@@ -13,39 +13,30 @@ export const HackathonInformation = (props: Props) => {
   return (
     <Grid
       container
-      sx={{ backgroundColor: '#fff' }}
+      sx={{ backgroundColor: '#fff', maxWidth: '320px' }}
       direction={'column'}
       gap={1}
     >
       <Grid item>
-        <CustomAccordion title={'タイトル'}>
-          {hackathon.name}
-        </CustomAccordion>
-      </Grid>
-      <Grid item>
-        <CustomAccordion title={'リンク'}>
-          {hackathon.link}
-        </CustomAccordion>
-      </Grid>
-      <Grid item>
         <CustomAccordion title={'募集締め切り'}>
-          <Typography>{formatDate(hackathon.expired!)}</Typography>
+          {formatDate(hackathon.expired!)}
         </CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'開催日'}>
-          <Typography>{formatDate(hackathon.start_date!)}</Typography>
+          {formatDate(hackathon.start_date!)}
         </CustomAccordion>
       </Grid>
       <Grid item>
-        <CustomAccordion title={'期間'}>
-          <Typography>{hackathon.term}日間</Typography>
-        </CustomAccordion>
+        <CustomAccordion title={'期間'}>{hackathon.term}日間</CustomAccordion>
       </Grid>
       <Grid item>
         <CustomAccordion title={'タグ'}>
           {hackathon.status_tag?.map((tag, index) => (
-            <Typography key={index}>{tag.status}</Typography>
+            <Typography key={index} component={'span'}>
+               {tag.status}
+              {index + 1 != hackathon.status_tag?.length && "、"}
+            </Typography>
           ))}
         </CustomAccordion>
       </Grid>

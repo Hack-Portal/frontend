@@ -1,23 +1,14 @@
 'use client'
 import React, { ChangeEvent, useEffect } from 'react'
-import {
-  Box,
-  Grid,
-  Typography,
-} from '@/lib/mui/muiRendering'
+import { Box, Grid, Typography } from '@/lib/mui/muiRendering'
 
 import { SignInForm } from './SignInForm'
 import { useSignIn } from '../../hooks/useSignIn'
 import { LoginCheck } from '@/services/LoginCheck'
-import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
 
 export const SignInFormContainer = () => {
-  const { error,handleEmailLogin,handleGoogleLogin} = useSignIn()
-  const { handlePushRouter } = useCustomRouter()
-  useEffect(() => {
-    const login = new LoginCheck()
-    login.check(handlePushRouter)
-  }, [])
+  const { error, handleEmailLogin, handleGoogleLogin } = useSignIn()
 
   return (
     <Grid

@@ -4,7 +4,9 @@ import { RoomService } from '../_services/Room'
 import { PostRoom } from '../_types/postroom'
 import { useRecoilState } from 'recoil'
 import { roomListState } from '@/store/atoms/roomsAtom'
-import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
+import { useLoginCheck } from '@/hooks/useLoginCheck'
+import { useError } from '@/hooks/useError'
 
 export const useRooms = () => {
   const [rooms, setRooms] =
@@ -14,12 +16,23 @@ export const useRooms = () => {
   const handleSetPreview = (room: Domain_ListRoomResponse) => {
     setPreviewRoom(room)
   }
-  const fetchRooms = async () => {
-    const Room = new RoomService()
-    const response = await Room.fetchAll()
+  const { handleError } = useError()
 
-    if (response) {
+  const fetchRooms = async () => {
+    console.log('fetchRooms')
+
+    const Room = new RoomService()
+    try {
+      const response = await Room.fetchAll()
       setRooms(response)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        // 型ガード
+        console.error('APIリクエストエラー:', error.message)
+        handleError(error)
+      } else {
+        console.error('未知のエラー:', error)
+      }
     }
   }
 
@@ -44,9 +57,7 @@ export const useRooms = () => {
     }
   }
 
-  useEffect(() => {
-    fetchRooms()
-  }, [])
+  useLoginCheck(fetchRooms)
 
   return { rooms, createRoom, previewRoom, handleSetPreview, handleJoinRoom }
 }

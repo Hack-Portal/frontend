@@ -46,6 +46,7 @@ export class RoomRepository implements RoomInterface {
 
   public async fetchById(id: string,token: string) {
     try {
+      console.log(id,token);
       const client = api(
         aspida(axios, {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,

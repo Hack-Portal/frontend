@@ -3,8 +3,9 @@ import { User, onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
 import { CreateUser } from '../services/createUser'
 import { EmailSignUpFormData, SignUpFormData } from '../types/formData'
-import { useCustomRouter } from '@/components/layouts/hooks/CustomRouter'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
 import { useIcon } from '@/hooks/useIcon'
+import { useLoginCheck } from '@/hooks/useLoginCheck'
 
 export const useSignUp = () => {
   const [isLogin, setIsLogin] = useState(false)
@@ -44,19 +45,27 @@ export const useSignUp = () => {
     const user = await User.authGoogle(() => {
       setIsLogin(true)
     })
+
     if (user) {
       setUser(user)
+    }
+
+    if (!isLogin) {
+      setError('このメールアドレスは既に使用されています')
     }
     return user
   }
 
+  // 要チェック
   const createUser = async (formData: SignUpFormData) => {
-    const requestData =  {...formData,icon:icon}
-    const user = await User.create(requestData)
-    if (user) {
-      handlePushRouter('/signin')
-    }
+    const requestData = { ...formData, icons: icon }
+    await User.create(requestData)
+
+    handlePushRouter('/signin')
   }
+
+  // ()=>{}はcallback関数,
+  useLoginCheck(() => {}, true)
 
   return {
     isLogin,

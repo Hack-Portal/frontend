@@ -16,16 +16,18 @@ export type Domain_AccountRateResponse = {
 
 export type Domain_AccountResponses = {
   account_id?: string | undefined
-  created_at?: string | undefined
+  discord_link?: string | undefined
   email?: string | undefined
   explanatory_text?: string | undefined
   frameworks?: Repository_Framework[] | undefined
+  github_link?: string | undefined
   icon?: string | undefined
   locate?: string | undefined
   rate?: number | undefined
   show_locate?: boolean | undefined
   show_rate?: boolean | undefined
   tech_tags?: Repository_TechTag[] | undefined
+  twitter_link?: string | undefined
   username?: string | undefined
 }
 
@@ -81,13 +83,17 @@ export type Domain_FollowResponse = {
   username?: string | undefined
 }
 
+export type Domain_GetJoinRoomResponse = {
+  room_id?: string | undefined
+  title?: string | undefined
+}
+
 export type Domain_GetRoomResponse = {
   description?: string | undefined
   hackathon?: Domain_RoomHackathonInfo | undefined
+  is_closing?: boolean | undefined
   is_status?: boolean | undefined
   member_limit?: number | undefined
-  members_frameworks?: Domain_RoomFramework[] | undefined
-  members_tech_tags?: Domain_RoomTechTags[] | undefined
   now_member?: Domain_NowRoomAccounts[] | undefined
   room_id?: string | undefined
   title?: string | undefined
@@ -131,6 +137,7 @@ export type Domain_ListRoomResponse = {
 
 export type Domain_ListRoomRoomInfo = {
   created_at?: string | undefined
+  is_closing?: boolean | undefined
   member_limit?: number | undefined
   room_id?: string | undefined
   title?: string | undefined
@@ -138,8 +145,12 @@ export type Domain_ListRoomRoomInfo = {
 
 export type Domain_NowRoomAccounts = {
   account_id?: string | undefined
+  frameworks?: Repository_Framework[] | undefined
   icon?: string | undefined
   is_owner?: boolean | undefined
+  roles?: Repository_Role[] | undefined
+  tech_tags?: Repository_TechTag[] | undefined
+  username?: string | undefined
 }
 
 export type Domain_PastWorkMembers = {
@@ -192,26 +203,24 @@ export type Domain_RoomTechTags = {
 }
 
 export type Domain_UpdateAccountRequest = {
+  discord_link?: string | undefined
   explanatory_text?: string | undefined
   frameworks?: string | undefined
+  github_link?: string | undefined
   locate_id?: number | undefined
   show_locate?: boolean | undefined
   show_rate?: boolean | undefined
   tech_tags?: string | undefined
+  twitter_link?: string | undefined
   username?: string | undefined
 }
 
 export type Domain_UpdateRoomRequestBody = {
   description?: string | undefined
   hackathonID?: number | undefined
+  is_closing?: boolean | undefined
   member_limit?: number | undefined
   title?: string | undefined
-}
-
-export type Repository_Follow = {
-  create_at?: string | undefined
-  from_account_id?: string | undefined
-  to_account_id?: string | undefined
 }
 
 export type Repository_Framework = {
@@ -223,6 +232,11 @@ export type Repository_Framework = {
 export type Repository_Locate = {
   locate_id?: number | undefined
   name?: string | undefined
+}
+
+export type Repository_Role = {
+  role?: string | undefined
+  role_id?: number | undefined
 }
 
 export type Repository_StatusTag = {
