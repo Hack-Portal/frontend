@@ -13,7 +13,6 @@ export const Left = (props: Props) => {
 
   const techs = user?.tech_tags
   const frameworks = user?.frameworks
-
   return (
     <Grid sx={{ textAlign: 'center' }} width={'900px'}>
       <Typography
@@ -34,7 +33,7 @@ export const Left = (props: Props) => {
         {/* 1段目 */}
         <Grid display={'flex'} margin={'auto'}>
           {/* アイコンとfollw */}
-          <Grid display={'flex'} flexDirection={'column'}>
+          <Grid width={200} display={'flex'} flexDirection={'column'}>
             <Avatar
               sx={{ width: 200, height: 200 }}
               src={user?.icon}
@@ -49,11 +48,11 @@ export const Left = (props: Props) => {
             >
               <Grid textAlign={'center'} sx={{ mr: 1 }}>
                 <Typography color={'#999'}>フォロー</Typography>
-                <Typography>{follow}</Typography>
+                <Typography>{follow ? follow : 0}</Typography>
               </Grid>
               <Grid textAlign={'center'} sx={{ ml: 1 }}>
                 <Typography color={'#999'}>フォロワー</Typography>
-                <Typography>{follower}</Typography>
+                <Typography>{follower ? follower : 0}</Typography>
               </Grid>
             </Grid>
           </Grid>
@@ -81,7 +80,9 @@ export const Left = (props: Props) => {
                 自己紹介
               </Typography>
               <Typography sx={{ mt: 2 }}>
-                {/* {user?.explanatory_text} */}
+                {user?.explanatory_text
+                  ? user?.explanatory_text
+                  : 'よろしくお願いします!!!'}
               </Typography>
             </Grid>
           </Grid>
@@ -109,17 +110,10 @@ export const Left = (props: Props) => {
         display={'flex'}
         sx={{ mt: 3, pl: 9, width: '600px' }}
       >
-        <Chip label="JavaScript" sx={{ ml: 1, mr: 1 }} />
-        <Chip label="React" sx={{ ml: 1, mr: 1 }} />
-        <Chip label="Vue" sx={{ ml: 1, mr: 1 }} />
-
-        {/* {techs?.map((tech) => {
+        {techs?.map((tech) => {
           return (
             <Chip
-              sx={{ mt: 2 
-               ml: 1, mr: 1 
-              
-              }}
+              sx={{ mt: 2, ml: 1, mr: 1 }}
               key={tech?.tech_tag_id}
               label={tech?.language}
             />
@@ -127,13 +121,17 @@ export const Left = (props: Props) => {
         })}
         {frameworks?.map((framework) => {
           return (
-            <Chip key={framework?.framework_id} label={framework?.framework}
-            sx={{
-              mt:2
-               ml: 1, mr: 1 }}
+            <Chip
+              key={framework?.framework_id}
+              label={framework?.framework}
+              sx={{
+                mt: 2,
+                ml: 1,
+                mr: 1,
+              }}
             />
           )
-        })} */}
+        })}
       </Grid>
     </Grid>
   )
