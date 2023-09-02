@@ -11,7 +11,6 @@ type Props = {
 export const OtherChatArea = (props: Props) => {
   const { chatMessage, link } = props
 
-  console.log(chatMessage)
   return (
     <Grid
       container
