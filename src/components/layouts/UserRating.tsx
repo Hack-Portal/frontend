@@ -22,7 +22,6 @@ export const UserRating = async () => {
         flexDirection: 'column',
         px: 2.5,
         pt: 3,
-        width: '15vw',
         height: '100%',
       }}
     >

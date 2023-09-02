@@ -103,29 +103,29 @@ export const Header = () => {
         </Box>
 
         <Box sx={{ display: 'flex', gap: 3 }}>
-          <Link href="/notification">
-            {/* <Badge badgeContent={2} variant="solid" color="danger"> */}
-            <NotificationsNoneOutlinedIcon
+          {/* <Link href="/notification"> */}
+          {/* <Badge badgeContent={2} variant="solid" color="danger"> */}
+          {/* <NotificationsNoneOutlinedIcon
               sx={{
                 width: 30,
                 height: 30,
               }}
               color="info"
-            />
-            {/* </Badge> */}
-          </Link>
+            /> */}
+          {/* </Badge> */}
+          {/* </Link> */}
 
-          <Link href="/joinedRoom">
-            {/* <Badge badgeContent={2} variant="solid" color="danger"> */}
-            <MailOutlineIcon
+          {/* <Link href="/joinedRoom"> */}
+          {/* <Badge badgeContent={2} variant="solid" color="danger"> */}
+          {/* <MailOutlineIcon
               sx={{
                 width: 30,
                 height: 30,
               }}
               color="info"
-            />
-            {/* </Badge> */}
-          </Link>
+            /> */}
+          {/* </Badge> */}
+          {/* </Link> */}
 
           {user ? (
             <Link href={`/user/${user.uid}`}>
@@ -139,7 +139,7 @@ export const Header = () => {
             </Link>
           ) : (
             <Link href={'/signin'}>
-              <Button variant='outlined' >ログイン</Button>
+              <Button variant="outlined">ログイン</Button>
             </Link>
           )}
         </Box>
