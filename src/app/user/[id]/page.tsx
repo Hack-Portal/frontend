@@ -8,7 +8,7 @@ import { Reight } from './_components/Reight'
 import { FetchProfile } from './_services/fetchProfile'
 import { FollowService } from './_services/fechFollow'
 import { Domain_AccountResponses } from '@/api/@types'
-import { Transition } from './_services/Transition'
+import { Transition } from './_services/transition'
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { id } = params

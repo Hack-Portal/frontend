@@ -21,11 +21,9 @@ export const useChatMessage = (
 
     const unsubscribe = fetchChatMessages(roomId, (chats) => {
       handleSetChatMessages(chats)
-      console.log('a')
     })
     // コンポーネントのアンマウント時に監視を解除
 
-    console.log('deploy')
     return () => {
       unsubscribe && unsubscribe()
     }
@@ -49,8 +47,6 @@ export const useChatMessage = (
       const foundMember = members?.find(
         (member) => member.account_id === chat.UID,
       )
-      console.log('foundMember', foundMember)
-      console.log(members)
 
       return {
         ...chat,

@@ -128,7 +128,7 @@ export class FirebaseRepository {
       await auth.signOut()
     } catch (e) {
       if (e instanceof FirebaseError) {
-        console.log(e)
+        // console.log(e)
         throw e
       }
     }
@@ -141,7 +141,7 @@ export class FirebaseRepository {
       await user.delete()
     } catch (e) {
       if (e instanceof FirebaseError) {
-        console.log(e)
+        // console.log(e)
         throw e
       }
     }
@@ -165,13 +165,13 @@ export class FirebaseRepository {
           callback(chats) // コールバックで結果を返します
         },
         (error) => {
-          console.log('Fetch chat messages failed: ', error)
+          // console.log('Fetch chat messages failed: ', error)
         },
       )
 
       return unsubscribe // サブスクリプションの解除に使用できる関数を返します
     } catch (e) {
-      console.log('Error fetching chat messages: ', e)
+      // console.log('Error fetching chat messages: ', e)
       return undefined // エラーが発生した場合はundefinedを返します
     }
   }

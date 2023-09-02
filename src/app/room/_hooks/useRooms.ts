@@ -19,8 +19,6 @@ export const useRooms = () => {
   const { handleError } = useError()
 
   const fetchRooms = async () => {
-    console.log('fetchRooms')
-
     const Room = new RoomService()
     try {
       const response = await Room.fetchAll()

@@ -22,7 +22,7 @@ export class LoginCheck {
       }
       // loginしているが、DBにユーザー情報がない場合はアカウント削除する
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
 }

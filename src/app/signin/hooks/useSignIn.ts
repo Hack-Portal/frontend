@@ -15,7 +15,7 @@ export const useSignIn = () => {
 
   const handleEmailLogin = async (formData: EmailSignInFormData) => {
     const user = await signIn.email(formData)
-    console.log(user)
+
     if (typeof user == 'string') {
       setError('メールアドレスかパスワードが間違っています')
     }

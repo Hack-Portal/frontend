@@ -17,6 +17,7 @@ import {
 } from '@/api/@types'
 import { formatDate } from '@/utils/formatDate'
 import { Content } from './RoomRecordRightBox/Content'
+import { useEffect } from 'react'
 
 type Props = Partial<{
   hackathonName: string
@@ -38,6 +39,8 @@ export const RoomRecordRightBox = (props: Props) => {
     hackathonName,
     expired,
   } = props
+
+
 
   return (
     <CardContent
@@ -61,7 +64,6 @@ export const RoomRecordRightBox = (props: Props) => {
             fontSize: '1.6rem',
             width: '220px',
           }}
-          
         >
           {title}
         </Typography>
@@ -158,7 +160,7 @@ export const RoomRecordRightBox = (props: Props) => {
           {frameworks?.map((framework) => (
             <Avatar
               sx={{ width: 35, height: 35, mr: 0.5 }}
-              src={framework.framework?.framework}
+              src={framework.framework?.icon}
               alt={'tech-icon'}
               variant="rounded"
               key={framework.framework?.framework_id}
