@@ -34,7 +34,7 @@ export const Tutorial = () => {
           ),
           description:
             'ヘッダーのハッカソンを選択すると募集中のハッカソンを一覧で見ることができます。期間やタグを基準に参加するハッカソンを選びましょう。クリックするとハッカソンの外部ページを開きます。',
-          image: 'hackathoninfo_lite2',
+          image: 'hackathoninfo_lite2.gif',
         },
       ],
     },
