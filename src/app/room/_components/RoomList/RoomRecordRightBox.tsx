@@ -40,9 +40,7 @@ export const RoomRecordRightBox = (props: Props) => {
     expired,
   } = props
 
-  useEffect(() => {
-    console.log(frameworks)
-  }, [frameworks])
+
 
   return (
     <CardContent

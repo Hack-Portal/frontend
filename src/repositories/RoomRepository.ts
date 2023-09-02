@@ -35,7 +35,7 @@ export class RoomRepository implements RoomInterface {
       const response = await client.rooms.get({
         query: { page_size: 10, page_id: 1 },
       })
-      
+
       return response.body
     } catch (error) {
       // エラー処理
@@ -44,9 +44,9 @@ export class RoomRepository implements RoomInterface {
     }
   }
 
-  public async fetchById(id: string,token: string) {
+  public async fetchById(id: string, token: string) {
     try {
-      console.log(id,token);
+      // console.log(id,token);
       const client = api(
         aspida(axios, {
           baseURL: process.env.NEXT_PUBLIC_TEST_URL,
