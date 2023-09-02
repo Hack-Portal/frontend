@@ -1,7 +1,8 @@
 import { FirebaseRepository } from '@/repositories/FirebaseRepository'
-import { publicEncrypt } from 'crypto'
+// import { useRouter } from 'next/router'
+// const router = useRouter()
 
-export class SignOut {
+export class Transition {
   private firebaseRepository: FirebaseRepository
 
   constructor() {

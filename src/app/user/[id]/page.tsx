@@ -8,14 +8,15 @@ import { Reight } from './_components/Reight'
 import { FetchProfile } from './_services/fetchProfile'
 import { FollowService } from './_services/fechFollow'
 import { Domain_AccountResponses } from '@/api/@types'
-import { SignOut } from './_services/signout'
+import { Transition } from './_services/transition'
 
 const Profile = ({ params }: { params: { id: string } }) => {
   const { id } = params
 
   const fetchProfile = new FetchProfile()
   const fetchFollow = new FollowService()
-  const signOut = new SignOut()
+  const transition = new Transition()
+
   const [userState, setUser] = useState<Domain_AccountResponses | undefined>(
     undefined,
   )
@@ -53,7 +54,7 @@ const Profile = ({ params }: { params: { id: string } }) => {
         <Reight
           data={userState}
           signout={() => {
-            signOut
+            transition.signOutService()
           }}
         />
       </Paper>
