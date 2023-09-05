@@ -6,6 +6,7 @@ import { FirebaseRepository } from './FirebaseRepository'
 import api from '@/api/$api'
 import { Domain_CreateRoomRequestBody } from '@/api/@types'
 import { RoomAccountInterface } from '@/types/RoomAccount'
+import { API_URL } from '@/constants/API_URL'
 
 export class RoomAccountRepository implements RoomAccountInterface {
   private static instance: RoomAccountRepository
@@ -22,7 +23,7 @@ export class RoomAccountRepository implements RoomAccountInterface {
     try{
       const client = api(
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          baseURL: API_URL,
           headers: {
             authorization: this.authorization,
             dbAuthorization: token,

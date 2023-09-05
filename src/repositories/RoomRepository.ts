@@ -21,13 +21,10 @@ export class RoomRepository implements RoomInterface {
   public async fetchAll(token: string) {
     try {
       const client = api(
-        // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
-
+        
         aspida(axios, {
-          // baseURL: process.env.NEXT_PUBLIC_API_URL,
           baseURL: API_URL,
           headers: {
-            // authorization: this.authorization,
             dbAuthorization: token,
           },
         }),
@@ -47,7 +44,6 @@ export class RoomRepository implements RoomInterface {
 
   public async fetchById(id: string, token: string) {
     try {
-      // console.log(id,token);
       const client = api(
         aspida(axios, {
           baseURL: API_URL,
