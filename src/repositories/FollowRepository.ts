@@ -4,6 +4,7 @@ import api from '@/api/$api'
 import { FollowInterface } from '@/types/FollowInterface'
 import { getAuthorizationHeader } from '../utils/headerManager'
 import { FirebaseRepository } from './FirebaseRepository'
+import { API_URL } from '@/constants/API_URL'
 
 export class FollowRepository implements FollowInterface {
   private static instance: FollowRepository
@@ -19,7 +20,7 @@ export class FollowRepository implements FollowInterface {
     try {
       const client = api(
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          baseURL:API_URL,
           headers: {
             'Content-Type': 'application/json',
             dbAuthorization: token,
@@ -44,7 +45,7 @@ export class FollowRepository implements FollowInterface {
     try {
       const client = api(
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          baseURL: API_URL,
           headers: {
             'Content-Type': 'application/json',
             dbAuthorization: token,

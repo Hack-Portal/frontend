@@ -18,6 +18,7 @@ import aspida from '@aspida/axios'
 import axios from 'axios'
 import { Domain_GetRoomResponse } from '@/api/@types'
 import { EmailSignInFormData } from '@/app/signin/types/formData'
+import { API_URL } from '@/constants/API_URL'
 
 export class FirebaseRepository {
   private static instance: FirebaseRepository | null = null
@@ -186,7 +187,7 @@ export class FirebaseRepository {
     try {
       const client = api(
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          baseURL: API_URL,
           headers: {
             dbauthorization: token,
           },
