@@ -16,11 +16,14 @@ export class UpdateUser implements UpdateUserInterface {
 
   // UpdateUserクラスのupdateメソッド
   public update: SubmitHandler<ProfileFormData> = async (formData) => {
-    const user = await this.firebaseRepository.getCurrentUser()
+    console.log(formData)
 
+    const user = await this.firebaseRepository.getCurrentUser()
     if (!user) {
       throw new Error('ユーザーが存在しません')
     }
+
+    console.log(1)
 
     const token = await user?.getIdToken()
 

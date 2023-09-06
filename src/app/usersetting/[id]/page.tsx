@@ -50,6 +50,7 @@ const profileStting = () => {
           updateUser={updateUser}
           handleSetIcon={handleSetIcon}
           preview={preview}
+          icon={icon}
         />
       </Paper>
     </>

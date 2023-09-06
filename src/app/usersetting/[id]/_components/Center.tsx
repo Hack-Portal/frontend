@@ -16,6 +16,7 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from '@/lib/mui/muiRendering'
+import { Domain_AccountResponses } from '@/api/@types'
 const Locate = [
   {
     id: 1,
@@ -207,12 +208,13 @@ type Props = {
   Userinfo: any
   handleSetIcon: (file: File | null) => void
   preview: string | null
+  icon: File | null
 }
 
 export const Center = (props: Props) => {
-  const { updateUser, Userinfo, handleSetIcon, preview } = props
+  const { updateUser, Userinfo, handleSetIcon, preview, icon } = props
 
-  const { control, handleSubmit, setValue } = useForm<any>({
+  const { control, handleSubmit, setValue } = useForm<Domain_AccountResponses>({
     defaultValues: {
       username: Userinfo?.username,
       icon: Userinfo?.icon,
@@ -244,12 +246,14 @@ export const Center = (props: Props) => {
   }, [setLocate, Userinfo?.locate])
 
   const onSubmit = async (data: any) => {
+    console.log(data)
+
     try {
-      const updatedUser = await updateUser.update(data)
+      const updatedUser = await updateUser.update({ ...data, icon: icon })
       console.log('ユーザーが更新されました:', updatedUser)
-      console.log(data)
+      console.log(data.icon)
     } catch (error) {
-      console.log(data)
+      // console.log(data)
       console.error('ユーザーの更新に失敗しました:', error)
     }
   }
