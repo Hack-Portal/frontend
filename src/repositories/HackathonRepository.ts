@@ -4,6 +4,7 @@ import api from '@/api/$api'
 import { HackathonInterface } from '@/types/HackathonInterface'
 import { getAuthorizationHeader } from '../utils/headerManager'
 import { Domain_HackathonResponses } from '@/api/@types'
+import { API_URL } from '@/constants/API_URL'
 
 export class HackathonRepository implements HackathonInterface {
   private static instance: HackathonRepository
@@ -25,7 +26,7 @@ export class HackathonRepository implements HackathonInterface {
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          baseURL: API_URL,
           headers: { authorization: this.authorization },
         }),
       )

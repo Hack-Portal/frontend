@@ -3,12 +3,10 @@ import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '@/api/$api'
 import { Domain_AccountResponses } from '@/api/@types'
+import { API_URL } from '@/constants/API_URL'
 
 export class UserRepository implements UserInterface {
   private static instance: UserRepository | null = null
-
-  constructor() {}
-
   public static getInstance(): UserRepository {
     if (!this.instance) {
       this.instance = new UserRepository()
@@ -26,7 +24,7 @@ export class UserRepository implements UserInterface {
     try {
       const client = api(
         aspida(axios, {
-          baseURL: process.env.NEXT_PUBLIC_TEST_URL,
+          baseURL: API_URL,
           headers: {
             'Content-Type': 'application/json',
             dbauthorization: token,
@@ -49,30 +47,14 @@ export class UserRepository implements UserInterface {
    * @param body formData
    */
   public async create(body: any, token: string) {
-    // public async create(body: any, token: string) {
-
     try {
-      // const client = api(
-      //   aspida(axios, {
-      //     baseURL: process.env.NEXT_PUBLIC_TEST_URL,
-      //     headers: {
-      //       dbauthorization: token,
-      //     },
-      //   }),
-      // )
-
-      // const response = await client.accounts.post({ body: body })
-
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_TEST_URL + '/accounts',
-        {
-          method: 'POST',
-          headers: {
-            dbauthorization: token,
-          },
-          body: body,
+      const response = await fetch(API_URL + '/accounts', {
+        method: 'POST',
+        headers: {
+          dbauthorization: token,
         },
-      )
+        body: body,
+      })
       const data = await response.json()
 
       return data.body as Domain_AccountResponses

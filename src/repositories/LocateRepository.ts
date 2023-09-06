@@ -1,6 +1,7 @@
 import api from '@/api/$api'
 import axios from 'axios'
 import aspida from '@aspida/axios'
+import { API_URL } from '@/constants/API_URL'
 
 export class LocateRepository implements LocateRepository {
   private static instance: LocateRepository
@@ -15,7 +16,7 @@ export class LocateRepository implements LocateRepository {
   public async fetchAll() {
     try {
       const client = api(
-        aspida(axios, { baseURL: process.env.NEXT_PUBLIC_API_URL }),
+        aspida(axios, { baseURL: API_URL }),
       )
 
       const response = await client.locates.get()
