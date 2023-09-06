@@ -16,7 +16,11 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from '@/lib/mui/muiRendering'
-import { Domain_AccountResponses } from '@/api/@types'
+import {
+  Domain_AccountResponses,
+  Repository_Framework,
+  Repository_TechTag,
+} from '@/api/@types'
 const Locate = [
   {
     id: 1,
@@ -228,34 +232,74 @@ export const Center = (props: Props) => {
       discord_link: Userinfo?.discord_link,
     },
   })
+
+  console.log(control)
   const [locate, setLocate] = React.useState<any>(Userinfo?.locate)
 
   const changeTech = (event: SelectChangeEvent<string[]>) => {
     const { value } = event.target
-    setValue('tech_tags', typeof value === 'string' ? value.split(',') : value)
+    const tagsStrings =
+      typeof value === 'string'
+        ? (value.split(',') as Repository_TechTag[])
+        : (value as Repository_TechTag[])
+
+    setValue('tech_tags', tagsStrings)
   }
 
   const changeFramework = (event: SelectChangeEvent<string[]>) => {
     const { value } = event.target
-    setValue('frameworks', typeof value === 'string' ? value.split(',') : value)
+    const frameworkStrings =
+      typeof value === 'string'
+        ? (value.split(',') as Repository_TechTag[])
+        : (value as Repository_TechTag[])
+    setValue('frameworks', frameworkStrings)
   }
   useEffect(() => {
     if (Userinfo?.locate) {
       setLocate(Userinfo?.locate)
     }
+    handleSetDefaultForm(Userinfo)
   }, [setLocate, Userinfo?.locate])
 
   const onSubmit = async (data: any) => {
-    console.log(data)
-
     try {
-      const updatedUser = await updateUser.update({ ...data, icon: icon })
+      const techTagsToValue = data.tech_tags.map((tech_tag: string) => {
+        const techTag = TechList.find((tech) => tech.language === tech_tag)
+        return techTag?.tech_tag_id
+      })
+      const frameworksToValue = data.frameworks.map((framework: string) => {
+        const frameworkTag = frameworkList.find(
+          (frameworks) => frameworks.framework === framework,
+        )
+        return frameworkTag?.framework_id
+      })
+      const updatedUser = await updateUser.update({
+        ...data,
+        tech_tags: techTagsToValue,
+        frameworks: frameworksToValue,
+        icon: icon,
+      })
       console.log('ユーザーが更新されました:', updatedUser)
-      console.log(data.icon)
     } catch (error) {
-      // console.log(data)
+      console.log(data)
       console.error('ユーザーの更新に失敗しました:', error)
     }
+  }
+
+  const handleSetDefaultForm = (
+    Userinfo: Domain_AccountResponses | undefined,
+  ) => {
+    console.log(Userinfo)
+    setValue('username', Userinfo?.username)
+    setValue('icon', Userinfo?.icon)
+    setValue('locate', Userinfo?.locate)
+    setValue('explanatory_text', Userinfo?.explanatory_text)
+    // setValue('tech_tags', Userinfo?.tech_tags.tech_tag_id)
+    // setValue('frameworks', Userinfo?.frameworks?.framework_id)
+    setValue('email', Userinfo?.email)
+    setValue('twitter_link', Userinfo?.twitter_link)
+    setValue('github_link', Userinfo?.github_link)
+    setValue('discord_link', Userinfo?.discord_link)
   }
 
   return (
@@ -300,12 +344,9 @@ export const Center = (props: Props) => {
               <Controller
                 name="username"
                 control={control}
+                // defaultValue={Userinfo?.username}
                 render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    sx={{ width: '200px', mb: 4 }}
-                  />
+                  <TextField fullWidth sx={{ width: '200px', mb: 4 }} />
                 )}
               />
             </Grid>

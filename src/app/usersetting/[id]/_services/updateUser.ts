@@ -23,8 +23,6 @@ export class UpdateUser implements UpdateUserInterface {
       throw new Error('ユーザーが存在しません')
     }
 
-    console.log(1)
-
     const token = await user?.getIdToken()
 
     const body = new FormData()
