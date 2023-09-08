@@ -2,6 +2,11 @@ import { useCustomRouter } from '@/hooks/useCustomRouter'
 import { LoginCheck } from '@/services/LoginCheck'
 import { useEffect } from 'react'
 
+/**
+ * 
+ * @param callback login後の処理
+ * @param disableRedirect 
+ */
 export const useLoginCheck = (
   callback: () => void,
   disableRedirect: boolean = false,
