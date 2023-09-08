@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import {
   Box,
   Button,
@@ -11,7 +11,7 @@ import Image from 'next/image'
 import React from 'react'
 import { RoomMenu } from './RoomMenu'
 import { Domain_GetRoomResponse, Domain_RoomHackathonInfo } from '@/api/@types'
-import { useRoom } from '../_hooks/useRoom'
+import { useRoomDetail } from '../_hooks/useRoomDetail'
 
 type Props = {
   hackathons?: Domain_RoomHackathonInfo[]
@@ -19,8 +19,15 @@ type Props = {
 }
 
 export const RoomHeader = (props: Props) => {
-  const { hackathons,roomId} = props
-  const { room,isMenuOpened, anchorEl, handleOpenMenu, handleCloseMenu, isOwner } = useRoom(roomId)
+  const { hackathons, roomId } = props
+  const {
+    room,
+    isMenuOpened,
+    anchorEl,
+    handleOpenMenu,
+    handleCloseMenu,
+    isOwner,
+  } = useRoomDetail(roomId)
   return (
     <Grid
       container
@@ -37,7 +44,11 @@ export const RoomHeader = (props: Props) => {
           >
             {room.title}
           </Typography>
-          <a href={room.hackathon?.link} target="_blank" rel="noopener noreferrer">
+          <a
+            href={room.hackathon?.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Typography sx={{ fontSize: '1rem' }} color={'#aaa'}>
               {room.hackathon?.name}
             </Typography>
