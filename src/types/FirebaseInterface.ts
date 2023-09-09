@@ -1,9 +1,8 @@
 import { AuthProvider, User } from 'firebase/auth'
 import { Chat } from './chat'
-import { Domain_GetRoomResponse } from '@/api/@types'
 
 export interface FirebaseInterface {
-  getCurentUser(): Promise<User | null>
+  getCurrentUser(): Promise<User | null>
   getUId(): Promise<string>
   getToken(): Promise<string>
   SNSSignIn(provider: AuthProvider): Promise<User>
@@ -13,6 +12,6 @@ export interface FirebaseInterface {
   deleteAccount(): Promise<void>
   fetchChatMessages(
     roomId: string,
-    callback: (chats: Chat[]) => void
+    callback: (chats: Chat[]) => void,
   ): (() => void) | undefined
 }
