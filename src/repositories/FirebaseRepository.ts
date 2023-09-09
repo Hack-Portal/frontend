@@ -11,7 +11,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
-import { onSnapshot, doc, collection } from 'firebase/firestore'
+import { onSnapshot, doc, collection, Unsubscribe } from 'firebase/firestore'
 import { Chat } from '@/types/chat'
 import api from '@/api/$api'
 import aspida from '@aspida/axios'
@@ -151,7 +151,7 @@ export class FirebaseRepository {
   public fetchChatMessages(
     roomId: string,
     callback: (chats: Chat[]) => void,
-  ): (() => void) | undefined {
+  ): Unsubscribe | undefined {
     try {
       const chatsRef = collection(db, 'chatrooms', roomId, 'chats') // roomIdを指定してサブコレクションを指定
 
@@ -177,30 +177,5 @@ export class FirebaseRepository {
     }
   }
 
-  public addChatMessage = async (
-    roomId: string,
-    message: string,
-  ): Promise<Domain_GetRoomResponse> => {
-    const user = await this.getCurrentUser()
-    if (!user) throw new Error('ユーザーが存在しません')
-    const token = await user?.getIdToken()
-    try {
-      const client = api(
-        aspida(axios, {
-          baseURL: API_URL,
-          headers: {
-            dbauthorization: token,
-          },
-        }),
-      )
-      const response = await client.rooms
-        ._room_id(roomId)
-        .addchat.post({ body: { message: message, account_id: user.uid } })
-      return response.body
-    } catch (error) {
-      // エラー処理
-      console.error('APIリクエストエラー:', error)
-      throw error
-    }
-  }
+ 
 }
