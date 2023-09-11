@@ -19,9 +19,9 @@ export class RoomDetailService {
   public async fetchById(roomId: string) {
     const token = await this.firebaseRepository.getToken()
     if (!token) throw new Error('トークンが存在しません')
-    
+
     try {
-      const rooms = await this.roomRepository.fetchById(roomId,token)
+      const rooms = await this.roomRepository.fetchById(roomId, token)
       return rooms
     } catch (error) {
       console.error('Serviceのエラー:', error)
@@ -29,4 +29,16 @@ export class RoomDetailService {
     }
   }
 
+  public async createChatMessage(roomId: string, message: string) {
+    const token = await this.firebaseRepository.getToken()
+    const uid = await this.firebaseRepository.getUId()
+    if (!token) throw new Error('トークンが存在しません')
+
+    try {
+      await this.roomRepository.createChatMessage(token, uid, roomId, message)
+    } catch (error) {
+      console.error('Serviceのエラー:', error)
+      throw error
+    }
+  }
 }

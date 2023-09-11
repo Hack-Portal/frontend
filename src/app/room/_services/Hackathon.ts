@@ -1,7 +1,6 @@
 import { HackathonRepository } from "@/repositories/HackathonRepository";
 
 export class HackathonService {
-    // このクラス内でHackathonRepositoryを使うために、HackathonRepositoryをインスタンス化しておく
   private hackathonRepository: HackathonRepository;
 
   constructor() {
