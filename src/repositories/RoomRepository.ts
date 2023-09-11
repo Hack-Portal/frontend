@@ -4,7 +4,10 @@ import { getAuthorizationHeader } from '../utils/headerManager'
 import { RoomInterface } from '@/types/RoomInterface'
 import { FirebaseRepository } from './FirebaseRepository'
 import api from '@/api/$api'
-import { Domain_CreateRoomRequestBody, Domain_GetRoomResponse } from '@/api/@types'
+import {
+  Domain_CreateRoomRequestBody,
+  Domain_GetRoomResponse,
+} from '@/api/@types'
 import { API_URL } from '@/constants/API_URL'
 
 export class RoomRepository implements RoomInterface {
@@ -18,10 +21,14 @@ export class RoomRepository implements RoomInterface {
     return RoomRepository.instance
   }
 
+  /**
+   *  全てのルームを取得します
+   * @param token
+   * @returns
+   */
   public async fetchAll(token: string) {
     try {
       const client = api(
-        
         aspida(axios, {
           baseURL: API_URL,
           headers: {
@@ -42,6 +49,12 @@ export class RoomRepository implements RoomInterface {
     }
   }
 
+  /**
+   * 指定したIDのルームを取得します
+   * @param id
+   * @param token
+   * @returns
+   */
   public async fetchById(id: string, token: string) {
     try {
       const client = api(
@@ -61,6 +74,12 @@ export class RoomRepository implements RoomInterface {
     }
   }
 
+  /**
+   * ルームを作成します
+   * @param roomInfo
+   * @param token
+   * @returns
+   */
   public async create(roomInfo: Domain_CreateRoomRequestBody, token: string) {
     try {
       const client = api(
@@ -81,20 +100,20 @@ export class RoomRepository implements RoomInterface {
     }
   }
 
-/**
- * 
- * @param token 
- * @param uid 
- * @param roomId 
- * @param message 
- * @returns 
- */
+  /**
+   *
+   * @param token
+   * @param uid
+   * @param roomId
+   * @param message
+   * @returns
+   */
   public createChatMessage = async (
-    token:string,
+    token: string,
     uid: string,
     roomId: string,
     message: string,
-  ): Promise<Domain_GetRoomResponse> => {
+  ): Promise<void> => {
     try {
       const client = api(
         aspida(axios, {
@@ -104,10 +123,9 @@ export class RoomRepository implements RoomInterface {
           },
         }),
       )
-      const response = await client.rooms
+      await client.rooms
         ._room_id(roomId)
         .addchat.post({ body: { message: message, account_id: uid } })
-      return response.body
     } catch (error) {
       // エラー処理
       console.error('APIリクエストエラー:', error)
