@@ -1,11 +1,7 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
-import { getAuthorizationHeader } from '../utils/headerManager'
-import { RoomInterface } from '@/types/RoomInterface'
-import { FirebaseRepository } from './FirebaseRepository'
 import api from '@/api/$api'
-import { Domain_CreateRoomRequestBody } from '@/api/@types'
-import { RoomAccountInterface } from '@/types/RoomAccount'
+import { RoomAccountInterface } from '@/types/RoomAccountInterface'
 import { API_URL } from '@/constants/API_URL'
 
 export class RoomAccountRepository implements RoomAccountInterface {
@@ -19,8 +15,8 @@ export class RoomAccountRepository implements RoomAccountInterface {
     return RoomAccountRepository.instance
   }
 
-  public async join(roomId: string,accountId:string,token: string) {
-    try{
+  public async join(roomId: string, accountId: string, token: string) {
+    try {
       const client = api(
         aspida(axios, {
           baseURL: API_URL,
@@ -30,12 +26,13 @@ export class RoomAccountRepository implements RoomAccountInterface {
           },
         }),
       )
-      const response = await client.rooms._room_id(roomId).members.post({body: {account_id: accountId}})
+      const response = await client.rooms
+        ._room_id(roomId)
+        .members.post({ body: { account_id: accountId } })
       return response.body
-    }catch(error){
+    } catch (error) {
       console.error('APIリクエストエラー:', error)
       throw error
     }
   }
 }
-

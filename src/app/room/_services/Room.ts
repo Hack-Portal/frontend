@@ -3,17 +3,24 @@ import { RoomRepository } from '@/repositories/RoomRepository'
 import { PostRoom } from '../_types/postroom'
 import { RoomAccountRepository } from '@/repositories/RoomAcount'
 import { Domain_ListRoomResponse } from '@/api/@types'
+import { RoomInterface } from '@/types/RoomInterface'
+import { FirebaseInterface } from '@/types/FirebaseInterface'
+import { RoomAccountInterface } from '@/types/RoomAccountInterface'
 
 export class RoomService {
   // このクラス内でRoomRepositoryを使うために、RoomRepositoryをインスタンス化しておく
-  private roomRepository: RoomRepository
-  private firebaseRepository: FirebaseRepository
-  private roomAccountRepository: RoomAccountRepository
+  private roomRepository: RoomInterface
+  private firebaseRepository: FirebaseInterface
+  private roomAccountRepository: RoomAccountInterface
 
-  constructor() {
-    this.roomRepository = RoomRepository.getInstance()
-    this.firebaseRepository = FirebaseRepository.getInstance()
-    this.roomAccountRepository = RoomAccountRepository.getInstance()
+  constructor(
+    RoomRepository: RoomInterface,
+    FirebaseRepository: FirebaseInterface,
+    RoomAccountRepository: RoomAccountInterface,
+  ) {
+    this.roomRepository = RoomRepository
+    this.firebaseRepository = FirebaseRepository
+    this.roomAccountRepository = RoomAccountRepository
   }
 
   public async fetchAll() {
@@ -52,7 +59,7 @@ export class RoomService {
       callback()
       return room
     }
-    
+
     const roomId = room?.rooms?.room_id as string
 
     const token = await this.firebaseRepository.getToken()

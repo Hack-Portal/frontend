@@ -7,8 +7,26 @@ import { roomListState } from '@/store/atoms/roomsAtom'
 import { useCustomRouter } from '@/hooks/useCustomRouter'
 import { useLoginCheck } from '@/hooks/useLoginCheck'
 import { useError } from '@/hooks/useError'
+import { NODE_ENV } from '@/constants/NODE_ENV'
+import { RoomRepository } from '@/repositories/RoomRepository'
+import { FirebaseRepository } from '@/repositories/FirebaseRepository'
+import { RoomAccountRepository } from '@/repositories/RoomAcount'
+import { FirebaseMockRepository } from '@/repositories/mocks/FirebaseMockRepository'
+import { RoomMockRepository } from '@/repositories/mocks/RoomMockRepository'
+import { RoomAccountMockRepository } from '@/repositories/mocks/RoomAccountMockRepository'
 
 export const useRooms = () => {
+  const roomRepo =
+    NODE_ENV === 'local' ? new RoomMockRepository() : new RoomRepository()
+  const firebaseRepo =
+    NODE_ENV === 'local'
+      ? new FirebaseMockRepository()
+      : new FirebaseRepository()
+  const roomAccountRepo =
+    NODE_ENV === 'local'
+      ? new RoomAccountMockRepository()
+      : new RoomAccountRepository()
+
   const [rooms, setRooms] =
     useRecoilState<Domain_ListRoomResponse[]>(roomListState)
   const [previewRoom, setPreviewRoom] = useState<Domain_ListRoomResponse>()
@@ -17,9 +35,9 @@ export const useRooms = () => {
     setPreviewRoom(room)
   }
   const { handleError } = useError()
+  const Room = new RoomService(roomRepo, firebaseRepo, roomAccountRepo)
 
   const fetchRooms = async () => {
-    const Room = new RoomService()
     try {
       const response = await Room.fetchAll()
       setRooms(response)
@@ -35,7 +53,6 @@ export const useRooms = () => {
   }
 
   const createRoom = async (data: PostRoom) => {
-    const Room = new RoomService()
     const response = await Room.create(data)
     if (response) {
       fetchRooms()
@@ -43,8 +60,6 @@ export const useRooms = () => {
   }
 
   const handleJoinRoom = async (room: Domain_ListRoomResponse) => {
-    const Room = new RoomService()
-
     try {
       await Room.join(room, () => {
         handlePushRouter(`/room/${room.rooms?.room_id}`)
