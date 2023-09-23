@@ -15,6 +15,7 @@ import { RoomRepository } from '@/repositories/RoomRepository'
 import { NODE_ENV } from '@/constants/NODE_ENV'
 import { FirebaseMockRepository } from '@/repositories/mocks/FirebaseMockRepository'
 import { RoomMockRepository } from '@/repositories/mocks/RoomMockRepository'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
 
 export const useRoomDetail = (roomId: string) => {
   const [isOwner, setIsOwner] = useState<boolean>(false)
@@ -22,6 +23,7 @@ export const useRoomDetail = (roomId: string) => {
   const setRoomMembers = useSetRecoilState(roomMembersState)
   const { tab, handleSetTab } = useTab()
   const { isMenuOpened, anchorEl, handleOpenMenu, handleCloseMenu } = useMenu()
+  const { handlePushRouter } = useCustomRouter()
   const firebaseRepo =
     NODE_ENV === 'mock'
       ? new FirebaseMockRepository()
@@ -73,6 +75,19 @@ export const useRoomDetail = (roomId: string) => {
     }
   }
 
+  /**
+   * ルームを削除する
+   */
+  const handleDeleteRoom = async () => {
+    try {
+      await Room.delete(roomId)
+      handlePushRouter('/room')
+    } catch (error) {
+      console.error('An error occurred while fetching the room:', error)
+      throw error
+    }
+  }
+
   useLoginCheck(handleSetRoom)
 
   //  アンマウント時にstateを初期化する
@@ -93,5 +108,6 @@ export const useRoomDetail = (roomId: string) => {
     handleCloseMenu,
     handleSetTab,
     handleUpdateRoom,
+    handleDeleteRoom,
   }
 }

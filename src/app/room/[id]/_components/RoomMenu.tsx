@@ -33,9 +33,19 @@ type Props = {
   isOwner: boolean
   handleClose: () => void
   handleUpdateRoom: (roomInfo: Domain_UpdateRoomRequestBody) => Promise<void>
+  handleDeleteRoom: () => void
 }
 export const RoomMenu = (props: Props) => {
-  const { isOpen,anchorEl, isOwner, room, hackathons,handleClose,handleUpdateRoom } = props
+  const {
+    isOpen,
+    anchorEl,
+    isOwner,
+    room,
+    hackathons,
+    handleClose,
+    handleUpdateRoom,
+    handleDeleteRoom,
+  } = props
   const members = room?.now_member
   const subMenu = useMenu()
   const { text, isCheck, handleCheck } = useMenuCheck(isOwner, isOpen)
@@ -110,7 +120,7 @@ export const RoomMenu = (props: Props) => {
               <Divider />
             </>
           )}
-          <MenuItem onClick={handleCheck}>
+          <MenuItem onClick={isCheck ? handleDeleteRoom : handleCheck}>
             <ListItemIcon>
               <DeleteOutlineOutlinedIcon fontSize="small" color="error" />
             </ListItemIcon>

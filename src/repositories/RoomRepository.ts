@@ -132,6 +132,29 @@ export class RoomRepository implements RoomInterface {
   }
 
   /**
+   * ルームを削除します
+   * @param roomId
+   * @param token
+   */
+  public async delete(roomId: string, token: string) {
+    try {
+      const client = api(
+        aspida(axios, {
+          baseURL: API_URL,
+          headers: {
+            authorization: this.authorization,
+            dbAuthorization: token,
+          },
+        }),
+      )
+      await client.rooms._room_id(roomId).delete()
+    } catch (error) {
+      // エラー処理
+      console.error('APIリクエストエラー:', error)
+      throw error
+    }}
+
+  /**
    *
    * @param token
    * @param uid

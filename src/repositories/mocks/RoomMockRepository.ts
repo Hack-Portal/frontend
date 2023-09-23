@@ -318,6 +318,9 @@ export class RoomMockRepository implements RoomInterface {
   ): Promise<Domain_GetRoomResponse> {
     return Promise.resolve(mockRoom)
   }
+  delete(roomId: string, token: string): Promise<void> {
+    return Promise.resolve()
+  }
   create(
     roomInfo: Domain_CreateRoomRequestBody,
     token: string,

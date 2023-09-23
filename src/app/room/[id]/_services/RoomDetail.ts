@@ -50,4 +50,21 @@ export class RoomDetailService {
       throw error
     }
   }
+
+  /**
+   *  ルーム詳細情報を削除する
+   * @param roomId 
+   * @returns 
+   */
+  public async delete(roomId: string) {
+    const token = await this.firebaseRepository.getToken()
+    if (!token) throw new Error('トークンが存在しません')
+
+    try {
+      await this.roomRepository.delete(roomId, token)
+    } catch (error) {
+      console.error('Serviceのエラー:', error)
+      throw error
+    }
+  }
 }

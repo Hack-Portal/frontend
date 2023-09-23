@@ -11,6 +11,9 @@ export const useMenuCheck = (isOwner: boolean, isMenuOpen: boolean) => {
   }, [isMenuOpen])
 
   const handleCheck = () => {
+    console.log('isCheck', isCheck);
+    
+    if (isCheck) return;
     setText((prevState) => '本当に' + prevState + 'しますか？')
     setIsCheck(true)
   }

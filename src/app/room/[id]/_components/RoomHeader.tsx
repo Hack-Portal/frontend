@@ -27,7 +27,8 @@ export const RoomHeader = (props: Props) => {
     isOwner,
     handleOpenMenu,
     handleCloseMenu,
-    handleUpdateRoom
+    handleUpdateRoom,
+    handleDeleteRoom,
   } = useRoomDetail(roomId)
   return (
     <Grid
@@ -72,6 +73,7 @@ export const RoomHeader = (props: Props) => {
           isOpen={isMenuOpened}
           handleClose={handleCloseMenu}
           handleUpdateRoom={handleUpdateRoom}
+          handleDeleteRoom={handleDeleteRoom}
         />
       </Grid>
 
