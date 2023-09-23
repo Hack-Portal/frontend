@@ -411,15 +411,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * Remove Account In Rooms
              * @returns success response
              */
-            delete: (option?: { config?: T | undefined } | undefined) =>
+            delete: (option?: { query?: Methods15['delete']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods15['delete']['resBody'], BasicHeaders, Methods15['delete']['status']>(prefix, `${prefix1}${PATH9}`, DELETE, option).json(),
             /**
              * Remove Account In Rooms
              * @returns success response
              */
-            $delete: (option?: { config?: T | undefined } | undefined) =>
+            $delete: (option?: { query?: Methods15['delete']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods15['delete']['resBody'], BasicHeaders, Methods15['delete']['status']>(prefix, `${prefix1}${PATH9}`, DELETE, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH9}`,
+            $path: (option?: { method: 'delete'; query: Methods15['delete']['query'] } | undefined) =>
+              `${prefix}${prefix1}${PATH9}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
           },
           /**
            * Get Room

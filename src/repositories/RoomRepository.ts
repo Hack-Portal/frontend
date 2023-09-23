@@ -154,6 +154,31 @@ export class RoomRepository implements RoomInterface {
       throw error
     }}
 
+    /**
+     * ルームを退出します
+     * @param roomId
+     * @param userId
+     * @param token
+     */
+    public async leave(roomId: string, userId: string, token: string) {
+      try {
+        const client = api(
+          aspida(axios, {
+            baseURL: API_URL,
+            headers: {
+              authorization: this.authorization,
+              dbAuthorization: token,
+            },
+          }),
+        )
+        await client.rooms._room_id(roomId).members.delete({ query: { account_id: userId } })
+      } catch (error) {
+        // エラー処理
+        console.error('APIリクエストエラー:', error)
+        throw error
+      }
+    }
+
   /**
    *
    * @param token

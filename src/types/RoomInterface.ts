@@ -18,6 +18,7 @@ export interface RoomInterface {
     token: string,
   ): Promise<Domain_GetRoomResponse>
   delete(roomId: string, token: string): Promise<void>
+  leave(roomId: string,userId:string, token: string): Promise<void>
   createChatMessage(
     token: string,
     uid: string,

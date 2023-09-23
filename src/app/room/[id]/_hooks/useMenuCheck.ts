@@ -21,7 +21,8 @@ export const useMenuCheck = (isOwner: boolean, isMenuOpen: boolean) => {
   const handleCancel = () => {
     setText(isOwner ? '削除' : '退出')
     setIsCheck(false)
-}
+  }
+
 
   return { text, isCheck, handleCheck }
 }

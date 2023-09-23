@@ -78,14 +78,23 @@ export const useRoomDetail = (roomId: string) => {
   /**
    * ルームを削除する
    */
-  const handleDeleteRoom = async () => {
-    try {
-      await Room.delete(roomId)
-      handlePushRouter('/room')
-    } catch (error) {
-      console.error('An error occurred while fetching the room:', error)
-      throw error
+  const handleDeleteORLeaveRoom = async () => {
+    if (isOwner) {
+      try {
+        await Room.delete(roomId)
+      } catch (error) {
+        console.error('An error occurred while fetching the room:', error)
+        throw error
+      }
+    } else {
+      try {
+        await Room.leave(roomId)
+      } catch (error) {
+        console.error('An error occurred while fetching the room:', error)
+        throw error
+      }
     }
+    handlePushRouter('/room')
   }
 
   useLoginCheck(handleSetRoom)
@@ -108,6 +117,6 @@ export const useRoomDetail = (roomId: string) => {
     handleCloseMenu,
     handleSetTab,
     handleUpdateRoom,
-    handleDeleteRoom,
+    handleDeleteORLeaveRoom,
   }
 }

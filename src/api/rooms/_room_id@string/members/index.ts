@@ -13,6 +13,10 @@ export type Methods = {
 
   /** Remove Account In Rooms */
   delete: {
+    query?: {
+      account_id?: string | undefined
+    } | undefined
+
     status: 200
     /** success response */
     resBody: Types.Controller_SuccessResponse

@@ -67,4 +67,21 @@ export class RoomDetailService {
       throw error
     }
   }
+
+  /**
+   *  ルームから退出する
+   * @param roomId 
+   * @returns 
+   */
+  public async leave(roomId: string) {
+    const token = await this.firebaseRepository.getToken()
+    if (!token) throw new Error('トークンが存在しません')
+    const userId = await this.firebaseRepository.getUId()
+    try {
+      await this.roomRepository.leave(roomId,userId,token)
+    } catch (error) {
+      console.error('Serviceのエラー:', error)
+      throw error
+    }
+  }
 }
