@@ -2,20 +2,22 @@ import { FirebaseRepository } from '@/repositories/FirebaseRepository'
 import { RoomRepository } from '@/repositories/RoomRepository'
 
 import { RoomAccountRepository } from '@/repositories/RoomAcount'
-import { Domain_ListRoomResponse } from '@/api/@types'
+import { Domain_ListRoomResponse, Domain_UpdateRoomRequestBody } from '@/api/@types'
 
 export class RoomDetailService {
-  // このクラス内でRoomRepositoryを使うために、RoomRepositoryをインスタンス化しておく
   private roomRepository: RoomRepository
   private firebaseRepository: FirebaseRepository
-  private roomAccountRepository: RoomAccountRepository
 
   constructor() {
     this.roomRepository = RoomRepository.getInstance()
     this.firebaseRepository = FirebaseRepository.getInstance()
-    this.roomAccountRepository = RoomAccountRepository.getInstance()
   }
 
+  /**
+   *  ルーム詳細情報を取得する
+   * @param roomId 
+   * @returns 
+   */
   public async fetchById(roomId: string) {
     const token = await this.firebaseRepository.getToken()
     if (!token) throw new Error('トークンが存在しません')
@@ -29,13 +31,18 @@ export class RoomDetailService {
     }
   }
 
-  public async createChatMessage(roomId: string, message: string) {
+  /**
+   *  ルーム詳細情報を更新する
+   * @param roomId 
+   * @returns 
+   */
+  public async update(roomId: string,roomInfo:Domain_UpdateRoomRequestBody) {
     const token = await this.firebaseRepository.getToken()
-    const uid = await this.firebaseRepository.getUId()
     if (!token) throw new Error('トークンが存在しません')
 
     try {
-      await this.roomRepository.createChatMessage(token, uid, roomId, message)
+      const rooms = await this.roomRepository.update(roomId,roomInfo, token)
+      return rooms
     } catch (error) {
       console.error('Serviceのエラー:', error)
       throw error

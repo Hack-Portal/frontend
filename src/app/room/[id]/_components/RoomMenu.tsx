@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { useMenu } from '@/hooks/useMenu'
 import {
   ListItemIcon,
@@ -17,20 +17,26 @@ import {
 } from '@/lib/mui/muiRendering'
 import React, { useState } from 'react'
 import { useMenuCheck } from '../_hooks/useMenuCheck'
-import { Domain_GetRoomResponse, Domain_HackathonResponses, Domain_NowRoomAccounts } from '@/api/@types'
+import {
+  Domain_GetRoomResponse,
+  Domain_HackathonResponses,
+  Domain_NowRoomAccounts,
+  Domain_UpdateRoomRequestBody,
+} from '@/api/@types'
 import { UpdateModalWindow } from './RoomMenu/UpdateModalWindow'
 
 type Props = {
-  hackathons?:Domain_HackathonResponses[]
+  hackathons?: Domain_HackathonResponses[]
   room?: Domain_GetRoomResponse
   anchorEl: HTMLElement | null
   isOpen: boolean
-  handleClose: () => void
   isOwner: boolean
+  handleClose: () => void
+  handleUpdateRoom: (roomInfo: Domain_UpdateRoomRequestBody) => Promise<void>
 }
 export const RoomMenu = (props: Props) => {
-  const { isOpen, handleClose, anchorEl, isOwner, room,hackathons } = props
-  const  members  = room?.now_member
+  const { isOpen,anchorEl, isOwner, room, hackathons,handleClose,handleUpdateRoom } = props
+  const members = room?.now_member
   const subMenu = useMenu()
   const { text, isCheck, handleCheck } = useMenuCheck(isOwner, isOpen)
 
@@ -115,9 +121,10 @@ export const RoomMenu = (props: Props) => {
         </MenuList>
       </Menu>
       <UpdateModalWindow
-        room={room}
+        room_id={room?.room_id}
         isOpen={subMenu.isOpenedModal}
         handleClose={subMenu.handleCloseModal}
+        handleUpdateRoom={handleUpdateRoom}
         hackathons={hackathons}
       />
     </>
