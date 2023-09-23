@@ -1,4 +1,7 @@
-import { Domain_GetRoomResponse, Domain_UpdateRoomRequestBody } from '@/api/@types'
+import {
+  Domain_GetRoomResponse,
+  Domain_UpdateRoomRequestBody,
+} from '@/api/@types'
 import { useEffect, useState } from 'react'
 import { RoomDetailService } from '../_services/RoomDetail'
 import { useLoginCheck } from '@/hooks/useLoginCheck'
@@ -8,6 +11,10 @@ import { FirebaseRepository } from '@/repositories/FirebaseRepository'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { roomMembersState } from '@/store/atoms/roomMembers'
 import { roomState } from '@/store/atoms/roomAtoms'
+import { RoomRepository } from '@/repositories/RoomRepository'
+import { NODE_ENV } from '@/constants/NODE_ENV'
+import { FirebaseMockRepository } from '@/repositories/mocks/FirebaseMockRepository'
+import { RoomMockRepository } from '@/repositories/mocks/RoomMockRepository'
 
 export const useRoomDetail = (roomId: string) => {
   const [isOwner, setIsOwner] = useState<boolean>(false)
@@ -15,8 +22,13 @@ export const useRoomDetail = (roomId: string) => {
   const setRoomMembers = useSetRecoilState(roomMembersState)
   const { tab, handleSetTab } = useTab()
   const { isMenuOpened, anchorEl, handleOpenMenu, handleCloseMenu } = useMenu()
-  const firebase = new FirebaseRepository()
-  const Room = new RoomDetailService()
+  const firebaseRepo =
+    NODE_ENV === 'mock'
+      ? new FirebaseMockRepository()
+      : new FirebaseRepository()
+  const RoomRepo =
+    NODE_ENV === 'mock' ? new RoomMockRepository() : new RoomRepository()
+  const Room = new RoomDetailService(RoomRepo, firebaseRepo)
 
   /**
    *
@@ -27,7 +39,7 @@ export const useRoomDetail = (roomId: string) => {
   const handleCheckOwner = async (data: Domain_GetRoomResponse) => {
     const result =
       data?.now_member?.find((member) => member.is_owner)?.account_id ===
-      (await firebase.getUId())
+      (await firebaseRepo.getUId())
     setIsOwner(result)
   }
 
@@ -36,13 +48,11 @@ export const useRoomDetail = (roomId: string) => {
    */
   const handleSetRoom = async () => {
     try {
-      
       const data = await Room.fetchById(roomId)
       setRoom(data)
       handleCheckOwner(data)
       setRoomMembers(data.now_member!)
-      console.log('room', room);
-      
+      console.log('room', room)
     } catch (error) {
       console.error('An error occurred while fetching the room:', error)
       throw error
@@ -52,9 +62,9 @@ export const useRoomDetail = (roomId: string) => {
   /**
    * ルーム情報を更新する
    */
-  const handleUpdateRoom = async (roomInfo:Domain_UpdateRoomRequestBody) => {
+  const handleUpdateRoom = async (roomInfo: Domain_UpdateRoomRequestBody) => {
     try {
-      const data = await Room.update(roomId,roomInfo)
+      const data = await Room.update(roomId, roomInfo)
       setRoom(data)
       handleCheckOwner(data)
     } catch (error) {
@@ -65,8 +75,7 @@ export const useRoomDetail = (roomId: string) => {
 
   useLoginCheck(handleSetRoom)
 
-  
-  //  アンマウント時にstateを初期化する 
+  //  アンマウント時にstateを初期化する
   useEffect(() => {
     return () => {
       setRoom({})
@@ -83,6 +92,6 @@ export const useRoomDetail = (roomId: string) => {
     handleOpenMenu,
     handleCloseMenu,
     handleSetTab,
-    handleUpdateRoom
+    handleUpdateRoom,
   }
 }

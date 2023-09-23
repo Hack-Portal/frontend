@@ -3,14 +3,16 @@ import { RoomRepository } from '@/repositories/RoomRepository'
 
 import { RoomAccountRepository } from '@/repositories/RoomAcount'
 import { Domain_ListRoomResponse, Domain_UpdateRoomRequestBody } from '@/api/@types'
+import { RoomInterface } from '@/types/RoomInterface'
+import { FirebaseInterface } from '@/types/FirebaseInterface'
 
 export class RoomDetailService {
-  private roomRepository: RoomRepository
-  private firebaseRepository: FirebaseRepository
+  private roomRepository: RoomInterface
+  private firebaseRepository: FirebaseInterface
 
-  constructor() {
-    this.roomRepository = RoomRepository.getInstance()
-    this.firebaseRepository = FirebaseRepository.getInstance()
+  constructor(RoomRepository: RoomInterface, FirebaseRepository: FirebaseInterface) {
+    this.roomRepository = RoomRepository
+    this.firebaseRepository = FirebaseRepository
   }
 
   /**
