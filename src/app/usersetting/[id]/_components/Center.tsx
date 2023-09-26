@@ -21,7 +21,7 @@ import {
   Repository_Framework,
   Repository_TechTag,
 } from '@/api/@types'
-const Locate = [
+const LocateList = [
   {
     id: 1,
     label: '北海道',
@@ -226,13 +226,11 @@ export const Center = (props: Props) => {
       explanatory_text: Userinfo?.loclantory_text,
       tech_tags: Userinfo?.tech_tag_id || [],
       frameworks: Userinfo?.framework_id || [],
-      email: Userinfo?.email,
       twitter_link: Userinfo?.twitter_link,
       github_link: Userinfo?.github_link,
       discord_link: Userinfo?.discord_link,
     },
   })
-
   console.log(control)
   const [locate, setLocate] = React.useState<any>(Userinfo?.locate)
 
@@ -245,7 +243,6 @@ export const Center = (props: Props) => {
 
     setValue('tech_tags', tagsStrings)
   }
-
   const changeFramework = (event: SelectChangeEvent<string[]>) => {
     const { value } = event.target
     const frameworkStrings =
@@ -294,14 +291,12 @@ export const Center = (props: Props) => {
     setValue('icon', Userinfo?.icon)
     setValue('locate', Userinfo?.locate)
     setValue('explanatory_text', Userinfo?.explanatory_text)
-    // setValue('tech_tags', Userinfo?.tech_tags.tech_tag_id)
-    // setValue('frameworks', Userinfo?.frameworks?.framework_id)
-    setValue('email', Userinfo?.email)
+    setValue('tech_tags', Userinfo?.tech_tags)
+    setValue('frameworks', Userinfo?.frameworks)
     setValue('twitter_link', Userinfo?.twitter_link)
     setValue('github_link', Userinfo?.github_link)
     setValue('discord_link', Userinfo?.discord_link)
   }
-
   return (
     <Grid
       container
@@ -372,8 +367,8 @@ export const Center = (props: Props) => {
                         onChange={handleChange} // 修正されたハンドラを使用
                         sx={{ width: '100%', mb: 4 }}
                       >
-                        {Locate &&
-                          Locate.map((locate) => (
+                        {LocateList &&
+                          LocateList.map((locate) => (
                             <MenuItem value={locate.id} key={locate.label}>
                               {locate.label}
                             </MenuItem>
@@ -407,7 +402,6 @@ export const Center = (props: Props) => {
           </Grid>
         </Grid>
       </Grid>
-
       <Grid>
         {/* 技術スタック */}
         <Grid display={'flex'}>
@@ -418,7 +412,6 @@ export const Center = (props: Props) => {
               <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-chip-label">言語</InputLabel>
                 <Select
-                  multiple
                   {...field}
                   labelId="demo-multiple-chip-label"
                   id="demo-multiple-chip"
@@ -504,20 +497,6 @@ export const Center = (props: Props) => {
       <Grid>
         <Grid sx={{ textAlign: 'center', mb: 2 }} display={'flex'}>
           <Controller
-            name="email"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                defaultValue={Userinfo?.email || ''}
-                {...field}
-                fullWidth
-                label="メールアドレス"
-                sx={{ width: '70%', mb: 4 }}
-              />
-            )}
-          />
-
-          <Controller
             name="twitter_link"
             control={control}
             render={({ field }) => (
@@ -544,7 +523,6 @@ export const Center = (props: Props) => {
               />
             )}
           />
-
           <Controller
             name="discord_link"
             control={control}

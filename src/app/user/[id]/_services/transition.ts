@@ -17,4 +17,23 @@ export class Transition {
       throw error
     }
   }
+
+  // public async settingService() {
+  //   let settingPath: string | null = null
+  //   let route = null
+
+  //   try {
+  //     const user = await this.firebaseRepository.getCurrentUser()
+  //     settingPath = `user/${user?.uid}`
+  //     const route = router.push(settingPath)
+
+  //     if (!user) {
+  //       throw new Error('ユーザーが存在しません')
+  //     }
+  //   } catch (error) {
+  //     console.error('settingServiceのエラー', error)
+  //     throw error
+  //   }
+  //   return route
+  // }
 }

@@ -3,7 +3,6 @@ import {
   AuthProvider,
   User,
   browserLocalPersistence,
-  browserSessionPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   setPersistence,
@@ -11,16 +10,11 @@ import {
   signInWithPopup,
 } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
-import { onSnapshot, doc, collection } from 'firebase/firestore'
+import { onSnapshot, collection, Unsubscribe } from 'firebase/firestore'
 import { Chat } from '@/types/chat'
-import api from '@/api/$api'
-import aspida from '@aspida/axios'
-import axios from 'axios'
-import { Domain_GetRoomResponse } from '@/api/@types'
-import { EmailSignInFormData } from '@/app/signin/types/formData'
-import { API_URL } from '@/constants/API_URL'
+import { FirebaseInterface } from '@/types/FirebaseInterface'
 
-export class FirebaseRepository {
+export class FirebaseRepository implements FirebaseInterface {
   private static instance: FirebaseRepository | null = null
 
   public static getInstance(): FirebaseRepository {
@@ -30,6 +24,10 @@ export class FirebaseRepository {
     return this.instance
   }
 
+  /**
+   * 現在ログインしているユーザーを取得します
+   * @returns User | null
+   */
   public getCurrentUser = async (): Promise<User | null> => {
     try {
       return new Promise((resolve) => {
@@ -44,6 +42,10 @@ export class FirebaseRepository {
     }
   }
 
+  /**
+   * 現在ログインしているユーザーのUIDを取得します
+   * @returns string
+   */
   public getUId = async (): Promise<string> => {
     try {
       const user = await this.getCurrentUser()
@@ -55,6 +57,10 @@ export class FirebaseRepository {
     }
   }
 
+  /**
+   * 現在ログインしているユーザーのトークンを取得します
+   * @returns string
+   */
   public async getToken(): Promise<string> {
     try {
       const user = await this.getCurrentUser()
@@ -67,6 +73,11 @@ export class FirebaseRepository {
     }
   }
 
+  /**
+   * SNSログインを行います
+   * @param provider
+   * @returns User
+   */
   public async SNSSignIn(provider: AuthProvider): Promise<User> {
     try {
       const result = await setPersistence(auth, browserLocalPersistence).then(
@@ -84,6 +95,12 @@ export class FirebaseRepository {
     }
   }
 
+  /**
+   * メールアドレスとパスワードを使ってログインします
+   * @param email
+   * @param password
+   * @returns User | string
+   */
   public async emailSignIn(
     email: string,
     password: string,
@@ -104,6 +121,12 @@ export class FirebaseRepository {
     }
   }
 
+  /**
+   * メールアドレスとパスワードを使ってユーザーを登録します
+   * @param email
+   * @param password
+   * @returns User | string
+   */
   public async emailSignUp(
     email: string,
     password: string,
@@ -124,6 +147,9 @@ export class FirebaseRepository {
     }
   }
 
+  /**
+   * ログアウトします
+   */
   public async signOut(): Promise<void> {
     try {
       await auth.signOut()
@@ -135,6 +161,9 @@ export class FirebaseRepository {
     }
   }
 
+  /**
+   * アカウントを削除します
+   */
   public async deleteAccount(): Promise<void> {
     try {
       const user = await this.getCurrentUser()
@@ -148,10 +177,16 @@ export class FirebaseRepository {
     }
   }
 
+  /**
+   * チャットメッセージを取得します
+   * @param roomId
+   * @param callback
+   * @returns Unsubscribe | undefined
+   */
   public fetchChatMessages(
     roomId: string,
     callback: (chats: Chat[]) => void,
-  ): (() => void) | undefined {
+  ): Unsubscribe | undefined {
     try {
       const chatsRef = collection(db, 'chatrooms', roomId, 'chats') // roomIdを指定してサブコレクションを指定
 
@@ -177,30 +212,5 @@ export class FirebaseRepository {
     }
   }
 
-  public addChatMessage = async (
-    roomId: string,
-    message: string,
-  ): Promise<Domain_GetRoomResponse> => {
-    const user = await this.getCurrentUser()
-    if (!user) throw new Error('ユーザーが存在しません')
-    const token = await user?.getIdToken()
-    try {
-      const client = api(
-        aspida(axios, {
-          baseURL: API_URL,
-          headers: {
-            dbauthorization: token,
-          },
-        }),
-      )
-      const response = await client.rooms
-        ._room_id(roomId)
-        .addchat.post({ body: { message: message, account_id: user.uid } })
-      return response.body
-    } catch (error) {
-      // エラー処理
-      console.error('APIリクエストエラー:', error)
-      throw error
-    }
-  }
+ 
 }

@@ -3,14 +3,14 @@ import { Grid } from '@/lib/mui/muiRendering'
 import { Header } from './RoomLeft/Header'
 import { Domain_GetRoomResponse } from '@/api/@types'
 import { Information } from './RoomLeft/Information'
-import { useRoom } from '../_hooks/useRoom'
+import { useRoomDetail } from '../_hooks/useRoomDetail'
 
 type Props = {
-  roomId:string
+  roomId: string
 }
-export const RoomLeft = (props:Props) => {
-  const {roomId}=props
-  const {room,handleSetTab,tab} = useRoom(roomId)
+export const RoomLeft = (props: Props) => {
+  const { roomId } = props
+  const { room, handleSetTab, tab } = useRoomDetail(roomId)
 
   return (
     <Grid
@@ -26,7 +26,7 @@ export const RoomLeft = (props:Props) => {
         },
         pl: 0.7,
         maxWidth: '320px',
-        height: "100%",
+        height: '100%',
       }}
       wrap="nowrap"
     >
