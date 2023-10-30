@@ -2,6 +2,7 @@ import {
   Domain_ListRoomResponse,
   Domain_GetRoomResponse,
   Domain_CreateRoomRequestBody,
+  Domain_UpdateRoomRequestBody,
 } from '@/api/@types'
 import { RoomInterface } from '@/types/RoomInterface'
 
@@ -309,6 +310,19 @@ export class RoomMockRepository implements RoomInterface {
   }
   fetchById(id: string, token: string): Promise<Domain_GetRoomResponse> {
     return Promise.resolve(mockRoom)
+  }
+  update(
+    roomId: string,
+    roomInfo: Domain_UpdateRoomRequestBody,
+    token: string,
+  ): Promise<Domain_GetRoomResponse> {
+    return Promise.resolve(mockRoom)
+  }
+  delete(roomId: string, token: string): Promise<void> {
+    return Promise.resolve()
+  }
+  leave(roomId: string, userId: string, token: string): Promise<void> {
+    return Promise.resolve()
   }
   create(
     roomInfo: Domain_CreateRoomRequestBody,

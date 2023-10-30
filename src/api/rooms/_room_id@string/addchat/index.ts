@@ -6,7 +6,7 @@ export type Methods = {
   post: {
     status: 200
     /** success response */
-    resBody: Types.Domain_GetRoomResponse
+    resBody: Types.Controller_SuccessResponse
     /** add chat Room Request body */
     reqBody: Types.Domain_AddChatRequestBody
   }

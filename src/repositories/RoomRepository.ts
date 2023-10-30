@@ -7,6 +7,7 @@ import api from '@/api/$api'
 import {
   Domain_CreateRoomRequestBody,
   Domain_GetRoomResponse,
+  Domain_UpdateRoomRequestBody,
 } from '@/api/@types'
 import { API_URL } from '@/constants/API_URL'
 
@@ -99,6 +100,84 @@ export class RoomRepository implements RoomInterface {
       throw error
     }
   }
+
+  /**
+   * ルームの情報を更新します
+   * @param roomId
+   */
+  public async update(
+    roomId: string,
+    roomInfo: Domain_UpdateRoomRequestBody,
+    token: string,
+  ) {
+    try {
+      const client = api(
+        aspida(axios, {
+          baseURL: API_URL,
+          headers: {
+            authorization: this.authorization,
+            dbAuthorization: token,
+          },
+        }),
+      )
+      const response = await client.rooms
+        ._room_id(roomId)
+        .put({ body: roomInfo })
+      return response.body
+    } catch (error) {
+      // エラー処理
+      console.error('APIリクエストエラー:', error)
+      throw error
+    }
+  }
+
+  /**
+   * ルームを削除します
+   * @param roomId
+   * @param token
+   */
+  public async delete(roomId: string, token: string) {
+    try {
+      const client = api(
+        aspida(axios, {
+          baseURL: API_URL,
+          headers: {
+            authorization: this.authorization,
+            dbAuthorization: token,
+          },
+        }),
+      )
+      await client.rooms._room_id(roomId).delete()
+    } catch (error) {
+      // エラー処理
+      console.error('APIリクエストエラー:', error)
+      throw error
+    }}
+
+    /**
+     * ルームを退出します
+     * @param roomId
+     * @param userId
+     * @param token
+     */
+    public async leave(roomId: string, userId: string, token: string) {
+      try {
+        const client = api(
+          aspida(axios, {
+            baseURL: API_URL,
+            headers: {
+              authorization: this.authorization,
+              dbAuthorization: token,
+            },
+          }),
+        )
+        await client.rooms._room_id(roomId).members.delete({ query: { account_id: userId } })
+      } catch (error) {
+        // エラー処理
+        console.error('APIリクエストエラー:', error)
+        throw error
+      }
+    }
 
   /**
    *

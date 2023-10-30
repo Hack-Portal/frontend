@@ -1,8 +1,6 @@
-
-"use client"
-import { Domain_GetRoomResponse, Domain_HackathonResponses } from '@/api/@types'
+'use client'
+import { Domain_HackathonResponses, Domain_UpdateRoomRequestBody } from '@/api/@types'
 import { PostRoom } from '@/app/room/_types/postroom'
-import { BorderColorRoundedIcon } from '@/lib/mui/muiRendering'
 import {
   Box,
   Button,
@@ -18,13 +16,14 @@ import { useForm } from 'react-hook-form'
 
 type Props = {
   isOpen: boolean
+  room_id?: string
+  hackathons?: Domain_HackathonResponses[]
   handleClose: () => void
-  room?: Domain_GetRoomResponse
-hackathons?: Domain_HackathonResponses[]
+  handleUpdateRoom: (roomInfo: Domain_UpdateRoomRequestBody) => Promise<void>
 }
 
 export const UpdateModalWindow = (props: Props) => {
-  const { isOpen, handleClose,hackathons } = props
+  const { isOpen, hackathons,room_id,handleClose, handleUpdateRoom } = props
 
   // todo:logicを分離する
   const {
@@ -44,9 +43,21 @@ export const UpdateModalWindow = (props: Props) => {
 
   const text = watch('description')
 
-  const onSubmit = (data: PostRoom) => {
+  const onSubmit = async(data: PostRoom) => {
     // createRoom(data)
-    handleClose()
+    const roomInfo: Domain_UpdateRoomRequestBody = {
+      title: data.title,
+      hackathonID: data.hackathon_id,
+      member_limit: data.member_limit,
+      description: data.description,
+      is_closing: false,
+    }
+    try{
+      await handleUpdateRoom(roomInfo)
+      handleClose()
+    }catch(e){
+      console.log(e)
+    }
   }
 
   return (

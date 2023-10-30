@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { useMenu } from '@/hooks/useMenu'
 import {
   ListItemIcon,
@@ -9,30 +9,45 @@ import {
   EditOutlinedIcon,
   PersonAddOutlinedIcon,
   DeleteOutlineOutlinedIcon,
-  Divider,
   Typography,
   ButtonBase,
-  Avatar,
-  Button,
 } from '@/lib/mui/muiRendering'
 import React, { useState } from 'react'
 import { useMenuCheck } from '../_hooks/useMenuCheck'
-import { Domain_GetRoomResponse, Domain_HackathonResponses, Domain_NowRoomAccounts } from '@/api/@types'
+import {
+  Domain_GetRoomResponse,
+  Domain_HackathonResponses,
+  Domain_NowRoomAccounts,
+  Domain_UpdateRoomRequestBody,
+} from '@/api/@types'
 import { UpdateModalWindow } from './RoomMenu/UpdateModalWindow'
+import { MemberEditMenu } from './RoomMenu/MemberEditMenu'
 
 type Props = {
-  hackathons?:Domain_HackathonResponses[]
+  hackathons?: Domain_HackathonResponses[]
   room?: Domain_GetRoomResponse
   anchorEl: HTMLElement | null
   isOpen: boolean
-  handleClose: () => void
   isOwner: boolean
+  handleClose: () => void
+  handleUpdateRoom: (roomInfo: Domain_UpdateRoomRequestBody) => Promise<void>
+  handleDeleteORLeaveRoom: () => void
 }
+
 export const RoomMenu = (props: Props) => {
-  const { isOpen, handleClose, anchorEl, isOwner, room,hackathons } = props
-  const  members  = room?.now_member
+  const {
+    isOpen,
+    anchorEl,
+    isOwner,
+    room,
+    hackathons,
+    handleClose,
+    handleUpdateRoom,
+    handleDeleteORLeaveRoom,
+  } = props
+  const members = room?.now_member
   const subMenu = useMenu()
-  const { text, isCheck, handleCheck } = useMenuCheck(isOwner, isOpen)
+  const { text, isConfirm, handleConfirm } = useMenuCheck(isOwner, isOpen)
 
   return (
     <>
@@ -70,41 +85,17 @@ export const RoomMenu = (props: Props) => {
                   <ListItemText>メンバー確定</ListItemText>
                 </ButtonBase>
               </MenuItem>
-              {/* submenu */}
-              <Menu
-                id="basic-menu"
+              <MemberEditMenu
                 anchorEl={subMenu.anchorEl}
-                open={subMenu.isMenuOpened}
-                onClose={subMenu.handleCloseMenu}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-                anchorOrigin={{
-                  vertical: 'center',
-                  horizontal: 'left',
-                }}
-                transformOrigin={{
-                  vertical: 'center',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuList>
-                  {members?.map((member) => (
-                    <MenuItem key={member.account_id}>
-                      <ListItemIcon sx={{ mr: 1 }}>
-                        <Avatar src={member.icon} />
-                      </ListItemIcon>
-                      <ListItemText>{member.username}</ListItemText>
-                      <Button color="info">確定</Button>
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </Menu>
-              {/* submenu */}
-              <Divider />
+                isMenuOpened={subMenu.isMenuOpened}
+                handleCloseMenu={subMenu.handleCloseMenu}
+                members={members}
+                isConfirm={isConfirm}
+                handleConfirm={handleConfirm}
+              />
             </>
           )}
-          <MenuItem onClick={handleCheck}>
+          <MenuItem onClick={isConfirm ? handleDeleteORLeaveRoom : handleConfirm}>
             <ListItemIcon>
               <DeleteOutlineOutlinedIcon fontSize="small" color="error" />
             </ListItemIcon>
@@ -115,9 +106,10 @@ export const RoomMenu = (props: Props) => {
         </MenuList>
       </Menu>
       <UpdateModalWindow
-        room={room}
+        room_id={room?.room_id}
         isOpen={subMenu.isOpenedModal}
         handleClose={subMenu.handleCloseModal}
+        handleUpdateRoom={handleUpdateRoom}
         hackathons={hackathons}
       />
     </>

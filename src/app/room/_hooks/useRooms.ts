@@ -17,13 +17,13 @@ import { RoomAccountMockRepository } from '@/repositories/mocks/RoomAccountMockR
 
 export const useRooms = () => {
   const roomRepo =
-    NODE_ENV === 'local' ? new RoomMockRepository() : new RoomRepository()
+    NODE_ENV === 'mock' ? new RoomMockRepository() : new RoomRepository()
   const firebaseRepo =
-    NODE_ENV === 'local'
+    NODE_ENV === 'mock'
       ? new FirebaseMockRepository()
       : new FirebaseRepository()
   const roomAccountRepo =
-    NODE_ENV === 'local'
+    NODE_ENV === 'mock'
       ? new RoomAccountMockRepository()
       : new RoomAccountRepository()
 
