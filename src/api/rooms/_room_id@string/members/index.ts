@@ -2,13 +2,13 @@
 import type * as Types from '../../../@types'
 
 export type Methods = {
-  /** Add Account In Rooms */
+  /** CloseRoom */
   post: {
     status: 200
     /** success response */
     resBody: Types.Controller_SuccessResponse
-    /** add account in room Request body */
-    reqBody: Types.Domain_AddAccountInRoomRequestBody
+    /** Close Room Request body */
+    reqBody: Types.Domain_CloseRoomRequest
   }
 
   /** Remove Account In Rooms */

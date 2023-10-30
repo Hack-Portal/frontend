@@ -40,6 +40,10 @@ export type Domain_AddChatRequestBody = {
   message: string
 }
 
+export type Domain_CloseRoomRequest = {
+  account_id?: string[] | undefined
+}
+
 export type Domain_CreateAccountRequest = {
   account_id: string
   explanatory_text?: string | undefined

@@ -1,11 +1,7 @@
-import { auth } from '@/lib/firebase/client'
-import { User, onAuthStateChanged } from 'firebase/auth'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useCustomRouter } from '@/hooks/useCustomRouter'
 import { SignIn } from '../services/signIn'
 import { EmailSignInFormData } from '../types/formData'
-import { LoginCheck } from '@/services/LoginCheck'
-import { useLoginCheck } from '@/hooks/useLoginCheck'
 
 export const useSignIn = () => {
   const [error, setError] = useState<string>()

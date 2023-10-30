@@ -394,15 +394,15 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           },
           members: {
             /**
-             * Add Account In Rooms
-             * @param option.body - add account in room Request body
+             * CloseRoom
+             * @param option.body - Close Room Request body
              * @returns success response
              */
             post: (option: { body: Methods15['post']['reqBody'], config?: T | undefined }) =>
               fetch<Methods15['post']['resBody'], BasicHeaders, Methods15['post']['status']>(prefix, `${prefix1}${PATH9}`, POST, option).json(),
             /**
-             * Add Account In Rooms
-             * @param option.body - add account in room Request body
+             * CloseRoom
+             * @param option.body - Close Room Request body
              * @returns success response
              */
             $post: (option: { body: Methods15['post']['reqBody'], config?: T | undefined }) =>
@@ -448,6 +448,20 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            */
           $put: (option: { body: Methods13['put']['reqBody'], config?: T | undefined }) =>
             fetch<Methods13['put']['resBody'], BasicHeaders, Methods13['put']['status']>(prefix, prefix1, PUT, option).json().then(r => r.body),
+          /**
+           * Add Account In Rooms
+           * @param option.body - add account in room Request body
+           * @returns success response
+           */
+          post: (option: { body: Methods13['post']['reqBody'], config?: T | undefined }) =>
+            fetch<Methods13['post']['resBody'], BasicHeaders, Methods13['post']['status']>(prefix, prefix1, POST, option).json(),
+          /**
+           * Add Account In Rooms
+           * @param option.body - add account in room Request body
+           * @returns success response
+           */
+          $post: (option: { body: Methods13['post']['reqBody'], config?: T | undefined }) =>
+            fetch<Methods13['post']['resBody'], BasicHeaders, Methods13['post']['status']>(prefix, prefix1, POST, option).json().then(r => r.body),
           /**
            * delete Room
            * @returns success response
