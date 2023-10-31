@@ -19,8 +19,10 @@ npm install
 詳しくはこちら
 https://qiita.com/hiroto_dnpk/items/c1345cdbcab444c4fe5e
 
+なおブランチ名は`feature/[機能名]`に変更します。
+例　feature/createUser
+
 ## ディレクトリ構造
-featureDirectoryを採用しています。
 DDDに近い構造になっています。
 
 ```
@@ -58,3 +60,5 @@ src
 └── utils　　　　　　　// 汎用関数
 
 ```
+
+
