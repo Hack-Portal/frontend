@@ -26,10 +26,10 @@ export const Header = () => {
     //   label: 'ランキング',
     //   href: '/ranking',
     // },
-    {
-      label: 'メンバー募集',
-      href: '/room',
-    },
+    // {
+    //   label: 'メンバー募集',
+    //   href: '/room',
+    // },
   ]
 
   return (
@@ -127,7 +127,7 @@ export const Header = () => {
           {/* </Badge> */}
           {/* </Link> */}
 
-          {user ? (
+          {/* {user ? (
             <Link href={`/user/${user.uid}`}>
               <PermIdentityIcon
                 sx={{
@@ -141,7 +141,7 @@ export const Header = () => {
             <Link href={'/signin'}>
               <Button variant="outlined">ログイン</Button>
             </Link>
-          )}
+          )} */}
         </Box>
       </Sheet>
     </Box>
