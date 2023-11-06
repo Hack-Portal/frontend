@@ -1,13 +1,5 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-  Button,
-} from '@/lib/mui/muiRendering'
-import Link from 'next/link'
-import React from 'react'
+import Image from 'next/image'
+import { Card, CardContent, Grid, Typography } from '@mui/material'
 
 export const MainVisual = () => {
   return (
@@ -40,7 +32,7 @@ export const MainVisual = () => {
           >
             ハッカソンを
             <br />
-            Hackする。
+            hackする。
           </Typography>
           {/* <Link href="/signin">
             <Button
@@ -78,12 +70,12 @@ export const MainVisual = () => {
           </Button> */}
         </Grid>
       </CardContent>
-      <CardMedia
+      <Image
         src="/image/mainVisual.png"
-        component="img"
-        sx={{
-          width: '750px',
-          height: '633px',
+        width={750}
+        height={633}
+        alt="mainVisual"
+        style={{
           objectFit: 'cover',
           borderRadius: '20px 0 0  20px',
         }}

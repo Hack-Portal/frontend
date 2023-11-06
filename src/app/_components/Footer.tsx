@@ -1,9 +1,6 @@
-import { Box, Card, CardContent, CardMedia, Grid } from '@/lib/mui/muiRendering'
-import { openInNewTab } from '@/utils/openInNewTab'
-import { Typography } from '@mui/joy'
+import { Card, CardContent, CardMedia, Grid,Typography } from '@mui/material'
 import Link from 'next/link'
-
-import React from 'react'
+import Image from 'next/image'
 
 export const Footer = () => {
   return (
@@ -25,13 +22,13 @@ export const Footer = () => {
         justifyContent={'space-between'}
       >
         <Link href="/">
-          <CardMedia
-            src={'/image/logo.svg'}
-            component="img"
-            sx={{
-              width: '100px',
-              height: '100px',
-              objectFit: 'contain',
+          <Image
+            src={'/image/logo.png'}
+            width={50}
+            height={50}
+            alt="logo"
+            style={{
+              borderRadius: '50%',
             }}
           />
         </Link>

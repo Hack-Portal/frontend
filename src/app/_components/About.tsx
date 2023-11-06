@@ -1,4 +1,4 @@
-import { Card, Typography } from '@/lib/mui/muiRendering'
+import { Card, Typography } from '@mui/material'
 import { Contents } from './About/Contents'
 
 export const About = () => {
@@ -18,12 +18,24 @@ export const About = () => {
         sx={{
           fontSize: '3rem',
           fontWeight: 'bold',
-            color: '#333',
+          color: '#333',
         }}
       >
-        HACK PORTALとは？
+        hack hackとは？
       </Typography>
-      <Contents/>
+      <Typography
+        sx={{
+          fontSize: '1.5rem',
+          color: '#333',
+          textAlign: 'center',
+        }}
+      >
+        hack
+        hackは、ハッカソンを探し、チームを作るためのdiscordコミュニティです。
+        <br />
+        現在人が参加しています。
+      </Typography>
+      <Contents />
     </Card>
   )
 }
