@@ -2,16 +2,12 @@
 import * as React from 'react'
 import Box from '@mui/joy/Box'
 import ListItem from '@mui/joy/ListItem'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
-import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import Link from 'next/link'
 import Sheet from '@mui/joy/Sheet'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined'
 import Image from 'next/image'
-import { Button, Typography } from '@mui/material'
-import { useCustomRouter } from '../../hooks/useCustomRouter'
+import { Typography } from '@mui/material'
 import { useHeader } from '../hooks/useHeader'
 
 export const Header = () => {

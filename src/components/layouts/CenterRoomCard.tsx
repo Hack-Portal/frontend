@@ -1,6 +1,6 @@
 'use client'
 import { Card, CardMedia, Paper } from '@/lib/mui/muiRendering'
-import { ConfirmModalWindow } from '@/app/room/_components/ConfirmModalWindow'
+import { ConfirmModalWindow } from '@/app/(room)/_components/ConfirmModalWindow'
 import { Domain_ListRoomResponse } from '@/api/@types'
 
 type Props = Partial<{

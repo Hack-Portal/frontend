@@ -42,7 +42,7 @@ export const MainVisual = () => {
             <br />
             Hackする。
           </Typography>
-          <Link href="/signin">
+          {/* <Link href="/signin">
             <Button
               sx={{
                 width: '300px',
@@ -75,7 +75,7 @@ export const MainVisual = () => {
             }}
           >
             新規登録
-          </Button>
+          </Button> */}
         </Grid>
       </CardContent>
       <CardMedia
