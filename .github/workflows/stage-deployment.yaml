@@ -40,8 +40,8 @@ jobs:
         password: ${{ secrets.HARBOR_PASSWORD }}
     - name: Build and push
       run: |
-        docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal-frontend:${{ github.sha }} .
-        docker push  ${{ secrets.HARBOR_REGISTRY }}/hack-portal-frontend:${{ github.sha }}
+        docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }} .
+        docker push  ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -61,7 +61,7 @@ jobs:
       - name: Change manifest
         run: |
           cd frontend/stage
-          yq -i '.spec.template.spec.containers[0].image = " ${{ secrets.HARBOR_REGISTRY }}/hack-portal-frontend:${{ github.sha }}"' 'frontend.yaml'
+          yq -i '.spec.template.spec.containers[0].image = "${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}"' 'frontend.yaml'
           
       - name: push repository
         run: |
