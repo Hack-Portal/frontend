@@ -60,7 +60,7 @@ jobs:
     
       - name: Change manifest
         run: |
-          cd config\stage
+          cd config/stage
           yq -i '.spec.template.spec.containers[0].image = "${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}"' 'frontend.yaml'
           
       - name: push repository
