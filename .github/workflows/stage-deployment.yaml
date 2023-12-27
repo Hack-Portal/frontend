@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - develop
-      - feature/#184
+  pull_request:
+    branches:
+      - develop
 
 permissions:
   actions: write
