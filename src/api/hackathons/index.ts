@@ -2,25 +2,24 @@
 import type * as Types from '../@types'
 
 export type Methods = {
-  /** List Hackathon */
+  /** List Hackathons */
   get: {
     query?: {
-      expired?: boolean | undefined
       page_id?: number | undefined
       page_size?: number | undefined
     } | undefined
 
     status: 200
     /** success response */
-    resBody: Types.Domain_HackathonResponses[]
+    resBody: Types.Response_GetHackathon[]
   }
 
-  /** Register a hackathon from given parameters */
+  /** Create Hackathon */
   post: {
     status: 200
     /** success response */
-    resBody: Types.Domain_HackathonResponses
-    /** create hackathon Request Body */
-    reqBody: Types.Domain_CreateHackathonRequestBody
+    resBody: Types.Response_CreateHackathon
+    /** request body */
+    reqBody: Types.Request_CreateHackathon
   }
 }
