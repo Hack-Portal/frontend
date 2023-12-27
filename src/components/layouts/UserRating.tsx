@@ -1,7 +1,5 @@
 import React from 'react'
 import { Grid, Avatar, Typography, Card, Box } from '@/lib/mui/muiRendering'
-import { FetchRating } from '@/app/hackathon/_services/fetchRating'
-import { Domain_AccountRateResponse } from '@/api/@types'
 import Link from 'next/link'
 
 export const dynamic = 'force-static'
