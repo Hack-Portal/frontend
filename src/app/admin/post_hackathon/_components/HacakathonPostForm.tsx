@@ -2,7 +2,7 @@
 import React from 'react'
 import FormProvider from '@/app/_components/form/FormProvider'
 import TextFieldComponent from '@/app/_components/form/TextFieldComponent'
-import HackathonStatusSelector from '@/app/post_hackathon/_components/HackathonStatusSelector'
+import HackathonStatusSelector from '@/app/admin/post_hackathon/_components/HackathonStatusSelector'
 type FormData = {
   hacakathonName: string
   link: string
