@@ -3,6 +3,7 @@ import React from 'react'
 import FormProvider from '@/app/_components/form/FormProvider'
 import TextFieldComponent from '@/app/_components/form/TextFieldComponent'
 import HackathonStatusSelector from '@/app/admin/post_hackathon/_components/HackathonStatusSelector'
+import ImgUpload from '@/app/_components/form/ImgUpload'
 type FormData = {
   hacakathonName: string
   link: string
@@ -10,6 +11,7 @@ type FormData = {
   startDate: Date
   term: Date
   statuses: string[]
+  image: File
 }
 
 const HacakathonPostForm = () => {
@@ -78,6 +80,7 @@ const HacakathonPostForm = () => {
         }}
       />
       <HackathonStatusSelector name="statuses" label="ステータス" />
+      <ImgUpload name="image" label="サムネイル" />
     </FormProvider>
   )
 }
