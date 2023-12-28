@@ -142,19 +142,6 @@ export const HackathonList = (props: Props) => {
               ))}
             </Grid>
           </CardContent>
-
-          {/* <CardContent sx={{ width: '500px' }}> */}
-          {/* <CardActions
-              sx={{ position: 'absolute', right: 20, top: 20 }}
-              disableSpacing
-            >
-              <IconButton aria-label="add to favorites">
-                <BookmarkBorderOutlinedIcon
-                  sx={{ height: '30px', width: '30px' }}
-                />
-              </IconButton>
-            </CardActions> */}
-          {/* </CardContent> */}
         </CenterRecordCard>
       ))}
     </CenterArea>
