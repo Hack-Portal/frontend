@@ -11,7 +11,7 @@ export const Footer = () => {
       sx={{
         px: 5,
         pt: 10,
-        pb:1
+        pb: 1,
       }}
     >
       <Grid
@@ -20,6 +20,7 @@ export const Footer = () => {
         sx={{ borderBottom: '1px solid #ddd', width: '100%' }}
         direction={'row'}
         justifyContent={'space-between'}
+        wrap={'nowrap'}
       >
         <Grid item xs={2}>
           <Link href="/">
@@ -42,7 +43,7 @@ export const Footer = () => {
             />
           </Link>
         </Grid>
-        <Grid item xs={5} sm={9}/>
+        <Grid item xs={5} sm={9} />
         <Grid item xs={0}>
           <a
             target="_blank"
@@ -109,11 +110,13 @@ export const Footer = () => {
                 {link.title}
               </Typography>
             </Link>
-            <Typography color="neutral">&Iota;</Typography>
+            {link.title !== FooterLink[FooterLink.length - 1].title && (
+              <Typography color="neutral">&Iota;</Typography>
+            )}
           </Grid>
         ))}
-        <Typography>&copy; 2023 HACK PORTAL</Typography>
       </Grid>
+      <Typography>&copy; 2023 HACK PORTAL</Typography>
     </Grid>
   )
 }
