@@ -71,38 +71,41 @@ const Home = async () => {
   ]
 
   return (
-    <Suspense fallback={'...loading'}>
-      <Header />
-      <Grid container direction="row" justifyContent={'center'}>
-        <Grid item xs>
-          <UserRating />
-        </Grid>
-        <Grid item sx={{ p: 3, width: '70vw' }}>
-          <Link href="">
-            <Image
-              src="/image/mainbanner.svg"
-              alt="me"
-              width={800}
-              height={150}
-              style={{
-                marginBottom: 16,
-                width: '100%',
-                backgroundColor: '#2A98FD',
-              }}
-            />
-          </Link>
+    <>
+      <Suspense fallback={'...loading'}>
+        <Header />
 
-          <Suspense fallback={<div>loading...</div>}>
-            {hackathons && <HackathonList hackathons={hackathons} />}
-          </Suspense>
+        <Grid container direction="row" justifyContent={'center'}>
+          <Grid item xs>
+            <UserRating />
+          </Grid>
+          <Grid item sx={{ p: 3, width: '70vw' }}>
+            <Link href="">
+              <Image
+                src="/image/mainbanner.svg"
+                alt="me"
+                width={800}
+                height={150}
+                style={{
+                  marginBottom: 16,
+                  width: '100%',
+                  backgroundColor: '#2A98FD',
+                }}
+              />
+            </Link>
+
+            <Suspense fallback={<div>loading...</div>}>
+              {hackathons && <HackathonList hackathons={hackathons} />}
+            </Suspense>
+          </Grid>
+          <Grid item xs>
+            <Suspense fallback={<div>Loading...</div>}>
+              <StackList techStacks={techStacks} />
+            </Suspense>
+          </Grid>
         </Grid>
-        <Grid item xs>
-          <Suspense fallback={<div>Loading...</div>}>
-            <StackList techStacks={techStacks} />
-          </Suspense>
-        </Grid>
-      </Grid>
-    </Suspense>
+      </Suspense>
+    </>
   )
 }
 export default Home
