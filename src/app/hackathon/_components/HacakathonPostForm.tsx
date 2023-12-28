@@ -5,6 +5,7 @@ import TextFieldComponent from '@/app/_components/form/TextFieldComponent'
 import DateSelector from '@/app/_components/form/DateSelector'
 import { AddIcon } from '@/lib/mui/muiRendering'
 import GeneralModal from '@/app/_components/GeneralModal'
+import HackathonStatusSelector from '@/app/hackathon/_components/HackathonStatusSelector'
 type FormData = {
   hacakathonName: string
   link: string
@@ -79,6 +80,7 @@ const HacakathonPostForm = () => {
             },
           }}
         />
+        <HackathonStatusSelector name="statuses" label="ステータス" />
       </FormProvider>
     </GeneralModal>
   )
