@@ -1,82 +1,45 @@
 'use client'
-import * as React from 'react'
-import { Theme, useTheme } from '@mui/material/styles'
-import Box from '@mui/material/Box'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import Chip from '@mui/material/Chip'
+import { Box } from '@mui/material'
+import React from 'react'
 import { useFormContext } from 'react-hook-form'
+import {
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material'
 
-const ITEM_HEIGHT = 48
-const ITEM_PADDING_TOP = 8
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-}
-const tags = ['オンライン', 'オフライン', '初心者歓迎']
-
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  }
-}
-type SelectProps = {
+type Props = {
   name: string
   label: string
 }
 
-const HackathonStatusSelector: React.FC<SelectProps> = ({ name, label }) => {
-  const theme = useTheme()
-  const [personName, setPersonName] = React.useState<string[]>([])
+const tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5'] // 選択可能なタグのリスト
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    )
-  }
-  const { register } = useFormContext()
+const TagSelect: React.FC<Props> = ({ name, label }) => {
+  const { register, watch } = useFormContext()
+  const selectedTags = watch(name) //watchはフォームの値を監視する
 
   return (
-    <div>
-      <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+    <Box>
+      <InputLabel id={`${name}-label`}>{label}</InputLabel>
       <Select
-        labelId="demo-multiple-chip-label"
-        id="demo-multiple-chip"
+        labelId={`${name}-label`}
+        id={name}
         multiple
-        value={personName}
-        onChange={handleChange}
-        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-        renderValue={(selected) => (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-            {selected.map((value) => (
-              <Chip key={value} label={value} {...register(name)} />
-            ))}
-          </Box>
-        )}
-        MenuProps={MenuProps}
+        value={selectedTags || []}
+        onChange={(e) => register(name).onChange(e)}
+        input={<OutlinedInput label={label} />}
       >
-        {tags.map((index, value) => (
-          <MenuItem key={index} value={value}>
-            {value}
+        {tags.map((tag) => (
+          <MenuItem key={tag} value={tag}>
+            {tag}
           </MenuItem>
         ))}
       </Select>
-    </div>
+    </Box>
   )
 }
 
-export default HackathonStatusSelector
+export default TagSelect
