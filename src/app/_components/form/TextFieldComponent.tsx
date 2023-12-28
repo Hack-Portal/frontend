@@ -26,6 +26,10 @@ const TextFieldComponent: React.FC<TextFieldProps> = ({
   return (
     <Box>
       <TextField
+        sx={{
+          width: '100%',
+          my: 2,
+        }}
         error={!!errorMessage}
         id={name}
         label={label}
