@@ -36,7 +36,7 @@ RUN chown nextjs:nodejs .next
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/.evn /app
+COPY --from=builder --chown=nextjs:nodejs /app/.env /app
 
 USER nextjs
 
