@@ -5,17 +5,17 @@ export const About = () => {
   const TITLE_TEXT_STYLE = {
     fontSize: {
       xs: '1.8rem',
-      sm: '2.5rem',
+      sm: '2.1rem',
       md: '2.5rem',
       lg: '3rem',
-      xl: '4.3rem',
+      xl: '3rem',
     },
     margin: {
-      xs: '30px 0',
-      sm: '30px 0',
+      xs: '75px 0 30px 0',
+      sm: '100px 0 30px 0',
       md: '100px 0 30px 0',
       lg: '150px 0 30px 0',
-      xl: '100px 0',
+      xl: '200px 0 30px 0',
     },
   }
   const DESCRIPTION_TEXT_STYLE = {
@@ -27,11 +27,11 @@ export const About = () => {
       xl: '2rem',
     },
     marginBottom: {
-      xs: '30px',
-      sm: '30px',
+      xs: '75px',
+      sm: '100px',
       md: '100px ',
       lg: '150px',
-      xl: '100px',
+      xl: '200px',
     },
   }
 
