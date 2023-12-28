@@ -1,9 +1,7 @@
 'use client'
 import Link from 'next/link'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
 import Image from 'next/image'
-import { Box, ListItem, Typography } from '@mui/material'
+import { Box, ListItem, Typography,ListItemButton,ListItemText } from '@mui/material'
 import { useHeader } from '@/components/hooks/useHeader'
 
 export const Header = () => {

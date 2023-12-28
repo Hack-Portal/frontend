@@ -1,39 +1,89 @@
 import Image from 'next/image'
-import { Card, CardContent, Grid, Typography } from '@mui/material'
+import { Grid, Hidden, Typography } from '@mui/material'
 
 export const MainVisual = () => {
+  const TITLE_TEXT_STYLE = {
+    fontSize: {
+      xs: '1.8rem', // エクストラスモールデバイス
+      sm: '2.9rem', // スモールデバイス
+      md: '2.5rem', // ミディアムデバイス
+      lg: '3rem', // ラージデバイス
+      xl: '4rem', // エクストララージデバイス
+    },
+  }
+
+  const TITLE_STRONG_STYLE = {
+    fontSize: {
+      xs: '2.1rem',
+      sm: '3.2rem',
+      md: '2.8rem',
+      lg: '3.3rem',
+      xl: '4.3rem',
+    },
+  }
+
   return (
-    <Card
+    <Grid
+      container
+      gap={5}
       sx={{
-        display: 'flex',
         p: 5,
-        gap: 5,
-        borderRadius: '0px',
-        boxShadow: 'none',
-        mb: 5,
+        pb: 0,
+        width: '100%',
       }}
+      alignItems="center"
+      justifyContent="center"
     >
-      <CardContent
-        sx={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          p: 0,
-          flexDirection: 'column',
-        }}
-      >
-        <Grid container direction="column" gap={3} sx={{ width: 'auto' }}>
+      <Grid item xs={12} md={5.5}>
+        <Image
+          src="/image/hack_hack_logo.svg"
+          width={750}
+          height={633}
+          alt="mainVisual"
+          style={{
+            borderRadius: '0 20px 20px 0',
+            width: '100%',
+            height: 'auto',
+          }}
+          sizes="100vw"
+        />
+      </Grid>
+
+      <Grid item xs={12} md={5.5}>
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          // gap={3}
+        >
           <Typography
-            fontSize={'3.75rem'}
             fontWeight={'bold'}
             color={'#333'}
-            mb={5}
+            sx={{ ...TITLE_TEXT_STYLE, my: 5, width: 'min-content' }}
           >
-            ハッカソンを
-            <br />
-            hackする。
+            <Typography
+              component={'span'}
+              fontWeight={'bold'}
+              color={'#48BBED'}
+              sx={{ ...TITLE_STRONG_STYLE }}
+            >
+              hack
+            </Typography>
+            ing　
+            <Hidden mdDown>
+              <br />
+            </Hidden>
+            <Typography
+              component={'span'}
+              fontWeight={'bold'}
+              color={'#48BBED'}
+              sx={{ ...TITLE_STRONG_STYLE }}
+            >
+              hack
+            </Typography>
+            athon！
           </Typography>
+
           {/* <Link href="/signin">
             <Button
               sx={{
@@ -69,17 +119,7 @@ export const MainVisual = () => {
             新規登録
           </Button> */}
         </Grid>
-      </CardContent>
-      <Image
-        src="/image/mainVisual.png"
-        width={750}
-        height={633}
-        alt="mainVisual"
-        style={{
-          objectFit: 'cover',
-          borderRadius: '20px 0 0  20px',
-        }}
-      />
-    </Card>
+      </Grid>
+    </Grid>
   )
 }
