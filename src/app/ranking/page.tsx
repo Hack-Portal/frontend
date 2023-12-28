@@ -8,7 +8,6 @@ import { Suspense } from 'react'
 import StackList from '@/components/layouts/StackList'
 import { UserRating } from '@/components/layouts/UserRating'
 import { RankingList } from './_components/RankingList'
-import { RoomRecordRightBox } from '../room/_components/RoomList/RoomRecordRightBox'
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 const Ranking = () => {

@@ -12,11 +12,8 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import Image from 'next/image'
 import { Button, Typography } from '@mui/material'
 import { useCustomRouter } from '../../hooks/useCustomRouter'
-import { useHeader } from '../hooks/useHeader'
 
 export const Header = () => {
-  const { IsActive, user } = useHeader()
-
   const NAV_ITEMS = [
     {
       label: 'ハッカソン',
@@ -26,10 +23,6 @@ export const Header = () => {
     //   label: 'ランキング',
     //   href: '/ranking',
     // },
-    {
-      label: 'メンバー募集',
-      href: '/room',
-    },
   ]
 
   return (
@@ -71,29 +64,11 @@ export const Header = () => {
             />
           </Link>
           {NAV_ITEMS.map((item, index) => (
-            <Link
-              href={item.href}
-              key={index}
-              style={{
-                borderBottom: IsActive(item.href)
-                  ? 'solid 2px #0288d1'
-                  : 'none',
-                padding: '6px 0 0 0',
-              }}
-            >
+            <Link href={item.href} key={index}>
               <ListItem>
                 <ListItemButton sx={{ borderRadius: '5%' }}>
                   <ListItemText
-                    primary={
-                      <Typography
-                        style={{
-                          fontWeight: IsActive(item.href) ? 'bold' : 'normal',
-                          color: IsActive(item.href) ? '#333' : '#aaa',
-                        }}
-                      >
-                        {item.label}
-                      </Typography>
-                    }
+                    primary={<Typography>{item.label}</Typography>}
                     sx={{}}
                   />
                 </ListItemButton>
@@ -126,22 +101,6 @@ export const Header = () => {
             /> */}
           {/* </Badge> */}
           {/* </Link> */}
-
-          {user ? (
-            <Link href={`/user/${user.uid}`}>
-              <PermIdentityIcon
-                sx={{
-                  width: 30,
-                  height: 30,
-                }}
-                color="info"
-              />
-            </Link>
-          ) : (
-            <Link href={'/signin'}>
-              <Button variant="outlined">ログイン</Button>
-            </Link>
-          )}
         </Box>
       </Sheet>
     </Box>

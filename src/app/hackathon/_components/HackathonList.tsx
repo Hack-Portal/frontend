@@ -15,11 +15,11 @@ import {
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 import { HacakathonColumn } from './HacakathonColumn'
-import { Domain_HackathonResponses } from '@/api/@types'
+import { Response_GetHackathon } from '@/api/@types'
 import { formatDate } from '@/utils/formatDate'
 
 type Props = {
-  hackathons: Domain_HackathonResponses[]
+  hackathons: Response_GetHackathon[]
 }
 
 export const HackathonList = (props: Props) => {
@@ -83,7 +83,7 @@ export const HackathonList = (props: Props) => {
               width={'100%'}
             >
               <HacakathonColumn
-                title={ COLUMN.expired.label}
+                title={COLUMN.expired.label}
                 value={formatDate(hackathon.expired!)}
                 icon={
                   <SensorDoorOutlinedIcon
