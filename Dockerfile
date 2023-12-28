@@ -36,10 +36,12 @@ RUN chown nextjs:nodejs .next
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --chown=nextjs:nodejs .evn /app
 
 USER nextjs
 
 ENV PORT=8080
+
 EXPOSE 8080
 
 CMD ["node", "server.js"]
