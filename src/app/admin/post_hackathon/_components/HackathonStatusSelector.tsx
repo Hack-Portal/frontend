@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Chip from '@mui/material/Chip'
 import { useFormContext } from 'react-hook-form'
-
+import { Response_StatusTag } from '@/api/@types'
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 const MenuProps = {
@@ -17,13 +17,16 @@ const MenuProps = {
     },
   },
 }
-const tags = ['オンライン', 'オフライン', '初心者歓迎']
 
 type SelectProps = {
   name: string
+  statusTags: Response_StatusTag[]
 }
 
-const HackathonStatusSelector: React.FC<SelectProps> = ({ name }) => {
+const HackathonStatusSelector: React.FC<SelectProps> = ({
+  statusTags,
+  name,
+}) => {
   const { register, watch, setValue } = useFormContext()
 
   const watchValue = watch()
@@ -64,9 +67,9 @@ const HackathonStatusSelector: React.FC<SelectProps> = ({ name }) => {
         )}
         MenuProps={MenuProps}
       >
-        {tags.map((value, index) => (
-          <MenuItem key={index} value={value}>
-            {value}
+        {statusTags.map((value, index) => (
+          <MenuItem key={value.id} value={value.status}>
+            {value.status}
           </MenuItem>
         ))}
       </Select>

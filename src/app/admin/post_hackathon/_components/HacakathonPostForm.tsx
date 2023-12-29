@@ -4,6 +4,7 @@ import FormProvider from '@/app/_components/form/FormProvider'
 import TextFieldComponent from '@/app/_components/form/TextFieldComponent'
 import HackathonStatusSelector from '@/app/admin/post_hackathon/_components/HackathonStatusSelector'
 import ImgUpload from '@/app/_components/form/ImgUpload'
+import { Response_StatusTag } from '@/api/@types'
 type FormData = {
   hacakathonName: string
   link: string
@@ -14,10 +15,12 @@ type FormData = {
   image: File
 }
 
-const HacakathonPostForm = () => {
-  const onSubmit = (data: FormData) => {
-    console.log(data)
-  }
+type Props = {
+  statusTags: Response_StatusTag[]
+}
+const HacakathonPostForm = (props: Props) => {
+  const { statusTags } = props
+  const onSubmit = (data: FormData) => {}
 
   return (
     <FormProvider<FormData>
@@ -79,7 +82,7 @@ const HacakathonPostForm = () => {
           },
         }}
       />
-      <HackathonStatusSelector name="statuses" label="ステータス" />
+      <HackathonStatusSelector statusTags={statusTags} name="statuses" />
       <ImgUpload name="image" label="サムネイル" />
     </FormProvider>
   )
