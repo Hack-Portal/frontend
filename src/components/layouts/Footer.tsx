@@ -12,6 +12,7 @@ export const Footer = () => {
         px: 5,
         pt: 10,
         pb: 1,
+        background: '#fcfcfc',
       }}
     >
       <Grid

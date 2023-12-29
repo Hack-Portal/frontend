@@ -1,7 +1,13 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Box, ListItem, Typography,ListItemButton,ListItemText } from '@mui/material'
+import {
+  Box,
+  ListItem,
+  Typography,
+  ListItemButton,
+  ListItemText,
+} from '@mui/material'
 import { useHeader } from '@/components/hooks/useHeader'
 
 export const Header = () => {
@@ -36,7 +42,7 @@ export const Header = () => {
         alignItems: 'center',
         justifyContent: 'space-between',
         boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)',
-        bgcolor: '#fff',
+        bgcolor: '#fefefe',
       }}
     >
       <Box
