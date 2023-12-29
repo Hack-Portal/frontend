@@ -1,44 +1,31 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Dependencies
-node_modules
-.pnp
+# dependencies
+/node_modules
+/.pnp
 .pnp.js
 
-# Local env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# testing
+/coverage
 
-# Testing
-coverage
-
-# Turbo
-.turbo
-
-# Vercel
-.vercel
-
-# Build Outputs
-.next/
+# next.js
+/.next/
 /out/
+
+# production
 /build
-dist
 
+# misc
+.DS_Store
+*.pem
 
-# Debug
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Misc
-.DS_Store
-*.pem
-
-# environments file
-.env*
+# local env files
+.env*.local
 
 # vercel
 .vercel
@@ -49,5 +36,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 firebaseAdminSDK.json
+```
 
 .history
