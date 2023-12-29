@@ -1,65 +1,62 @@
-import {
-  Card,
-  Grid,
-  CardMedia,
-  CardContent,
-  Typography,
-} from '@/lib/mui/muiRendering'
-import React from 'react'
+import { Card, Typography, Box } from '@mui/material'
+import Image from 'next/image'
+import Link from 'next/link'
 
-export const Contents = () => {
-  const CONTENTS = [
-    {
-      title: 'ハッカソンを探す',
-      text: '自分に合ったハッカソンを見つけよう',
-      image: '/image/searchPeople.svg',
+type Props = {
+  title: string
+  href: string
+  src: string
+  text: string
+}
+
+export const Contents = (props: Props) => {
+  const { title, href, src, text } = props
+  const TITLE_TEXT_STYLE = {
+    fontSize: {
+      xs: '1.3rem', // エクストラスモールデバイス
+      sm: '1.5rem', // スモールデバイス
+      md: '1.5rem', // ミディアムデバイス
+      lg: '1.5rem', // ラージデバイス
+      xl: '1.5rem', // エクストララージデバイス
     },
-    {
-      title: '仲間を見つける',
-      text: '仲間を集めて、ハッカソンに挑戦しよう',
-      image: '/image/member.svg',
-    },
-    {
-      title: 'ハッカソンを攻略する',
-      text: 'Tipsを参考に、ハッカソンを攻略しよう',
-      image: '/image/cheat.svg',
-    },
-  ]
+  }
   return (
-    <Grid container justifyContent={'center'} gap={10}>
-      {CONTENTS.map((content) => (
-        <Card
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            width: '330px',
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        width: '330px',
+      }}
+      key={title}
+    >
+      <Link href={href} passHref={true}>
+        <Image
+          src={src}
+          width={330}
+          height={270}
+          alt={title}
+          style={{
+            objectFit: 'cover',
+            padding: '0 10px',
+            width: '100%',
+            height: 'auto',
           }}
-          key={content.title}
-        >
-          <CardMedia
-            src={content.image}
-            component="img"
-            sx={{
-              width: '330px',
-              height: '270px',
-              objectFit: 'cover',
-              px: 3,
-            }}
-          />
-          <CardContent>
-            <Typography
-              fontSize={'1.5rem'}
-              fontWeight={'bold'}
-              color={'#333'}
-              mb={1}
-            >
-              {content.title}
-            </Typography>
-            <Typography>{content.text}</Typography>
-          </CardContent>
-        </Card>
-      ))}
-    </Grid>
+          sizes="100vw"
+        />
+        <Box sx={{ p: 2 }}>
+          <Typography
+            fontSize={'1.5rem'}
+            fontWeight={'bold'}
+            color={'#333'}
+            mb={1}
+            sx={{ ...TITLE_TEXT_STYLE }}
+          >
+            {title}
+          </Typography>
+          <Typography>{text}</Typography>
+        </Box>
+      </Link>
+    </Card>
   )
 }

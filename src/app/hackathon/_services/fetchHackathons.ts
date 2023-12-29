@@ -11,7 +11,6 @@ export class FetchHackathons {
   public async fetchAllHackathons() {
     try {
       const hackathons = await this.hackathonRepository.fetchAll()
-      console.log('Serviceのhackathons:', hackathons)
       return hackathons
     } catch (error) {
       console.error('Serviceのエラー:', error)

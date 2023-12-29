@@ -1,9 +1,8 @@
 import { Header } from '@/components/layouts/Header'
-import { MainVisual } from './_components/MainVisual'
-import { About } from './_components/About'
-import { Tutorial } from './_components/Tutorial'
-import { Box } from '@/lib/mui/muiRendering'
-import { Footer } from './_components/Footer'
+import { MainVisual } from '@/app/_components/MainVisual'
+import { About } from '@/app/_components/About'
+import { Box } from '@mui/material'
+import { Footer } from '@/app/_components/Footer'
 
 const Home = async () => {
   
@@ -12,7 +11,6 @@ const Home = async () => {
       <Header />
       <MainVisual/>
       <About/>
-      <Tutorial/>
       <Footer/>
     </Box>
   )

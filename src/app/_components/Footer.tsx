@@ -1,80 +1,97 @@
-import { Box, Card, CardContent, CardMedia, Grid } from '@/lib/mui/muiRendering'
-import { openInNewTab } from '@/utils/openInNewTab'
-import { Typography } from '@mui/joy'
+import { Grid, Typography } from '@mui/material'
 import Link from 'next/link'
-
-import React from 'react'
+import Image from 'next/image'
 
 export const Footer = () => {
   return (
-    <Card
+    <Grid
+      container
+      direction={'column'}
+      gap={4}
       sx={{
-        px: 16,
-        py: 3,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 4,
+        px: 5,
+        pt: 10,
+        pb: 1,
       }}
     >
       <Grid
         container
         alignItems={'center'}
-        gap={4}
-        sx={{ borderBottom: '1px solid #ddd' }}
+        sx={{ borderBottom: '1px solid #ddd', width: '100%' }}
         direction={'row'}
         justifyContent={'space-between'}
+        wrap={'nowrap'}
       >
-        <Link href="/">
-          <CardMedia
-            src={'/image/logo.svg'}
-            component="img"
-            sx={{
-              width: '100px',
-              height: '100px',
-              objectFit: 'contain',
-            }}
-          />
-        </Link>
-        <Grid
-          container
-          direction={'row'}
-          sx={{ width: 'auto' }}
-          gap={4}
-          alignItems={'center'}
-        >
+        <Grid item xs={2}>
+          <Link href="/">
+            <Image
+              src={'/image/logo.svg'}
+              width={50}
+              height={50}
+              alt="logo"
+              style={{
+                borderRadius: '50%',
+                objectFit: 'contain',
+                width: '100%',
+                height: 'auto',
+                minWidth: '50px',
+                minHeight: '50px',
+                maxHeight: '50px',
+                maxWidth: '50px',
+              }}
+              sizes="100vw"
+            />
+          </Link>
+        </Grid>
+        <Grid item xs={5} sm={9} />
+        <Grid item xs={0}>
           <a
             target="_blank"
             rel="noopener noreferrer"
             href="https://discord.gg/wsrNZUWUR6"
           >
-            <CardMedia
+            <Image
               src={'/image/discord.svg'}
-              component="img"
-              sx={{
-                width: '50px',
-                height: '50px',
-                objectFit: 'contain',
+              width={10}
+              height={10}
+              alt="discord"
+              style={{
+                width: '100%',
+                height: 'auto',
+                minWidth: '30px',
+                minHeight: '30px',
+                maxHeight: '40px',
+                maxWidth: '40px',
               }}
+              sizes="100vw"
             />
           </a>
+        </Grid>
+        <Grid item xs={1}>
           <a
             target="_blank"
             rel="noopener noreferrer"
             href="https://twitter.com/Hack_Hack_JP"
           >
-            <CardMedia
+            <Image
               src={'/image/twitter.svg'}
-              component="img"
-              sx={{
-                width: '70px',
-                height: '70px',
-                objectFit: 'contain',
+              width={10}
+              height={10}
+              alt="twitter"
+              style={{
+                width: '100%',
+                height: 'auto',
+                minWidth: '40px',
+                minHeight: '40px',
+                maxHeight: '50px',
+                maxWidth: '50px',
               }}
+              sizes="100vw"
             />
           </a>
         </Grid>
       </Grid>
-      <CardContent sx={{ display: 'flex', gap: 2, p: 0 }}>
+      <Grid container gap={2}>
         {FooterLink.map((link) => (
           <Grid
             container
@@ -93,12 +110,14 @@ export const Footer = () => {
                 {link.title}
               </Typography>
             </Link>
-            <Typography color="neutral">&Iota;</Typography>
+            {link.title !== FooterLink[FooterLink.length - 1].title && (
+              <Typography color="neutral">&Iota;</Typography>
+            )}
           </Grid>
         ))}
-        <Typography>&copy; 2023 HACK PORTAL</Typography>
-      </CardContent>
-    </Card>
+      </Grid>
+      <Typography>&copy; 2023 HACK PORTAL</Typography>
+    </Grid>
   )
 }
 
