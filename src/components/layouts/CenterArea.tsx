@@ -1,4 +1,5 @@
-import { Grid } from '@/lib/mui/muiRendering'
+
+import { Grid } from '@mui/material'
 import { ReactNode } from 'react'
 
 type Props = {

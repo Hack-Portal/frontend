@@ -6,6 +6,7 @@ import { Footer } from '@/app/_components/Footer'
 
 const Home = async () => {
   
+  
   return (
     <Box sx={{background:"#fff"}}>
       <Header />

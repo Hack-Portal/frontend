@@ -1,13 +1,14 @@
-import { Grid, SensorDoorOutlinedIcon, Typography } from '@/lib/mui/muiRendering'
+
+import { Grid, Typography } from '@mui/material'
 import React, { ReactNode } from 'react'
 
 type Props={
     title:string
-    value?:string
+    date?:string
     icon:ReactNode
 }
-export const HacakathonColumn = (props:Props) => {
-    const {title,value,icon}=props
+export const Column = (props:Props) => {
+    const {title,date,icon}=props
   return (
     <Grid container alignItems={"center"} direction={"row"} wrap={"nowrap"} gap={1.5}>
      {icon}
@@ -19,7 +20,7 @@ export const HacakathonColumn = (props:Props) => {
           {title}
         </Typography>
         <Typography sx={{ mt: 0.5, fontSize:'1.2rem'}}>
-          {value}
+          {date}
         </Typography>
       </Grid>
     </Grid>
