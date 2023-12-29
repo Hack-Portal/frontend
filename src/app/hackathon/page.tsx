@@ -13,7 +13,7 @@ import { FetchHackathons } from './_services/fetchHackathons'
 // 参考：https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
 // 恐らく force-staticにしていることでSSGでしか生成されてない
 // そのことから、ビルド時のフェッチでしかデータを取得して
-// export const dynamic = 'auto'
+export const dynamic = 'force-dynamic'
 
 const Home = async () => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())
