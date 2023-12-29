@@ -9,7 +9,11 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 import { FetchHackathons } from './_services/fetchHackathons'
 
-export const dynamic = 'force-static'
+// ここでこのページにおける振る舞いを定義してる
+// 参考：https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
+// 恐らく force-staticにしていることでSSGでしか生成されてない
+// そのことから、ビルド時のフェッチでしかデータを取得していない
+export const dynamic = 'auto'
 
 const Home = async () => {
   // const fetcher = (url: string) => fetch(url).then((res) => res.json())

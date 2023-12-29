@@ -22,6 +22,7 @@ export class HackathonRepository implements HackathonInterface {
    * @returns  ハッカソン一覧
    */
   public async fetchAll() {
+    console.log('HackathonRepository.fetchAll()-start')
     try {
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
@@ -36,7 +37,7 @@ export class HackathonRepository implements HackathonInterface {
       const response = await client.hackathons.get({
         query: { page_size: 10, page_id: 1 },
       })
-
+      console.log('HackathonRepository.fetchAll()-end')
       return response.body as Response_GetHackathon[]
     } catch (error) {
       // エラー処理
