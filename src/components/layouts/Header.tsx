@@ -5,7 +5,7 @@ import { Box, ListItem, Typography,ListItemButton,ListItemText } from '@mui/mate
 import { useHeader } from '@/components/hooks/useHeader'
 
 export const Header = () => {
-  const { IsActive, user } = useHeader()
+  const { IsActive } = useHeader()
 
   const NAV_ITEMS = [
     {

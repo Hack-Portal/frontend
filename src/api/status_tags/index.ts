@@ -2,10 +2,19 @@
 import type * as Types from '../@types'
 
 export type Methods = {
-  /** Get Frameworks */
+  /** Get all StatusTag */
   get: {
     status: 200
     /** success response */
-    resBody: Types.Repository_StatusTag[]
+    resBody: Types.Response_StatusTag[]
+  }
+
+  /** Create a new StatusTag */
+  post: {
+    status: 200
+    /** success response */
+    resBody: Types.Response_StatusTag
+    /** request body */
+    reqBody: Types.Request_CreateStatusTag
   }
 }

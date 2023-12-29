@@ -9,8 +9,11 @@ export class FetchHackathons {
   }
 
   public async fetchAllHackathons() {
+    // trace
+    console.log('FetchHackathons.fetchAllHackathons()-start');
     try {
       const hackathons = await this.hackathonRepository.fetchAll();
+      console.log('FetchHackathons.fetchAllHackathons()-end');
       return hackathons;
     } catch (error) {
       console.error('Serviceのエラー:', error);
