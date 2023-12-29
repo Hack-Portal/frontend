@@ -24,6 +24,7 @@ export class HackathonRepository implements HackathonInterface {
   public async fetchAll() {
     console.log('HackathonRepository.fetchAll()-start')
     try {
+      console.log('fetch-path:', API_URL)
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
         aspida(axios, {
