@@ -1,7 +1,7 @@
 import { Box, Typography } from '@/lib/mui/muiRendering'
 import React, { Suspense } from 'react'
 import HacakathonPostForm from './_components/HacakathonPostForm'
-import { FetchStatusTags } from '../post_hackathon/_services/FetchTagsService'
+import { FetchStatusTags } from './_services/FetchTagsService'
 
 const Home = () => {
   const fetchStatusTags = new FetchStatusTags()
@@ -16,7 +16,9 @@ const Home = () => {
     >
       <Typography variant="h3">Post Hackathon</Typography>
       <Suspense fallback={<div>Loading...</div>}>
-        {statusTags && <HacakathonPostForm statusTags={statusTags} />}
+        {/* <HacakathonPostForm tags={statusTags} /> */}
+        {/* TODO get tags適応 */}
+        <HacakathonPostForm />
       </Suspense>
     </Box>
   )

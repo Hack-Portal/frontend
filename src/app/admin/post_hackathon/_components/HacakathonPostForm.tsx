@@ -16,10 +16,11 @@ type FormData = {
 }
 
 type Props = {
-  statusTags: Response_StatusTag[]
+  //TODO: 型を定義なおす
+  tags: any
 }
-const HacakathonPostForm = (props: Props) => {
-  const { statusTags } = props
+const HacakathonPostForm = () => {
+  // const { tags } = props
   const onSubmit = (data: FormData) => {}
 
   return (
@@ -82,7 +83,8 @@ const HacakathonPostForm = (props: Props) => {
           },
         }}
       />
-      <HackathonStatusSelector statusTags={statusTags} name="statuses" />
+      {/* <HackathonStatusSelector statusTags={tags} name="statuses" /> */}
+      <HackathonStatusSelector name="statuses" />
       <ImgUpload name="image" label="サムネイル" />
     </FormProvider>
   )

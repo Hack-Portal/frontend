@@ -20,12 +20,14 @@ const MenuProps = {
 
 type SelectProps = {
   name: string
-  statusTags: Response_StatusTag[]
+  // statusTags: Response_StatusTag[]
 }
 
+const tags = ['オンライン', 'オフライン', '初心者歓迎']
+
 const HackathonStatusSelector: React.FC<SelectProps> = ({
-  statusTags,
   name,
+  // statusTags,
 }) => {
   const { register, watch, setValue } = useFormContext()
 
@@ -33,7 +35,8 @@ const HackathonStatusSelector: React.FC<SelectProps> = ({
 
   React.useEffect(() => {
     setValue(name, watchValue)
-    register(...watchValue)
+    // TODO React-hook-form適応
+    // register(...watchValue)
     // watchValueが変更されたらsetValueを実行する
     console.log(watchValue)
   }, [watchValue, setValue, register])
@@ -67,9 +70,9 @@ const HackathonStatusSelector: React.FC<SelectProps> = ({
         )}
         MenuProps={MenuProps}
       >
-        {statusTags.map((value, index) => (
-          <MenuItem key={value.id} value={value.status}>
-            {value.status}
+        {tags.map((value) => (
+          <MenuItem key={value} value={value}>
+            {value}
           </MenuItem>
         ))}
       </Select>
