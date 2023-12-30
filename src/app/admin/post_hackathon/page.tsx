@@ -1,11 +1,11 @@
 import { Box, Typography } from '@/lib/mui/muiRendering'
 import React, { Suspense } from 'react'
 import HacakathonPostForm from './_components/HacakathonPostForm'
-import { FetchStatusTags } from './_services/FetchTagsService'
+// import { FetchStatusTags } from './_services/FetchTagsService'
 
 const Home = () => {
-  const fetchStatusTags = new FetchStatusTags()
-  const statusTags = fetchStatusTags.fetchAllStatusTags()
+  // const fetchStatusTags = new FetchStatusTags()
+  // const statusTags = fetchStatusTags.fetchAllStatusTags()
   return (
     <Box
       sx={{
