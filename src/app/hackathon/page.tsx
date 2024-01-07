@@ -52,7 +52,7 @@ const Home = async () => {
             sx={{ width: '100%', maxWidth: '1980px' }}
           >
             {hackathons?.map((hackathon) => (
-              <Hackathon.Record {...hackathon} />
+              <Hackathon.Record {...hackathon} key={hackathon.hackathon_id}/>
             ))}
           </Grid>
         </Suspense>
