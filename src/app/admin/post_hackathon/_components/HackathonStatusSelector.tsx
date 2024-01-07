@@ -24,21 +24,23 @@ type SelectProps = {
 
 const tags = ['オンライン', 'オフライン', '初心者歓迎']
 
-const HackathonStatusSelector: React.FC<SelectProps> = ({
+const StatusSelector: React.FC<SelectProps> = ({
   name,
   // statusTags,
 }) => {
   const { register, watch, setValue } = useFormContext()
 
-  const watchValue = watch()
+  const watchValue = watch(name, []) as string[] | string
 
   React.useEffect(() => {
-    setValue(name, watchValue)
+    setValue(
+      name,
+      typeof watchValue === 'string' ? watchValue.split(',') : watchValue,
+    )
     // TODO React-hook-form適応
     // register(...watchValue)
     // watchValueが変更されたらsetValueを実行する
-    console.log(watchValue)
-  }, [watchValue, setValue, register])
+  }, [watchValue, setValue, register, name])
 
   const handleChange = (event: SelectChangeEvent<typeof watchValue>) => {
     const {
@@ -79,4 +81,4 @@ const HackathonStatusSelector: React.FC<SelectProps> = ({
   )
 }
 
-export default HackathonStatusSelector
+export default StatusSelector

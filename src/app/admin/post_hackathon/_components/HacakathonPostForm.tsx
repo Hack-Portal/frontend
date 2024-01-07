@@ -21,7 +21,9 @@ type Props = {
 }
 const HacakathonPostForm = () => {
   // const { tags } = props
-  const onSubmit = (data: FormData) => {}
+  const onSubmit = (data: FormData) => {
+    console.log(data)
+  }
 
   return (
     <FormProvider<FormData>
