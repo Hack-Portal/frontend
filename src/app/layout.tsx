@@ -1,6 +1,8 @@
 import RecoilProvider from '@/provider/recoilProvider'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { Header } from '@/components/layouts/Header'
+import { Footer } from '@/components/layouts/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,9 +17,11 @@ export default function RootLayout(props: any) {
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <main style={{marginTop:"70px"}}>
+        <Header />
+        <main >
           <RecoilProvider>{children}</RecoilProvider>
         </main>
+        <Footer />
       </body>
     </html>
   )
