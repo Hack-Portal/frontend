@@ -1,5 +1,5 @@
 'use client'
-import { Box } from '@/lib/mui/muiRendering'
+import { Box } from '@mui/material'
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 

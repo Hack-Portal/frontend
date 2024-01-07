@@ -1,4 +1,4 @@
-import { Box, Typography } from '@/lib/mui/muiRendering'
+import { Box, Typography } from '@mui/material'
 import { Content } from './Tutorial/Content'
 
 export const Tutorial = () => {

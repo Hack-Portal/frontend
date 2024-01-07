@@ -1,16 +1,16 @@
 // 現状、RSCで対応していない
 'use client'
+import { Typography } from '@mui/material'
 import {
   Timeline,
   TimelineItem,
-  TimelineOppositeContent,
   TimelineSeparator,
-  TimelineDot,
   TimelineConnector,
   TimelineContent,
+  TimelineDot,
   timelineItemClasses,
-  Typography,
-} from '@/lib/mui/muiRendering'
+} from '@mui/lab'
+
 import Image from 'next/image'
 
 type Props = {
