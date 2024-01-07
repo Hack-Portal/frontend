@@ -28,6 +28,10 @@ const HacakathonPostForm = () => {
       defaultValues={{
         hacakathonName: '',
         link: '',
+        expired: new Date(),
+        startDate: new Date(),
+        term: new Date(),
+        statuses: [],
       }}
       onSubmit={onSubmit}
     >
