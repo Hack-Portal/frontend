@@ -1,8 +1,6 @@
-import { Header } from '@/components/layouts/Header'
 import { Suspense } from 'react'
 import { FetchHackathons } from './_services/fetchHackathons'
 import { Box, Grid, Typography } from '@mui/material'
-import { CenterArea } from '@/components/layouts/CenterArea'
 import * as Hackathon from '@/app/hackathon/_components/'
 
 // ここでこのページにおける振る舞いを定義してる
@@ -27,19 +25,38 @@ const Home = async () => {
 
   return (
     <>
-      <Header />
-      <Box sx={{ padding: '30px 10vw 10vw 10vw' }}>
-        <Grid container>
-          <Typography sx={{ textAlign: 'center', my: 10, ...TITLE_TEXT_STYLE }}>
+      <Grid
+        container
+        direction={'column'}
+        sx={{ padding: '30px  3vw 0 3vw' }}
+        justifyContent={'center'}
+        alignItems={'center'}
+      >
+        <Grid container sx={{ maxWidth: '1980px' }}>
+          <Typography
+            sx={{
+              textAlign: 'center',
+
+              my: 10,
+              ...TITLE_TEXT_STYLE,
+            }}
+          >
             新着ハッカソン
           </Typography>
         </Grid>
         <Suspense fallback={<div>loading...</div>}>
-          <CenterArea>
-            {hackathons?.map((hackathon) => <Hackathon.Record {...hackathon} />)}
-          </CenterArea>
+          <Grid
+            container
+            justifyContent={'center'}
+            gap={'32px'}
+            sx={{ width: '100%', maxWidth: '1980px' }}
+          >
+            {hackathons?.map((hackathon) => (
+              <Hackathon.Record {...hackathon} />
+            ))}
+          </Grid>
         </Suspense>
-      </Box>
+      </Grid>
     </>
   )
 }

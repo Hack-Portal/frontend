@@ -17,7 +17,7 @@ export class FetchHackathons {
           ...hackathon,
           expired: {
             date: hackathon.expired ? formatDate(hackathon.expired) : '',
-            title:"募集締め切り"
+            title:"募集〆"
           },
           start_date: {
             date: hackathon.start_date ? formatDate(hackathon.start_date) : '',
