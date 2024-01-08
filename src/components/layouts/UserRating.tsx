@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Avatar, Typography, Card, Box } from '@/lib/mui/muiRendering'
+import { Grid, Avatar, Typography, Card, Box } from '@mui/material'
 import Link from 'next/link'
 
 export const dynamic = 'force-static'

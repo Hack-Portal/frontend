@@ -2,7 +2,7 @@ import { Header } from '@/components/layouts/Header'
 import { HackathonList } from './_components/HackathonList'
 import { UserRating } from '../../components/layouts/UserRating'
 
-import { Grid } from '@/lib/mui/muiRendering'
+import { Grid } from '@mui/material'
 import StackList from '../../components/layouts/StackList'
 import Image from 'next/image'
 import Link from 'next/link'
