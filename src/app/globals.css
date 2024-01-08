@@ -100,13 +100,14 @@ a {
     color-scheme: dark;
   }
 }
-.memo{
-text-align: center;
-
+.memo {
+  text-align: center;
+}
+body {
+  color: #333;
 }
 
-
-main{
-  background-color: #f3f3f3;
-  color: #333;
+main {
+  background-color: #fefefe;
+  padding: 70px 0 20vh 0;
 }
