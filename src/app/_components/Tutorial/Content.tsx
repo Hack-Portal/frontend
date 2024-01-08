@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from '@/lib/mui/muiRendering'
+import { Box, Card, Typography } from '@mui/material'
 import { SideBar } from './SideBar'
 
 type Props = {

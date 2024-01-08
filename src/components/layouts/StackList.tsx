@@ -1,11 +1,4 @@
-import {
-  Grid,
-  Avatar,
-  Typography,
-  CardMedia,
-  Box,
-  Card,
-} from '@/lib/mui/muiRendering'
+import { Grid, Typography, CardMedia, Box, Card } from '@mui/material'
 import React from 'react'
 
 interface Props {

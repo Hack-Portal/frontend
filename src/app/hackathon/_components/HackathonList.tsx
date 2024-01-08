@@ -1,23 +1,13 @@
-import {
-  IconButton,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  Chip,
-  Typography,
-  BookmarkBorderOutlinedIcon,
-  SensorDoorOutlinedIcon,
-  FlagOutlinedIcon,
-  HourglassEmptyOutlinedIcon,
-} from '@/lib/mui/muiRendering'
+import { CardContent, CardMedia, Grid, Chip, Typography } from '@mui/material'
 
 import { CenterArea } from '@/components/layouts/CenterArea'
 import { CenterRecordCard } from '@/components/layouts/CenterRecordCard'
 import { HacakathonColumn } from './HacakathonColumn'
 import { Response_GetHackathon } from '@/api/@types'
 import { formatDate } from '@/utils/formatDate'
-
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined'
+import SensorDoorOutlinedIcon from '@mui/icons-material/SensorDoorOutlined'
+import HourglassEmptyOutlinedIcon from '@mui/icons-material/HourglassEmptyOutlined'
 type Props = {
   hackathons: Response_GetHackathon[]
 }
@@ -37,7 +27,7 @@ export const HackathonList = (props: Props) => {
   }
 
   return (
-    <CenterArea>
+    <CenterArea
       {hackathons.map((hackathon) => (
         <CenterRecordCard
           href={hackathon.link ? hackathon.link : ''}

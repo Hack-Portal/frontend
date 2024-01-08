@@ -1,4 +1,4 @@
-import { Box, Typography } from '@/lib/mui/muiRendering'
+import { Box, Typography } from '@mui/material'
 import React, { Suspense } from 'react'
 import HacakathonPostForm from './_components/HacakathonPostForm'
 // import { FetchStatusTags } from './_services/FetchTagsService'

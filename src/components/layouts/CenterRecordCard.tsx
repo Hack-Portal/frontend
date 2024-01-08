@@ -1,4 +1,4 @@
-import { Card, CardMedia, Paper } from '@/lib/mui/muiRendering'
+import { Card } from '@mui/material'
 
 type Props = {
   href: string
