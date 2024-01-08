@@ -4,13 +4,13 @@ import FormProvider from '@/app/_components/form/FormProvider'
 import TextFieldComponent from '@/app/_components/form/TextFieldComponent'
 import HackathonStatusSelector from '@/app/admin/post_hackathon/_components/HackathonStatusSelector'
 import ImgUpload from '@/app/_components/form/ImgUpload'
-import { Response_StatusTag } from '@/api/@types'
+
 type FormData = {
   hacakathonName: string
   link: string
-  expired: Date
-  startDate: Date
-  term: Date
+  expired: string
+  startDate: string
+  term: number
   statuses: string[]
   image: File
 }
@@ -28,9 +28,9 @@ const HacakathonPostForm = () => {
       defaultValues={{
         hacakathonName: '',
         link: '',
-        expired: new Date(),
-        startDate: new Date(),
-        term: new Date(),
+        expired: '',
+        startDate: '',
+        term: 0,
         statuses: [],
       }}
       onSubmit={onSubmit}
@@ -60,8 +60,10 @@ const HacakathonPostForm = () => {
         validationRules={{
           required: '締切は必須です',
           pattern: {
-            value: /^(19|20)\d\d\/(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/,
-            message: 'YYYY/MM/DDの形式で入力してください',
+            value:
+              /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(.\d+)?(([+-]\d{2}:\d{2})|Z)?$/,
+            message:
+              'RFC3339 形式 (例: 2022-12-31T23:59:59+09:00) で入力してください',
           },
         }}
       />
@@ -71,8 +73,10 @@ const HacakathonPostForm = () => {
         validationRules={{
           required: 'キックオフは必須です',
           pattern: {
-            value: /^(19|20)\d\d\/(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/,
-            message: 'YYYY/MM/DDの形式で入力してください',
+            value:
+              /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(.\d+)?(([+-]\d{2}:\d{2})|Z)?$/,
+            message:
+              'RFC3339 形式 (例: 2022-12-31T23:59:59+09:00) で入力してください',
           },
         }}
       />
