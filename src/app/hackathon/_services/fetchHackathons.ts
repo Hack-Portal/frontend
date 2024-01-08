@@ -1,5 +1,4 @@
 import { HackathonRepository } from '@/repositories/HackathonRepository'
-import { HackathonRepository } from '@/repositories/HackathonRepository'
 import { formatDate } from '@/utils/formatDate'
 
 export class FetchHackathons {
