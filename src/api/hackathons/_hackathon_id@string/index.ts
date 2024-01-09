@@ -7,5 +7,6 @@ export type Methods = {
     status: 200
     /** success response */
     resBody: Types.Response_GetHackathon
+    
   }
 }
