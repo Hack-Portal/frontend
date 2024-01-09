@@ -15,7 +15,7 @@ const Home = async () => {
 
   const TITLE_TEXT_STYLE = {
     fontSize: {
-      xs: '1.5rem', // エクストラスモールデバイス
+      xs: '1.2rem', // エクストラスモールデバイス
       sm: '2rem', // スモールデバイス
       md: '2rem', // ミディアムデバイス
       lg: '2rem', // ラージデバイス
@@ -37,7 +37,7 @@ const Home = async () => {
             sx={{
               textAlign: 'center',
 
-              my: 10,
+              my: [5,10],
               ...TITLE_TEXT_STYLE,
             }}
           >
