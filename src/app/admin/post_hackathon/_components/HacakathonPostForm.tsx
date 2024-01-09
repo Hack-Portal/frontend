@@ -4,6 +4,7 @@ import FormProvider from '@/app/_components/form/FormProvider'
 import TextFieldComponent from '@/app/_components/form/TextFieldComponent'
 import HackathonStatusSelector from '@/app/admin/post_hackathon/_components/HackathonStatusSelector'
 import ImgUpload from '@/app/_components/form/ImgUpload'
+import { PostHackathonService } from '../_services/PostHackathonService'
 
 type FormData = {
   hacakathonName: string
@@ -21,7 +22,14 @@ type Props = {
 }
 const HacakathonPostForm = () => {
   // const { tags } = props
-  const onSubmit = (data: FormData) => {}
+  const onSubmit = async (data: FormData) => {
+    const postHackathon = new PostHackathonService()
+    try {
+      await postHackathon.postHackathon(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <FormProvider<FormData>
