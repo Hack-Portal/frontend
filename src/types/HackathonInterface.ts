@@ -6,5 +6,5 @@ import {
 
 export interface HackathonInterface {
   fetchAll(): Promise<Response_GetHackathon[]>
-  create(data: Request_CreateHackathon): Promise<Response_CreateHackathon>
+  post(data: Request_CreateHackathon): Promise<Response_CreateHackathon>
 }

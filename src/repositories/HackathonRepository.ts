@@ -48,7 +48,7 @@ export class HackathonRepository implements HackathonInterface {
       throw error
     }
   }
-  public async create(data: Request_CreateHackathon) {
+  public async post(data: Request_CreateHackathon) {
     try {
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
