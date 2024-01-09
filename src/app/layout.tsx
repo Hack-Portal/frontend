@@ -16,6 +16,10 @@ export default function RootLayout(props: any) {
 
   return (
     <html lang="ja">
+      <head>
+        <link rel="icon" href="favicon.ico" />
+      </head>
+
       <body className={inter.className}>
         <Header />
         <main >
