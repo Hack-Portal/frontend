@@ -3,7 +3,6 @@ name: build and deployment
 on:
   push:
     branches:
-      - develop
       - master
 
 permissions:
@@ -19,47 +18,27 @@ permissions:
   statuses: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-      
-    - shell: bash
-      run: |
-        rm .env && touch .env
-        echo "${{ secrets.STAGE_ENV }}" >> .env
-
-    - name: login to harbor registry
-      uses: docker/login-action@v1
-      with:
-        registry: ${{ secrets.HARBOR_REGISTRY  }}
-        username: ${{ secrets.HARBOR_USERNAME  }}
-        password: ${{ secrets.HARBOR_PASSWORD }}
-    - name: Build and push
-      run: |
-        docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }} .
-        docker push  ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}
-  deploy:
-    needs: build
+  copy-registries:
     runs-on: ubuntu-latest
     steps:
       - name: Install yq
         run: |
           sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
           sudo chmod a+x /usr/local/bin/yq
-          
-      - name: checkout k8s-config repository
+
+      - name: Checkout another repo
         uses: actions/checkout@v3
         with:
           repository: Hack-Portal/k8s-config
           token: ${{ secrets.GH_PAT }}
           ref: master
-    
-      - name: Change manifest
+
+      - name: Copy image value
         run: |
-          cd config/stage
-          yq -i '.spec.template.spec.containers[0].image = "${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}"' 'frontend.yaml'
+          IMAGE_VALUE=$(yq e '.spec.template.spec.containers[0].image' config/stage/frontend.yaml)
+          yq eval -i '.spec.template.spec.containers[0].image = env(IMAGE_VALUE)' config/product/frontend.yaml
+        env:
+          IMAGE_VALUE: ${{ env.IMAGE_VALUE }}
           
       - name: push repository
         run: |
