@@ -3,7 +3,11 @@ import aspida from '@aspida/axios'
 import api from '@/api/$api'
 import { HackathonInterface } from '@/types/HackathonInterface'
 import { getAuthorizationHeader } from '../utils/headerManager'
-import { Response_GetHackathon } from '@/api/@types'
+import {
+  Request_CreateHackathon,
+  Response_CreateHackathon,
+  Response_GetHackathon,
+} from '@/api/@types'
 import { API_URL } from '@/constants/API_URL'
 
 export class HackathonRepository implements HackathonInterface {
@@ -44,7 +48,7 @@ export class HackathonRepository implements HackathonInterface {
       throw error
     }
   }
-  public async create() {
+  public async create(data: Request_CreateHackathon) {
     try {
       const client = api(
         // aspida(axios, { baseURL: 'https://api.seaffood.com/current/v1' }),
@@ -56,8 +60,8 @@ export class HackathonRepository implements HackathonInterface {
 
       this.authorization = getAuthorizationHeader()
 
-      const response = await client.hackathons.create({})
-      return response.body as Response_GetHackathon[]
+      const response = await client.hackathons.post({ body: data })
+      return response.body as Response_CreateHackathon
     } catch (error) {
       // エラー処理
       console.error('APIリクエストエラー:', error)
