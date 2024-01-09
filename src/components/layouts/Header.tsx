@@ -38,6 +38,7 @@ export const Header = () => {
         top: 0,
         left: 0,
         maxHeight: '70px',
+        height: '15vw',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -52,7 +53,21 @@ export const Header = () => {
         }}
       >
         <Link href="/" style={{ margin: '0 16px 0 0' }}>
-          <Image src={'/image/logo.svg'} alt="logo" width={70} height={70} />
+          <Image
+            src={'/image/logo.svg'}
+            alt="logo"
+            width={70}
+            height={70}
+            style={{
+              width: '10vw',
+              height: '10vw',
+              minWidth: '50px',
+              minHeight: '50px',
+              maxHeight: '70px',
+              maxWidth: '70px',
+              borderRadius: '50%',
+            }}
+          />
         </Link>
         {NAV_ITEMS.map((item, index) => (
           <Link
@@ -60,17 +75,20 @@ export const Header = () => {
             key={index}
             style={{
               borderBottom: IsActive(item.href) ? 'solid 2px #0288d1' : 'none',
-              padding: '6px 0 0 0',
+              height: '15vw',
+              maxHeight: '70px',
+              padding: '6px 0 0  0',
             }}
           >
-            <ListItem>
-              <ListItemButton sx={{ borderRadius: '5%' }}>
+            <ListItem sx={{ p: 0, height: '100%' }}>
+              <ListItemButton sx={{ borderRadius: '5%', height: '100%' }}>
                 <ListItemText
                   primary={
                     <Typography
-                      style={{
+                      sx={{
                         fontWeight: IsActive(item.href) ? 'bold' : 'normal',
                         color: IsActive(item.href) ? '#333' : '#aaa',
+                        fontSize: ['0.8rem', '1rem'],
                       }}
                     >
                       {item.label}

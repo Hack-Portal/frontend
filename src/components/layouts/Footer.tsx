@@ -93,7 +93,7 @@ export const Footer = () => {
         </Grid>
       </Grid>
       <Grid container gap={2}>
-        {FooterLink.map((link) => (
+        {/* {FooterLink.map((link) => (
           <Grid
             container
             gap={2}
@@ -115,7 +115,7 @@ export const Footer = () => {
               <Typography color="neutral">&Iota;</Typography>
             )}
           </Grid>
-        ))}
+        ))} */}
       </Grid>
       <Typography>&copy; 2023 HACK PORTAL</Typography>
     </Grid>
