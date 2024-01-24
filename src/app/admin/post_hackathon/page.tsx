@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import React, { Suspense } from 'react'
-import HacakathonPostForm from './_components/HacakathonPostForm'
+// import HacakathonPostForm from './_components/HacakathonPostForm'
 // import { FetchStatusTags } from './_services/FetchTagsService'
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
       <Suspense fallback={<div>Loading...</div>}>
         {/* <HacakathonPostForm tags={statusTags} /> */}
         {/* TODO get tags適応 */}
-        <HacakathonPostForm />
+        {/* <HacakathonPostForm /> */}
       </Suspense>
     </Box>
   )
