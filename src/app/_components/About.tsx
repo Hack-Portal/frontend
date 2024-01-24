@@ -78,7 +78,6 @@ export const About = () => {
         hack hackはハッカソンを探しメンバーを募集するためのdiscord
         コミュニティです。
         <br />
-        現在人が参加しています。
       </Typography>
       <Grid container justifyContent={'space-evenly'} gap={10}>
         {CONTENTS.map((content, index) => (
