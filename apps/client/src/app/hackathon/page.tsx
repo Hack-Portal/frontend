@@ -1,7 +1,8 @@
+import React from 'react'
 import { Suspense } from 'react'
 import { FetchHackathons } from './_services/fetchHackathons'
-import { Box, Grid, Typography } from '@mui/material'
-import * as Hackathon from './_components'
+import { Grid, Typography } from '@mui/material'
+import * as Hackathon from '../../features/HackathonRecord/components/index'
 
 // ここでこのページにおける振る舞いを定義してる
 // 参考：https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
@@ -13,15 +14,6 @@ const Home = async () => {
   const fetchHackathons = new FetchHackathons()
   const hackathons = await fetchHackathons.fetchAllHackathons()
 
-  const TITLE_TEXT_STYLE = {
-    fontSize: {
-      xs: '1.2rem', // エクストラスモールデバイス
-      sm: '2rem', // スモールデバイス
-      md: '2rem', // ミディアムデバイス
-      lg: '2rem', // ラージデバイス
-      xl: '2.3rem', // エクストララージデバイス
-    },
-  }
 
   return (
     <>
@@ -60,4 +52,15 @@ const Home = async () => {
     </>
   )
 }
+
+const TITLE_TEXT_STYLE = {
+  fontSize: {
+    xs: '1.2rem', // エクストラスモールデバイス
+    sm: '2rem', // スモールデバイス
+    md: '2rem', // ミディアムデバイス
+    lg: '2rem', // ラージデバイス
+    xl: '2.3rem', // エクストララージデバイス
+  },
+}
+
 export default Home

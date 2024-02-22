@@ -3,13 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@client/*": [
-        "src/*"
-      ]
+      "@client/*": ["src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    ".next/types/**/*.ts"
-  ]
+  "include": ["src/**/*.ts", ".next/types/**/*.ts"]
 }

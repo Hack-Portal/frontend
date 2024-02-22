@@ -1,9 +1,11 @@
-import { HackathonRecord } from '../_types/Hackathon'
+import React from 'react'
 import { CardMedia, CardContent, Typography, Grid, Chip } from '@mui/material'
 import SensorDoorOutlinedIcon from '@mui/icons-material/SensorDoorOutlined'
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined'
 import HourglassEmptyOutlinedIcon from '@mui/icons-material/HourglassEmptyOutlined'
-import * as RecordFC from '.'
+import { HackathonRecord } from '../../types/Hackathon'
+import * as RecordContainer from './index'
+
 import Image from 'next/image'
 
 type Props = HackathonRecord
@@ -19,7 +21,7 @@ export const Record = (props: Props) => {
     maxWidth: 35,
     minWidth: 18,
     minHeight: 18,
-    display: ["none",'block'],
+    display: ['none', 'block'],
   }
 
   const columns = [
@@ -35,7 +37,7 @@ export const Record = (props: Props) => {
   ]
 
   return (
-    <RecordFC.Body href={link ? link : ''}>
+    <RecordContainer.Body href={link ? link : ''}>
       <Image
         src={icon ? icon : '/image/hackathon-icon.png'}
         style={{
@@ -56,11 +58,11 @@ export const Record = (props: Props) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          pl: [2,4,4,4,4],
+          pl: [2, 4, 4, 4, 4],
           maxHeight: '218px',
           maxWidth: ['74%', '84%', '84%', '66%', '66%'],
           width: '100%',
-          justifyContent:'space-evenly',
+          justifyContent: 'space-evenly',
         }}
       >
         <Typography
@@ -71,7 +73,7 @@ export const Record = (props: Props) => {
             whiteSpace: 'nowrap',
             fontSize: ['0.7rem', '1rem', '1.3rem', '1.4rem', '1.5rem'],
             fontWeight: 'bold',
-            pb: [1,1,2,2,2],
+            pb: [1, 1, 2, 2, 2],
           }}
           variant="h3"
         >
@@ -85,7 +87,7 @@ export const Record = (props: Props) => {
           width={'100%'}
         >
           {columns.map((column, id) => (
-            <RecordFC.Column
+            <RecordContainer.Column
               title={column.title}
               date={column.date}
               icon={column.icon}
@@ -102,8 +104,8 @@ export const Record = (props: Props) => {
             alignItems: 'center',
             // width: '300px',
             flexWrap: 'wrap',
-            pt: [1,1,2,2,2],
-           }}
+            pt: [1, 1, 2, 2, 2],
+          }}
         >
           {status_tags?.map((tag, id) => (
             <Grid item key={id}>
@@ -113,8 +115,8 @@ export const Record = (props: Props) => {
                   mt: 0.5,
                   mr: 0.5,
                   fontSize: ['0.4rem', '0.7rem', '0.7rem', '0.7rem', '1rem'],
-                  height: ['1.1rem',"1.5rem"]
-                  }}
+                  height: ['1.1rem', '1.5rem'],
+                }}
                 key={id}
               />
             </Grid>
@@ -134,6 +136,6 @@ export const Record = (props: Props) => {
               </IconButton>
             </CardActions> */}
       {/* </CardContent> */}
-    </RecordFC.Body>
+    </RecordContainer.Body>
   )
 }
