@@ -1,28 +1,16 @@
 import React from 'react'
-import { CardMedia, CardContent, Typography, Grid, Chip } from '@mui/material'
+import { CardContent, Typography, Grid, Chip } from '@mui/material'
 import SensorDoorOutlinedIcon from '@mui/icons-material/SensorDoorOutlined'
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined'
 import HourglassEmptyOutlinedIcon from '@mui/icons-material/HourglassEmptyOutlined'
 import { HackathonRecord } from '../../types/Hackathon'
-import * as RecordContainer from './index'
-
+import * as RecordContainer from './components/index'
 import Image from 'next/image'
 
 type Props = HackathonRecord
 
 export const Record = (props: Props) => {
   const { link, icon, name, term, status_tags, expired, start_date } = props
-
-  const ICON_STYLE = {
-    color: '#aaa',
-    width: '2vw',
-    height: '2vw',
-    maxHeight: 35,
-    maxWidth: 35,
-    minWidth: 18,
-    minHeight: 18,
-    display: ['none', 'block'],
-  }
 
   const columns = [
     {
@@ -138,4 +126,15 @@ export const Record = (props: Props) => {
       {/* </CardContent> */}
     </RecordContainer.Body>
   )
+}
+
+const ICON_STYLE = {
+  color: '#aaa',
+  width: '2vw',
+  height: '2vw',
+  maxHeight: 35,
+  maxWidth: 35,
+  minWidth: 18,
+  minHeight: 18,
+  display: ['none', 'block'],
 }

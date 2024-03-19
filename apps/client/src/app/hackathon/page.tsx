@@ -1,8 +1,10 @@
 import React from 'react'
 import { Suspense } from 'react'
-import { FetchHackathons } from './_services/fetchHackathons'
 import { Grid, Typography } from '@mui/material'
-import * as Hackathon from '../../features/HackathonRecord/components/index'
+import * as Hackathon from '../../features/HackathonRecords/components/index'
+import { aspidaFetcher } from '@client/libs/aspidaManager'
+import { notFound } from 'next/navigation'
+import { convertTermInfoToObj } from '@client/features/HackathonPage/services/convertTermInfoToObj'
 
 // ここでこのページにおける振る舞いを定義してる
 // 参考：https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
@@ -10,10 +12,15 @@ import * as Hackathon from '../../features/HackathonRecord/components/index'
 export const dynamic = 'force-dynamic'
 
 const Home = async () => {
-  // const fetcher = (url: string) => fetch(url).then((res) => res.json())
-  const fetchHackathons = new FetchHackathons()
-  const hackathons = await fetchHackathons.fetchAllHackathons()
+  const response = await aspidaFetcher().hackathons.get({
+    query: { page_size: 10, page_id: 1 },
+  })
 
+  const hackathons = convertTermInfoToObj(response.body)
+
+  if (!hackathons) {
+    return notFound()
+  }
 
   return (
     <>
@@ -29,7 +36,7 @@ const Home = async () => {
             sx={{
               textAlign: 'center',
 
-              my: [5,10],
+              my: [5, 10],
               ...TITLE_TEXT_STYLE,
             }}
           >
@@ -44,7 +51,7 @@ const Home = async () => {
             sx={{ width: '100%', maxWidth: '1980px' }}
           >
             {hackathons?.map((hackathon) => (
-              <Hackathon.Record {...hackathon} key={hackathon.hackathon_id}/>
+              <Hackathon.Record {...hackathon} key={hackathon.hackathon_id} />
             ))}
           </Grid>
         </Suspense>
