@@ -10,7 +10,7 @@
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
     "test": "jest --env=jsdom --verbose",
     "dev:aspida": "aspida --watch",
-    "prepare": "husky install"
+    "prepare": "if [ -z \"$CI\" ]; then husky install; fi"
   },
   "dependencies": {
     "@aspida/axios": "^1.14.0",
