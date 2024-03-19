@@ -48,12 +48,11 @@ jobs:
           password: ${{ secrets.HARBOR_PASSWORD }}
 
       - name: Build and push
-        with:
-          context: . # Dockerビルドのコンテキスト、`.`はGitHubワークフローが実行される現在のディレクトリ（プロジェクトのルート）を指します
-          file: ./apps/client/Dockerfile # 使用するDockerfileのパス
+        env:
+          WORKING_DIRECTORY: ./apps/client # 環境変数として作業ディレクトリを定義
         run: |
-          docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }} -f ${{ env.WORKING_DIRECTORY }}/Dockerfile ${{ env.WORKING_DIRECTORY }}
-          docker push  ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}
+          docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }} -f $WORKING_DIRECTORY/Dockerfile $WORKING_DIRECTORY
+          docker push ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}
         shell: bash
   deploy:
     needs: build
