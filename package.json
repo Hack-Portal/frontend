@@ -10,10 +10,16 @@
     "@typescript-eslint/parser": "^7.2.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^9.0.11"
+    "husky": "^9.0.11",
+    "@types/bun": "latest"
   },
   "scripts": {
-    "lint": "eslint --fix --ignore-path .gitignore 'packages/**/*.{ts,tsx}' 'apps/**/*.{ts,tsx}' --workspaces",
-    "dev:client": "npm run dev --workspace=apps/client"
+    "lint": "eslint --fix - .gitignore 'packages/**/*.{ts,tsx}' 'apps/**/*.{ts,tsx}' --workspaces",
+    "dev:client": "npm run dev --workspace=client"
+  },
+  "module": "index.ts",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }

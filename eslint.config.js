@@ -1,9 +1,9 @@
-const nextPlugin = require('@next/eslint-plugin-next')
-const reactPlugin = require('eslint-plugin-react')
-const hooksPlugin = require('eslint-plugin-react-hooks')
-const typescriptParser = require('@typescript-eslint/parser')
+import nextPlugin from '@next/eslint-plugin-next'
+import reactPlugin from 'eslint-plugin-react'
+import hooksPlugin from 'eslint-plugin-react-hooks'
+import typescriptParser from '@typescript-eslint/parser'
 
-module.exports = [
+export default [
   {
     languageOptions: {
       parser: typescriptParser,
