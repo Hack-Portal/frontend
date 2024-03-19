@@ -49,7 +49,7 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }} -f apps/client/Dockerfile apps/client
+          docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }} -f apps/client/Dockerfile .
           docker push ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}
         shell: bash
   deploy:
