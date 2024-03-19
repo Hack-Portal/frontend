@@ -48,10 +48,8 @@ jobs:
           password: ${{ secrets.HARBOR_PASSWORD }}
 
       - name: Build and push
-        env:
-          WORKING_DIRECTORY: ./apps/client # 環境変数として作業ディレクトリを定義
         run: |
-          docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }} -f $WORKING_DIRECTORY/Dockerfile $WORKING_DIRECTORY
+          docker build -t ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }} -f apps/client/Dockerfile apps/client
           docker push ${{ secrets.HARBOR_REGISTRY }}/hack-portal/hack-portal-frontend:${{ github.sha }}
         shell: bash
   deploy:
