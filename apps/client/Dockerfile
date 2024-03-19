@@ -32,7 +32,7 @@ RUN mkdir -p apps/client/.next
 RUN chown nextjs:nodejs apps/client/.next
 COPY --from=builder --chown=nextjs:nodejs /app/apps/client/.next/standalone ./apps/client/
 COPY --from=builder --chown=nextjs:nodejs /app/apps/client/.next/static ./apps/client/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/client/.env.local /app/apps/client
+COPY --from=builder --chown=nextjs:nodejs /app/apps/client/.env /app/apps/client
 
 
 USER nextjs
