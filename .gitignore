@@ -40,3 +40,9 @@
 **/*.log
 
 **/*.history
+
+# turbo
+.turbo
+build/**
+dist/**
+.next/**

@@ -24,6 +24,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2 #リポジトリ内のコードにアクセスできるようになる
 
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Set working directory
         run: echo "WORKING_DIRECTORY=apps/client" >> $GITHUB_ENV #$GITHUB_ENVはGitHub Actionsが提供する特別な環境変数で、ワークフロー実行中のジョブ内で環境変数を動的に設定するために使用します。
 
