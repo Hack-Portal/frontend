@@ -1,6 +1,6 @@
-import { Response_GetHackathon } from '@client/api/@types'
-import { HackathonRecord } from '@client/features/HackathonRecords/types/Hackathon'
-import { formatDate } from '@client/utils/formatDate'
+import type { Response_GetHackathon } from '@/api/@types'
+import type { HackathonRecord } from '@/features/HackathonRecords/types/Hackathon'
+import { formatDate } from '@/utils/formatDate'
 
 export const convertTermInfoToObj = (
   fetchHackathons: Response_GetHackathon[],

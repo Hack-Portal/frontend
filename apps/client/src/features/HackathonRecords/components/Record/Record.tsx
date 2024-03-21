@@ -1,11 +1,11 @@
 import React from 'react'
+import Image from 'next/image'
 import { CardContent, Typography, Grid, Chip } from '@mui/material'
 import SensorDoorOutlinedIcon from '@mui/icons-material/SensorDoorOutlined'
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined'
 import HourglassEmptyOutlinedIcon from '@mui/icons-material/HourglassEmptyOutlined'
-import { HackathonRecord } from '../../types/Hackathon'
+import type { HackathonRecord } from '@/features/HackathonRecords/types/Hackathon'
 import * as RecordContainer from './components/index'
-import Image from 'next/image'
 
 type Props = HackathonRecord
 
@@ -37,7 +37,7 @@ export const Record = (props: Props) => {
           minHeight: 90,
           objectFit: 'cover',
         }}
-        alt={'hackathon icon'}
+        alt="hackathon icon"
         sizes="100vw"
         width={200}
         height={200}
@@ -69,17 +69,17 @@ export const Record = (props: Props) => {
         </Typography>
         <Grid
           container
-          direction={'row'}
-          flexWrap={'nowrap'}
-          alignItems={'center'}
-          width={'100%'}
+          direction="row"
+          flexWrap="nowrap"
+          alignItems="center"
+          width="100%"
         >
-          {columns.map((column, id) => (
+          {columns.map((column) => (
             <RecordContainer.Column
               title={column.title}
               date={column.date}
               icon={column.icon}
-              key={id}
+              key={column.title}
             />
           ))}
         </Grid>
@@ -95,8 +95,8 @@ export const Record = (props: Props) => {
             pt: [1, 1, 2, 2, 2],
           }}
         >
-          {status_tags?.map((tag, id) => (
-            <Grid item key={id}>
+          {status_tags?.map((tag) => (
+            <Grid item key={tag.id}>
               <Chip
                 label={tag.status}
                 sx={{
@@ -105,7 +105,6 @@ export const Record = (props: Props) => {
                   fontSize: ['0.4rem', '0.7rem', '0.7rem', '0.7rem', '1rem'],
                   height: ['1.1rem', '1.5rem'],
                 }}
-                key={id}
               />
             </Grid>
           ))}

@@ -1,3 +1,4 @@
+import React from 'react'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { Header } from '../components/Header'
@@ -11,9 +12,11 @@ export const metadata = {
     'hack portal とは、ハッカソンの情報をまとめたポータルサイトです。',
 }
 
-export default function RootLayout(props: any) {
-  const { children } = props
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="ja">
       <head>

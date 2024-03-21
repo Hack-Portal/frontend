@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -8,13 +9,11 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material'
-import { useCustomRouter } from '@client/hooks/useCustomRouter'
-import { NAV_ITEMS } from '@client/constants/NAV_ITEMS'
+import { useCustomRouter } from '@/hooks/useCustomRouter'
+import { NAV_ITEMS } from '@/constants/NAV_ITEMS'
 
 export const Header = () => {
   const { IsActive } = useCustomRouter()
-
-  
 
   return (
     <Box
@@ -42,7 +41,7 @@ export const Header = () => {
       >
         <Link href="/" style={{ margin: '0 16px 0 0' }}>
           <Image
-            src={'/image/logo.svg'}
+            src="/image/logo.svg"
             alt="logo"
             width={70}
             height={70}
@@ -57,10 +56,10 @@ export const Header = () => {
             }}
           />
         </Link>
-        {NAV_ITEMS.map((item, index) => (
+        {NAV_ITEMS.map((item) => (
           <Link
             href={item.href}
-            key={index}
+            key={item.label}
             style={{
               borderBottom: IsActive(item.href) ? 'solid 2px #0288d1' : 'none',
               height: '15vw',

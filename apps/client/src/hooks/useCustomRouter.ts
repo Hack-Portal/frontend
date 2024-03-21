@@ -1,16 +1,15 @@
-'use client';
-
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from 'next/navigation'
 
 export const useCustomRouter = () => {
-  const router = useRouter();
-  const IsActive = (pathname: string) => usePathname() === pathname;
+  const router = useRouter()
+  const IsActive = (pathname: string) => usePathname() === pathname
   const handlePushRouter = (pathname: string) => {
-    router.push(pathname);
-  };
+    router.push(pathname)
+  }
 
-  const handleBackRouter = () => router.back();
+  const handleBackRouter = (): void => {
+    router.back()
+  }
 
-  return { IsActive, handlePushRouter, handleBackRouter };
-};
+  return { IsActive, handlePushRouter, handleBackRouter }
+}

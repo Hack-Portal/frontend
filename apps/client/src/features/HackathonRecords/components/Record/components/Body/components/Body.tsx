@@ -1,12 +1,12 @@
 import React from 'react'
 import { Box, Card } from '@mui/material'
 
-type Props = {
+interface BodyProps {
   href: string
   children: React.ReactNode
 }
 
-export const Body = (props: Props) => {
+export const Body = (props: BodyProps) => {
   const { href, children } = props
   return (
     <Box
