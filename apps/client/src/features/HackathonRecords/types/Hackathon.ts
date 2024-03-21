@@ -1,4 +1,4 @@
-import { Response_GetHackathon } from '@client/api/@types/index'
+import type { Response_GetHackathon } from '@/api/@types/index'
 
 export type HackathonRecord = {
   expired: UIColumn
@@ -9,8 +9,7 @@ export type HackathonRecord = {
   'icon' | 'link' | 'name' | 'status_tags' | 'hackathon_id'
 >
 
-type UIColumn = {
+interface UIColumn {
   title: string
   date: string
 }
-

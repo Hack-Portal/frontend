@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
+    "lint": "next lint",
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "test": "jest --env=jsdom --verbose",
     "dev:aspida": "aspida --watch",
     "prepare": "if [ -z \"$CI\" ]; then husky install; fi"
@@ -45,17 +45,9 @@
     "jest-css-modules": "^2.1.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
-    "typescript": "^5.3.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
-    ]
+    "typescript": "^5.3.3",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",

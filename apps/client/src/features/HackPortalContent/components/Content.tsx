@@ -1,15 +1,16 @@
+import React from 'react'
 import { Card, Typography, Box } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type Props = {
+interface ContentProps {
   title: string
   href: string
   src: string
   text: string
 }
 
-export const Content = (props: Props) => {
+export const Content = (props: ContentProps) => {
   const { title, href, src, text } = props
 
   return (
@@ -22,7 +23,7 @@ export const Content = (props: Props) => {
       }}
       key={title}
     >
-      <Link href={href} passHref={true}>
+      <Link href={href} passHref>
         <Image
           src={src}
           width={330}
@@ -38,9 +39,9 @@ export const Content = (props: Props) => {
         />
         <Box sx={{ p: 2 }}>
           <Typography
-            fontSize={'1.5rem'}
-            fontWeight={'bold'}
-            color={'#333'}
+            fontSize="1.5rem"
+            fontWeight="bold"
+            color="#333"
             mb={1}
             sx={{ ...responsiveStyle.title_text }}
           >

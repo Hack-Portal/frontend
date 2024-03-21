@@ -1,4 +1,4 @@
-import { Body } from '@client/features/HackathonRecords/components/Record/components/Body/Body'
-import { Column } from '@client/features/HackathonRecords/components/Record/components/Column/Column'
+import { Body } from '@/features/HackathonRecords/components/Record/components/Body/components/Body'
+import { Column } from '@/features/HackathonRecords/components/Record/components/Column/components/Column'
 
 export { Body, Column }

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Grid, Typography } from '@mui/material'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -6,7 +7,7 @@ export const Footer = () => {
   return (
     <Grid
       container
-      direction={'column'}
+      direction="column"
       gap={4}
       sx={{
         px: 5,
@@ -17,16 +18,16 @@ export const Footer = () => {
     >
       <Grid
         container
-        alignItems={'center'}
+        alignItems="center"
         sx={{ borderBottom: '1px solid #ddd', width: '100%' }}
-        direction={'row'}
-        justifyContent={'space-between'}
-        wrap={'nowrap'}
+        direction="row"
+        justifyContent="space-between"
+        wrap="nowrap"
       >
         <Grid item xs={2}>
           <Link href="/">
             <Image
-              src={'/image/logo.svg'}
+              src="/image/logo.svg"
               width={50}
               height={50}
               alt="logo"
@@ -52,7 +53,7 @@ export const Footer = () => {
             href="https://discord.gg/wsrNZUWUR6"
           >
             <Image
-              src={'/image/discord.svg'}
+              src="/image/discord.svg"
               width={10}
               height={10}
               alt="discord"
@@ -75,7 +76,7 @@ export const Footer = () => {
             href="https://twitter.com/Hack_Hack_JP"
           >
             <Image
-              src={'/image/twitter.svg'}
+              src="/image/twitter.svg"
               width={10}
               height={10}
               alt="twitter"
@@ -122,9 +123,9 @@ export const Footer = () => {
   )
 }
 
-const FooterLink = [
-  { title: '利用規約', href: '/' },
-  { title: 'プライバシーポリシー', href: '/' },
-  { title: '情報セキュリティーポリシー', href: '/' },
-  { title: '個人情報保護方針', href: '/' },
-]
+// const FooterLink = [
+//   { title: '利用規約', href: '/' },
+//   { title: 'プライバシーポリシー', href: '/' },
+//   { title: '情報セキュリティーポリシー', href: '/' },
+//   { title: '個人情報保護方針', href: '/' },
+// ]

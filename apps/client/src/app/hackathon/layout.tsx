@@ -1,11 +1,10 @@
-import { Inter } from 'next/font/google'
+import React, { type ReactNode } from 'react'
+
 export const metadata = {
   title: 'hackathon list',
   description: 'ハッカソンの一覧を表示します。',
 }
 
-export default function RootLayout(props: any) {
-  const { children } = props
-
+export default function RootLayout({ children }: { children: ReactNode }) {
   return <>{children}</>
 }

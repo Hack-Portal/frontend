@@ -1,9 +1,10 @@
+import React from 'react'
 import Image from 'next/image'
 import { Grid, Hidden, Typography, Box } from '@mui/material'
-import { CONTENTS } from '@client/features/HackPortalContent/constants/CONTENT'
-import { Content } from '@client/features/HackPortalContent/components/Content'
+import { CONTENTS } from '@/features/HackPortalContent/constants/CONTENT'
+import { Content } from '@/features/HackPortalContent/components/Content'
 
-const Home = async () => {
+const Home = () => {
   return (
     <Box sx={{ background: '#fefefe' }}>
       <Grid
@@ -40,14 +41,14 @@ const Home = async () => {
             // gap={3}
           >
             <Typography
-              fontWeight={'bold'}
-              color={'#333'}
+              fontWeight="bold"
+              color="#333"
               sx={{ ...responsive.title_text, my: 5, width: 'min-content' }}
             >
               <Typography
-                component={'span'}
-                fontWeight={'bold'}
-                color={'#48BBED'}
+                component="span"
+                fontWeight="bold"
+                color="#48BBED"
                 sx={{ ...responsive.title_strong }}
               >
                 hack
@@ -57,9 +58,9 @@ const Home = async () => {
                 <br />
               </Hidden>
               <Typography
-                component={'span'}
-                fontWeight={'bold'}
-                color={'#48BBED'}
+                component="span"
+                fontWeight="bold"
+                color="#48BBED"
                 sx={{ ...responsive.title_strong }}
               >
                 hack
@@ -106,8 +107,8 @@ const Home = async () => {
       </Grid>
       <Grid
         container
-        alignItems={'center'}
-        direction={'column'}
+        alignItems="center"
+        direction="column"
         sx={{
           px: 5,
           boxShadow: 'none',
@@ -133,7 +134,7 @@ const Home = async () => {
           コミュニティです。
           <br />
         </Typography>
-        <Grid container justifyContent={'space-evenly'} gap={10}>
+        <Grid container justifyContent="space-evenly" gap={10}>
           {CONTENTS.map((content) => (
             <Content
               key={content.title}
@@ -168,7 +169,7 @@ const responsive = {
       xl: '4.3rem',
     },
   },
-  desc_title_text :{
+  desc_title_text: {
     fontSize: {
       xs: '1.8rem',
       sm: '2.1rem',
@@ -184,7 +185,7 @@ const responsive = {
       xl: '200px 0 30px 0',
     },
   },
-  desc_text : {
+  desc_text: {
     fontSize: {
       xs: '1rem',
       sm: '1.4rem',
@@ -199,8 +200,7 @@ const responsive = {
       lg: '150px',
       xl: '200px',
     },
-  }
+  },
 }
-
 
 export default Home
