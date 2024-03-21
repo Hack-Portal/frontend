@@ -109,5 +109,6 @@ body {
 
 main {
   background-color: #fefefe;
-  padding: 70px 0 20vh 0;
+  padding: 70px 0 0 0;
+  min-height: 68vh;
 }
