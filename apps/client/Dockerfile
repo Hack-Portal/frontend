@@ -3,13 +3,14 @@ FROM node:18-alpine AS base
 # プロジェクトの全ファイルをコピーした後、turbo prune [workspace] --dockerコマンドを実行して、必要なファイルのみを残します。
 FROM base AS builder
 ENV CI=true
-RUN apk add --no-cache libc6-compat
-RUN apk update
+RUN apk add --no-cache libc6-compat && \
+    apk update && \
+    npm install -g pnpm
+
 # Set working directory
 WORKDIR /app
-RUN npm install -g turbo
 COPY . .
-RUN  turbo prune client --docker
+RUN pnpm dlx turbo prune client --docker
 
 # Add lockfile and package.json's of isolated subworkspace
 # builderステージで生成したpruned（削減された）データを使用して依存関係をインストールします。
@@ -17,17 +18,20 @@ FROM base AS installer
 RUN apk add --no-cache libc6-compat
 RUN apk update
 WORKDIR /app
+# pnpm をインストール
+RUN npm install -g pnpm
 
 # First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
+# プルーニングされたファイルをコピー
 COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/package-lock.json ./package-lock.json
+COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /app/tsconfig.json ./tsconfig.json
-RUN npm install
+RUN pnpm install --frozen-lockfile
 
 # Build the project
 COPY --from=builder /app/out/full/ .
-RUN npx turbo run build --filter client 
+RUN pnpm turbo run build --filter client 
 
 
 FROM base AS runner
