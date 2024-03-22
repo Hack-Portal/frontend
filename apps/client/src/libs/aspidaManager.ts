@@ -6,6 +6,7 @@ import { API_URL } from '@/constants/API_URL'
 
 export const aspidaFetcher = (ssr?: boolean) => {
   const ssrAuth = getAuthorizationHeader()
+  // eslint-disable-next-line no-console -- デバッグ目的でconsole.logを許可
   console.log(API_URL)
   const client = api(
     aspida(axios, {
