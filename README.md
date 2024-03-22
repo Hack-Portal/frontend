@@ -1,6 +1,7 @@
 ## 環境
 
 ### 使用技術
+
 - Next.js 13.4.8 (AppRouter)
 - Typescript 5.1.6
 - mui
@@ -9,18 +10,21 @@
 - recoil
 
 ### 構築
+
 ```
 npm install
 ```
 
 ## 開発ルール
 
-
 詳しくはこちら
 https://qiita.com/hiroto_dnpk/items/c1345cdbcab444c4fe5e
 
+なおブランチ名は`feature/[機能名]`に変更します。
+例　feature/createUser
+
 ## ディレクトリ構造
-featureDirectoryを採用しています。
+
 DDDに近い構造になっています。
 
 ```
@@ -33,7 +37,7 @@ src
 │   ├── _types      　// 型
 │   │
 │   ├── signup      　// 各ページ
-│   │   ├── _components   
+│   │   ├── _components
 │   │   ├── _hooks
 │   │   ├── _servies
 │   │   └── _types
@@ -43,7 +47,7 @@ src
 │   └── page.tsx
 │
 ├── components        // 共通コンポーネント　　　　
-│   └─ layouts　　　　 
+│   └─ layouts　　　　
 │        └─ Header.tsx
 │
 ├── constants         // 定数
@@ -52,7 +56,7 @@ src
 ├── providers        // プロバイダーに関するファイル
 ├── repositories     // 単に外部データを扱う、加工はservice
 │　　└─ mocks         // テスト用mock
-├── services         // 共通のservices  
+├── services         // 共通のservices
 ├── stores           // globalState
 ├── types            // 共通の型
 └── utils　　　　　　　// 汎用関数

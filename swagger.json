@@ -1,2003 +1,721 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "description": "HackPortal Backend API serice",
-    "title": "Hack Hack Backend API",
-    "termsOfService": "https://seaffood.com/api",
-    "contact": {
-      "name": "murasame",
-      "url": "https://twitter.com/fresh_salmon256",
-      "email": "oogiriminister@gmail.com"
+    "swagger": "2.0",
+    "info": {
+        "description": "Hack-Portal Backend API serice",
+        "title": "Hack-Portal Backend API",
+        "termsOfService": "https://hc-dev.seafood-dev.com",
+        "contact": {
+            "name": "murasame29",
+            "url": "https://twitter.com/fresh_salmon256",
+            "email": "oogiriminister@gmail.com"
+        },
+        "license": {
+            "name": "No-license"
+        },
+        "version": "0.1.0"
     },
-    "license": {
-      "name": "No-license",
-      "url": "No-license"
+    "host": "api-dev.hack-portal.com",
+    "basePath": "/v1",
+    "paths": {
+        "/hackathons": {
+            "get": {
+                "description": "List Hackathons",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hackathon"
+                ],
+                "summary": "List Hackathons",
+                "parameters": [
+                    {
+                        "type": "boolean",
+                        "description": "期間が長いかどうか？",
+                        "name": "longTerm",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "締め切りが近いかどうか？",
+                        "name": "nearDeadline",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "新着かどうか？",
+                        "name": "new",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "pageID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "collectionFormat": "csv",
+                        "description": "タグ",
+                        "name": "tags",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response.GetHackathon"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            },
+            "post": {
+                "description": "Create Hackathon",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hackathon"
+                ],
+                "summary": "Create Hackathon",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "CreateHackathonRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreateHackathon"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.CreateHackathon"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            }
+        },
+        "/hackathons/{hackathon_id}": {
+            "delete": {
+                "description": "Delete Hackathons",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hackathon"
+                ],
+                "summary": "Delete Hackathons",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "request body",
+                        "name": "hackathon_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.DeleteHackathon"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            }
+        },
+        "/init_admin": {
+            "post": {
+                "description": "init admin",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "init admin",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "InitAdmin",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.InitAdmin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.User"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            }
+        },
+        "/rbac": {
+            "get": {
+                "description": "List Policies",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RBACPolicy"
+                ],
+                "summary": "List Policies",
+                "parameters": [
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "csv",
+                        "name": "act",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "csv",
+                        "name": "eft",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "csv",
+                        "name": "obj",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "csv",
+                        "name": "sub",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.ListRbacPolicies"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            },
+            "post": {
+                "description": "Create RBACPolicy",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RBACPolicy"
+                ],
+                "summary": "Create RBACPolicy",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "CreatePolicy",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreateRbacPolicy"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.CreateRbacPolicy"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            },
+            "delete": {
+                "description": "DeleteAll Policies",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RBACPolicy"
+                ],
+                "summary": "DeleteAll Policies",
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.DeleteAllRbacPolicies"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            }
+        },
+        "/rbac/{policy_id}": {
+            "delete": {
+                "description": "Delete Policies",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RBACPolicy"
+                ],
+                "summary": "Delete Policies",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "request query",
+                        "name": "policy_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.DeleteRbacPolicy"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            }
+        },
+        "/status_tags": {
+            "get": {
+                "description": "Get all StatusTag",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "StatusTag"
+                ],
+                "summary": "Get all StatusTag",
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response.StatusTag"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new StatusTag",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "StatusTag"
+                ],
+                "summary": "Create a new StatusTag",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "CreateStatusTagRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreateStatusTag"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.StatusTag"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            }
+        },
+        "/status_tags/{id}": {
+            "put": {
+                "description": "Update StatusTag by id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "StatusTag"
+                ],
+                "summary": "Update StatusTag by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "status tag id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "request body",
+                        "name": "CreateStatusTagRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.UpdateStatusTag"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "schema": {
+                            "$ref": "#/definitions/response.StatusTag"
+                        }
+                    },
+                    "400": {
+                        "description": "error response"
+                    },
+                    "500": {
+                        "description": "error response"
+                    }
+                }
+            }
+        }
     },
-    "version": "1.0"
-  },
-  "host": "https://seaffood.com",
-  "basePath": "/api/v1",
-  "paths": {
-    "/accounts": {
-      "post": {
-        "description": "Create an account from the requested body",
-        "consumes": ["multipart/form-data"],
-        "produces": ["application/json"],
-        "tags": ["Accounts"],
-        "summary": "Create new account",
-        "parameters": [
-          {
-            "description": "Create Account Request",
-            "name": "CreateAccountRequest",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.CreateAccountRequest"
+    "definitions": {
+        "models.CasbinPolicy": {
+            "type": "object",
+            "properties": {
+                "PType": {
+                    "type": "string"
+                },
+                "V0": {
+                    "type": "string"
+                },
+                "V1": {
+                    "type": "string"
+                },
+                "V2": {
+                    "type": "string"
+                },
+                "V3": {
+                    "type": "string"
+                }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "create success response",
-            "schema": {
-              "$ref": "#/definitions/domain.AccountResponses"
+        },
+        "models.RbacPolicy": {
+            "type": "object",
+            "properties": {
+                "p_type": {
+                    "type": "string"
+                },
+                "policy_id": {
+                    "type": "integer"
+                },
+                "v0": {
+                    "type": "integer"
+                },
+                "v1": {
+                    "type": "string"
+                },
+                "v2": {
+                    "type": "string"
+                },
+                "v3": {
+                    "type": "string"
+                }
             }
-          },
-          "400": {
-            "description": "bad request response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
+        },
+        "request.CreateHackathon": {
+            "type": "object",
+            "required": [
+                "expired",
+                "link",
+                "name",
+                "start_date",
+                "term"
+            ],
+            "properties": {
+                "expired": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string"
+                },
+                "statuses[]": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "term": {
+                    "type": "integer"
+                }
             }
-          },
-          "500": {
-            "description": "server error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
+        },
+        "request.CreateRbacPolicy": {
+            "type": "object",
+            "properties": {
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.CasbinPolicy"
+                    }
+                }
             }
-          }
+        },
+        "request.CreateStatusTag": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.InitAdmin": {
+            "type": "object",
+            "required": [
+                "init_admin_token",
+                "name"
+            ],
+            "properties": {
+                "init_admin_token": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.UpdateStatusTag": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.CreateHackathon": {
+            "type": "object",
+            "properties": {
+                "expired": {
+                    "type": "string"
+                },
+                "hackathon_id": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string"
+                },
+                "status_tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.StatusTag"
+                    }
+                },
+                "term": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.CreateRbacPolicy": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "response.DeleteAllRbacPolicies": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.DeleteHackathon": {
+            "type": "object",
+            "properties": {
+                "hackathon_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.DeleteRbacPolicy": {
+            "type": "object",
+            "properties": {
+                "policy_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.GetHackathon": {
+            "type": "object",
+            "properties": {
+                "expired": {
+                    "type": "string"
+                },
+                "hackathon_id": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string"
+                },
+                "status_tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.StatusTag"
+                    }
+                },
+                "term": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.ListRbacPolicies": {
+            "type": "object",
+            "properties": {
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.RbacPolicy"
+                    }
+                }
+            }
+        },
+        "response.StatusTag": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.User": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
         }
-      }
-    },
-    "/accounts/{account_id}": {
-      "get": {
-        "description": "Return a account from the id specified in the path",
-        "produces": ["application/json"],
-        "tags": ["Accounts"],
-        "summary": "Get account",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Accounts API wildcard",
-            "name": "account_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Get success response",
-            "schema": {
-              "$ref": "#/definitions/domain.AccountResponses"
-            }
-          },
-          "400": {
-            "description": "bad request response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "server error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "put": {
-        "description": "Update account info from requested body",
-        "produces": ["application/json"],
-        "tags": ["Accounts"],
-        "summary": "Update Account",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Accounts API wildcard",
-            "name": "account_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "Update Account Request Body",
-            "name": "UpdateAccountRequest",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.UpdateAccountRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Update success response",
-            "schema": {
-              "$ref": "#/definitions/domain.AccountResponses"
-            }
-          },
-          "400": {
-            "description": "bad request response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "server error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Only you can delete your account (logical delete)",
-        "produces": ["application/json"],
-        "tags": ["Accounts"],
-        "summary": "Remove Account",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Accounts API wildcard",
-            "name": "account_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "delete success response",
-            "schema": {
-              "$ref": "#/definitions/controller.SuccessResponse"
-            }
-          },
-          "400": {
-            "description": "bad request response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "server error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/accounts/{account_id}/rate": {
-      "get": {
-        "description": "List Rate for User",
-        "produces": ["application/json"],
-        "tags": ["Rate"],
-        "summary": "List Rate",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Account ID",
-            "name": "account_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "name": "page_id",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/domain.AccountRateResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Create Rate for User",
-        "produces": ["application/json"],
-        "tags": ["Rate"],
-        "summary": "Create Rate",
-        "parameters": [
-          {
-            "description": "Create Rate Request Body",
-            "name": "CreateRateRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.CreateRateRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/controller.SuccessResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/accounts/{account_id}/rooms": {
-      "get": {
-        "description": "Get Join Room",
-        "produces": ["application/json"],
-        "tags": ["Accounts"],
-        "summary": "Get Join Room",
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/domain.GetJoinRoomResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/accounts/{from_account_id}/follow": {
-      "get": {
-        "description": "Get follow account",
-        "produces": ["application/json"],
-        "tags": ["Accounts"],
-        "summary": "Get follow",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Accounts API wildcard",
-            "name": "from_account_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "boolean",
-            "name": "mode",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "name": "page_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/domain.FollowResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Follow!!!!!!!!",
-        "produces": ["application/json"],
-        "tags": ["Accounts"],
-        "summary": "Create Follow",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Accounts API wildcard",
-            "name": "from_account_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "create Follow Request Body",
-            "name": "CreateFollowRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.CreateFollowRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/domain.FollowResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Remove follow account",
-        "produces": ["application/json"],
-        "tags": ["Accounts"],
-        "summary": "Remove follow",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Accounts API wildcard",
-            "name": "from_account_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "name": "account_id",
-            "in": "query",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/controller.SuccessResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/frameworks": {
-      "get": {
-        "description": "Get Frameworks",
-        "produces": ["application/json"],
-        "tags": ["Frameworks"],
-        "summary": "Get Frameworks",
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/repository.Framework"
-              }
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/hackathons": {
-      "get": {
-        "description": "List Hackathon",
-        "produces": ["application/json"],
-        "tags": ["Hackathon"],
-        "summary": "List Hackathon",
-        "parameters": [
-          {
-            "type": "boolean",
-            "name": "expired",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "name": "page_id",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/domain.HackathonResponses"
-              }
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Register a hackathon from given parameters",
-        "produces": ["application/json"],
-        "tags": ["Hackathon"],
-        "summary": "Create Hackathon",
-        "parameters": [
-          {
-            "description": "create hackathon Request Body",
-            "name": "CreateHackathonRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.CreateHackathonRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/domain.HackathonResponses"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/hackathons/{hackathon_id}": {
-      "get": {
-        "description": "Get Hackathon",
-        "produces": ["application/json"],
-        "tags": ["Hackathon"],
-        "summary": "Get Hackathon",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Hackathons API wildcard",
-            "name": "hackathon_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/domain.HackathonResponses"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/locates": {
-      "get": {
-        "description": "Get Frameworks",
-        "produces": ["application/json"],
-        "tags": ["Locates"],
-        "summary": "Get Frameworks",
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/repository.Locate"
-              }
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/pastworks": {
-      "get": {
-        "description": "List PastWork",
-        "produces": ["application/json"],
-        "tags": ["PastWorks"],
-        "summary": "List PastWork",
-        "parameters": [
-          {
-            "type": "integer",
-            "name": "page_id",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/domain.ListPastWorkResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Create a past work from the requested body",
-        "produces": ["application/json"],
-        "tags": ["PastWorks"],
-        "summary": "Create new past work",
-        "parameters": [
-          {
-            "description": "Create PastWork Request",
-            "name": "CreatePastWorkRequest",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.PastWorkRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "create success response",
-            "schema": {
-              "$ref": "#/definitions/domain.PastWorkResponse"
-            }
-          },
-          "400": {
-            "description": "bad request response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "server error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/pastworks/{opus}": {
-      "get": {
-        "description": "Get PastWork",
-        "produces": ["application/json"],
-        "tags": ["PastWorks"],
-        "summary": "Get PastWork",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "PastWorks API wildcard",
-            "name": "opus",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/domain.PastWorkResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "put": {
-        "description": "Update PastWork",
-        "produces": ["application/json"],
-        "tags": ["PastWorks"],
-        "summary": "Update PastWork",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "PastWorks API wildcard",
-            "name": "opus",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "Update PastWork Request",
-            "name": "UpdatePastWorkRequest",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.PastWorkRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/domain.PastWorkResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Delete PastWork",
-        "produces": ["application/json"],
-        "tags": ["PastWorks"],
-        "summary": "Delete PastWork",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "PastWorks API wildcard",
-            "name": "opus",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/controller.SuccessResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/rate": {
-      "get": {
-        "description": "List Account Rate",
-        "produces": ["application/json"],
-        "tags": ["Rate"],
-        "summary": "List Account Rate",
-        "parameters": [
-          {
-            "type": "integer",
-            "name": "page_id",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/domain.AccountRateResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/rooms": {
-      "get": {
-        "description": "List Account",
-        "produces": ["application/json"],
-        "tags": ["Rooms"],
-        "summary": "List Account",
-        "parameters": [
-          {
-            "type": "integer",
-            "name": "page_id",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/domain.ListRoomResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Create Rooms",
-        "produces": ["application/json"],
-        "tags": ["Rooms"],
-        "summary": "Create Rooms",
-        "parameters": [
-          {
-            "description": "create Room Request Body",
-            "name": "CreateRoomRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.CreateRoomRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/domain.GetRoomResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/rooms/{room_id}": {
-      "get": {
-        "description": "Get Room",
-        "produces": ["application/json"],
-        "tags": ["Rooms"],
-        "summary": "Get Room",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Rooms API wildcard",
-            "name": "room_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/domain.GetRoomResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "put": {
-        "description": "update Room",
-        "produces": ["application/json"],
-        "tags": ["Rooms"],
-        "summary": "update Room",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Rooms API wildcard",
-            "name": "room_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "update Room Request body",
-            "name": "UpdateRoomRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.UpdateRoomRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/domain.GetRoomResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "delete Room",
-        "produces": ["application/json"],
-        "tags": ["Rooms"],
-        "summary": "delete Room",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Rooms API wildcard",
-            "name": "room_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/controller.SuccessResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/rooms/{room_id}/addchat": {
-      "post": {
-        "description": "Add Chat Room",
-        "produces": ["application/json"],
-        "tags": ["Rooms"],
-        "summary": "Add Chat Room",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Rooms API wildcard",
-            "name": "room_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "add chat Room Request body",
-            "name": "AddChatRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.AddChatRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/domain.GetRoomResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/rooms/{room_id}/members": {
-      "post": {
-        "description": "Add Account In Rooms",
-        "produces": ["application/json"],
-        "tags": ["Rooms"],
-        "summary": "Add Account In Rooms",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Rooms API wildcard",
-            "name": "room_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "add account in room Request body",
-            "name": "AddAccountInRoomRequestBody",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/domain.AddAccountInRoomRequestBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/controller.SuccessResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Remove Account In Rooms",
-        "produces": ["application/json"],
-        "tags": ["Rooms"],
-        "summary": "Remove Account In Rooms",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Rooms API wildcard",
-            "name": "room_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "$ref": "#/definitions/controller.SuccessResponse"
-            }
-          },
-          "400": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/status_tags": {
-      "get": {
-        "description": "Get Frameworks",
-        "produces": ["application/json"],
-        "tags": ["TechTags"],
-        "summary": "Get Frameworks",
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/repository.StatusTag"
-              }
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/tech_tags": {
-      "get": {
-        "description": "Get Frameworks",
-        "produces": ["application/json"],
-        "tags": ["TechTags"],
-        "summary": "Get Frameworks",
-        "responses": {
-          "200": {
-            "description": "success response",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/repository.TechTag"
-              }
-            }
-          },
-          "500": {
-            "description": "error response",
-            "schema": {
-              "$ref": "#/definitions/controller.ErrorResponse"
-            }
-          }
-        }
-      }
     }
-  },
-  "definitions": {
-    "controller.ErrorResponse": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "string"
-        }
-      }
-    },
-    "controller.SuccessResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.AccountRateResponse": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "rate": {
-          "type": "integer"
-        },
-        "username": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.AccountResponses": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "discord_link": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "explanatory_text": {
-          "type": "string"
-        },
-        "frameworks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.Framework"
-          }
-        },
-        "github_link": {
-          "type": "string"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "locate": {
-          "type": "string"
-        },
-        "rate": {
-          "type": "integer"
-        },
-        "show_locate": {
-          "type": "boolean"
-        },
-        "show_rate": {
-          "type": "boolean"
-        },
-        "tech_tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.TechTag"
-          }
-        },
-        "twitter_link": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.AddAccountInRoomRequestBody": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.AddChatRequestBody": {
-      "type": "object",
-      "required": ["account_id", "message"],
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.CreateAccountRequest": {
-      "type": "object",
-      "required": ["account_id", "locate_id", "username"],
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "explanatory_text": {
-          "type": "string"
-        },
-        "frameworks": {
-          "type": "string"
-        },
-        "locate_id": {
-          "type": "integer"
-        },
-        "show_locate": {
-          "type": "boolean"
-        },
-        "show_rate": {
-          "type": "boolean"
-        },
-        "tech_tags": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.CreateFollowRequestBody": {
-      "type": "object",
-      "required": ["to_account_id"],
-      "properties": {
-        "to_account_id": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.CreateHackathonRequestBody": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "expired": {
-          "type": "string"
-        },
-        "link": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "start_date": {
-          "type": "string"
-        },
-        "status_tags": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        },
-        "term": {
-          "type": "integer"
-        }
-      }
-    },
-    "domain.CreateRateRequestBody": {
-      "type": "object",
-      "properties": {
-        "rate": {
-          "type": "integer"
-        }
-      }
-    },
-    "domain.CreateRoomRequestBody": {
-      "type": "object",
-      "required": [
-        "account_id",
-        "description",
-        "hackathon_id",
-        "member_limit",
-        "title"
-      ],
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "hackathon_id": {
-          "type": "integer"
-        },
-        "member_limit": {
-          "type": "integer"
-        },
-        "title": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.FollowResponse": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.GetJoinRoomResponse": {
-      "type": "object",
-      "properties": {
-        "room_id": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.GetRoomResponse": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "hackathon": {
-          "$ref": "#/definitions/domain.RoomHackathonInfo"
-        },
-        "is_closing": {
-          "type": "boolean"
-        },
-        "is_status": {
-          "type": "boolean"
-        },
-        "member_limit": {
-          "type": "integer"
-        },
-        "now_member": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/domain.NowRoomAccounts"
-          }
-        },
-        "room_id": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.HackathonResponses": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "expired": {
-          "type": "string"
-        },
-        "hackathon_id": {
-          "type": "integer"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "link": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "start_date": {
-          "type": "string"
-        },
-        "status_tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.StatusTag"
-          }
-        },
-        "term": {
-          "type": "integer"
-        }
-      }
-    },
-    "domain.ListPastWorkResponse": {
-      "type": "object",
-      "properties": {
-        "explanatory_text": {
-          "type": "string"
-        },
-        "frameworks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.Framework"
-          }
-        },
-        "members": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/domain.PastWorkMembers"
-          }
-        },
-        "name": {
-          "type": "string"
-        },
-        "opus": {
-          "type": "integer"
-        },
-        "tech_tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.TechTag"
-          }
-        }
-      }
-    },
-    "domain.ListRoomHackathonInfo": {
-      "type": "object",
-      "properties": {
-        "expired": {
-          "type": "string"
-        },
-        "hackathon_id": {
-          "type": "integer"
-        },
-        "hackathon_name": {
-          "type": "string"
-        },
-        "icon": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.ListRoomResponse": {
-      "type": "object",
-      "properties": {
-        "hackathon": {
-          "$ref": "#/definitions/domain.ListRoomHackathonInfo"
-        },
-        "members_frameworks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/domain.RoomFramework"
-          }
-        },
-        "members_tech_tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/domain.RoomTechTags"
-          }
-        },
-        "now_member": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/domain.NowRoomAccounts"
-          }
-        },
-        "rooms": {
-          "$ref": "#/definitions/domain.ListRoomRoomInfo"
-        }
-      }
-    },
-    "domain.ListRoomRoomInfo": {
-      "type": "object",
-      "properties": {
-        "created_at": {
-          "type": "string"
-        },
-        "is_closing": {
-          "type": "boolean"
-        },
-        "member_limit": {
-          "type": "integer"
-        },
-        "room_id": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.NowRoomAccounts": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "frameworks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.Framework"
-          }
-        },
-        "icon": {
-          "type": "string"
-        },
-        "is_owner": {
-          "type": "boolean"
-        },
-        "roles": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.Role"
-          }
-        },
-        "tech_tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.TechTag"
-          }
-        },
-        "username": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.PastWorkMembers": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.PastWorkRequestBody": {
-      "type": "object",
-      "properties": {
-        "account_past_works": {
-          "type": "string"
-        },
-        "explanatory_text": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "past_work_frameworks": {
-          "type": "string"
-        },
-        "past_work_tags": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.PastWorkResponse": {
-      "type": "object",
-      "properties": {
-        "award_data_id": {
-          "type": "integer"
-        },
-        "create_at": {
-          "type": "string"
-        },
-        "explanatory_text": {
-          "type": "string"
-        },
-        "frameworks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.Framework"
-          }
-        },
-        "is_delete": {
-          "type": "boolean"
-        },
-        "members": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/domain.PastWorkMembers"
-          }
-        },
-        "name": {
-          "type": "string"
-        },
-        "opus": {
-          "type": "integer"
-        },
-        "tech_tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.TechTag"
-          }
-        },
-        "thumbnail_image": {
-          "type": "string"
-        },
-        "update_at": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.RoomFramework": {
-      "type": "object",
-      "properties": {
-        "count": {
-          "type": "integer"
-        },
-        "framework": {
-          "$ref": "#/definitions/repository.Framework"
-        }
-      }
-    },
-    "domain.RoomHackathonInfo": {
-      "type": "object",
-      "properties": {
-        "expired": {
-          "type": "string"
-        },
-        "hackathon_id": {
-          "type": "integer"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "link": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "start_date": {
-          "type": "string"
-        },
-        "status_tag": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/repository.StatusTag"
-          }
-        },
-        "term": {
-          "type": "integer"
-        }
-      }
-    },
-    "domain.RoomTechTags": {
-      "type": "object",
-      "properties": {
-        "count": {
-          "type": "integer"
-        },
-        "tech_tag": {
-          "$ref": "#/definitions/repository.TechTag"
-        }
-      }
-    },
-    "domain.UpdateAccountRequest": {
-      "type": "object",
-      "properties": {
-        "discord_link": {
-          "type": "string"
-        },
-        "explanatory_text": {
-          "type": "string"
-        },
-        "frameworks": {
-          "type": "string"
-        },
-        "github_link": {
-          "type": "string"
-        },
-        "locate_id": {
-          "type": "integer"
-        },
-        "show_locate": {
-          "type": "boolean"
-        },
-        "show_rate": {
-          "type": "boolean"
-        },
-        "tech_tags": {
-          "type": "string"
-        },
-        "twitter_link": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        }
-      }
-    },
-    "domain.UpdateRoomRequestBody": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "hackathonID": {
-          "type": "integer"
-        },
-        "is_closing": {
-          "type": "boolean"
-        },
-        "member_limit": {
-          "type": "integer"
-        },
-        "title": {
-          "type": "string"
-        }
-      }
-    },
-    "repository.Framework": {
-      "type": "object",
-      "properties": {
-        "framework": {
-          "type": "string"
-        },
-        "framework_id": {
-          "type": "integer"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "tech_tag_id": {
-          "type": "integer"
-        }
-      }
-    },
-    "repository.Locate": {
-      "type": "object",
-      "properties": {
-        "locate_id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "repository.Role": {
-      "type": "object",
-      "properties": {
-        "role": {
-          "type": "string"
-        },
-        "role_id": {
-          "type": "integer"
-        }
-      }
-    },
-    "repository.StatusTag": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "status_id": {
-          "type": "integer"
-        }
-      }
-    },
-    "repository.TechTag": {
-      "type": "object",
-      "properties": {
-        "icon": {
-          "type": "string"
-        },
-        "language": {
-          "type": "string"
-        },
-        "tech_tag_id": {
-          "type": "integer"
-        }
-      }
-    }
-  }
 }
