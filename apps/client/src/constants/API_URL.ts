@@ -1,4 +1,4 @@
-let requestBaseUrl: string = 'http://localhost:8080'
+let requestBaseUrl = 'http://localhost:8080'
 switch (process.env.ENVIRONMENT) {
   case 'local':
     requestBaseUrl = process.env.NEXT_PUBLIC_LOCAL_API_URL
@@ -14,6 +14,8 @@ switch (process.env.ENVIRONMENT) {
     requestBaseUrl = process.env.NEXT_PUBLIC_PRODUCT_API_URL
       ? process.env.NEXT_PUBLIC_PRODUCT_API_URL
       : requestBaseUrl
+    break
+  default:
     break
 }
 
