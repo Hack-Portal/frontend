@@ -6,6 +6,7 @@ import { API_URL } from '@/constants/API_URL'
 
 export const aspidaFetcher = (ssr?: boolean) => {
   const ssrAuth = getAuthorizationHeader()
+  console.log(API_URL)
   const client = api(
     aspida(axios, {
       baseURL: API_URL,
