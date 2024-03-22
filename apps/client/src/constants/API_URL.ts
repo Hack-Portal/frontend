@@ -1,4 +1,20 @@
-export const API_URL =
-  process.env.NEXT_PUBLIC_ENVIRONMENT === 'local'
-    ? process.env.NEXT_PUBLIC_TEST_URL!
-    : process.env.NEXT_PUBLIC_API_URL!
+let requestBaseUrl: string = 'http://localhost:8080'
+switch (process.env.ENVIRONMENT) {
+  case 'local':
+    requestBaseUrl = process.env.NEXT_PUBLIC_LOCAL_API_URL
+      ? process.env.NEXT_PUBLIC_LOCAL_API_URL
+      : requestBaseUrl
+    break
+  case 'stage':
+    requestBaseUrl = process.env.NEXT_PUBLIC_STAGE_API_URL
+      ? process.env.NEXT_PUBLIC_STAGE_API_URL
+      : requestBaseUrl
+    break
+  case 'product':
+    requestBaseUrl = process.env.NEXT_PUBLIC_PRODUCT_API_URL
+      ? process.env.NEXT_PUBLIC_PRODUCT_API_URL
+      : requestBaseUrl
+    break
+}
+
+export const API_URL = requestBaseUrl
