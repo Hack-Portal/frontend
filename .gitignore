@@ -46,3 +46,7 @@
 build/**
 dist/**
 .next/**
+*.tsbuildinfo
+next-env.d.ts
+.vscode
+.history

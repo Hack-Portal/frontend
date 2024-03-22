@@ -1,0 +1,54 @@
+name: build and deployment
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+
+jobs:
+  copy-registries:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod a+x /usr/local/bin/yq
+
+      - name: Checkout another repo
+        uses: actions/checkout@v3
+        with:
+          repository: Hack-Portal/k8s-config
+          token: ${{ secrets.GH_PAT }}
+          ref: master
+
+      - name: Copy image value
+        run: |
+          IMAGE_VALUE=$(yq e '.spec.template.spec.containers[0].image' config/stage/frontend.yaml)
+          yq eval -i '.spec.template.spec.containers[0].image = env(IMAGE_VALUE)' config/product/frontend.yaml
+        env:
+          IMAGE_VALUE: ${{ env.IMAGE_VALUE }}
+          
+      - name: push repository
+        run: |
+          git config --global user.email "${{ secrets.EMAIL_GITHUB }}"
+          git config --global user.name "${{ secrets.USERNAME_GITHUB }}"
+
+          if (git diff --shortstat | grep '[0-9]'); then \
+            git add .; \
+            git commit -m "GitHub Action Push"; \
+            git push origin master; \
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
