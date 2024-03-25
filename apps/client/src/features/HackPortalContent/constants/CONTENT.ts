@@ -1,4 +1,4 @@
-export const CONTENTS = [
+export const CONTENTS: Content[] = [
   {
     title: 'ハッカソンを探す',
     text: '自分に合ったハッカソンを見つけよう',
@@ -12,3 +12,10 @@ export const CONTENTS = [
     href: 'https://discord.gg/wsrNZUWUR6',
   },
 ]
+
+export interface Content {
+  title: string
+  text: string
+  image: string
+  href: string
+}
