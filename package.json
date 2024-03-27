@@ -5,6 +5,7 @@
     "build": "turbo build",
     "lint": "turbo lint",
     "dev:client": "pnpm --filter client run dev",
+    "dev:admin": "pnpm --filter admin run dev",
     "prepare": "husky install",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
