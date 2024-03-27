@@ -130,6 +130,9 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@hack_portal/logic':
+        specifier: workspace:*
+        version: link:../../packages/logic
       '@testing-library/jest-dom':
         specifier: ^6.4.2
         version: 6.4.2(@types/jest@29.5.12)(jest@29.7.0)
@@ -196,6 +199,18 @@ importers:
       typescript:
         specifier: ^4.5.3
         version: 4.9.5
+
+  packages/logic:
+    dependencies:
+      '@aspida/axios':
+        specifier: ^1.14.0
+        version: 1.14.0(aspida@1.14.0)(axios@1.6.8)
+      aspida:
+        specifier: ^1.14.0
+        version: 1.14.0
+      axios:
+        specifier: ^1.6.7
+        version: 1.6.8
 
   packages/tsconfig: {}
 

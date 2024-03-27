@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig/_base.json", // ルートの設定を継承
+  "compilerOptions": {
+    // "outDir" と "rootDir" の設定は不要、またはTurborepoの設定に依存
+    "strict": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["logic.d.ts", "**/*.ts"],
+  "exclude": ["node_modules"]
+}

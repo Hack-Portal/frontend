@@ -1,6 +1,5 @@
 module.exports = {
   extends: ['custom/_next'],
-  ignorePatterns: ['src/api'],
   rules: {
     // Function component is not a function declaration
     'react/function-component-definition': 'off',

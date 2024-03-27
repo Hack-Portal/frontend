@@ -1,4 +1,4 @@
-import type { Response_GetHackathon } from '@/api/@types'
+import type { Response_GetHackathon } from '@hack_portal/logic/api/@types'
 import type { HackathonRecord } from '@/features/HackathonRecords/types/Hackathon'
 import { formatDate } from '@/utils/formatDate'
 
