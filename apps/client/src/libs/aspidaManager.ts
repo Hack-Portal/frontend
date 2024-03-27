@@ -1,6 +1,6 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
-import api from '@/api/$api'
+import api from '@hack_portal/logic/api/$api'
 import { getAuthorizationHeader } from '@/libs/headerManager'
 import { API_URL } from '@/constants/API_URL'
 

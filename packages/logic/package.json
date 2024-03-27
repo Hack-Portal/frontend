@@ -1,0 +1,18 @@
+{
+  "name": "@hack_portal/logic",
+  "version": "0.0.0",
+  "types": "logic.d.ts",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@aspida/axios": "^1.14.0",
+    "aspida": "^1.14.0",
+    "axios": "^1.6.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

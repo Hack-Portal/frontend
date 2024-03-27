@@ -1,4 +1,4 @@
-import type { Response_GetHackathon } from '@/api/@types/index'
+import type { Response_GetHackathon } from '@hack_portal/logic'
 
 export type HackathonRecord = {
   expired: UIColumn
