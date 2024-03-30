@@ -6,6 +6,7 @@
     "lint": "turbo lint",
     "dev:client": "pnpm --filter client run dev",
     "dev:admin": "pnpm --filter admin run dev",
+    "ui:add": "pnpm --filter ui ui:add",
     "prepare": "husky install",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },

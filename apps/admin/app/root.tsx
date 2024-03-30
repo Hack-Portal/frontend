@@ -1,3 +1,4 @@
+import tailwindStylesheetUrl from './styles/tailwind.css?url'
 import {
   Links,
   Meta,
@@ -5,6 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
+import { LeftNav } from './components/layout/LeftNav'
+import { LinksFunction } from '@remix-run/node'
+
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: tailwindStylesheetUrl }]
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,6 +24,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <LeftNav />
         <ScrollRestoration />
         <Scripts />
       </body>

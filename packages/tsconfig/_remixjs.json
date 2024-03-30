@@ -15,7 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "@ui/*": ["../../packages/ui/src/*"]
     },
     "noEmit": true,
     "target": "ES2022"
