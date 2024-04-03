@@ -1,7 +1,8 @@
 type TextWrapperProps = {
   children: React.ReactNode
+  className?: string
 }
 export const TextWrapper = (props: TextWrapperProps) => {
-  const { children } = props
-  return <p className="text-[#1f1]">{children}</p>
+  const { children, className = 'text-[#333]' } = props
+  return <p className={className}>{children}</p>
 }

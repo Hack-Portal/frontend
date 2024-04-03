@@ -13,10 +13,7 @@
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "@ui/*": ["../../packages/ui/src/*"]
-    },
+
     "noEmit": true,
     "target": "ES2022"
   },

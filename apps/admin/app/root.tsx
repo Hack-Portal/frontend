@@ -22,9 +22,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="flex">
         <LeftNav />
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

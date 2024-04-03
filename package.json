@@ -4,9 +4,11 @@
   "scripts": {
     "build": "turbo build",
     "lint": "turbo lint",
-    "dev:client": "pnpm --filter client run dev",
-    "dev:admin": "pnpm --filter admin run dev",
+    "client:dev": "pnpm --filter client run dev",
+    "admin:dev": "pnpm --filter admin run dev",
+    "admin:add": "pnpm --filter admin add",
     "ui:add": "pnpm --filter ui ui:add",
+    "ui-lib:add": "pnpm --filter ui ui-lib:add ",
     "prepare": "husky install",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
