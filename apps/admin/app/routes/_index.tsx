@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Index() {
-  const { proposals, selectedLinkState } = useProposal()
+  const { proposals, selectedLinkState, statuses } = useProposal()
   return (
     <main className="p-4">
       <Proposals>
@@ -31,7 +31,10 @@ export default function Index() {
         </section>
         <section className="p-4">
           <TextWrapper className="text-xl">追加する</TextWrapper>
-          <Proposals.Form selectedLinkState={selectedLinkState} />
+          <Proposals.Form
+            selectedLinkState={selectedLinkState}
+            statuses={statuses}
+          />
         </section>
       </Proposals>
     </main>

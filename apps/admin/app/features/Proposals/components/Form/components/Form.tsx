@@ -14,6 +14,8 @@ import { z } from 'zod'
 import { SelectedLinkState } from '@/features/index/types/hook'
 import { CalendarFormField } from '@/components/element/form/CalendarFormField'
 import { TextFormField } from '@/components/element/form/TextFormField'
+import type { Response_StatusTag } from '@hack_portal/logic/api/@types'
+import { CheckboxFormField } from '@/components/element/form/CheckboxFormField'
 
 const urlPattern = new RegExp(
   '^(https?:\\/\\/)?' + // プロトコル
@@ -36,7 +38,7 @@ const formSchema = z.object({
   start_date: z.date({
     required_error: 'A date of birth is required.',
   }),
-  // statuses: z.array(z.number()).optional(),
+  statuses: z.array(z.string()).optional(),
   term: z.number(),
   // icon: z.any().refine((file) => file instanceof File, {
   //   // ここでファイルの存在チェック
@@ -46,12 +48,21 @@ const formSchema = z.object({
 
 type FormProps = {
   selectedLinkState: SelectedLinkState
+  statuses: Response_StatusTag[]
 }
 
-export const Form = ({ selectedLinkState }: FormProps) => {
+export const Form = ({ selectedLinkState, statuses }: FormProps) => {
   const { activeLink, handleLinkSelection } = selectedLinkState
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      expired: new Date(),
+      link: '',
+      name: '',
+      start_date: new Date(),
+      statuses: [],
+      term: 0,
+    },
   })
 
   const DATE_ITEM_LIST: {
@@ -89,7 +100,10 @@ export const Form = ({ selectedLinkState }: FormProps) => {
                 <Input
                   placeholder="URLを入力"
                   {...field}
-                  onChange={handleLinkChange}
+                  onChange={(e) => {
+                    handleLinkChange(e) // activeLink を更新
+                    field.onChange(e.target.value) // react-hook-form の状態も更新
+                  }}
                   value={activeLink}
                 />
               </FormControl>
@@ -113,7 +127,16 @@ export const Form = ({ selectedLinkState }: FormProps) => {
           placeholder="日数を入力"
           isNumber
         />
-        <Button type="submit" onClick={() => form.setValue('link', activeLink)}>
+        <CheckboxFormField<z.infer<typeof formSchema>>
+          control={form.control}
+          name="statuses"
+          label="ステータス"
+          items={statuses.map((status) => ({
+            value: status.id ? status.id.toString() : 'error',
+            label: status.status ? status.status : '存在しません',
+          }))}
+        />
+        <Button type="submit" onClick={() => console.log(form.getValues())}>
           Submit
         </Button>
       </form>

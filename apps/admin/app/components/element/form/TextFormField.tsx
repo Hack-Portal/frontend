@@ -35,10 +35,11 @@ export const TextFormField = <T extends FieldValues>({
               type={isNumber ? 'number' : 'text'}
               {...field}
               onChange={(e) =>
-                isNumber &&
-                field.onChange(
-                  e.target.value === '' ? '' : Number(e.target.value),
-                )
+                isNumber
+                  ? field.onChange(
+                      e.target.value === '' ? '' : Number(e.target.value),
+                    )
+                  : field.onChange(e.target.value)
               }
             />
           </FormControl>

@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useState } from 'react'
 import useAspidaSWR from '@aspida/swr'
 import { aspidaClient } from '../../../lib/aspidaClient'
+import { useStatuses } from './useStatuses'
+import { assertNonNullable } from '@hack_portal/logic/utils/assert'
 type Proposal = {
   id: number
   url: string
@@ -30,6 +32,8 @@ export const useProposal = () => {
   //   initialData: { name: 'anonymous' },
   // })
   const [activeLink, setActiveLink] = useState('')
+  const { statuses } = useStatuses()
+  assertNonNullable(statuses)
 
   const handleLinkSelection = useCallback(
     (link: string) => setActiveLink(link),
@@ -42,5 +46,6 @@ export const useProposal = () => {
       activeLink,
       handleLinkSelection,
     },
+    statuses: statuses,
   }
 }
