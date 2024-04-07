@@ -16,6 +16,7 @@ import { CalendarFormField } from '@/components/element/form/CalendarFormField'
 import { TextFormField } from '@/components/element/form/TextFormField'
 import type { Response_StatusTag } from '@hack_portal/logic/api/@types'
 import { CheckboxFormField } from '@/components/element/form/CheckboxFormField'
+import { ImageFormField } from '@/components/element/form/ImageFormField'
 
 const urlPattern = new RegExp(
   '^(https?:\\/\\/)?' + // プロトコル
@@ -40,10 +41,10 @@ const formSchema = z.object({
   }),
   statuses: z.array(z.string()).optional(),
   term: z.number(),
-  // icon: z.any().refine((file) => file instanceof File, {
-  //   // ここでファイルの存在チェック
-  //   message: 'Icon must be a file',
-  // }),
+  icon: z.any().refine((file) => file instanceof File, {
+    // ここでファイルの存在チェック
+    message: 'Icon must be a file',
+  }),
 })
 
 type FormProps = {
@@ -135,6 +136,11 @@ export const Form = ({ selectedLinkState, statuses }: FormProps) => {
             value: status.id ? status.id.toString() : 'error',
             label: status.status ? status.status : '存在しません',
           }))}
+        />
+        <ImageFormField<z.infer<typeof formSchema>>
+          control={form.control}
+          name="icon"
+          label="アイコン"
         />
         <Button type="submit" onClick={() => console.log(form.getValues())}>
           Submit
