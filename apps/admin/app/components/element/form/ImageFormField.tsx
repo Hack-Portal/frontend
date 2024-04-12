@@ -13,14 +13,17 @@ type FormProps<T extends FieldValues> = {
   control: Control<T>
   name: Path<T>
   label: string
+  ogpIcon: string
+  previewState: { preview: string; handleSetPreview: (preview: string) => void }
 }
 
 export const ImageFormField = <T extends FieldValues>({
   control,
   name,
   label,
+  previewState,
 }: FormProps<T>) => {
-  const [preview, setPreview] = useState('')
+  const { preview, handleSetPreview } = previewState
   const getImageData = (event: ChangeEvent<HTMLInputElement>) => {
     // FileList is immutable, so we need to create a new one
     const dataTransfer = new DataTransfer()
@@ -37,9 +40,7 @@ export const ImageFormField = <T extends FieldValues>({
   }
   return (
     <div>
-      {preview && (
-        <img src={preview} width={300} height={300} alt="hackathon_img" />
-      )}
+      {preview && <img src={preview} width={300} height={300} alt="img" />}
       <FormField
         control={control}
         name={name}
@@ -53,7 +54,7 @@ export const ImageFormField = <T extends FieldValues>({
                   {...rest}
                   onChange={(event) => {
                     const { files, displayUrl } = getImageData(event)
-                    setPreview(displayUrl)
+                    handleSetPreview(displayUrl)
                     onChange(files[0])
                   }}
                 />

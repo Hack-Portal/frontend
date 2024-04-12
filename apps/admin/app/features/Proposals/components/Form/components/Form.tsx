@@ -11,12 +11,16 @@ import {
 import { Input } from '@repo/ui/components/ui/input'
 import { Button } from '@repo/ui/components/ui/button'
 import { z } from 'zod'
-import { SelectedLinkState } from '@/features/index/types/hook'
 import { CalendarFormField } from '@/components/element/form/CalendarFormField'
 import { TextFormField } from '@/components/element/form/TextFormField'
-import type { Response_StatusTag } from '@hack_portal/logic/api/@types'
+import type {
+  Request_CreateHackathon,
+  Response_StatusTag,
+} from '@hack_portal/logic/api/@types'
 import { CheckboxFormField } from '@/components/element/form/CheckboxFormField'
 import { ImageFormField } from '@/components/element/form/ImageFormField'
+import { useEffect } from 'react'
+import { usePreview } from '../hooks/usePreview'
 
 const urlPattern = new RegExp(
   '^(https?:\\/\\/)?' + // プロトコル
@@ -48,23 +52,45 @@ const formSchema = z.object({
 })
 
 type FormProps = {
-  selectedLinkState: SelectedLinkState
+  hackathonDraft: Request_CreateHackathon
+  handlePostHackathon: (data: Request_CreateHackathon) => void
   statuses: Response_StatusTag[]
 }
 
-export const Form = ({ selectedLinkState, statuses }: FormProps) => {
-  const { activeLink, handleLinkSelection } = selectedLinkState
+export const Form = ({
+  hackathonDraft,
+  handlePostHackathon,
+  statuses,
+}: FormProps) => {
+  const {
+    expired,
+    link,
+    name,
+    start_date,
+    term,
+    statuses: hackathonStatues,
+    icon,
+  } = hackathonDraft
+
+  const { previewState } = usePreview()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      expired: new Date(),
-      link: '',
-      name: '',
-      start_date: new Date(),
-      statuses: [],
-      term: 0,
-    },
   })
+
+  useEffect(() => {
+    const file = new File([icon], 'icon.png', { type: 'image/png' })
+    form.setValue('expired', new Date(expired))
+    form.setValue('link', link)
+    form.setValue('name', name)
+    form.setValue('start_date', new Date(start_date))
+    form.setValue(
+      'statuses',
+      hackathonStatues?.map((status) => String(status)),
+    )
+    form.setValue('term', term)
+    form.setValue('icon', file)
+    previewState.handleSetPreview(icon)
+  }, [expired, link, name, start_date, hackathonStatues, term, form.setValue])
 
   const DATE_ITEM_LIST: {
     name: Path<z.infer<typeof formSchema>>
@@ -78,19 +104,10 @@ export const Form = ({ selectedLinkState, statuses }: FormProps) => {
     console.log('submit')
     console.log(data)
   }
-  const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
-    handleLinkSelection(e.target.value)
-  }
+
   return (
     <FormContainer {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <TextFormField<z.infer<typeof formSchema>>
-          control={form.control}
-          name="name"
-          label="ハッカソン名"
-          placeholder="名前を入力"
-        />
         <FormField
           control={form.control}
           name="link"
@@ -98,19 +115,17 @@ export const Form = ({ selectedLinkState, statuses }: FormProps) => {
             <FormItem>
               <FormLabel>URL</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="URLを入力"
-                  {...field}
-                  onChange={(e) => {
-                    handleLinkChange(e) // activeLink を更新
-                    field.onChange(e.target.value) // react-hook-form の状態も更新
-                  }}
-                  value={activeLink}
-                />
+                <Input placeholder="URLを入力" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
+        />
+        <TextFormField<z.infer<typeof formSchema>>
+          control={form.control}
+          name="name"
+          label="ハッカソン名"
+          placeholder="名前を入力"
         />
         {DATE_ITEM_LIST.map((item) => (
           <CalendarFormField<z.infer<typeof formSchema>>
@@ -139,8 +154,10 @@ export const Form = ({ selectedLinkState, statuses }: FormProps) => {
         />
         <ImageFormField<z.infer<typeof formSchema>>
           control={form.control}
+          ogpIcon={icon}
           name="icon"
           label="アイコン"
+          previewState={previewState}
         />
         <Button type="submit" onClick={() => console.log(form.getValues())}>
           Submit

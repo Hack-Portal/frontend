@@ -1,13 +1,7 @@
-import { SelectedLinkState } from '@/features/index/types/hook'
-
 type ItemProps = {
-  proposal: {
-    id: number
-    url: string
-    createdat: Date
-  }
-  selectedLinkState: SelectedLinkState
+  url: string
+  createdat: Date
 }
-export const Item = ({ proposal, selectedLinkState }: ItemProps) => {
-  return <div>{proposal.url}</div>
+export const Item = ({ url, createdat }: ItemProps) => {
+  return <div>{url}</div>
 }

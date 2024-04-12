@@ -1,10 +1,11 @@
 /* eslint-disable */
 export type Request_CreateHackathon = {
   expired: string
+  icon: string
   link: string
   name: string
   start_date: string
-  'statuses[]'?: number[] | undefined
+  statuses?: number[]
   term: number
 }
 

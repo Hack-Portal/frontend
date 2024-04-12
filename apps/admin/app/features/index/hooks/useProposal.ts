@@ -3,20 +3,23 @@ import useAspidaSWR from '@aspida/swr'
 import { aspidaClient } from '../../../lib/aspidaClient'
 import { useStatuses } from './useStatuses'
 import { assertNonNullable } from '@hack_portal/logic/utils/assert'
+import { Request_CreateHackathon } from '@hack_portal/logic'
+import { getOGP } from '../utils/ogp'
 type Proposal = {
   id: number
   url: string
   createdat: Date
 }
+
 const Proposals: Proposal[] = [
   {
     id: 1,
-    url: 'https://www.google.com',
+    url: 'https://qiita.com/',
     createdat: new Date(),
   },
   {
     id: 2,
-    url: 'https://www.yahoo.co.jp',
+    url: 'https://talent.supporterz.jp/events/9cc19961-9f1d-4d51-ba76-2abb5b42e30b/',
     createdat: new Date(),
   },
   {
@@ -31,20 +34,47 @@ export const useProposal = () => {
   //   revalidateOnMount: true,
   //   initialData: { name: 'anonymous' },
   // })
-  const [activeLink, setActiveLink] = useState('')
+  const [hackathonDraft, setHackathonDraft] = useState<Request_CreateHackathon>(
+    {
+      expired: new Date().toISOString(),
+      link: '',
+      name: '',
+      start_date: new Date().toISOString(),
+      statuses: [],
+      icon: '',
+      term: 0,
+    },
+  )
   const { statuses } = useStatuses()
-  assertNonNullable(statuses)
+  // assertNonNullable(statuses)
 
-  const handleLinkSelection = useCallback(
-    (link: string) => setActiveLink(link),
-    [],
+  const handlePostHackathon = useCallback(
+    (hackathonDraft: Request_CreateHackathon) => {
+      console.log(hackathonDraft)
+    },
+    [hackathonDraft],
+  )
+
+  const handleSetDraftHackathon = useCallback(
+    async (url: string) => {
+      const result = await getOGP(url)
+
+      setHackathonDraft({
+        ...hackathonDraft,
+        name: result.title ? result.title : '',
+        icon: result.image ? result.image : '',
+        link: url,
+      })
+    },
+    [hackathonDraft],
   )
 
   return {
     proposals: Proposals,
-    selectedLinkState: {
-      activeLink,
-      handleLinkSelection,
+    hackathonDraftState: {
+      hackathonDraft,
+      handlePostHackathon,
+      handleSetDraftHackathon,
     },
     statuses: statuses,
   }

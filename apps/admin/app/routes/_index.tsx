@@ -2,6 +2,8 @@ import type { MetaFunction } from '@remix-run/node'
 import { TextWrapper } from '@/components/element/TextWrapper'
 import { useProposal } from '@/features/index/hooks/useProposal'
 import Proposals from '@/features/Proposals/components/Proposals'
+import { Button } from '@repo/ui/components/ui/button'
+import { Flex } from '@repo/ui/components/ui/flex'
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,7 +13,7 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Index() {
-  const { proposals, selectedLinkState, statuses } = useProposal()
+  const { proposals, hackathonDraftState, statuses } = useProposal()
   return (
     <main className="p-4">
       <Proposals>
@@ -20,11 +22,19 @@ export default function Index() {
           <Proposals.List>
             <>
               {proposals.map((proposal) => (
-                <Proposals.Item
-                  key={proposal.id}
-                  proposal={proposal}
-                  selectedLinkState={selectedLinkState}
-                />
+                <Flex key={proposal.id} className="justify-between w-full">
+                  <Proposals.Item
+                    url={proposal.url}
+                    createdat={proposal.createdat}
+                  />
+                  <Button
+                    onClick={() =>
+                      hackathonDraftState.handleSetDraftHackathon(proposal.url)
+                    }
+                  >
+                    追加する
+                  </Button>
+                </Flex>
               ))}
             </>
           </Proposals.List>
@@ -32,7 +42,8 @@ export default function Index() {
         <section className="p-4">
           <TextWrapper className="text-xl">追加する</TextWrapper>
           <Proposals.Form
-            selectedLinkState={selectedLinkState}
+            hackathonDraft={hackathonDraftState.hackathonDraft}
+            handlePostHackathon={hackathonDraftState.handlePostHackathon}
             statuses={statuses}
           />
         </section>

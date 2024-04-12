@@ -1,3 +1,4 @@
+'use client'
 import { Item } from './Item/components/Item'
 import { List } from './List/components/List'
 import { Form } from './Form/components/Form'
